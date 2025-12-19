@@ -1,0 +1,2 @@
+class Concurso < ApplicationRecord
+end
