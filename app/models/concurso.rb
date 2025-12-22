@@ -1,2 +1,0 @@
-class Concurso < ApplicationRecord
-end
