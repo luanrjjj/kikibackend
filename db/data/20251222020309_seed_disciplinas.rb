@@ -1,4 +1,4 @@
-class Disciplina < SeedMigration::Migration
+class SeedDisciplinas < SeedMigration::Migration
   def up
     disciplinas = [
       "Administração Geral e Pública",

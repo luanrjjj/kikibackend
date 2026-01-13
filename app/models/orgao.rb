@@ -1,0 +1,2 @@
+class Orgao < ApplicationRecord
+end

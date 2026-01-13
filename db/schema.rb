@@ -1,0 +1,115 @@
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema[8.0].define(version: 2026_01_13_133656) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
+  create_table "assuntos", force: :cascade do |t|
+    t.string "nome", null: false
+    t.integer "disciplina_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["disciplina_id"], name: "index_assuntos_on_disciplina_id"
+  end
+
+  create_table "bancas", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "logo"
+    t.string "sigla", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "concursos", force: :cascade do |t|
+    t.string "nome"
+    t.date "inscricoes_ate"
+    t.string "edital_nome"
+    t.json "cargos"
+    t.integer "banca_id", null: false
+    t.integer "orgao_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["banca_id"], name: "index_concursos_on_banca_id"
+    t.index ["orgao_id"], name: "index_concursos_on_orgao_id"
+  end
+
+  create_table "disciplinas", force: :cascade do |t|
+    t.string "nome", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orgaos", force: :cascade do |t|
+    t.string "nome", null: false
+    t.string "sede"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "provas", force: :cascade do |t|
+    t.string "nome", null: false
+    t.integer "orgao_id", null: false
+    t.integer "banca_id", null: false
+    t.integer "concurso_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["banca_id"], name: "index_provas_on_banca_id"
+    t.index ["concurso_id"], name: "index_provas_on_concurso_id"
+    t.index ["orgao_id"], name: "index_provas_on_orgao_id"
+  end
+
+  create_table "questaos", force: :cascade do |t|
+    t.string "nome", null: false
+    t.integer "prova_id", null: false
+    t.integer "concurso_id", null: false
+    t.integer "assunto_id", null: false
+    t.integer "disciplina_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assunto_id"], name: "index_questaos_on_assunto_id"
+    t.index ["concurso_id"], name: "index_questaos_on_concurso_id"
+    t.index ["disciplina_id"], name: "index_questaos_on_disciplina_id"
+    t.index ["prova_id"], name: "index_questaos_on_prova_id"
+  end
+
+  create_table "seed_migration_data_migrations", id: :serial, force: :cascade do |t|
+    t.string "version"
+    t.integer "runtime"
+    t.datetime "migrated_on", precision: nil
+  end
+
+  create_table "textos", force: :cascade do |t|
+    t.string "texto", null: false
+    t.integer "prova_id", null: false
+    t.integer "concurso_id", null: false
+    t.integer "questao_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["concurso_id"], name: "index_textos_on_concurso_id"
+    t.index ["prova_id"], name: "index_textos_on_prova_id"
+    t.index ["questao_id"], name: "index_textos_on_questao_id"
+  end
+
+  add_foreign_key "assuntos", "disciplinas"
+  add_foreign_key "concursos", "orgaos"
+  add_foreign_key "provas", "bancas"
+  add_foreign_key "provas", "concursos"
+  add_foreign_key "provas", "orgaos"
+  add_foreign_key "questaos", "assuntos"
+  add_foreign_key "questaos", "concursos"
+  add_foreign_key "questaos", "disciplinas"
+  add_foreign_key "questaos", "provas"
+  add_foreign_key "textos", "concursos"
+  add_foreign_key "textos", "provas"
+  add_foreign_key "textos", "questaos"
+end
