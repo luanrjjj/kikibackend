@@ -1,0 +1,3512 @@
+[
+    {
+        "nome": "Academia da Polícia Civil de Minas Gerais",
+        "sigla": "ACADEPOL MG",
+        "url": "https://www.tecconcursos.com.br/bancas/acadepol-mg",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Academia da Polícia Civil de Santa Catarina",
+        "sigla": "ACADEPOL SC",
+        "url": "https://www.tecconcursos.com.br/bancas/acadepol-sc",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Academia Estadual de Polícia Sylvio Terra",
+        "sigla": "ACADEPOL RJ",
+        "url": "https://www.tecconcursos.com.br/bancas/acadepol-rj",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Acesse Concursos Ltda",
+        "sigla": "ACESSE",
+        "url": "https://www.tecconcursos.com.br/bancas/acesse",
+        "total_concursos": 51
+    },
+    {
+        "nome": "ADVISE Consultoria e Planejamento EIRELI",
+        "sigla": "ADVISE",
+        "url": "https://www.tecconcursos.com.br/bancas/advise",
+        "total_concursos": 291
+    },
+    {
+        "nome": "Agencia Tubazul LTDA",
+        "sigla": "Tubazul",
+        "url": "https://www.tecconcursos.com.br/bancas/tubazul",
+        "total_concursos": 13
+    },
+    {
+        "nome": "AgiRH Assessoria e Gestão Integrada em Recursos Humanos S/C Ltda. ME",
+        "sigla": "AgiRH",
+        "url": "https://www.tecconcursos.com.br/bancas/agirh",
+        "total_concursos": 113
+    },
+    {
+        "nome": "Águia Instituto de Desenvolvimento Educacional e Social",
+        "sigla": "INSTITUTO ÁGUIA",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-aguia",
+        "total_concursos": 63
+    },
+    {
+        "nome": "Air Soluções em Pesquisa e Tecnologia",
+        "sigla": "PS Concursos",
+        "url": "https://www.tecconcursos.com.br/bancas/ps-concursos",
+        "total_concursos": 6
+    },
+    {
+        "nome": "Alternative Concursos",
+        "sigla": "ALTERNATIVE",
+        "url": "https://www.tecconcursos.com.br/bancas/alternative",
+        "total_concursos": 2
+    },
+    {
+        "nome": "AMIGA Assessoria Técnica Administrativa e Informática Ltda",
+        "sigla": "AMIGA PÚBLICA",
+        "url": "https://www.tecconcursos.com.br/bancas/amiga-publica",
+        "total_concursos": 18
+    },
+    {
+        "nome": "Ápice Consultoria",
+        "sigla": "Ápice",
+        "url": "https://www.tecconcursos.com.br/bancas/apice",
+        "total_concursos": 154
+    },
+    {
+        "nome": "Aplicativa - Serviços de Apoio e Gestão Administrativa",
+        "sigla": "APLICATIVA",
+        "url": "https://www.tecconcursos.com.br/bancas/aplicativa",
+        "total_concursos": 97
+    },
+    {
+        "nome": "Aprender SC (Georgeo Almeida ME)",
+        "sigla": "APRENDER.COM",
+        "url": "https://www.tecconcursos.com.br/bancas/aprendercom",
+        "total_concursos": 7
+    },
+    {
+        "nome": "Apta Assessoria e Consultoria Ltda.",
+        "sigla": "APTA",
+        "url": "https://www.tecconcursos.com.br/bancas/apta",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Asconprev Concursos",
+        "sigla": "ASCONPREV",
+        "url": "https://www.tecconcursos.com.br/bancas/asconprev",
+        "total_concursos": 133
+    },
+    {
+        "nome": "ASPERHS Consultoria",
+        "sigla": "ASPERHS",
+        "url": "https://www.tecconcursos.com.br/bancas/asperhs",
+        "total_concursos": 18
+    },
+    {
+        "nome": "Assessorarte Serviços Especializados",
+        "sigla": "ASSESSORARTE",
+        "url": "https://www.tecconcursos.com.br/bancas/assessorarte",
+        "total_concursos": 20
+    },
+    {
+        "nome": "Assessoria, Consultoria, Planejamento & Informática Ltda",
+        "sigla": "ACP",
+        "url": "https://www.tecconcursos.com.br/bancas/acp",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Assessoria e Consultoria Pública e Privada",
+        "sigla": "ASSCONPP",
+        "url": "https://www.tecconcursos.com.br/bancas/assconpp",
+        "total_concursos": 73
+    },
+    {
+        "nome": "Assessoria e Gestão em Administração Eirelli",
+        "sigla": "ASSEGE",
+        "url": "https://www.tecconcursos.com.br/bancas/assege",
+        "total_concursos": 71
+    },
+    {
+        "nome": "Assessoria em Organização de Concursos Públicos Ltda.",
+        "sigla": "AOCP",
+        "url": "https://www.tecconcursos.com.br/bancas/aocp",
+        "total_concursos": 534
+    },
+    {
+        "nome": "Associação Brasileira de Concursos Públicos",
+        "sigla": "ABCP",
+        "url": "https://www.tecconcursos.com.br/bancas/abcp",
+        "total_concursos": 271
+    },
+    {
+        "nome": "Associação Catarinense das Fundações Educacionais",
+        "sigla": "ACAFE",
+        "url": "https://www.tecconcursos.com.br/bancas/acafe",
+        "total_concursos": 57
+    },
+    {
+        "nome": "Associação Cearense de Estudos e Pesquisas",
+        "sigla": "ACEP",
+        "url": "https://www.tecconcursos.com.br/bancas/acep",
+        "total_concursos": 52
+    },
+    {
+        "nome": "Associação dos Municípios do Alto Uruguai Catarinense",
+        "sigla": "AMAUC",
+        "url": "https://www.tecconcursos.com.br/bancas/amauc",
+        "total_concursos": 413
+    },
+    {
+        "nome": "Associação dos Municípios do Extremo Oeste de Santa Catarina",
+        "sigla": "AMEOSC",
+        "url": "https://www.tecconcursos.com.br/bancas/ameosc",
+        "total_concursos": 2011
+    },
+    {
+        "nome": "Associação Nacional dos Centros de Pós-Graduação em Economia",
+        "sigla": "ANPEC",
+        "url": "https://www.tecconcursos.com.br/bancas/anpec",
+        "total_concursos": 36
+    },
+    {
+        "nome": "ASTEC Assessoria e Consultoria Ltda",
+        "sigla": "ASTEC",
+        "url": "https://www.tecconcursos.com.br/bancas/astec",
+        "total_concursos": 7
+    },
+    {
+        "nome": "Atame Assessoria, Consultoria, Planejamento, Cursos e Pós-Graduação Ltda",
+        "sigla": "ATAME",
+        "url": "https://www.tecconcursos.com.br/bancas/atame",
+        "total_concursos": 54
+    },
+    {
+        "nome": "AVR Assessoria Técnica Ltda",
+        "sigla": "EXATUS",
+        "url": "https://www.tecconcursos.com.br/bancas/exatus",
+        "total_concursos": 112
+    },
+    {
+        "nome": "Banca Examinadora do TJ PR",
+        "sigla": "TJ PR (Ban. Exam.)",
+        "url": "https://www.tecconcursos.com.br/bancas/tj-pr-ban-exam",
+        "total_concursos": 11
+    },
+    {
+        "nome": "Carlos e Jabur Organização de Eventos Ltda.",
+        "sigla": "ENERGIAESSENCIAL",
+        "url": "https://www.tecconcursos.com.br/bancas/energiaessencial",
+        "total_concursos": 3
+    },
+    {
+        "nome": "Central de Seleção do IFMS",
+        "sigla": "CS IFMS",
+        "url": "https://www.tecconcursos.com.br/bancas/cs-ifms",
+        "total_concursos": 23
+    },
+    {
+        "nome": "Centro Brasileiro de Pesquisa em Avaliação e Seleção e de Promoção de Eventos",
+        "sigla": "CEBRASPE (CESPE)",
+        "url": "https://www.tecconcursos.com.br/bancas/cebraspe",
+        "total_concursos": 7577
+    },
+    {
+        "nome": "Centro de Estudos e Aperfeiçoamento Funcional da PGE RN",
+        "sigla": "CEAF PGE RN",
+        "url": "https://www.tecconcursos.com.br/bancas/ceaf-pge-rn",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Centro de Estudos e Aperfeiçoamento Funcional do MPRN",
+        "sigla": "CEAF MPRN",
+        "url": "https://www.tecconcursos.com.br/bancas/ceaf-mprn",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Centro de Estudos e Pesquisa no Ensino do Direito da Universidade do Estado do Rio de Janeiro",
+        "sigla": "CEPED UERJ",
+        "url": "https://www.tecconcursos.com.br/bancas/ceped-uerj",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Centro de Estudos e Treinamento da Procuradoria-Geral do Estado do Ceará",
+        "sigla": "CETREI PGE CE",
+        "url": "https://www.tecconcursos.com.br/bancas/cetrei-pge-ce",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Centro de Estudos Jurídicos",
+        "sigla": "CEFOR PGM NI",
+        "url": "https://www.tecconcursos.com.br/bancas/cefor-pgm-ni",
+        "total_concursos": 3
+    },
+    {
+        "nome": "Centro de Estudos UNIASE",
+        "sigla": "UNIASE",
+        "url": "https://www.tecconcursos.com.br/bancas/uniase",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Centro de Extensão, Treinamento e Aperfeiçoamento Profissional",
+        "sigla": "CETAP",
+        "url": "https://www.tecconcursos.com.br/bancas/cetap",
+        "total_concursos": 781
+    },
+    {
+        "nome": "Centro de Formação, Treinamento e Aperfeiçoamento da Câmara dos Deputados",
+        "sigla": "CEFOR",
+        "url": "https://www.tecconcursos.com.br/bancas/cefor",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Centro de Integração Empresa-Escola",
+        "sigla": "CIEE",
+        "url": "https://www.tecconcursos.com.br/bancas/ciee",
+        "total_concursos": 10
+    },
+    {
+        "nome": "Centro de Processos Seletivos da Universidade Federal do Pará",
+        "sigla": "CEPS UFPA",
+        "url": "https://www.tecconcursos.com.br/bancas/ceps-ufpa",
+        "total_concursos": 412
+    },
+    {
+        "nome": "Centro de Produção da UERJ",
+        "sigla": "CEPUERJ",
+        "url": "https://www.tecconcursos.com.br/bancas/cepuerj",
+        "total_concursos": 212
+    },
+    {
+        "nome": "Centro de Recrutamento e Seleção da Polícia Militar de MG",
+        "sigla": "CRS (PM MG)",
+        "url": "https://www.tecconcursos.com.br/bancas/crs-pm-mg",
+        "total_concursos": 202
+    },
+    {
+        "nome": "Centro de Recrutamento e Seleção de Praças (PMERJ)",
+        "sigla": "CRSP PMERJ",
+        "url": "https://www.tecconcursos.com.br/bancas/crsp-pmerj",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Centro de Seleção e Concursos do IFPA",
+        "sigla": "CSC IFPA",
+        "url": "https://www.tecconcursos.com.br/bancas/csc-ifpa",
+        "total_concursos": 105
+    },
+    {
+        "nome": "Centro de Seleção, Ingresso e Estudo de Pessoal da PMSC",
+        "sigla": "CESIEP",
+        "url": "https://www.tecconcursos.com.br/bancas/cesiep",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Centro de Treinamento e Desenvolvimento",
+        "sigla": "CETREDE",
+        "url": "https://www.tecconcursos.com.br/bancas/cetrede",
+        "total_concursos": 787
+    },
+    {
+        "nome": "Centro Nacional de Monitoramento e Alertas de Desastres Naturais",
+        "sigla": "CEMADEN",
+        "url": "https://www.tecconcursos.com.br/bancas/cemaden",
+        "total_concursos": 14
+    },
+    {
+        "nome": "Centro Universitário de Lavras",
+        "sigla": "UNILAVRAS",
+        "url": "https://www.tecconcursos.com.br/bancas/unilavras",
+        "total_concursos": 81
+    },
+    {
+        "nome": "Cerqueira Consultoria",
+        "sigla": "CERCON",
+        "url": "https://www.tecconcursos.com.br/bancas/cercon",
+        "total_concursos": 14
+    },
+    {
+        "nome": "Cetro Concursos Públicos",
+        "sigla": "CETRO",
+        "url": "https://www.tecconcursos.com.br/bancas/cetro",
+        "total_concursos": 320
+    },
+    {
+        "nome": "CLICK Soluções Inteligentes",
+        "sigla": "CLICK",
+        "url": "https://www.tecconcursos.com.br/bancas/click",
+        "total_concursos": 1
+    },
+    {
+        "nome": "CMM Assessoria e Consultoria em Gestão Pública",
+        "sigla": "CMM Concursos",
+        "url": "https://www.tecconcursos.com.br/bancas/cmm-concursos",
+        "total_concursos": 30
+    },
+    {
+        "nome": "Colégio Militar de Belém",
+        "sigla": "CMBel",
+        "url": "https://www.tecconcursos.com.br/bancas/cmbel",
+        "total_concursos": 11
+    },
+    {
+        "nome": "Colégio Militar de Belo Horizonte",
+        "sigla": "CMBH",
+        "url": "https://www.tecconcursos.com.br/bancas/cmbh",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Colégio Militar de Campo Grande",
+        "sigla": "CMCG",
+        "url": "https://www.tecconcursos.com.br/bancas/cmcg",
+        "total_concursos": 12
+    },
+    {
+        "nome": "Colégio Militar de Salvador",
+        "sigla": "CMS",
+        "url": "https://www.tecconcursos.com.br/bancas/cms",
+        "total_concursos": 18
+    },
+    {
+        "nome": "Colégio Militar de São Paulo",
+        "sigla": "CMSP",
+        "url": "https://www.tecconcursos.com.br/bancas/cmsp",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Colégio Militar do Recife",
+        "sigla": "CMR",
+        "url": "https://www.tecconcursos.com.br/bancas/cmr",
+        "total_concursos": 16
+    },
+    {
+        "nome": "Colégio Militar do Rio de Janeiro",
+        "sigla": "CMRJ",
+        "url": "https://www.tecconcursos.com.br/bancas/cmrj",
+        "total_concursos": 43
+    },
+    {
+        "nome": "Comarcas do Tribunal de Justiça do Estado do Mato Grosso do Sul",
+        "sigla": "Comarcas TJMS",
+        "url": "https://www.tecconcursos.com.br/bancas/comarcas-tjms",
+        "total_concursos": 18
+    },
+    {
+        "nome": "Comissão Administradora do Exame de Qualificação Técnica do CFC",
+        "sigla": "CAE CFC",
+        "url": "https://www.tecconcursos.com.br/bancas/cae-cfc",
+        "total_concursos": 74
+    },
+    {
+        "nome": "Comissão Central do Concurso Público do Instituto Federal de Santa Catarina",
+        "sigla": "CCCP (IFSC)",
+        "url": "https://www.tecconcursos.com.br/bancas/cccp-ifsc",
+        "total_concursos": 180
+    },
+    {
+        "nome": "Comissão Coordenadora do Concurso (CBM PB)",
+        "sigla": "CCC (CBM PB)",
+        "url": "https://www.tecconcursos.com.br/bancas/ccc-cbm-pb",
+        "total_concursos": 10
+    },
+    {
+        "nome": "Comissão Coordenadora do Concurso do IF CE",
+        "sigla": "CCC IFCE",
+        "url": "https://www.tecconcursos.com.br/bancas/ccc-ifce",
+        "total_concursos": 241
+    },
+    {
+        "nome": "Comissão Coordenadora do INPE",
+        "sigla": "CC INPE",
+        "url": "https://www.tecconcursos.com.br/bancas/com-coor-inpe",
+        "total_concursos": 20
+    },
+    {
+        "nome": "Comissão Coordenadora do Processo Complementar para Escolha dos Conselheiros Tutelares de Salvador",
+        "sigla": "CC CMDCA Salvador",
+        "url": "https://www.tecconcursos.com.br/bancas/cc-cmdca-salvador",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão de Apoio ao Processo Seletivo do TJ MT",
+        "sigla": "CAPS TJ MT",
+        "url": "https://www.tecconcursos.com.br/bancas/caps-tj-mt",
+        "total_concursos": 7
+    },
+    {
+        "nome": "Comissão de Concurso da DPE RJ",
+        "sigla": "Com Conc DPE-RJ",
+        "url": "https://www.tecconcursos.com.br/bancas/com-conc-dperj",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Comissão de Concurso da PGE GO",
+        "sigla": "Com. Conc. (PGE GO)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-conc-pge-go",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Comissão de Concurso da PGE-PA",
+        "sigla": "CC PGE-PA",
+        "url": "https://www.tecconcursos.com.br/bancas/cc-pgepa",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Comissão de Concurso do IFSULDEMINAS",
+        "sigla": "CC IFSULDEMINAS",
+        "url": "https://www.tecconcursos.com.br/bancas/cc-ifsuldeminas",
+        "total_concursos": 46
+    },
+    {
+        "nome": "Comissão de Concurso do Ministério Público Militar",
+        "sigla": "CCMPM",
+        "url": "https://www.tecconcursos.com.br/bancas/ccmpm",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Comissão de Concurso do MPE BA",
+        "sigla": "Com. Conc. MPE BA",
+        "url": "https://www.tecconcursos.com.br/bancas/com-conc-mpe-ba",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Comissão de Concurso do TJ PB",
+        "sigla": "CC TJPB",
+        "url": "https://www.tecconcursos.com.br/bancas/cc-tjpb",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão de Concurso (PGE GO)",
+        "sigla": "Com Con (PGE GO)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-con-pge-go",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Comissão de Concurso Público do IF RR",
+        "sigla": "CCP IFRR",
+        "url": "https://www.tecconcursos.com.br/bancas/ccp-ifrr",
+        "total_concursos": 12
+    },
+    {
+        "nome": "Comissão de Concursos (TJ AC)",
+        "sigla": "CC TJAC",
+        "url": "https://www.tecconcursos.com.br/bancas/cc-tjac",
+        "total_concursos": 24
+    },
+    {
+        "nome": "Comissão de Estágio e Exame de Ordem da Seção de Goiás",
+        "sigla": "Com. OAB GO",
+        "url": "https://www.tecconcursos.com.br/bancas/com-oab-go",
+        "total_concursos": 5
+    },
+    {
+        "nome": "Comissão de Planejamento e Coordenadora do Concurso (UFES)",
+        "sigla": "CPCC UFES",
+        "url": "https://www.tecconcursos.com.br/bancas/cpcc-ufes",
+        "total_concursos": 270
+    },
+    {
+        "nome": "Comissão de Processo Seletivo do Instituto Federal de Educação, Ciência e Tecnologia de Brasília",
+        "sigla": "CPS IFB",
+        "url": "https://www.tecconcursos.com.br/bancas/cps-ifb",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão de Processos Seletivos e Treinamentos",
+        "sigla": "COVEST-COPSET",
+        "url": "https://www.tecconcursos.com.br/bancas/covestcopset",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão de Processos Vestibulares da UFCG",
+        "sigla": "COMPROV UFCG",
+        "url": "https://www.tecconcursos.com.br/bancas/comprov-ufcg",
+        "total_concursos": 212
+    },
+    {
+        "nome": "Comissão de Seleção da Procuradoria Geral do Estado de Mato Grosso do Sul",
+        "sigla": "Com Sel PGE MS",
+        "url": "https://www.tecconcursos.com.br/bancas/com-sel-pge-ms",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão de Seleção do Corpo de Bombeiros Militar do Estado do Mato Grosso",
+        "sigla": "CS (CBM MT)",
+        "url": "https://www.tecconcursos.com.br/bancas/cs-cbm-mt",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão de Seleção do Departamento Acadêmico de Ciências da Computação",
+        "sigla": "DACC",
+        "url": "https://www.tecconcursos.com.br/bancas/dacc",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão de Vestibulares e Concursos (IFPE)",
+        "sigla": "CVEST IFPE",
+        "url": "https://www.tecconcursos.com.br/bancas/cvest-ifpe",
+        "total_concursos": 157
+    },
+    {
+        "nome": "Comissão do Concurso Público do IFRN",
+        "sigla": "CCP IFRN",
+        "url": "https://www.tecconcursos.com.br/bancas/ccp-ifrn",
+        "total_concursos": 51
+    },
+    {
+        "nome": "Comissão do Processo Seletivo Docente do IFAP",
+        "sigla": "CPSD IFAP",
+        "url": "https://www.tecconcursos.com.br/bancas/cpsd-ifap",
+        "total_concursos": 11
+    },
+    {
+        "nome": "Comissão do Processo Seletivo do Tribunal de Justiça do Espírito Santo",
+        "sigla": "CPS (TJ ES)",
+        "url": "https://www.tecconcursos.com.br/bancas/cps-tj-es",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão Especial do Processo Seletivo da Prefeitura Municipal de Arapiraca",
+        "sigla": "CEPS Pref Arapiraca",
+        "url": "https://www.tecconcursos.com.br/bancas/ceps-pref-arapiraca",
+        "total_concursos": 58
+    },
+    {
+        "nome": "Comissão Examinadora da Prefeitura Municipal de Bauru",
+        "sigla": "Com Exam Pref Bauru",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-pref-bauru",
+        "total_concursos": 58
+    },
+    {
+        "nome": "Comissão Examinadora do Concurso do Banpará",
+        "sigla": "CEC Banpará",
+        "url": "https://www.tecconcursos.com.br/bancas/cec-banpara",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Comissão Examinadora (DPE MT)",
+        "sigla": "Com. Exam. (DPE MT)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-dpe-mt",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão Examinadora (MPDFT)",
+        "sigla": "Com. Exam. (MPDFT)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-mpdft",
+        "total_concursos": 11
+    },
+    {
+        "nome": "Comissão Examinadora (MPE AM)",
+        "sigla": "Com. Exam. (MPE AM)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-mpe-am",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Comissão Examinadora (MPE AP)",
+        "sigla": "Com. Exam. (MPE AP)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-mpe-ap",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão Examinadora (MPE GO)",
+        "sigla": "Com. Exam. (MPE GO)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-mpe-go",
+        "total_concursos": 51
+    },
+    {
+        "nome": "Comissão Examinadora (MPE MA)",
+        "sigla": "Com. Exam. (MPE MA)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-mpe-ma",
+        "total_concursos": 3
+    },
+    {
+        "nome": "Comissão Examinadora (MPE MS)",
+        "sigla": "Com. Exam. (MPE MS)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-mpe-ms",
+        "total_concursos": 8
+    },
+    {
+        "nome": "Comissão Examinadora (MPE PB)",
+        "sigla": "Com. Exam. (MPE PB)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-mpe-pb",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Comissão Examinadora (MPE PR)",
+        "sigla": "Com. Exam. (MPE PR)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-mpe-mr",
+        "total_concursos": 12
+    },
+    {
+        "nome": "Comissão Examinadora (MPE RS)",
+        "sigla": "Com. Exam. (MPE RS)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-mpe-rs",
+        "total_concursos": 37
+    },
+    {
+        "nome": "Comissão Examinadora (MPE SC)",
+        "sigla": "Com. Exam. (MPE SC)",
+        "url": "https://www.tecconcursos.com.br/bancas/mpe-sc",
+        "total_concursos": 7
+    },
+    {
+        "nome": "Comissão Examinadora (MPF)",
+        "sigla": "Com. Exam. (MPF)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-mpf",
+        "total_concursos": 9
+    },
+    {
+        "nome": "Comissão Examinadora (MPM)",
+        "sigla": "Com. Exam. (MPM)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-mpm",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Comissão Examinadora (MPT)",
+        "sigla": "Com. Exam. (MPT)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-mpt",
+        "total_concursos": 10
+    },
+    {
+        "nome": "Comissão Examinadora (PGE RJ)",
+        "sigla": "Com. Exam. (PGE RJ)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-pge-rj",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Comissão Examinadora (STM)",
+        "sigla": "Com. Exam. (STM)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-stm",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão Examinadora (TJ RS)",
+        "sigla": "Com. Exam. (TJ RS)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-tj-rs",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão Examinadora (TJ SC)",
+        "sigla": "Com. Exam. (TJ SC)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-tj-sc",
+        "total_concursos": 7
+    },
+    {
+        "nome": "Comissão Examinadora (TRF 1)",
+        "sigla": "Com. Exam. (TRF 1)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trf-1",
+        "total_concursos": 8
+    },
+    {
+        "nome": "Comissão Examinadora (TRF 2)",
+        "sigla": "Com. Exam. (TRF 2)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trf-2",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Comissão Examinadora (TRF 3)",
+        "sigla": "Com. Exam. (TRF 3)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trf-3",
+        "total_concursos": 6
+    },
+    {
+        "nome": "Comissão Examinadora (TRF 4)",
+        "sigla": "Com. Exam. (TRF 4)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trf-4",
+        "total_concursos": 7
+    },
+    {
+        "nome": "Comissão Examinadora (TRT 15)",
+        "sigla": "Com. Exam. (TRT 15)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trt-15",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Comissão Examinadora (TRT 16)",
+        "sigla": "Com. Exam. (TRT 16)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trt-16",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Comissão Examinadora (TRT 2)",
+        "sigla": "Com. Exam. (TRT 2)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trt-2",
+        "total_concursos": 11
+    },
+    {
+        "nome": "Comissão Examinadora (TRT 21)",
+        "sigla": "Com. Exam. (TRT 21)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trt-21",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Comissão Examinadora (TRT 22)",
+        "sigla": "Com. Exam. (TRT 22)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trt-22",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão Examinadora (TRT 23)",
+        "sigla": "Com. Exam. (TRT 23)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trt-23",
+        "total_concursos": 9
+    },
+    {
+        "nome": "Comissão Examinadora (TRT 24)",
+        "sigla": "Com. Exam. (TRT 24)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trt-24",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão Examinadora (TRT 3)",
+        "sigla": "Com. Exam. (TRT 3)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trt-3",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Comissão Examinadora (TRT 4)",
+        "sigla": "Com. Exam. (TRT 4)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trt-4",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão Examinadora (TRT 6)",
+        "sigla": "Com. Exam. (TRT 6)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trt-6",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão Examinadora (TRT 8)",
+        "sigla": "Com. Exam. (TRT 8)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-trt-8",
+        "total_concursos": 10
+    },
+    {
+        "nome": "Comissão Executiva do Vestibular da UECE",
+        "sigla": "CEV UECE",
+        "url": "https://www.tecconcursos.com.br/bancas/cev-uece",
+        "total_concursos": 441
+    },
+    {
+        "nome": "Comissão Executiva do Vestibular da Universidade Regional do Cariri",
+        "sigla": "CEV URCA",
+        "url": "https://www.tecconcursos.com.br/bancas/cev-urca",
+        "total_concursos": 388
+    },
+    {
+        "nome": "Comissão Gestora do Concurso da UNIVASF",
+        "sigla": "CGC UNIVASF",
+        "url": "https://www.tecconcursos.com.br/bancas/cgc-univasf",
+        "total_concursos": 62
+    },
+    {
+        "nome": "Comissão Organizadora da PGE MS",
+        "sigla": "Com. Org. (PGE MS)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-org-pge-ms",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Comissão Organizadora da Rede SARAH de Hospitais de Reabilitação",
+        "sigla": "Rede SARAH",
+        "url": "https://www.tecconcursos.com.br/bancas/rede-sarah",
+        "total_concursos": 3
+    },
+    {
+        "nome": "Comissão Organizadora de Concurso do IF Sertão-PE",
+        "sigla": "Com. Org. (IFSertão)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-org-ifsertao",
+        "total_concursos": 24
+    },
+    {
+        "nome": "Comissão Organizadora de Concurso do IFSP",
+        "sigla": "Com. Org. (IFSP)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-org-ifsp",
+        "total_concursos": 170
+    },
+    {
+        "nome": "Comissão Organizadora de Concurso do IFTO",
+        "sigla": "Com. Org. (IFTO)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-org-ifto",
+        "total_concursos": 119
+    },
+    {
+        "nome": "Comissão Organizadora de Concurso Público do IFMT",
+        "sigla": "COCP IFMT",
+        "url": "https://www.tecconcursos.com.br/bancas/cocp-ifmt",
+        "total_concursos": 144
+    },
+    {
+        "nome": "Comissão Organizadora de Concursos da Prefeitura de Pimenta Bueno",
+        "sigla": "Com. Org. P. Bueno",
+        "url": "https://www.tecconcursos.com.br/bancas/com-org-p-bueno",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão Organizadora de Concursos da UFAC",
+        "sigla": "COC UFAC",
+        "url": "https://www.tecconcursos.com.br/bancas/coc-ufac",
+        "total_concursos": 45
+    },
+    {
+        "nome": "Comissão Organizadora do Concurso (IF MA)",
+        "sigla": "COC (IF MA)",
+        "url": "https://www.tecconcursos.com.br/bancas/coc-if-ma",
+        "total_concursos": 10
+    },
+    {
+        "nome": "Comissão Organizadora do Processo Seletivo da FUNORTE",
+        "sigla": "COPS FUNORTE",
+        "url": "https://www.tecconcursos.com.br/bancas/cops-funorte",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Comissão Organizadora do Processo Seletivo Simplificado de Imperatriz",
+        "sigla": "COPSS Imperatriz",
+        "url": "https://www.tecconcursos.com.br/bancas/copss-imperatriz",
+        "total_concursos": 7
+    },
+    {
+        "nome": "Comissão Organizadora e Examinadora do Concurso (TRF 3)",
+        "sigla": "COEC TRF3",
+        "url": "https://www.tecconcursos.com.br/bancas/coec-trf3",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Comissão Organizadora (MPE SP)",
+        "sigla": "Com. Exam. (MPE SP)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-mpe-sp",
+        "total_concursos": 10
+    },
+    {
+        "nome": "Comissão Organizadora (TCE-MT)",
+        "sigla": "Com. Exam. (TCE-MT)",
+        "url": "https://www.tecconcursos.com.br/bancas/com-exam-tcemt",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Comissão Permanente de Concurso e Vestibular da UERR",
+        "sigla": "CPCV UERR",
+        "url": "https://www.tecconcursos.com.br/bancas/cpcv-uerr",
+        "total_concursos": 32
+    },
+    {
+        "nome": "Comissão Permanente de Concurso Público (UTFPR)",
+        "sigla": "CPCP UTFPR",
+        "url": "https://www.tecconcursos.com.br/bancas/cpcp-utfpr",
+        "total_concursos": 29
+    },
+    {
+        "nome": "Comissão Permanente de Concursos da UEPB",
+        "sigla": "CPCON UEPB",
+        "url": "https://www.tecconcursos.com.br/bancas/cpcon-uepb",
+        "total_concursos": 1693
+    },
+    {
+        "nome": "Comissão Permanente de Concursos da Universidade Federal do Amazonas",
+        "sigla": "COMPEC UFAM",
+        "url": "https://www.tecconcursos.com.br/bancas/compec-ufam",
+        "total_concursos": 221
+    },
+    {
+        "nome": "Comissão Permanente de Concursos do CETAM",
+        "sigla": "COPEC CETAM",
+        "url": "https://www.tecconcursos.com.br/bancas/copec-cetam",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Comissão Permanente de Concursos Públicos do IFPB",
+        "sigla": "COMPEC IFPB",
+        "url": "https://www.tecconcursos.com.br/bancas/compec-ifpb",
+        "total_concursos": 110
+    },
+    {
+        "nome": "Comissão Permanente de Processo Seletivo da UFERSA",
+        "sigla": "CPPS UFERSA",
+        "url": "https://www.tecconcursos.com.br/bancas/cpps-ufersa",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Comissão Permanente de Processo Seletivo da Unespar",
+        "sigla": "CPPS",
+        "url": "https://www.tecconcursos.com.br/bancas/cpps",
+        "total_concursos": 29
+    },
+    {
+        "nome": "Comissão Permanente de Seleção da UFRGS",
+        "sigla": "COPERSE UFRGS",
+        "url": "https://www.tecconcursos.com.br/bancas/coperse-ufrgs",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Comissão Permanente de Seleção (UFT)",
+        "sigla": "COPESE-UFT",
+        "url": "https://www.tecconcursos.com.br/bancas/copeseuft",
+        "total_concursos": 283
+    },
+    {
+        "nome": "Comissão Permanente de Vestibular da UFMS",
+        "sigla": "COPEVE UFMS",
+        "url": "https://www.tecconcursos.com.br/bancas/copeve-ufms",
+        "total_concursos": 35
+    },
+    {
+        "nome": "Comissão Permanente de Vestibular da UNIFAL",
+        "sigla": "COPEVE UNIFAL",
+        "url": "https://www.tecconcursos.com.br/bancas/copeve-unifal",
+        "total_concursos": 10
+    },
+    {
+        "nome": "Comissão Permanente do Concurso Vestibular (UFPB)",
+        "sigla": "COPERVE UFPB",
+        "url": "https://www.tecconcursos.com.br/bancas/coperve-ufpb",
+        "total_concursos": 72
+    },
+    {
+        "nome": "Comissão Permanente do Processo Seletivo da UEMG",
+        "sigla": "COPEPS UEMG",
+        "url": "https://www.tecconcursos.com.br/bancas/copeps-uemg",
+        "total_concursos": 36
+    },
+    {
+        "nome": "Comissão Permanente do Vestibular da UFRN",
+        "sigla": "COMPERVE (UFRN)",
+        "url": "https://www.tecconcursos.com.br/bancas/comperve-ufrn",
+        "total_concursos": 828
+    },
+    {
+        "nome": "Comissão Permanente do Vestibular da UFRR",
+        "sigla": "CPV UFRR",
+        "url": "https://www.tecconcursos.com.br/bancas/cpv-ufrr",
+        "total_concursos": 103
+    },
+    {
+        "nome": "Comissão Permanente do Vestibular da Universidade Federal de Minas Gerais",
+        "sigla": "COPEVE UFMG",
+        "url": "https://www.tecconcursos.com.br/bancas/copeve-ufmg",
+        "total_concursos": 279
+    },
+    {
+        "nome": "Comissão Permanente do Vestibular (UFSC)",
+        "sigla": "COPERVE UFSC",
+        "url": "https://www.tecconcursos.com.br/bancas/coperve-ufsc",
+        "total_concursos": 353
+    },
+    {
+        "nome": "Comissão Permanente para os Vestibulares da UNICAMP",
+        "sigla": "COMVEST UNICAMP",
+        "url": "https://www.tecconcursos.com.br/bancas/comvest-unicamp",
+        "total_concursos": 20
+    },
+    {
+        "nome": "Comissão Técnica de Concursos (FADENOR)",
+        "sigla": "COTEC FADENOR",
+        "url": "https://www.tecconcursos.com.br/bancas/cotec-fadenor",
+        "total_concursos": 1300
+    },
+    {
+        "nome": "Comissões Organizadora e Examinadora da PGM Niterói",
+        "sigla": "COE PGM Niterói",
+        "url": "https://www.tecconcursos.com.br/bancas/coe-pgm-niteroi",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Comissões Organizadora e Examinadora da PGM RJ",
+        "sigla": "COE PGM RJ",
+        "url": "https://www.tecconcursos.com.br/bancas/coe-pgm-rj",
+        "total_concursos": 0
+    },
+    {
+        "nome": "COMTALENTO Concursos",
+        "sigla": "COMTALENTO",
+        "url": "https://www.tecconcursos.com.br/bancas/comtalento",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Concepção Consultoria Técnica Especializada",
+        "sigla": "Concepção",
+        "url": "https://www.tecconcursos.com.br/bancas/concepcao",
+        "total_concursos": 42
+    },
+    {
+        "nome": "Concursos e Editora Curitiba Ltda",
+        "sigla": "CEC",
+        "url": "https://www.tecconcursos.com.br/bancas/cec",
+        "total_concursos": 98
+    },
+    {
+        "nome": "Concursos, Residências Médicas, Avaliações e Pesquisas Ltda.",
+        "sigla": "CONSESP",
+        "url": "https://www.tecconcursos.com.br/bancas/consesp",
+        "total_concursos": 535
+    },
+    {
+        "nome": "CONED Consultoria e Assessoria Educacional S/C",
+        "sigla": "CONED",
+        "url": "https://www.tecconcursos.com.br/bancas/coned",
+        "total_concursos": 1
+    },
+    {
+        "nome": "CONPASS Concursos e Assessoria",
+        "sigla": "CONPASS",
+        "url": "https://www.tecconcursos.com.br/bancas/conpass",
+        "total_concursos": 3
+    },
+    {
+        "nome": "CONSCAM Assessoria e Consultoria",
+        "sigla": "CONSCAM",
+        "url": "https://www.tecconcursos.com.br/bancas/conscam",
+        "total_concursos": 272
+    },
+    {
+        "nome": "CONSEL Concursos",
+        "sigla": "CONSEL",
+        "url": "https://www.tecconcursos.com.br/bancas/consel",
+        "total_concursos": 34
+    },
+    {
+        "nome": "Consulplan",
+        "sigla": "CONSULPLAN",
+        "url": "https://www.tecconcursos.com.br/bancas/consulplan",
+        "total_concursos": 1325
+    },
+    {
+        "nome": "Consultoria e Estudos Pedagógicos Ltda",
+        "sigla": "CONSEP",
+        "url": "https://www.tecconcursos.com.br/bancas/consep",
+        "total_concursos": 258
+    },
+    {
+        "nome": "Consultoria em Projetos Educacionais e Concursos",
+        "sigla": "CONSULTEC",
+        "url": "https://www.tecconcursos.com.br/bancas/consultec",
+        "total_concursos": 82
+    },
+    {
+        "nome": "Consultoria Público-Privada",
+        "sigla": "Instituto CONSULPAM",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-consulpam",
+        "total_concursos": 911
+    },
+    {
+        "nome": "Consultoria Técnica e Planejamento Ltda",
+        "sigla": "CONTEMAX",
+        "url": "https://www.tecconcursos.com.br/bancas/contemax",
+        "total_concursos": 254
+    },
+    {
+        "nome": "Coordenação de Capacitação e Seleção de Pessoal do IFPI",
+        "sigla": "CSEP IFPI",
+        "url": "https://www.tecconcursos.com.br/bancas/csep-ifpi",
+        "total_concursos": 110
+    },
+    {
+        "nome": "Coordenação de Concursos da CEFET RJ",
+        "sigla": "CCONC CEFET RJ",
+        "url": "https://www.tecconcursos.com.br/bancas/cconc-cefet-rj",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Coordenação de Concurso Vestibular da Universidade Federal de Sergipe",
+        "sigla": "CCV UFS",
+        "url": "https://www.tecconcursos.com.br/bancas/ccv-ufs",
+        "total_concursos": 67
+    },
+    {
+        "nome": "Coordenação de Estudos, Seleção e Concursos (UFRR)",
+        "sigla": "CESC UFRR",
+        "url": "https://www.tecconcursos.com.br/bancas/cesc-ufrr",
+        "total_concursos": 82
+    },
+    {
+        "nome": "Coordenação de Processos de Seleção e Ingresso (UFPEL)",
+        "sigla": "CPSI (UFPEL)",
+        "url": "https://www.tecconcursos.com.br/bancas/cpsi-ufpel",
+        "total_concursos": 142
+    },
+    {
+        "nome": "Coordenação de Seleção Acadêmica da Universidade Federal Fluminense",
+        "sigla": "COSEAC UFF",
+        "url": "https://www.tecconcursos.com.br/bancas/uff",
+        "total_concursos": 629
+    },
+    {
+        "nome": "Coordenação-Geral de Gestão de Pessoas da FIOCRUZ",
+        "sigla": "COGEPE FIOCRUZ",
+        "url": "https://www.tecconcursos.com.br/bancas/cogepe-fiocruz",
+        "total_concursos": 107
+    },
+    {
+        "nome": "Coordenação Geral de Processos Seletivos  da Universidade Federal de Juiz de Fora",
+        "sigla": "COPESE UFJF",
+        "url": "https://www.tecconcursos.com.br/bancas/copese-ufjf",
+        "total_concursos": 74
+    },
+    {
+        "nome": "Coordenadoria de Apoio a Instituições Públicas",
+        "sigla": "CAIPIMES",
+        "url": "https://www.tecconcursos.com.br/bancas/caipimes",
+        "total_concursos": 328
+    },
+    {
+        "nome": "Coordenadoria de Concursos da Universidade Federal de Santa Maria",
+        "sigla": "CCON UFSM",
+        "url": "https://www.tecconcursos.com.br/bancas/ccon-ufsm",
+        "total_concursos": 211
+    },
+    {
+        "nome": "Coordenadoria de Concursos da Universidade Federal do Ceará",
+        "sigla": "CCV UFC",
+        "url": "https://www.tecconcursos.com.br/bancas/ccv-ufc",
+        "total_concursos": 151
+    },
+    {
+        "nome": "Coordenadoria de Processos Seletivos (UEL)",
+        "sigla": "COPS UEL",
+        "url": "https://www.tecconcursos.com.br/bancas/cops-uel",
+        "total_concursos": 268
+    },
+    {
+        "nome": "Coordenadoria de Recursos Humanos da PM RO",
+        "sigla": "CRH PMRO",
+        "url": "https://www.tecconcursos.com.br/bancas/crh-pmro",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Coordenadoria do Centro de Seleção da Universidade Federal da Grande Dourados",
+        "sigla": "CCS UFGD",
+        "url": "https://www.tecconcursos.com.br/bancas/ccs-ufgd",
+        "total_concursos": 101
+    },
+    {
+        "nome": "Coordenadoria Geral de Concursos e Processos Seletivos da UNIOESTE",
+        "sigla": "COGEPS UNIOESTE",
+        "url": "https://www.tecconcursos.com.br/bancas/cogeps-unioeste",
+        "total_concursos": 549
+    },
+    {
+        "nome": "Coordenadoria Geral de Processos Seletivos (UFLA)",
+        "sigla": "COPS UFLA",
+        "url": "https://www.tecconcursos.com.br/bancas/cops-ufla",
+        "total_concursos": 91
+    },
+    {
+        "nome": "Coordenadoria Permanente de Seleção da UFPI",
+        "sigla": "COPESE UFPI",
+        "url": "https://www.tecconcursos.com.br/bancas/copese-ufpi",
+        "total_concursos": 232
+    },
+    {
+        "nome": "Creative Group",
+        "sigla": "CREATIVE",
+        "url": "https://www.tecconcursos.com.br/bancas/creative",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Crescer Consultorias",
+        "sigla": "CRESCER",
+        "url": "https://www.tecconcursos.com.br/bancas/crescer",
+        "total_concursos": 101
+    },
+    {
+        "nome": "DECORP Ltda.",
+        "sigla": "DECORP",
+        "url": "https://www.tecconcursos.com.br/bancas/decorp",
+        "total_concursos": 204
+    },
+    {
+        "nome": "Dédalus Concursos",
+        "sigla": "DÉDALUS",
+        "url": "https://www.tecconcursos.com.br/bancas/dedalus",
+        "total_concursos": 31
+    },
+    {
+        "nome": "Delta Gestão Pública",
+        "sigla": "Delta",
+        "url": "https://www.tecconcursos.com.br/bancas/delta",
+        "total_concursos": 13
+    },
+    {
+        "nome": "Departamento de Educação e Cultura do Exército",
+        "sigla": "DECEx",
+        "url": "https://www.tecconcursos.com.br/bancas/decex",
+        "total_concursos": 463
+    },
+    {
+        "nome": "Departamento de Processos Seletivos e Concursos da UNIFAP",
+        "sigla": "DEPSEC UNIFAP",
+        "url": "https://www.tecconcursos.com.br/bancas/depsec-unifap",
+        "total_concursos": 240
+    },
+    {
+        "nome": "Departamento de Recursos Humanos",
+        "sigla": "DRH DPE-SP",
+        "url": "https://www.tecconcursos.com.br/bancas/drh-dpesp",
+        "total_concursos": 3
+    },
+    {
+        "nome": "Departamento de Seleção Acadêmica da UERJ",
+        "sigla": "DSEA UERJ",
+        "url": "https://www.tecconcursos.com.br/bancas/dsea-uerj",
+        "total_concursos": 37
+    },
+    {
+        "nome": "Departamento de Seleção do IFSUL",
+        "sigla": "DES IFSUL",
+        "url": "https://www.tecconcursos.com.br/bancas/des-ifsul",
+        "total_concursos": 321
+    },
+    {
+        "nome": "Departamento Indexus",
+        "sigla": "INDEXUS",
+        "url": "https://www.tecconcursos.com.br/bancas/indexus",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Dexter Consultoria Educacional e Concursos Públicos Ltda",
+        "sigla": "DEXTER",
+        "url": "https://www.tecconcursos.com.br/bancas/dexter",
+        "total_concursos": 34
+    },
+    {
+        "nome": "Directa Desenvolvimento Institucional e de Carreiras Ltda",
+        "sigla": "DIRECTA",
+        "url": "https://www.tecconcursos.com.br/bancas/directa",
+        "total_concursos": 10
+    },
+    {
+        "nome": "Diretoria de Concursos e Processos Seletivos (IFRJ)",
+        "sigla": "DCPS IFRJ",
+        "url": "https://www.tecconcursos.com.br/bancas/dcps-ifrj",
+        "total_concursos": 47
+    },
+    {
+        "nome": "Diretoria de Ensino da Aeronáutica",
+        "sigla": "DIRENS Aeronáutica",
+        "url": "https://www.tecconcursos.com.br/bancas/direns-aeronautica",
+        "total_concursos": 954
+    },
+    {
+        "nome": "Diretoria de Ensino, Instrução e Pesquisa da PMPI",
+        "sigla": "DEIP PMPI",
+        "url": "https://www.tecconcursos.com.br/bancas/deip-pmpi",
+        "total_concursos": 9
+    },
+    {
+        "nome": "Diretoria de Instrução e Ensino da PM SC",
+        "sigla": "DIE PMSC",
+        "url": "https://www.tecconcursos.com.br/bancas/die-pmsc",
+        "total_concursos": 3
+    },
+    {
+        "nome": "Diretoria de Processos Seletivos da Universidade Federal de Uberlândia",
+        "sigla": "DIRPS UFU",
+        "url": "https://www.tecconcursos.com.br/bancas/dirps-ufu",
+        "total_concursos": 321
+    },
+    {
+        "nome": "Divisão de Admissão e Seleção (CIAAR)",
+        "sigla": "DAS CIAAR",
+        "url": "https://www.tecconcursos.com.br/bancas/das-ciaar",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Divisão de Processo Seletivo da UEAP",
+        "sigla": "DIPS UEAP",
+        "url": "https://www.tecconcursos.com.br/bancas/dips-ueap",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Educa Assessoria Educacional",
+        "sigla": "EDUCA PB",
+        "url": "https://www.tecconcursos.com.br/bancas/educa-pb",
+        "total_concursos": 672
+    },
+    {
+        "nome": "EMBRASIL Desenvolvimento Institucional e de Carreiras",
+        "sigla": "EMBRASIL",
+        "url": "https://www.tecconcursos.com.br/bancas/embrasil",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Empresa de Apoio e Gestão de Projetos e Concursos",
+        "sigla": "EAPC",
+        "url": "https://www.tecconcursos.com.br/bancas/eapc",
+        "total_concursos": 5
+    },
+    {
+        "nome": "Empresa de Concursos Rio de Janeiro",
+        "sigla": "ECONRIO",
+        "url": "https://www.tecconcursos.com.br/bancas/econrio",
+        "total_concursos": 15
+    },
+    {
+        "nome": "Empresa de Seleção Pública e Privada",
+        "sigla": "ESPP",
+        "url": "https://www.tecconcursos.com.br/bancas/espp",
+        "total_concursos": 62
+    },
+    {
+        "nome": "Empresa Gerencial de Projetos Navais",
+        "sigla": "EMGEPRON",
+        "url": "https://www.tecconcursos.com.br/bancas/emgepron",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Empresa Paranaense de Licitações e Concursos",
+        "sigla": "EPL Concursos",
+        "url": "https://www.tecconcursos.com.br/bancas/epl-concursos",
+        "total_concursos": 92
+    },
+    {
+        "nome": "EPBAZI Organização e Métodos",
+        "sigla": "EPBAZI",
+        "url": "https://www.tecconcursos.com.br/bancas/epbazi",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Equipe Consultoria e Assessoria",
+        "sigla": "EQUIPE",
+        "url": "https://www.tecconcursos.com.br/bancas/equipe",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Escola da Magistratura do Rio Grande do Norte",
+        "sigla": "ESMARN",
+        "url": "https://www.tecconcursos.com.br/bancas/esmarn",
+        "total_concursos": 15
+    },
+    {
+        "nome": "Escola de Administração Fazendária",
+        "sigla": "ESAF",
+        "url": "https://www.tecconcursos.com.br/bancas/esaf",
+        "total_concursos": 331
+    },
+    {
+        "nome": "Escola de Saúde Pública do Ceará Paulo Marcelo Martins Rodrigues",
+        "sigla": "ESP CE",
+        "url": "https://www.tecconcursos.com.br/bancas/esp-ce",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Escola Judicial do Amapá",
+        "sigla": "EJAP",
+        "url": "https://www.tecconcursos.com.br/bancas/ejap",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Escola Judiciária do Estado do Piauí",
+        "sigla": "EJUD PI",
+        "url": "https://www.tecconcursos.com.br/bancas/ejud-pi",
+        "total_concursos": 32
+    },
+    {
+        "nome": "Escola Superior da Magistratura do Espírito Santo",
+        "sigla": "ESMAGES",
+        "url": "https://www.tecconcursos.com.br/bancas/esmages",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Escola Superior da Magistratura do Estado de Alagoas",
+        "sigla": "ESMAL",
+        "url": "https://www.tecconcursos.com.br/bancas/esmal",
+        "total_concursos": 19
+    },
+    {
+        "nome": "Escola Superior de Administração e Gerência",
+        "sigla": "ESAG",
+        "url": "https://www.tecconcursos.com.br/bancas/ufg",
+        "total_concursos": 60
+    },
+    {
+        "nome": "Escola Superior do Ministério Público de Goiás",
+        "sigla": "ESMP",
+        "url": "https://www.tecconcursos.com.br/bancas/esmp",
+        "total_concursos": 3
+    },
+    {
+        "nome": "ETHOS Concursos Públicos",
+        "sigla": "ETHOS",
+        "url": "https://www.tecconcursos.com.br/bancas/ethos",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Evolução Consultoria LTDA",
+        "sigla": "Instituto EVO",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-evo",
+        "total_concursos": 176
+    },
+    {
+        "nome": "Exame Auditores & Consultores",
+        "sigla": "EXAME",
+        "url": "https://www.tecconcursos.com.br/bancas/exame",
+        "total_concursos": 6
+    },
+    {
+        "nome": "Exata - Tecnologia de Informação",
+        "sigla": "Exata",
+        "url": "https://www.tecconcursos.com.br/bancas/exata",
+        "total_concursos": 23
+    },
+    {
+        "nome": "Excelência Seleções e Concursos Públicos Ltda.",
+        "sigla": "Instituto Excelência",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-excelencia",
+        "total_concursos": 262
+    },
+    {
+        "nome": "Exodus Auditoria, Administração e Assessoria",
+        "sigla": "EXODUS",
+        "url": "https://www.tecconcursos.com.br/bancas/exodus",
+        "total_concursos": 53
+    },
+    {
+        "nome": "Facet Concursos",
+        "sigla": "FACET",
+        "url": "https://www.tecconcursos.com.br/bancas/facet",
+        "total_concursos": 269
+    },
+    {
+        "nome": "Faculdade de Ciências Aplicadas e Sociais de Petrolina",
+        "sigla": "FACAPE",
+        "url": "https://www.tecconcursos.com.br/bancas/facape",
+        "total_concursos": 142
+    },
+    {
+        "nome": "Faculdade de Tecnologia ALFA de Umuarama",
+        "sigla": "ALFA Umuarama",
+        "url": "https://www.tecconcursos.com.br/bancas/alfa",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Faculdade Estadual de Ciências e Letras de Campo Mourão",
+        "sigla": "FECILCAM",
+        "url": "https://www.tecconcursos.com.br/bancas/fecilcam",
+        "total_concursos": 12
+    },
+    {
+        "nome": "FAMA Assessoria e Consultoria em Gestão Pública",
+        "sigla": "FAMA",
+        "url": "https://www.tecconcursos.com.br/bancas/fama",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Fenix Assessoria e Consultoria S/C Ltda",
+        "sigla": "Fênix Concursos",
+        "url": "https://www.tecconcursos.com.br/bancas/fenix-concursos",
+        "total_concursos": 6
+    },
+    {
+        "nome": "Fênix Instituto Ltda.",
+        "sigla": "Fênix Instituto",
+        "url": "https://www.tecconcursos.com.br/bancas/fenix-instituto",
+        "total_concursos": 505
+    },
+    {
+        "nome": "Ferreira de Moura Consultoria e Negócios",
+        "sigla": "Ferreira de Moura",
+        "url": "https://www.tecconcursos.com.br/bancas/ferreira-de-moura",
+        "total_concursos": 20
+    },
+    {
+        "nome": "Fluxo Consultoria e Treinamento em Administração Pública Ltda.",
+        "sigla": "FLUXO CONSULTORIA",
+        "url": "https://www.tecconcursos.com.br/bancas/fluxo-consultoria",
+        "total_concursos": 33
+    },
+    {
+        "nome": "Fórum Nacional de Gestores de Inovação e Transferência de Tecnologia",
+        "sigla": "FORTEC",
+        "url": "https://www.tecconcursos.com.br/bancas/fortec",
+        "total_concursos": 9
+    },
+    {
+        "nome": "Fronte Concursos e Projetos",
+        "sigla": "Fronte",
+        "url": "https://www.tecconcursos.com.br/bancas/fronte",
+        "total_concursos": 95
+    },
+    {
+        "nome": "FUCAP Consultoria e Assessoria Pública",
+        "sigla": "FUCAP",
+        "url": "https://www.tecconcursos.com.br/bancas/fucap",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Fundação Ajuri de Apoio ao Desenvolvimento da Universidade Federal de Roraima",
+        "sigla": "AJURI",
+        "url": "https://www.tecconcursos.com.br/bancas/ajuri",
+        "total_concursos": 41
+    },
+    {
+        "nome": "Fundação Apolônio Salles de Desenvolvimento Educacional",
+        "sigla": "FADURPE",
+        "url": "https://www.tecconcursos.com.br/bancas/fadurpe",
+        "total_concursos": 146
+    },
+    {
+        "nome": "Fundação Aroeira",
+        "sigla": "AROEIRA",
+        "url": "https://www.tecconcursos.com.br/bancas/aroeira",
+        "total_concursos": 262
+    },
+    {
+        "nome": "Fundação Bio-Rio",
+        "sigla": "BIO-RIO",
+        "url": "https://www.tecconcursos.com.br/bancas/biorio",
+        "total_concursos": 330
+    },
+    {
+        "nome": "Fundação Brasileira de Contabilidade",
+        "sigla": "FBC",
+        "url": "https://www.tecconcursos.com.br/bancas/fbc",
+        "total_concursos": 23
+    },
+    {
+        "nome": "Fundação Carlos Chagas",
+        "sigla": "FCC",
+        "url": "https://www.tecconcursos.com.br/bancas/fcc",
+        "total_concursos": 4075
+    },
+    {
+        "nome": "Fundação Cearense de Pesquisa e Cultura",
+        "sigla": "FCPC",
+        "url": "https://www.tecconcursos.com.br/bancas/fcpc",
+        "total_concursos": 72
+    },
+    {
+        "nome": "Fundação Centro Estadual de Estatísticas, Pesquisas e Formação de Servidores Públicos do RJ",
+        "sigla": "CEPERJ",
+        "url": "https://www.tecconcursos.com.br/bancas/ceperj",
+        "total_concursos": 334
+    },
+    {
+        "nome": "Fundação Cesgranrio",
+        "sigla": "CESGRANRIO",
+        "url": "https://www.tecconcursos.com.br/bancas/cesgranrio",
+        "total_concursos": 2799
+    },
+    {
+        "nome": "Fundação Conesul de Desenvolvimento",
+        "sigla": "CONESUL",
+        "url": "https://www.tecconcursos.com.br/bancas/conesul",
+        "total_concursos": 10
+    },
+    {
+        "nome": "Fundação de Administração e Pesquisa Econômico-Social",
+        "sigla": "FAPES",
+        "url": "https://www.tecconcursos.com.br/bancas/fapes",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Fundação de Amparo a Pesquisa e Extensão Universitária",
+        "sigla": "FAPEU",
+        "url": "https://www.tecconcursos.com.br/bancas/fapeu",
+        "total_concursos": 10
+    },
+    {
+        "nome": "Fundação de Apoio à Educação e ao Desenvolvimento Tecnológico do RN",
+        "sigla": "FUNCERN",
+        "url": "https://www.tecconcursos.com.br/bancas/funcern",
+        "total_concursos": 743
+    },
+    {
+        "nome": "Fundação de Apoio à Educação e Desenvolvimento Tecnológico",
+        "sigla": "CEFETBAHIA",
+        "url": "https://www.tecconcursos.com.br/bancas/cefetbahia",
+        "total_concursos": 133
+    },
+    {
+        "nome": "Fundação de Apoio à Educação e Desenvolvimento Tecnológico de Minas Gerais",
+        "sigla": "FCM - CEFETMINAS",
+        "url": "https://www.tecconcursos.com.br/bancas/fcm-cefetminas",
+        "total_concursos": 544
+    },
+    {
+        "nome": "Fundação de Apoio à Educação, Pesquisa e Desenvolvimento Científico e Tecnológico da UTFPR",
+        "sigla": "FUNTEF",
+        "url": "https://www.tecconcursos.com.br/bancas/funtef",
+        "total_concursos": 52
+    },
+    {
+        "nome": "Fundação de Apoio a Educação, Pesquisa e Extensão da UNISUL",
+        "sigla": "FUNDUNISUL",
+        "url": "https://www.tecconcursos.com.br/bancas/fundunisul",
+        "total_concursos": 74
+    },
+    {
+        "nome": "Fundação de Apoio ao Desenvolvimento  Científico e Tecnológico do Vale do Piquiri",
+        "sigla": "FADCT",
+        "url": "https://www.tecconcursos.com.br/bancas/fadct",
+        "total_concursos": 47
+    },
+    {
+        "nome": "Fundação de Apoio ao Desenvolvimento da Educação de Mato Grosso do Sul",
+        "sigla": "FADEMS",
+        "url": "https://www.tecconcursos.com.br/bancas/fadems",
+        "total_concursos": 36
+    },
+    {
+        "nome": "Fundação de Apoio ao Desenvolvimento da UFPE",
+        "sigla": "FADE UFPE",
+        "url": "https://www.tecconcursos.com.br/bancas/fade-ufpe",
+        "total_concursos": 296
+    },
+    {
+        "nome": "Fundação de Apoio ao Desenvolvimento da UNICENTRO",
+        "sigla": "FAU UNICENTRO",
+        "url": "https://www.tecconcursos.com.br/bancas/fau-unicentro",
+        "total_concursos": 980
+    },
+    {
+        "nome": "Fundação de Apoio ao Desenvolvimento da Universidade Estadual de Londrina",
+        "sigla": "FAUEL",
+        "url": "https://www.tecconcursos.com.br/bancas/fauel",
+        "total_concursos": 1073
+    },
+    {
+        "nome": "Fundação de Apoio ao Ensino, a Pesquisa e a Extensão do Instituto Benjamin Constant",
+        "sigla": "FAIBC",
+        "url": "https://www.tecconcursos.com.br/bancas/faibc",
+        "total_concursos": 12
+    },
+    {
+        "nome": "Fundação de Apoio ao Instituto Federal de Educação, Ciência e Tecnologia do Espírito Santo",
+        "sigla": "FACTO",
+        "url": "https://www.tecconcursos.com.br/bancas/facto",
+        "total_concursos": 60
+    },
+    {
+        "nome": "Fundação de Apoio à Pesquisa, ao Ensino e à Cultura",
+        "sigla": "FAPEC",
+        "url": "https://www.tecconcursos.com.br/bancas/fapec",
+        "total_concursos": 387
+    },
+    {
+        "nome": "Fundação de Apoio à Pesquisa, ao Ensino e à Cultura de Mato Grosso do Sul",
+        "sigla": "FAPEMS",
+        "url": "https://www.tecconcursos.com.br/bancas/fapems",
+        "total_concursos": 5
+    },
+    {
+        "nome": "Fundação de Apoio à Pesquisa e Extensão de São José do Rio Preto",
+        "sigla": "FAPERP",
+        "url": "https://www.tecconcursos.com.br/bancas/faperp",
+        "total_concursos": 34
+    },
+    {
+        "nome": "Fundação de Apoio à Pesquisa e Extensão de Sergipe",
+        "sigla": "FAPESE",
+        "url": "https://www.tecconcursos.com.br/bancas/fapese",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Fundação de Apoio a Pesquisa, Ensino e Assistência (FUNRIO)",
+        "sigla": "FUNRIO",
+        "url": "https://www.tecconcursos.com.br/bancas/funrio",
+        "total_concursos": 603
+    },
+    {
+        "nome": "Fundação de Apoio a Serviços Técnicos, Ensino e Fomento a Pesquisas",
+        "sigla": "FASTEF",
+        "url": "https://www.tecconcursos.com.br/bancas/fastef",
+        "total_concursos": 17
+    },
+    {
+        "nome": "Fundação de Apoio à Tecnologia",
+        "sigla": "FAT Concursos",
+        "url": "https://www.tecconcursos.com.br/bancas/fat-concursos",
+        "total_concursos": 58
+    },
+    {
+        "nome": "Fundação de Apoio à UNESPAR",
+        "sigla": "FAFIPA",
+        "url": "https://www.tecconcursos.com.br/bancas/fafipa",
+        "total_concursos": 801
+    },
+    {
+        "nome": "Fundação de Apoio à Universidade Municipal de São Caetano Do Sul",
+        "sigla": "FAUSCS",
+        "url": "https://www.tecconcursos.com.br/bancas/fauscs",
+        "total_concursos": 16
+    },
+    {
+        "nome": "Fundação de Apoio CEFET",
+        "sigla": "FUNCEFET",
+        "url": "https://www.tecconcursos.com.br/bancas/funcefet",
+        "total_concursos": 9
+    },
+    {
+        "nome": "Fundação de Apoio Cientifico e Tecnológico do Tocantins",
+        "sigla": "FAPTO",
+        "url": "https://www.tecconcursos.com.br/bancas/fapto",
+        "total_concursos": 33
+    },
+    {
+        "nome": "Fundação de Apoio da Universidade Federal do RS",
+        "sigla": "FAURGS",
+        "url": "https://www.tecconcursos.com.br/bancas/faurgs",
+        "total_concursos": 501
+    },
+    {
+        "nome": "Fundação de Apoio e Desenvolvimento ao Ensino, Pesquisa e Extensão Universitária no Acre",
+        "sigla": "FUNDAPE",
+        "url": "https://www.tecconcursos.com.br/bancas/fundape",
+        "total_concursos": 15
+    },
+    {
+        "nome": "Fundação de Apoio e Desenvolvimento da Educação, Ciência e Tecnologia de Minas Gerais",
+        "sigla": "FADECIT (FRAMINAS)",
+        "url": "https://www.tecconcursos.com.br/bancas/fadecit-framinas",
+        "total_concursos": 55
+    },
+    {
+        "nome": "Fundação de Apoio Tecnológico",
+        "sigla": "FUNATEC",
+        "url": "https://www.tecconcursos.com.br/bancas/funatec",
+        "total_concursos": 230
+    },
+    {
+        "nome": "Fundação de Cultura e Apoio ao Ensino Pesquisa e Extensão",
+        "sigla": "FUNCEPE",
+        "url": "https://www.tecconcursos.com.br/bancas/funcepe",
+        "total_concursos": 62
+    },
+    {
+        "nome": "Fundação de Desenvolvimento da Pesquisa",
+        "sigla": "FUNDEP",
+        "url": "https://www.tecconcursos.com.br/bancas/fundep",
+        "total_concursos": 2145
+    },
+    {
+        "nome": "Fundação de Desenvolvimento da Unicamp",
+        "sigla": "FUNCAMP",
+        "url": "https://www.tecconcursos.com.br/bancas/funcamp",
+        "total_concursos": 32
+    },
+    {
+        "nome": "Fundação de Estudos e Pesquisas Socioeconômicos",
+        "sigla": "FEPESE",
+        "url": "https://www.tecconcursos.com.br/bancas/fepese",
+        "total_concursos": 3304
+    },
+    {
+        "nome": "Fundação Educacional Barriga Verde",
+        "sigla": "UNIBAVE",
+        "url": "https://www.tecconcursos.com.br/bancas/unibave",
+        "total_concursos": 47
+    },
+    {
+        "nome": "Fundação Educacional de Volta Redonda",
+        "sigla": "FEVRE",
+        "url": "https://www.tecconcursos.com.br/bancas/fevre",
+        "total_concursos": 6
+    },
+    {
+        "nome": "Fundação Escola Superior da Defensoria Pública do Estado do Rio de Janeiro",
+        "sigla": "FESUDEPERJ",
+        "url": "https://www.tecconcursos.com.br/bancas/fesudeperj",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Fundação Escola Superior do Ministério Público do estado do Rio de Janeiro",
+        "sigla": "FEMPERJ",
+        "url": "https://www.tecconcursos.com.br/bancas/femperj",
+        "total_concursos": 16
+    },
+    {
+        "nome": "Fundação Escola Superior do Ministério Público do Rio Grande do Norte",
+        "sigla": "FESMP RN",
+        "url": "https://www.tecconcursos.com.br/bancas/fesmp-rn",
+        "total_concursos": 7
+    },
+    {
+        "nome": "Fundação Escola Superior do Ministério Público (RS)",
+        "sigla": "FMP",
+        "url": "https://www.tecconcursos.com.br/bancas/fmp",
+        "total_concursos": 43
+    },
+    {
+        "nome": "Fundação Euclides da Cunha",
+        "sigla": "FEC",
+        "url": "https://www.tecconcursos.com.br/bancas/fec",
+        "total_concursos": 5
+    },
+    {
+        "nome": "Fundação Getúlio Vargas",
+        "sigla": "FGV",
+        "url": "https://www.tecconcursos.com.br/bancas/fgv",
+        "total_concursos": 5050
+    },
+    {
+        "nome": "Fundação Guimarães Duque",
+        "sigla": "FGD",
+        "url": "https://www.tecconcursos.com.br/bancas/fgd",
+        "total_concursos": 16
+    },
+    {
+        "nome": "Fundação Guimarães Rosa",
+        "sigla": "FGR",
+        "url": "https://www.tecconcursos.com.br/bancas/fgr",
+        "total_concursos": 72
+    },
+    {
+        "nome": "Fundação Integrada Municipal de Ensino Superior",
+        "sigla": "UNIFIMES",
+        "url": "https://www.tecconcursos.com.br/bancas/unifimes",
+        "total_concursos": 20
+    },
+    {
+        "nome": "Fundação José Pelúcio Ferreira (UFRJ)",
+        "sigla": "FJPF (UFRJ)",
+        "url": "https://www.tecconcursos.com.br/bancas/fjpf-ufrj",
+        "total_concursos": 80
+    },
+    {
+        "nome": "Fundação La Salle",
+        "sigla": "Fundação La Salle",
+        "url": "https://www.tecconcursos.com.br/bancas/fundacao-la-salle",
+        "total_concursos": 203
+    },
+    {
+        "nome": "Fundação Luís Eduardo Magalhães - Centro de Modernização e Desenvolvimento da Administração Pública",
+        "sigla": "FLEM Concursos",
+        "url": "https://www.tecconcursos.com.br/bancas/flem-concursos",
+        "total_concursos": 3
+    },
+    {
+        "nome": "Fundação Marco Zero",
+        "sigla": "FMZ",
+        "url": "https://www.tecconcursos.com.br/bancas/fmz",
+        "total_concursos": 23
+    },
+    {
+        "nome": "Fundação Mariana Resende Costa",
+        "sigla": "FUMARC",
+        "url": "https://www.tecconcursos.com.br/bancas/fumarc",
+        "total_concursos": 610
+    },
+    {
+        "nome": "Fundação para o Desenvolvimento de Recursos Humanos",
+        "sigla": "FDRH",
+        "url": "https://www.tecconcursos.com.br/bancas/fdrh",
+        "total_concursos": 43
+    },
+    {
+        "nome": "Fundação para o Vestibular da Universidade Estadual Paulista",
+        "sigla": "VUNESP",
+        "url": "https://www.tecconcursos.com.br/bancas/vunesp",
+        "total_concursos": 6924
+    },
+    {
+        "nome": "Fundação Parque Tecnológico da Paraíba",
+        "sigla": "PaqTc-PB",
+        "url": "https://www.tecconcursos.com.br/bancas/paqtcpb",
+        "total_concursos": 6
+    },
+    {
+        "nome": "Fundação Renato Azeredo",
+        "sigla": "FRA",
+        "url": "https://www.tecconcursos.com.br/bancas/fra",
+        "total_concursos": 12
+    },
+    {
+        "nome": "Fundação Sousândrade de Apoio ao Desenvolvimento da Universidade Federal do Maranhão",
+        "sigla": "FSADU (UFMA)",
+        "url": "https://www.tecconcursos.com.br/bancas/fsadu",
+        "total_concursos": 310
+    },
+    {
+        "nome": "Fundação Universa",
+        "sigla": "FUNIVERSA",
+        "url": "https://www.tecconcursos.com.br/bancas/funiversa",
+        "total_concursos": 192
+    },
+    {
+        "nome": "Fundação Universidade do Oeste de Santa Catarina",
+        "sigla": "UNOESC",
+        "url": "https://www.tecconcursos.com.br/bancas/unoesc",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Fundação Universidade do Vale do Itajaí",
+        "sigla": "UNIVALI",
+        "url": "https://www.tecconcursos.com.br/bancas/univali",
+        "total_concursos": 171
+    },
+    {
+        "nome": "Fundação Universidade Empresa de Tecnologia e Ciência",
+        "sigla": "FUNDATEC",
+        "url": "https://www.tecconcursos.com.br/bancas/fundatec",
+        "total_concursos": 5318
+    },
+    {
+        "nome": "Fundação Universitária de Desenvolvimento de Extensão e Núcleo Executivo de Processos Seletivos UFAL",
+        "sigla": "FUNDEPES COPEVE-UFAL",
+        "url": "https://www.tecconcursos.com.br/bancas/fundepes-copeveufal",
+        "total_concursos": 1452
+    },
+    {
+        "nome": "Fundação Universitária para o Vestibular",
+        "sigla": "FUVEST",
+        "url": "https://www.tecconcursos.com.br/bancas/fuvest",
+        "total_concursos": 85
+    },
+    {
+        "nome": "Fundação Vale do Piauí",
+        "sigla": "FUNVAPI",
+        "url": "https://www.tecconcursos.com.br/bancas/funvapi",
+        "total_concursos": 87
+    },
+    {
+        "nome": "Fundanção Dom Cintra",
+        "sigla": "FDC",
+        "url": "https://www.tecconcursos.com.br/bancas/fdc",
+        "total_concursos": 107
+    },
+    {
+        "nome": "Fundo de Amparo e Desenvolvimento da Pesquisa",
+        "sigla": "FADESP",
+        "url": "https://www.tecconcursos.com.br/bancas/fadesp",
+        "total_concursos": 868
+    },
+    {
+        "nome": "Gabriel & Gabriel Consultoria, Projetos e Serviços LTDA",
+        "sigla": "Gabriel Excelência",
+        "url": "https://www.tecconcursos.com.br/bancas/gabriel-excelencia",
+        "total_concursos": 1
+    },
+    {
+        "nome": "GAMA Consultoria",
+        "sigla": "GAMA",
+        "url": "https://www.tecconcursos.com.br/bancas/gama",
+        "total_concursos": 217
+    },
+    {
+        "nome": "Ganzaroli Assessoria, Consultoria e Concursos",
+        "sigla": "Ganzaroli",
+        "url": "https://www.tecconcursos.com.br/bancas/ganzaroli",
+        "total_concursos": 61
+    },
+    {
+        "nome": "GL Consultoria em Desenvolvimento Social e Ação Educativa S/S LTDA.",
+        "sigla": "GL Consultoria",
+        "url": "https://www.tecconcursos.com.br/bancas/gl-consultoria",
+        "total_concursos": 15
+    },
+    {
+        "nome": "GPG Concursos",
+        "sigla": "GPG Concursos",
+        "url": "https://www.tecconcursos.com.br/bancas/gpg-concursos",
+        "total_concursos": 14
+    },
+    {
+        "nome": "Grupo Makiyama",
+        "sigla": "Makiyama",
+        "url": "https://www.tecconcursos.com.br/bancas/makiyama",
+        "total_concursos": 127
+    },
+    {
+        "nome": "GSA Consultoria e Pesquisas em Instituições Públicas S/C Ltda",
+        "sigla": "GSA",
+        "url": "https://www.tecconcursos.com.br/bancas/gsa",
+        "total_concursos": 23
+    },
+    {
+        "nome": "Gualimp Assessoria e Consultoria Ltda",
+        "sigla": "GUALIMP",
+        "url": "https://www.tecconcursos.com.br/bancas/gualimp",
+        "total_concursos": 518
+    },
+    {
+        "nome": "HC Assessoria Administrativa",
+        "sigla": "HC Assessoria",
+        "url": "https://www.tecconcursos.com.br/bancas/hc-assessoria",
+        "total_concursos": 252
+    },
+    {
+        "nome": "Imagem e Dados Ltda",
+        "sigla": "Imagem e Dados",
+        "url": "https://www.tecconcursos.com.br/bancas/imagem-e-dados",
+        "total_concursos": 7
+    },
+    {
+        "nome": "Império Assessoria e Concursos",
+        "sigla": "Império",
+        "url": "https://www.tecconcursos.com.br/bancas/imperio",
+        "total_concursos": 87
+    },
+    {
+        "nome": "INAZ do Pará Serviços de Concursos Públicos",
+        "sigla": "INAZ do Pará",
+        "url": "https://www.tecconcursos.com.br/bancas/inaz-do-para",
+        "total_concursos": 585
+    },
+    {
+        "nome": "Instituição Soler de Ensino",
+        "sigla": "Instituto SOLER",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-soler",
+        "total_concursos": 65
+    },
+    {
+        "nome": "Instituto Ação",
+        "sigla": "Instituto Ação",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-acao",
+        "total_concursos": 5
+    },
+    {
+        "nome": "Instituto Acesso de Ensino e Pesquisa",
+        "sigla": "INSTITUTO ACESSO",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-acesso",
+        "total_concursos": 150
+    },
+    {
+        "nome": "Instituto Americano de Desenvolvimento",
+        "sigla": "IADES",
+        "url": "https://www.tecconcursos.com.br/bancas/iades",
+        "total_concursos": 1112
+    },
+    {
+        "nome": "Instituto ANIMA SOCIESC",
+        "sigla": "Instituto ANIMA",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-anima",
+        "total_concursos": 55
+    },
+    {
+        "nome": "Instituto AOCP",
+        "sigla": "Instituto AOCP",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-aocp",
+        "total_concursos": 3165
+    },
+    {
+        "nome": "Instituto Aplicado de Seleção e Pesquisa",
+        "sigla": "IASP",
+        "url": "https://www.tecconcursos.com.br/bancas/iasp",
+        "total_concursos": 15
+    },
+    {
+        "nome": "Instituto Assistencial de Desenvolvimento Humano, Educacional e Desportivo",
+        "sigla": "IADHED",
+        "url": "https://www.tecconcursos.com.br/bancas/iadhed",
+        "total_concursos": 13
+    },
+    {
+        "nome": "Instituto Avalia",
+        "sigla": "Instituto AVALIA",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-avalia",
+        "total_concursos": 177
+    },
+    {
+        "nome": "Instituto Avança São Paulo",
+        "sigla": "AVANÇASP",
+        "url": "https://www.tecconcursos.com.br/bancas/avancasp",
+        "total_concursos": 2978
+    },
+    {
+        "nome": "Instituto Bahia",
+        "sigla": "ISBA",
+        "url": "https://www.tecconcursos.com.br/bancas/isba",
+        "total_concursos": 122
+    },
+    {
+        "nome": "Instituto Brasil",
+        "sigla": "INSTITUTO BRASIL",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-brasil",
+        "total_concursos": 58
+    },
+    {
+        "nome": "Instituto Brasil de Educação",
+        "sigla": "IBRAE",
+        "url": "https://www.tecconcursos.com.br/bancas/ibrae",
+        "total_concursos": 14
+    },
+    {
+        "nome": "Instituto Brasileiro de Administração Municipal",
+        "sigla": "IBAM",
+        "url": "https://www.tecconcursos.com.br/bancas/ibam",
+        "total_concursos": 651
+    },
+    {
+        "nome": "Instituto Brasileiro de Administração Pública e Apoio Universitário do Rio de Janeiro",
+        "sigla": "IBAP RJ",
+        "url": "https://www.tecconcursos.com.br/bancas/ibap-rj",
+        "total_concursos": 15
+    },
+    {
+        "nome": "Instituto Brasileiro de Apoio e Desenvolvimento Executivo",
+        "sigla": "IBADE",
+        "url": "https://www.tecconcursos.com.br/bancas/ibade",
+        "total_concursos": 1903
+    },
+    {
+        "nome": "Instituto Brasileiro de Desenvolvimento Humano",
+        "sigla": "IBDH",
+        "url": "https://www.tecconcursos.com.br/bancas/ibdh",
+        "total_concursos": 3
+    },
+    {
+        "nome": "Instituto Brasileiro de Educação e Gestão",
+        "sigla": "IBEG",
+        "url": "https://www.tecconcursos.com.br/bancas/ibeg",
+        "total_concursos": 268
+    },
+    {
+        "nome": "Instituto Brasileiro de Educação, Seleção e Tecnologia",
+        "sigla": "Ibest",
+        "url": "https://www.tecconcursos.com.br/bancas/ibest",
+        "total_concursos": 191
+    },
+    {
+        "nome": "Instituto Brasileiro de Formação e Capacitação",
+        "sigla": "IBFC",
+        "url": "https://www.tecconcursos.com.br/bancas/ibfc",
+        "total_concursos": 2881
+    },
+    {
+        "nome": "Instituto Brasileiro de Gestão e Pesquisa",
+        "sigla": "IBGP",
+        "url": "https://www.tecconcursos.com.br/bancas/ibgp",
+        "total_concursos": 470
+    },
+    {
+        "nome": "Instituto Brasileiro de Pesquisa, Avaliação e Seleção de Pessoal",
+        "sigla": "INBRASP",
+        "url": "https://www.tecconcursos.com.br/bancas/inbrasp",
+        "total_concursos": 30
+    },
+    {
+        "nome": "Instituto Brasileiro de Pesquisa, Tecnologia, Ensino e Ciência",
+        "sigla": "IBPTEC",
+        "url": "https://www.tecconcursos.com.br/bancas/ibptec",
+        "total_concursos": 11
+    },
+    {
+        "nome": "Instituto Brasileiro de Seleção Pública",
+        "sigla": "IBRASP",
+        "url": "https://www.tecconcursos.com.br/bancas/ibrasp",
+        "total_concursos": 12
+    },
+    {
+        "nome": "Instituto Brasileiro Educar Conquista",
+        "sigla": "IBEC",
+        "url": "https://www.tecconcursos.com.br/bancas/ibec",
+        "total_concursos": 60
+    },
+    {
+        "nome": "Instituto Brasileiro Incentivo ao Desenvolvimento Organizacional Ltda EPP",
+        "sigla": "INSTITUTO IBDO",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-ibdo",
+        "total_concursos": 27
+    },
+    {
+        "nome": "Instituto Brasileiro para o Desenvolvimento Sustentável",
+        "sigla": "SUSTENTE",
+        "url": "https://www.tecconcursos.com.br/bancas/sustente",
+        "total_concursos": 104
+    },
+    {
+        "nome": "Instituto BRB",
+        "sigla": "IBRB",
+        "url": "https://www.tecconcursos.com.br/bancas/ibrb",
+        "total_concursos": 23
+    },
+    {
+        "nome": "Instituto Brio Conhecimentos",
+        "sigla": "IBC",
+        "url": "https://www.tecconcursos.com.br/bancas/ibc",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Instituto Carlos Augusto Bittencourt",
+        "sigla": "INCAB (ex-FUNCAB)",
+        "url": "https://www.tecconcursos.com.br/bancas/funcab",
+        "total_concursos": 1178
+    },
+    {
+        "nome": "Instituto Cearense de Educação, Cultura e Ecologia",
+        "sigla": "ICECE",
+        "url": "https://www.tecconcursos.com.br/bancas/icece",
+        "total_concursos": 14
+    },
+    {
+        "nome": "Instituto Central de Desenvolvimento Social",
+        "sigla": "ICDS",
+        "url": "https://www.tecconcursos.com.br/bancas/icds",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Instituto Centro de Ensino Tecnológico",
+        "sigla": "CENTEC",
+        "url": "https://www.tecconcursos.com.br/bancas/centec",
+        "total_concursos": 57
+    },
+    {
+        "nome": "Instituto Cidades",
+        "sigla": "INSTITUTO CIDADES",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-cidades",
+        "total_concursos": 27
+    },
+    {
+        "nome": "Instituto Coelho Neto OSCIP",
+        "sigla": "Inst. Coelho Neto",
+        "url": "https://www.tecconcursos.com.br/bancas/inst-coelho-neto",
+        "total_concursos": 12
+    },
+    {
+        "nome": "Instituto Consulplan",
+        "sigla": "Instituto Consulplan",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-consulplan",
+        "total_concursos": 2777
+    },
+    {
+        "nome": "Instituto de Acesso à Educação, Capacitação Profissional e Desenvolvimento Humano",
+        "sigla": "Instituto ACCESS",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-access",
+        "total_concursos": 946
+    },
+    {
+        "nome": "Instituto de Administração e Tecnologia, denominado ADM&TEC",
+        "sigla": "ADM&TEC",
+        "url": "https://www.tecconcursos.com.br/bancas/admtec",
+        "total_concursos": 1309
+    },
+    {
+        "nome": "Instituto de Apoio à Evolução da Cidadania",
+        "sigla": "Instituto Darwin",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-darwin",
+        "total_concursos": 149
+    },
+    {
+        "nome": "Instituto de Apoio à Gestão Educacional",
+        "sigla": "IGEDUC",
+        "url": "https://www.tecconcursos.com.br/bancas/igeduc",
+        "total_concursos": 585
+    },
+    {
+        "nome": "Instituto de Apoio ao Desenvolvimento da UVA",
+        "sigla": "IADE",
+        "url": "https://www.tecconcursos.com.br/bancas/iade",
+        "total_concursos": 10
+    },
+    {
+        "nome": "Instituto de Apoio à Universidade de Pernambuco",
+        "sigla": "IAUPE",
+        "url": "https://www.tecconcursos.com.br/bancas/iaupe",
+        "total_concursos": 930
+    },
+    {
+        "nome": "Instituto de Avaliação Nacional",
+        "sigla": "IAN",
+        "url": "https://www.tecconcursos.com.br/bancas/ian",
+        "total_concursos": 67
+    },
+    {
+        "nome": "Instituto de Consultoria e Concursos",
+        "sigla": "ITAME",
+        "url": "https://www.tecconcursos.com.br/bancas/itame",
+        "total_concursos": 718
+    },
+    {
+        "nome": "Instituto de Cultura, Desenvolvimento Educacional, Promoção Humana e Ação Comunitária",
+        "sigla": "INDEPAC",
+        "url": "https://www.tecconcursos.com.br/bancas/indepac",
+        "total_concursos": 143
+    },
+    {
+        "nome": "Instituto de Desenvolvimento da Amazônia",
+        "sigla": "IDEA",
+        "url": "https://www.tecconcursos.com.br/bancas/idea",
+        "total_concursos": 5
+    },
+    {
+        "nome": "Instituto de Desenvolvimento e Capacitação",
+        "sigla": "IDCAP",
+        "url": "https://www.tecconcursos.com.br/bancas/idcap",
+        "total_concursos": 823
+    },
+    {
+        "nome": "Instituto de Desenvolvimento Educacional, Cultural e Assistencial Nacional",
+        "sigla": "IDECAN",
+        "url": "https://www.tecconcursos.com.br/bancas/idecan",
+        "total_concursos": 1307
+    },
+    {
+        "nome": "Instituto de Desenvolvimento Humano e Tecnológico",
+        "sigla": "IDHTEC",
+        "url": "https://www.tecconcursos.com.br/bancas/idhtec",
+        "total_concursos": 244
+    },
+    {
+        "nome": "Instituto de Desenvolvimento Institucional Brasileiro",
+        "sigla": "IDIB",
+        "url": "https://www.tecconcursos.com.br/bancas/idib",
+        "total_concursos": 477
+    },
+    {
+        "nome": "Instituto de Desenvolvimento Social Ágata",
+        "sigla": "Instituto Ágata",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-agata",
+        "total_concursos": 226
+    },
+    {
+        "nome": "Instituto de Desenvolvimento Social, Gestão e Tecnologia",
+        "sigla": "IDESG",
+        "url": "https://www.tecconcursos.com.br/bancas/idesg",
+        "total_concursos": 294
+    },
+    {
+        "nome": "Instituto de Desenvolvimento Tecnológico do Centro-Oeste",
+        "sigla": "ITCO",
+        "url": "https://www.tecconcursos.com.br/bancas/itco",
+        "total_concursos": 87
+    },
+    {
+        "nome": "Instituto de Educação e Desenvolvimento Social NOSSO RUMO",
+        "sigla": "NOSSO RUMO",
+        "url": "https://www.tecconcursos.com.br/bancas/nosso-rumo",
+        "total_concursos": 684
+    },
+    {
+        "nome": "Instituto de Estudos, Pesquisa e Projetos - Instituto Fucap",
+        "sigla": "FUCAPSUL",
+        "url": "https://www.tecconcursos.com.br/bancas/fucapsul",
+        "total_concursos": 518
+    },
+    {
+        "nome": "Instituto de Estudos Superiores do Extremo Sul",
+        "sigla": "IESES",
+        "url": "https://www.tecconcursos.com.br/bancas/ieses",
+        "total_concursos": 662
+    },
+    {
+        "nome": "Instituto de Estudos Unidos pela Qualificação de Pesquisas Sociais e Educacionais",
+        "sigla": "UNIQUE",
+        "url": "https://www.tecconcursos.com.br/bancas/unique",
+        "total_concursos": 49
+    },
+    {
+        "nome": "Instituto de Fomento, Educação e Pesquisa",
+        "sigla": "IFEP",
+        "url": "https://www.tecconcursos.com.br/bancas/ifep",
+        "total_concursos": 16
+    },
+    {
+        "nome": "Instituto de Gestão de Cidades",
+        "sigla": "IGECS",
+        "url": "https://www.tecconcursos.com.br/bancas/igecs",
+        "total_concursos": 32
+    },
+    {
+        "nome": "Instituto de Gestão e Desenvolvimento Social",
+        "sigla": "IGD-RH",
+        "url": "https://www.tecconcursos.com.br/bancas/igdrh",
+        "total_concursos": 3
+    },
+    {
+        "nome": "Instituto de Gestão em Educação, Capacitação e Aperfeiçoamento",
+        "sigla": "IGECAP",
+        "url": "https://www.tecconcursos.com.br/bancas/igecap",
+        "total_concursos": 12
+    },
+    {
+        "nome": "Instituto de Gestão Organizacional e Tecnologia Aplicada",
+        "sigla": "IGETEC",
+        "url": "https://www.tecconcursos.com.br/bancas/igetec",
+        "total_concursos": 8
+    },
+    {
+        "nome": "Instituto de Marketing, Assessoria e Gestão de Imagem na Empresa Ltda",
+        "sigla": "Instituto Imagine",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-imagine",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Instituto de Pesquisa e Desenvolvimento Público e Privado",
+        "sigla": "IPDEP",
+        "url": "https://www.tecconcursos.com.br/bancas/ipdep",
+        "total_concursos": 3
+    },
+    {
+        "nome": "Instituto de Pesquisa, Gestão e Tecnologia",
+        "sigla": "INTEC",
+        "url": "https://www.tecconcursos.com.br/bancas/intec",
+        "total_concursos": 79
+    },
+    {
+        "nome": "Instituto de Pesquisas Econômicas",
+        "sigla": "IPEFAE",
+        "url": "https://www.tecconcursos.com.br/bancas/pefae",
+        "total_concursos": 165
+    },
+    {
+        "nome": "Instituto de Pesquisas e Desenvolvimento Tecnológico Pensato",
+        "sigla": "Instituto Pensato",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-pensato",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Instituto de Pesquisas, Pós-Graduação e Ensino de Cascavel",
+        "sigla": "IPPEC",
+        "url": "https://www.tecconcursos.com.br/bancas/ippec",
+        "total_concursos": 22
+    },
+    {
+        "nome": "Instituto de Planejamento e Apoio ao Desenvolvimento Tecnológico e Científico",
+        "sigla": "IPAD",
+        "url": "https://www.tecconcursos.com.br/bancas/ipad",
+        "total_concursos": 161
+    },
+    {
+        "nome": "Instituto de Seleção e Tecnologia",
+        "sigla": "Instituto Seleção",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-selecao",
+        "total_concursos": 17
+    },
+    {
+        "nome": "Instituto de Serviços Educacionais e Tecnológicos",
+        "sigla": "ISET",
+        "url": "https://www.tecconcursos.com.br/bancas/iset",
+        "total_concursos": 56
+    },
+    {
+        "nome": "Instituto Dignidade Humana",
+        "sigla": "IDH",
+        "url": "https://www.tecconcursos.com.br/bancas/idh",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Instituto Dom",
+        "sigla": "Instituto Dom",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-dom",
+        "total_concursos": 56
+    },
+    {
+        "nome": "Instituto Euvaldo Lodi",
+        "sigla": "IEL",
+        "url": "https://www.tecconcursos.com.br/bancas/iel",
+        "total_concursos": 70
+    },
+    {
+        "nome": "Instituto Exatus Ltda - ME",
+        "sigla": "Instituto Exatus",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-exatus",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Instituto Federal de Educação, Ciência e Tecnologia do Espírito Santo",
+        "sigla": "IF ES",
+        "url": "https://www.tecconcursos.com.br/bancas/if-es",
+        "total_concursos": 180
+    },
+    {
+        "nome": "Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul",
+        "sigla": "IF RS",
+        "url": "https://www.tecconcursos.com.br/bancas/if-rs",
+        "total_concursos": 103
+    },
+    {
+        "nome": "Instituto Graça Aranha",
+        "sigla": "IGRA",
+        "url": "https://www.tecconcursos.com.br/bancas/igra",
+        "total_concursos": 5
+    },
+    {
+        "nome": "Instituto IBDO de Gestão e Projetos",
+        "sigla": "IBDO Projetos",
+        "url": "https://www.tecconcursos.com.br/bancas/ibdo-projetos",
+        "total_concursos": 67
+    },
+    {
+        "nome": "Instituto IDEAP",
+        "sigla": "IDEAP",
+        "url": "https://www.tecconcursos.com.br/bancas/ideap",
+        "total_concursos": 145
+    },
+    {
+        "nome": "Instituto Legatus",
+        "sigla": "Legatus",
+        "url": "https://www.tecconcursos.com.br/bancas/legatus",
+        "total_concursos": 177
+    },
+    {
+        "nome": "Instituto Ludus Ltda - Me",
+        "sigla": "Instituto Ludus",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-ludus",
+        "total_concursos": 36
+    },
+    {
+        "nome": "Instituto Machado de Assis",
+        "sigla": "Machado de Assis",
+        "url": "https://www.tecconcursos.com.br/bancas/machado-de-assis",
+        "total_concursos": 106
+    },
+    {
+        "nome": "Instituto Mais de Gestão e Desenvolvimento Social",
+        "sigla": "INSTITUTO MAIS",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-mais",
+        "total_concursos": 623
+    },
+    {
+        "nome": "Instituto Merkabah",
+        "sigla": "Instituto Merkabah",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-merkabah",
+        "total_concursos": 20
+    },
+    {
+        "nome": "Instituto Militar de Engenharia",
+        "sigla": "IME",
+        "url": "https://www.tecconcursos.com.br/bancas/ime",
+        "total_concursos": 21
+    },
+    {
+        "nome": "Instituto Mineiro de Administração Municipal",
+        "sigla": "IMAM",
+        "url": "https://www.tecconcursos.com.br/bancas/imam",
+        "total_concursos": 131
+    },
+    {
+        "nome": "Instituto Mineiro Educar & Sorrir",
+        "sigla": "IMESO",
+        "url": "https://www.tecconcursos.com.br/bancas/imeso",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Instituto Movens",
+        "sigla": "MOVENS",
+        "url": "https://www.tecconcursos.com.br/bancas/movens",
+        "total_concursos": 87
+    },
+    {
+        "nome": "Instituto Municipal de Desenvolvimento de Recursos Humanos",
+        "sigla": "IMPARH",
+        "url": "https://www.tecconcursos.com.br/bancas/imparh",
+        "total_concursos": 460
+    },
+    {
+        "nome": "Instituto Nacional de Concurso Público",
+        "sigla": "INCP",
+        "url": "https://www.tecconcursos.com.br/bancas/incp",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Instituto Nacional de Desenvolvimento Educacional e Capacitação",
+        "sigla": "INDEC",
+        "url": "https://www.tecconcursos.com.br/bancas/indec",
+        "total_concursos": 70
+    },
+    {
+        "nome": "Instituto Nacional de Educação, Pesquisa, Instrução e Segurança Pública",
+        "sigla": "INEP BRASIL",
+        "url": "https://www.tecconcursos.com.br/bancas/inep-brasil",
+        "total_concursos": 20
+    },
+    {
+        "nome": "Instituto Nacional de Engenharia, Arquitetura e Agronomia",
+        "sigla": "INEAA",
+        "url": "https://www.tecconcursos.com.br/bancas/ineaa",
+        "total_concursos": 8
+    },
+    {
+        "nome": "Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira",
+        "sigla": "INEP (ENEM)",
+        "url": "https://www.tecconcursos.com.br/bancas/inep",
+        "total_concursos": 69
+    },
+    {
+        "nome": "Instituto Nacional de Gestão, Educação, Tecnologia e Inovação",
+        "sigla": "INGETI",
+        "url": "https://www.tecconcursos.com.br/bancas/ingeti",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Instituto Nacional de Qualificação e Capacitação",
+        "sigla": "INQC",
+        "url": "https://www.tecconcursos.com.br/bancas/inqc",
+        "total_concursos": 59
+    },
+    {
+        "nome": "Instituto Nacional de Seleções, Concursos e Planejamento",
+        "sigla": "Instituto SECPLAN",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-secplan",
+        "total_concursos": 18
+    },
+    {
+        "nome": "Instituto Nacional de Seleções e Concursos",
+        "sigla": "SELECON",
+        "url": "https://www.tecconcursos.com.br/bancas/selecon",
+        "total_concursos": 2073
+    },
+    {
+        "nome": "Instituto Nacional Especializado em Pesquisa e Apoio aos Municípios",
+        "sigla": "INEPAM",
+        "url": "https://www.tecconcursos.com.br/bancas/inepam",
+        "total_concursos": 104
+    },
+    {
+        "nome": "Instituto O Barriga Verde",
+        "sigla": "IOBV",
+        "url": "https://www.tecconcursos.com.br/bancas/iobv",
+        "total_concursos": 7
+    },
+    {
+        "nome": "Instituto OPET Educação e Cidadania",
+        "sigla": "INSTITUTO OPET",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-opet",
+        "total_concursos": 16
+    },
+    {
+        "nome": "Instituto para Desenvolvimento do Ensino, Pesquisa e Inovação",
+        "sigla": "IDEPI",
+        "url": "https://www.tecconcursos.com.br/bancas/idepi",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Instituto Quadrix",
+        "sigla": "QUADRIX",
+        "url": "https://www.tecconcursos.com.br/bancas/quadrix",
+        "total_concursos": 2453
+    },
+    {
+        "nome": "Instituto Qualicon",
+        "sigla": "Qualicon",
+        "url": "https://www.tecconcursos.com.br/bancas/qualicon",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Instituto Referência",
+        "sigla": "Instituto Referência",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-referencia",
+        "total_concursos": 89
+    },
+    {
+        "nome": "Instituto Seletiva de Desenvolvimento Educacional",
+        "sigla": "Instituto Seletiva",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-seletiva",
+        "total_concursos": 48
+    },
+    {
+        "nome": "Instituto Social da Cidadania Juscelino Kubitschek",
+        "sigla": "Instituto JK",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-jk",
+        "total_concursos": 74
+    },
+    {
+        "nome": "Instituto Social Univida",
+        "sigla": "UNIVIDA",
+        "url": "https://www.tecconcursos.com.br/bancas/univida",
+        "total_concursos": 163
+    },
+    {
+        "nome": "Instituto Superior de Administração e Economia",
+        "sigla": "ISAE",
+        "url": "https://www.tecconcursos.com.br/bancas/isae",
+        "total_concursos": 67
+    },
+    {
+        "nome": "Instituto Superior de Educação, Tecnologia e Pesquisa Saber",
+        "sigla": "Instituto Saber",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-saber",
+        "total_concursos": 56
+    },
+    {
+        "nome": "Instituto Tecnológico de Aeronáutica",
+        "sigla": "ITA",
+        "url": "https://www.tecconcursos.com.br/bancas/ita",
+        "total_concursos": 69
+    },
+    {
+        "nome": "Instituto Tupy",
+        "sigla": "Instituto Tupy",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-tupy",
+        "total_concursos": 121
+    },
+    {
+        "nome": "Instituto Unicampo",
+        "sigla": "Instituto Unicampo",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-unicampo",
+        "total_concursos": 19
+    },
+    {
+        "nome": "Instituto Universal de Desenvolvimento Social",
+        "sigla": "IUDS",
+        "url": "https://www.tecconcursos.com.br/bancas/iuds",
+        "total_concursos": 30
+    },
+    {
+        "nome": "Instituto Verbena da Universidade Federal de Goiás",
+        "sigla": "Instituto Verbena",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-verbena",
+        "total_concursos": 1934
+    },
+    {
+        "nome": "Instituto Vicente Nelson",
+        "sigla": "IVIN",
+        "url": "https://www.tecconcursos.com.br/bancas/ivin",
+        "total_concursos": 567
+    },
+    {
+        "nome": "Instituto Zambini",
+        "sigla": "ZAMBINI",
+        "url": "https://www.tecconcursos.com.br/bancas/zambini",
+        "total_concursos": 43
+    },
+    {
+        "nome": "Integri Brasil Projetos e Serviços Integrados",
+        "sigla": "INTEGRI BRASIL",
+        "url": "https://www.tecconcursos.com.br/bancas/integri-brasil",
+        "total_concursos": 177
+    },
+    {
+        "nome": "IPELL Consultoria Ltda",
+        "sigla": "IPELL",
+        "url": "https://www.tecconcursos.com.br/bancas/ipell",
+        "total_concursos": 14
+    },
+    {
+        "nome": "ITEC - Consultoria Educacional",
+        "sigla": "ITEC",
+        "url": "https://www.tecconcursos.com.br/bancas/itec",
+        "total_concursos": 42
+    },
+    {
+        "nome": "JCM Consultoria Municipal Ltda. - EPP",
+        "sigla": "JCM",
+        "url": "https://www.tecconcursos.com.br/bancas/jcm",
+        "total_concursos": 9
+    },
+    {
+        "nome": "J. G. Trading e Consultoria Ltda.",
+        "sigla": "MERITUM CONCURSOS",
+        "url": "https://www.tecconcursos.com.br/bancas/meritum-concursos",
+        "total_concursos": 63
+    },
+    {
+        "nome": "JMS Tecnologia e Serviços",
+        "sigla": "JMS",
+        "url": "https://www.tecconcursos.com.br/bancas/jms",
+        "total_concursos": 1
+    },
+    {
+        "nome": "JVL Consultoria",
+        "sigla": "JVL Consultoria",
+        "url": "https://www.tecconcursos.com.br/bancas/jvl-consultoria",
+        "total_concursos": 29
+    },
+    {
+        "nome": "KLC Consultoria em Gestão Pública Ltda",
+        "sigla": "KLC",
+        "url": "https://www.tecconcursos.com.br/bancas/klc",
+        "total_concursos": 68
+    },
+    {
+        "nome": "Legalle Concursos",
+        "sigla": "Legalle",
+        "url": "https://www.tecconcursos.com.br/bancas/legalle",
+        "total_concursos": 863
+    },
+    {
+        "nome": "Legitimus Assessoria e Serviços LTDA.",
+        "sigla": "Legitimus",
+        "url": "https://www.tecconcursos.com.br/bancas/legitimus",
+        "total_concursos": 16
+    },
+    {
+        "nome": "LJ Assessoria e Planejamento Administrativo LTDA",
+        "sigla": "LJ Assessoria",
+        "url": "https://www.tecconcursos.com.br/bancas/lj-assessoria",
+        "total_concursos": 242
+    },
+    {
+        "nome": "Maranatha Assessoria em Concursos e Projetos Ltda.",
+        "sigla": "Maranatha Assessoria",
+        "url": "https://www.tecconcursos.com.br/bancas/maranatha-assessoria",
+        "total_concursos": 56
+    },
+    {
+        "nome": "Marinha do Brasil",
+        "sigla": "Marinha",
+        "url": "https://www.tecconcursos.com.br/bancas/marinha",
+        "total_concursos": 1489
+    },
+    {
+        "nome": "MB Gestão Pública Ltda.",
+        "sigla": "Máxima",
+        "url": "https://www.tecconcursos.com.br/bancas/maxima",
+        "total_concursos": 84
+    },
+    {
+        "nome": "Método e Soluções Educacionais",
+        "sigla": "MÉTODO",
+        "url": "https://www.tecconcursos.com.br/bancas/metodo",
+        "total_concursos": 59
+    },
+    {
+        "nome": "MetroCapital Soluções",
+        "sigla": "MetroCapital",
+        "url": "https://www.tecconcursos.com.br/bancas/metrocapital",
+        "total_concursos": 202
+    },
+    {
+        "nome": "Metrópole Soluções Governamentais e Empresariais",
+        "sigla": "METRÓPOLE",
+        "url": "https://www.tecconcursos.com.br/bancas/metropole",
+        "total_concursos": 14
+    },
+    {
+        "nome": "Moura Melo Consultoria em Recursos Humanos LTDA.",
+        "sigla": "Moura Melo",
+        "url": "https://www.tecconcursos.com.br/bancas/moura-melo",
+        "total_concursos": 28
+    },
+    {
+        "nome": "MS Concursos",
+        "sigla": "MS Concursos",
+        "url": "https://www.tecconcursos.com.br/bancas/ms-concursos",
+        "total_concursos": 23
+    },
+    {
+        "nome": "MSM Consultoria e Projetos",
+        "sigla": "MSM",
+        "url": "https://www.tecconcursos.com.br/bancas/msm",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Multibanca",
+        "sigla": "Multibanca",
+        "url": "https://www.tecconcursos.com.br/bancas/multibanca",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Nemesis Consultoria e Assessoria",
+        "sigla": "NEMESIS",
+        "url": "https://www.tecconcursos.com.br/bancas/nemesis",
+        "total_concursos": 10
+    },
+    {
+        "nome": "Notus Instituto Cursos, Concursos e Consultorias",
+        "sigla": "NOTUS INSTITUTO",
+        "url": "https://www.tecconcursos.com.br/bancas/notus-instituto",
+        "total_concursos": 5
+    },
+    {
+        "nome": "NTCS Consultoria e Seleções",
+        "sigla": "NTCS",
+        "url": "https://www.tecconcursos.com.br/bancas/ntcs",
+        "total_concursos": 27
+    },
+    {
+        "nome": "Núcleo Brasil Sul de Provas e Avaliações Eireli",
+        "sigla": "NBS Provas",
+        "url": "https://www.tecconcursos.com.br/bancas/nbs-provas",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Núcleo de Computação Eletrônica e Fundação Universitária José Bonifácio (UFRJ)",
+        "sigla": "NCE e FUJB (UFRJ)",
+        "url": "https://www.tecconcursos.com.br/bancas/nce-e-fujb-ufrj",
+        "total_concursos": 506
+    },
+    {
+        "nome": "Núcleo de Concursos e Promoção de Eventos (UESPI)",
+        "sigla": "NUCEPE UESPI",
+        "url": "https://www.tecconcursos.com.br/bancas/nucepe",
+        "total_concursos": 290
+    },
+    {
+        "nome": "Núcleo de Concursos - Universidade Federal do Paraná",
+        "sigla": "NC UFPR (FUNPAR)",
+        "url": "https://www.tecconcursos.com.br/bancas/ncufpr",
+        "total_concursos": 731
+    },
+    {
+        "nome": "Núcleo de Eventos e Concursos (UFMA)",
+        "sigla": "NEC UFMA",
+        "url": "https://www.tecconcursos.com.br/bancas/nec-ufma",
+        "total_concursos": 128
+    },
+    {
+        "nome": "Núcleo de Vestibulares e Concursos da PUC SP",
+        "sigla": "Nucvest PUC SP",
+        "url": "https://www.tecconcursos.com.br/bancas/nucvest-puc-sp",
+        "total_concursos": 8
+    },
+    {
+        "nome": "Núcleo Permanente de Métodos Consensuais de Soluções de Conflitos do Mato Grosso",
+        "sigla": "NUPEMEC MT",
+        "url": "https://www.tecconcursos.com.br/bancas/nupemec-mt",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Objetiva Concursos Ltda.",
+        "sigla": "OBJETIVA CONCURSOS",
+        "url": "https://www.tecconcursos.com.br/bancas/objetiva-concursos",
+        "total_concursos": 2994
+    },
+    {
+        "nome": "OFFICIUM",
+        "sigla": "OFFICIUM",
+        "url": "https://www.tecconcursos.com.br/bancas/officium",
+        "total_concursos": 10
+    },
+    {
+        "nome": "OM Consultoria Concursos LTDA",
+        "sigla": "OM Consultoria",
+        "url": "https://www.tecconcursos.com.br/bancas/om-consultoria",
+        "total_concursos": 39
+    },
+    {
+        "nome": "Omega Consultoria e Planejamento Ltda",
+        "sigla": "OMEGA",
+        "url": "https://www.tecconcursos.com.br/bancas/omega",
+        "total_concursos": 2
+    },
+    {
+        "nome": "OMNI Concursos Públicos",
+        "sigla": "OMNI",
+        "url": "https://www.tecconcursos.com.br/bancas/omni",
+        "total_concursos": 235
+    },
+    {
+        "nome": "Organização da Fundação de Ensino de Contagem (Funec)",
+        "sigla": "FUNEC",
+        "url": "https://www.tecconcursos.com.br/bancas/funec",
+        "total_concursos": 119
+    },
+    {
+        "nome": "Organizadora Instituto UniFil",
+        "sigla": "Unifil",
+        "url": "https://www.tecconcursos.com.br/bancas/unifil",
+        "total_concursos": 762
+    },
+    {
+        "nome": "Passaporte Pdh - Selecao e Desenvolvimento Humano, Assessoria e Consultoria Tecnica LTDA",
+        "sigla": "Passaporte PDH",
+        "url": "https://www.tecconcursos.com.br/bancas/passaporte-pdh",
+        "total_concursos": 2
+    },
+    {
+        "nome": "PICSIS Informática e Comércio Ltda",
+        "sigla": "PICSIS",
+        "url": "https://www.tecconcursos.com.br/bancas/picsis",
+        "total_concursos": 3
+    },
+    {
+        "nome": "PLANEJAR Consultoria e Planejamento Ltda",
+        "sigla": "PLANEJAR",
+        "url": "https://www.tecconcursos.com.br/bancas/planejar",
+        "total_concursos": 21
+    },
+    {
+        "nome": "PLANEXCON",
+        "sigla": "PLANEXCON",
+        "url": "https://www.tecconcursos.com.br/bancas/planexcon",
+        "total_concursos": 107
+    },
+    {
+        "nome": "Policon Tecnologia e Gestão Ltda",
+        "sigla": "Policon",
+        "url": "https://www.tecconcursos.com.br/bancas/policon",
+        "total_concursos": 27
+    },
+    {
+        "nome": "Pontifícia Universidade Católica do Paraná",
+        "sigla": "PUC PR",
+        "url": "https://www.tecconcursos.com.br/bancas/puc-pr",
+        "total_concursos": 235
+    },
+    {
+        "nome": "Pontua Prestação de Serviços em Concursos Ltda",
+        "sigla": "PONTUA",
+        "url": "https://www.tecconcursos.com.br/bancas/pontua",
+        "total_concursos": 3
+    },
+    {
+        "nome": "P+ Recursos Humanos Ltda",
+        "sigla": "P+",
+        "url": "https://www.tecconcursos.com.br/bancas/p",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Prima Face Consultoria e Assessoria",
+        "sigla": "Prima Face",
+        "url": "https://www.tecconcursos.com.br/bancas/prima-face",
+        "total_concursos": 2
+    },
+    {
+        "nome": "Processo Seletivo à Categoria de Praticante de Prático",
+        "sigla": "PSCPP",
+        "url": "https://www.tecconcursos.com.br/bancas/pscpp",
+        "total_concursos": 19
+    },
+    {
+        "nome": "Projetos para Municípios",
+        "sigla": "PROMUN",
+        "url": "https://www.tecconcursos.com.br/bancas/promun",
+        "total_concursos": 65
+    },
+    {
+        "nome": "PRÓ-MUNICÍPIO",
+        "sigla": "PRÓ-MUNICÍPIO",
+        "url": "https://www.tecconcursos.com.br/bancas/promunicipio",
+        "total_concursos": 274
+    },
+    {
+        "nome": "Pró-reitoria de Administração (UFOP)",
+        "sigla": "PROAD UFOP",
+        "url": "https://www.tecconcursos.com.br/bancas/proad-ufop",
+        "total_concursos": 74
+    },
+    {
+        "nome": "Pró-Reitoria de Gestão de Pessoas da UFRPE",
+        "sigla": "PROGEPE-UFRPE",
+        "url": "https://www.tecconcursos.com.br/bancas/progepeufrpe",
+        "total_concursos": 79
+    },
+    {
+        "nome": "Pró-Reitoria de Gestão de Pessoas da UFRRJ",
+        "sigla": "Progep UFRRJ",
+        "url": "https://www.tecconcursos.com.br/bancas/progep-ufrrj",
+        "total_concursos": 71
+    },
+    {
+        "nome": "Pró-Reitoria de Gestão de Pessoas da UFSCAR",
+        "sigla": "ProGPe UFSCAR",
+        "url": "https://www.tecconcursos.com.br/bancas/progpe-ufscar",
+        "total_concursos": 185
+    },
+    {
+        "nome": "Pró-Reitoria de Gestão de Pessoas da UFV",
+        "sigla": "PGP UFV",
+        "url": "https://www.tecconcursos.com.br/bancas/pgp-ufv",
+        "total_concursos": 148
+    },
+    {
+        "nome": "Pró-Reitoria de Gestão de Pessoas da UNIFEI",
+        "sigla": "PRGP UNIFEI",
+        "url": "https://www.tecconcursos.com.br/bancas/prgp-unifei",
+        "total_concursos": 78
+    },
+    {
+        "nome": "Pró-Reitoria de Gestão de Pessoas da Universidade Federal do Cariri",
+        "sigla": "Progep UFCA",
+        "url": "https://www.tecconcursos.com.br/bancas/progep-ufca",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Pró-Reitoria de Gestão de Pessoas do Colégio Pedro II",
+        "sigla": "Pró-Reitoria GP CP2",
+        "url": "https://www.tecconcursos.com.br/bancas/proreitoria-gp-cp2",
+        "total_concursos": 38
+    },
+    {
+        "nome": "Pró-Reitoria de Gestão de Pessoas do IFS",
+        "sigla": "Progep IFS",
+        "url": "https://www.tecconcursos.com.br/bancas/progep-ifs",
+        "total_concursos": 60
+    },
+    {
+        "nome": "Pró-Reitoria de Gestão de Pessoas do Instituto Federal do Paraná",
+        "sigla": "PROGEPE IFPR",
+        "url": "https://www.tecconcursos.com.br/bancas/progepe-ifpr",
+        "total_concursos": 48
+    },
+    {
+        "nome": "Pró-Reitoria de Gestão e Desenvolvimento de Pessoas da FURG",
+        "sigla": "PROGEP FURG",
+        "url": "https://www.tecconcursos.com.br/bancas/progep-furg",
+        "total_concursos": 50
+    },
+    {
+        "nome": "Pró-Reitoria de Gestão e Desenvolvimento de Pessoas da UFSJ",
+        "sigla": "PROGP UFSJ",
+        "url": "https://www.tecconcursos.com.br/bancas/progp-ufsj",
+        "total_concursos": 103
+    },
+    {
+        "nome": "Pró-Reitoria de Pessoal da UFRJ",
+        "sigla": "PR4 (UFRJ)",
+        "url": "https://www.tecconcursos.com.br/bancas/pr4-ufrj",
+        "total_concursos": 467
+    },
+    {
+        "nome": "Pró-Reitoria de Recursos Humanos da UFTM",
+        "sigla": "PRORH UFTM",
+        "url": "https://www.tecconcursos.com.br/bancas/prorh-uftm",
+        "total_concursos": 45
+    },
+    {
+        "nome": "Pró-Reitoria de Recursos Humanos e Assuntos Comunitários da Universidade Estadual de Maringá",
+        "sigla": "PRH-UEM",
+        "url": "https://www.tecconcursos.com.br/bancas/prhuem",
+        "total_concursos": 84
+    },
+    {
+        "nome": "Pública Consultoria",
+        "sigla": "PÚBLICA",
+        "url": "https://www.tecconcursos.com.br/bancas/publica",
+        "total_concursos": 7
+    },
+    {
+        "nome": "Public Job",
+        "sigla": "PJob",
+        "url": "https://www.tecconcursos.com.br/bancas/pjob",
+        "total_concursos": 6
+    },
+    {
+        "nome": "Publiconsult Assessoria e Consultoria Publica Ltda",
+        "sigla": "PUBLIConsult",
+        "url": "https://www.tecconcursos.com.br/bancas/publiconsult",
+        "total_concursos": 108
+    },
+    {
+        "nome": "RBO Assessoria Pública e Projetos Municipais Ltda",
+        "sigla": "RBO",
+        "url": "https://www.tecconcursos.com.br/bancas/rbo",
+        "total_concursos": 209
+    },
+    {
+        "nome": "Recrutamento Brasil",
+        "sigla": "Recrutamento Brasil",
+        "url": "https://www.tecconcursos.com.br/bancas/recrutamento-brasil",
+        "total_concursos": 24
+    },
+    {
+        "nome": "Reis e Reis Auditores Associados",
+        "sigla": "Reis e Reis",
+        "url": "https://www.tecconcursos.com.br/bancas/reis-e-reis",
+        "total_concursos": 178
+    },
+    {
+        "nome": "RH Mais",
+        "sigla": "RH Mais",
+        "url": "https://www.tecconcursos.com.br/bancas/rh-mais",
+        "total_concursos": 16
+    },
+    {
+        "nome": "RHS Consult",
+        "sigla": "RHS Consult",
+        "url": "https://www.tecconcursos.com.br/bancas/rhs-consult",
+        "total_concursos": 13
+    },
+    {
+        "nome": "Rumo Certo Serviços e Assessoria Ltda - EPP",
+        "sigla": "Rumo Certo",
+        "url": "https://www.tecconcursos.com.br/bancas/rumo-certo",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Sarmento Concursos Ltda",
+        "sigla": "MS (SARMENTO)",
+        "url": "https://www.tecconcursos.com.br/bancas/ms-sarmento",
+        "total_concursos": 1355
+    },
+    {
+        "nome": "SC Treinamentos",
+        "sigla": "SC TREINAMENTOS",
+        "url": "https://www.tecconcursos.com.br/bancas/sc-treinamentos",
+        "total_concursos": 174
+    },
+    {
+        "nome": "Secretaria de Estado da Administração de Goiás",
+        "sigla": "SEAD GO",
+        "url": "https://www.tecconcursos.com.br/bancas/sead-go",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Secretaria de Estado de Administração e Desburocratização de Mato Grosso do Sul",
+        "sigla": "SAD MS",
+        "url": "https://www.tecconcursos.com.br/bancas/sad-ms",
+        "total_concursos": 43
+    },
+    {
+        "nome": "Secretaria de Gestão de Pessoas de Joinville",
+        "sigla": "SGP Joinville",
+        "url": "https://www.tecconcursos.com.br/bancas/sgp-joinville",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Secretaria de Planejamento e Gestão da Prefeitura Municipal de Montes Claros",
+        "sigla": "SEPLAG PMMC",
+        "url": "https://www.tecconcursos.com.br/bancas/seplag-pmmc",
+        "total_concursos": 20
+    },
+    {
+        "nome": "Secretaria Municipal de Administração (antiga Fundação João Goulart)",
+        "sigla": "SMA-RJ (antiga FJG)",
+        "url": "https://www.tecconcursos.com.br/bancas/smarj-antiga-fjg",
+        "total_concursos": 88
+    },
+    {
+        "nome": "Secretaria Municipal de Gestão Pública de Londrina",
+        "sigla": "SMGP Londrina",
+        "url": "https://www.tecconcursos.com.br/bancas/smgp-londrina",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Serviço de Consultoria Técnica aos Municípios",
+        "sigla": "SERCTAM",
+        "url": "https://www.tecconcursos.com.br/bancas/serctam",
+        "total_concursos": 66
+    },
+    {
+        "nome": "Serviço de Processamento de Dados",
+        "sigla": "SEPROD",
+        "url": "https://www.tecconcursos.com.br/bancas/seprod",
+        "total_concursos": 25
+    },
+    {
+        "nome": "Serviço de Seleção, Orientação e Avaliação",
+        "sigla": "SSOA",
+        "url": "https://www.tecconcursos.com.br/bancas/ssoa",
+        "total_concursos": 39
+    },
+    {
+        "nome": "Serviço de Seleção, Orientação e Avaliação da UFBA",
+        "sigla": "SSOA UFBA",
+        "url": "https://www.tecconcursos.com.br/bancas/ssoa-ufba",
+        "total_concursos": 187
+    },
+    {
+        "nome": "Serviço Especializado em Administração e Projetos Ltda",
+        "sigla": "SEAP",
+        "url": "https://www.tecconcursos.com.br/bancas/seap",
+        "total_concursos": 6
+    },
+    {
+        "nome": "Seta Consultoria e Serviços S/S Ltda",
+        "sigla": "SETA",
+        "url": "https://www.tecconcursos.com.br/bancas/seta",
+        "total_concursos": 5
+    },
+    {
+        "nome": "Setor de Seleções do Instituto CENTEC",
+        "sigla": "SS CENTEC",
+        "url": "https://www.tecconcursos.com.br/bancas/ss-centec",
+        "total_concursos": 53
+    },
+    {
+        "nome": "SHDias Consultoria e Assessoria Ltda.",
+        "sigla": "SHDias",
+        "url": "https://www.tecconcursos.com.br/bancas/shdias",
+        "total_concursos": 73
+    },
+    {
+        "nome": "Sigma Assessoria Administrativa Ltda.",
+        "sigla": "SIGMA Aseessoria",
+        "url": "https://www.tecconcursos.com.br/bancas/sigma-aseessoria",
+        "total_concursos": 9
+    },
+    {
+        "nome": "SIGMA RH",
+        "sigla": "SIGMA RH",
+        "url": "https://www.tecconcursos.com.br/bancas/sigma-rh",
+        "total_concursos": 17
+    },
+    {
+        "nome": "Strix Educação, Avaliação e Projetos",
+        "sigla": "STRIX",
+        "url": "https://www.tecconcursos.com.br/bancas/strix",
+        "total_concursos": 90
+    },
+    {
+        "nome": "Superintendência da Escola de Governo",
+        "sigla": "ESCOLA DE GOVERNO",
+        "url": "https://www.tecconcursos.com.br/bancas/escola-de-governo",
+        "total_concursos": 17
+    },
+    {
+        "nome": "Superintendência de Concursos e Seletivos da UEMA",
+        "sigla": "SUCONS UEMA",
+        "url": "https://www.tecconcursos.com.br/bancas/sucons-uema",
+        "total_concursos": 13
+    },
+    {
+        "nome": "Superintendência de Gestão de Pessoas da Universidade do Estado do Rio de Janeiro",
+        "sigla": "SGP UERJ",
+        "url": "https://www.tecconcursos.com.br/bancas/sgp-uerj",
+        "total_concursos": 156
+    },
+    {
+        "nome": "Suporte Gestão e Recursos Humanos",
+        "sigla": "Suporte RH",
+        "url": "https://www.tecconcursos.com.br/bancas/suporte-rh",
+        "total_concursos": 11
+    },
+    {
+        "nome": "Talento Seleção de Pessoal Ltda",
+        "sigla": "TALENTO",
+        "url": "https://www.tecconcursos.com.br/bancas/talento",
+        "total_concursos": 4
+    },
+    {
+        "nome": "Tavares e Silva Concursos Públicos ME",
+        "sigla": "Prime Concursos",
+        "url": "https://www.tecconcursos.com.br/bancas/prime-concursos",
+        "total_concursos": 11
+    },
+    {
+        "nome": "Tec Banca",
+        "sigla": "Tec B",
+        "url": "https://www.tecconcursos.com.br/bancas/tec-b",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Tec Concursos",
+        "sigla": "Tec",
+        "url": "https://www.tecconcursos.com.br/bancas/tec",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Tec Literal",
+        "sigla": "Tec Literal",
+        "url": "https://www.tecconcursos.com.br/bancas/tec-literal",
+        "total_concursos": 0
+    },
+    {
+        "nome": "Tecnologia em Concursos LTDA",
+        "sigla": "TECNOCON",
+        "url": "https://www.tecconcursos.com.br/bancas/tecnocon",
+        "total_concursos": 3
+    },
+    {
+        "nome": "UNA Gestão e Assessoria Ltda.",
+        "sigla": "UNA",
+        "url": "https://www.tecconcursos.com.br/bancas/una",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Universidade da Amazônia",
+        "sigla": "UNAMA",
+        "url": "https://www.tecconcursos.com.br/bancas/unama",
+        "total_concursos": 17
+    },
+    {
+        "nome": "Universidade de Rio Verde",
+        "sigla": "UNIRV",
+        "url": "https://www.tecconcursos.com.br/bancas/unirv",
+        "total_concursos": 32
+    },
+    {
+        "nome": "Universidade do Estado da Bahia",
+        "sigla": "UNEB",
+        "url": "https://www.tecconcursos.com.br/bancas/uneb",
+        "total_concursos": 59
+    },
+    {
+        "nome": "Universidade do Estado de Mato Grosso",
+        "sigla": "UNEMAT",
+        "url": "https://www.tecconcursos.com.br/bancas/faespe-unemat",
+        "total_concursos": 40
+    },
+    {
+        "nome": "Universidade do Estado de Santa Catarina",
+        "sigla": "UDESC",
+        "url": "https://www.tecconcursos.com.br/bancas/udesc",
+        "total_concursos": 21
+    },
+    {
+        "nome": "Universidade do Estado do Pará",
+        "sigla": "UEPA",
+        "url": "https://www.tecconcursos.com.br/bancas/uepa",
+        "total_concursos": 47
+    },
+    {
+        "nome": "Universidade do Extremo Sul Catarinense",
+        "sigla": "UNESC",
+        "url": "https://www.tecconcursos.com.br/bancas/unesc",
+        "total_concursos": 746
+    },
+    {
+        "nome": "Universidade do Sul de Santa Catarina",
+        "sigla": "UNISUL",
+        "url": "https://www.tecconcursos.com.br/bancas/unisul",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Universidade Estadual de Goiás",
+        "sigla": "UEG",
+        "url": "https://www.tecconcursos.com.br/bancas/fueg",
+        "total_concursos": 301
+    },
+    {
+        "nome": "Universidade Estadual do Norte do Paraná",
+        "sigla": "UENP",
+        "url": "https://www.tecconcursos.com.br/bancas/uenp",
+        "total_concursos": 3
+    },
+    {
+        "nome": "Universidade Estadual do Tocantins",
+        "sigla": "UNITINS",
+        "url": "https://www.tecconcursos.com.br/bancas/unitins",
+        "total_concursos": 20
+    },
+    {
+        "nome": "Universidade Federal de Mato Grosso",
+        "sigla": "UFMT",
+        "url": "https://www.tecconcursos.com.br/bancas/ufmt",
+        "total_concursos": 1151
+    },
+    {
+        "nome": "Universidade Patativa do Assaré",
+        "sigla": "UPA",
+        "url": "https://www.tecconcursos.com.br/bancas/upa",
+        "total_concursos": 189
+    },
+    {
+        "nome": "Universidade Regional de Blumenau",
+        "sigla": "FURB",
+        "url": "https://www.tecconcursos.com.br/bancas/furb",
+        "total_concursos": 1658
+    },
+    {
+        "nome": "Universidade Regional Integrada do Alto Uruguai e das Missões",
+        "sigla": "URI",
+        "url": "https://www.tecconcursos.com.br/bancas/uri",
+        "total_concursos": 213
+    },
+    {
+        "nome": "Universidade Simbolo",
+        "sigla": "UNISIM",
+        "url": "https://www.tecconcursos.com.br/bancas/unisim",
+        "total_concursos": 10
+    },
+    {
+        "nome": "Universo Serviços Públicos Ltda - EPP",
+        "sigla": "UNISISP",
+        "url": "https://www.tecconcursos.com.br/bancas/unisisp",
+        "total_concursos": 1
+    },
+    {
+        "nome": "Urbanizadora Municipal S.A.",
+        "sigla": "URBAM",
+        "url": "https://www.tecconcursos.com.br/bancas/urbam",
+        "total_concursos": 5
+    },
+    {
+        "nome": "Valespe Concursos e Consultoria",
+        "sigla": "VALESPE",
+        "url": "https://www.tecconcursos.com.br/bancas/valespe",
+        "total_concursos": 34
+    },
+    {
+        "nome": "W2 Auditoria e Consultoria",
+        "sigla": "W2",
+        "url": "https://www.tecconcursos.com.br/bancas/w2",
+        "total_concursos": 10
+    },
+    {
+        "nome": "We Do Concursos",
+        "sigla": "We Do",
+        "url": "https://www.tecconcursos.com.br/bancas/we-do",
+        "total_concursos": 66
+    },
+    {
+        "nome": "Wisdom Cursos Técnicos Profissionalizantes LTDA.",
+        "sigla": "Instituto Wisdom",
+        "url": "https://www.tecconcursos.com.br/bancas/instituto-wisdom",
+        "total_concursos": 32
+    },
+    {
+        "nome": "W.l.a. Assessoria LTDA",
+        "sigla": "Actio Assessoria",
+        "url": "https://www.tecconcursos.com.br/bancas/actio-assessoria",
+        "total_concursos": 18
+    }
+]

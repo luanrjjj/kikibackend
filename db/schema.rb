@@ -16,16 +16,17 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_13_133656) do
 
   create_table "assuntos", force: :cascade do |t|
     t.string "nome", null: false
-    t.integer "disciplina_id", null: false
+    t.bigint "disciplina_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["disciplina_id"], name: "index_assuntos_on_disciplina_id"
   end
 
   create_table "bancas", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "nome", null: false
     t.string "logo"
     t.string "sigla", null: false
+    t.integer "total_concursos"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,8 +36,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_13_133656) do
     t.date "inscricoes_ate"
     t.string "edital_nome"
     t.json "cargos"
-    t.integer "banca_id", null: false
-    t.integer "orgao_id", null: false
+    t.bigint "banca_id", null: false
+    t.bigint "orgao_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["banca_id"], name: "index_concursos_on_banca_id"
@@ -52,15 +53,16 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_13_133656) do
   create_table "orgaos", force: :cascade do |t|
     t.string "nome", null: false
     t.string "sede"
+    t.string "logo_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "provas", force: :cascade do |t|
     t.string "nome", null: false
-    t.integer "orgao_id", null: false
-    t.integer "banca_id", null: false
-    t.integer "concurso_id", null: false
+    t.bigint "orgao_id", null: false
+    t.bigint "banca_id", null: false
+    t.bigint "concurso_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["banca_id"], name: "index_provas_on_banca_id"
@@ -70,10 +72,10 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_13_133656) do
 
   create_table "questaos", force: :cascade do |t|
     t.string "nome", null: false
-    t.integer "prova_id", null: false
-    t.integer "concurso_id", null: false
-    t.integer "assunto_id", null: false
-    t.integer "disciplina_id", null: false
+    t.bigint "prova_id", null: false
+    t.bigint "concurso_id", null: false
+    t.bigint "assunto_id", null: false
+    t.bigint "disciplina_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["assunto_id"], name: "index_questaos_on_assunto_id"
@@ -90,9 +92,9 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_13_133656) do
 
   create_table "textos", force: :cascade do |t|
     t.string "texto", null: false
-    t.integer "prova_id", null: false
-    t.integer "concurso_id", null: false
-    t.integer "questao_id", null: false
+    t.bigint "prova_id", null: false
+    t.bigint "concurso_id", null: false
+    t.bigint "questao_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["concurso_id"], name: "index_textos_on_concurso_id"
