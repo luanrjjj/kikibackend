@@ -4,10 +4,10 @@ class ConcursosController < ApplicationController
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
-    @concursos = Concurso.offset((page - 1) * per_page).limit(per_page)
-
+    @concursos = Concurso.includes(:banca, :orgao).offset((page - 1) * per_page).limit(per_page)
+    puts @concursos
     render json: {
-      data: @concursos,
+      data: @concursos.as_json(include: [:banca, :orgao]),
       meta: {
         current_page: page,
         per_page: per_page,

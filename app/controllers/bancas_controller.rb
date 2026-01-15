@@ -4,7 +4,7 @@ class BancasController < ApplicationController
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
-    @bancas = Banca.offset((page - 1) * per_page).limit(per_page)
+    @bancas = Banca.order(total_concursos: :desc).offset((page - 1) * per_page).limit(per_page)
 
     render json: {
       data: @bancas,

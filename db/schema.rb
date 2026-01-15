@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_01_13_133656) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_15_023014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -36,8 +36,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_13_133656) do
     t.date "inscricoes_ate"
     t.string "edital_nome"
     t.json "cargos"
-    t.bigint "banca_id", null: false
-    t.bigint "orgao_id", null: false
+    t.bigint "banca_id"
+    t.bigint "orgao_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["banca_id"], name: "index_concursos_on_banca_id"
@@ -102,7 +102,18 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_13_133656) do
     t.index ["questao_id"], name: "index_textos_on_questao_id"
   end
 
+  create_table "topicos", force: :cascade do |t|
+    t.string "nome", null: false
+    t.bigint "disciplina_id"
+    t.bigint "assunto_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assunto_id"], name: "index_topicos_on_assunto_id"
+    t.index ["disciplina_id"], name: "index_topicos_on_disciplina_id"
+  end
+
   add_foreign_key "assuntos", "disciplinas"
+  add_foreign_key "concursos", "bancas"
   add_foreign_key "concursos", "orgaos"
   add_foreign_key "provas", "bancas"
   add_foreign_key "provas", "concursos"
@@ -114,4 +125,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_13_133656) do
   add_foreign_key "textos", "concursos"
   add_foreign_key "textos", "provas"
   add_foreign_key "textos", "questaos"
+  add_foreign_key "topicos", "assuntos"
+  add_foreign_key "topicos", "disciplinas"
 end
