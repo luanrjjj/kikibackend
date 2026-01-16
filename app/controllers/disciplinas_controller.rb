@@ -17,6 +17,10 @@ class DisciplinasController < ApplicationController
     }
   end
 
+  def all
+    render json: Disciplina.order(:nome)
+  end
+
   def show
     render json: @disciplina
   end

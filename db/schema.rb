@@ -63,6 +63,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_15_023014) do
     t.bigint "orgao_id", null: false
     t.bigint "banca_id", null: false
     t.bigint "concurso_id", null: false
+    t.integer "ano"
+    t.string "pdfs_folder_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["banca_id"], name: "index_provas_on_banca_id"
@@ -71,11 +73,16 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_15_023014) do
   end
 
   create_table "questaos", force: :cascade do |t|
-    t.string "nome", null: false
+    t.text "texto"
+    t.boolean "discursiva", null: false
+    t.integer "ano", null: false
+    t.json "alternativas"
+    t.string "correta"
+    t.string "enunciado", null: false
     t.bigint "prova_id", null: false
-    t.bigint "concurso_id", null: false
-    t.bigint "assunto_id", null: false
-    t.bigint "disciplina_id", null: false
+    t.bigint "concurso_id"
+    t.bigint "assunto_id"
+    t.bigint "disciplina_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["assunto_id"], name: "index_questaos_on_assunto_id"

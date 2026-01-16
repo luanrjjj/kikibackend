@@ -17,6 +17,10 @@ class AssuntosController < ApplicationController
     }
   end
 
+  def all
+    render json: Assunto.order(:nome)
+  end
+
   def show
     render json: @assunto
   end

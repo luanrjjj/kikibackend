@@ -17,6 +17,10 @@ class BancasController < ApplicationController
     }
   end
 
+  def all
+    render json: Banca.order(:nome)
+  end
+
   def show
     render json: @banca
   end

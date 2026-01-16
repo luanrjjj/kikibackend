@@ -5,6 +5,8 @@ class CreateProvas < ActiveRecord::Migration[8.0]
       t.references :orgao, index: true, null: false, foreign_key: true
       t.references :banca, index: true, null: false, foreign_key: true
       t.references :concurso, index: true, null: false, foreign_key: true
+      t.integer :ano
+      t.string :pdfs_folder_url
       t.timestamps
     end
   end

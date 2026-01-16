@@ -17,7 +17,6 @@ class SeedAssuntosTopicos < SeedMigration::Migration
         assunto_nome = assunto_data['nome'] || assunto_data['name']
         topicos = assunto_data['topicos']
 
-
         next unless assunto_nome.present?
 
         # Try to find discipline
