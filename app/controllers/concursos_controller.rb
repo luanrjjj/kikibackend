@@ -21,6 +21,10 @@ class ConcursosController < ApplicationController
     render json: @concurso
   end
 
+  def all
+    render json: Disciplina.order(:nome)
+  end
+
   def create
     @concurso = Concurso.new(concurso_params)
 

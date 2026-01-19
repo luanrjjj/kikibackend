@@ -19,6 +19,7 @@ class QuestoesQconcursos < SeedMigration::Migration
       ano = item['ano'].to_i
       nome_prova = item['nome_prova']
       texto = item['support_text']
+
       next unless orgao_nome.present? && banca_nome.present? && ano > 0 && nome_prova.present?
 
       orgao = Orgao.where('nome ILIKE ?', orgao_nome).first
@@ -35,10 +36,11 @@ class QuestoesQconcursos < SeedMigration::Migration
       # puts("dsaudhasudhusadhsuahdau", questoes)
       questoes.each do |q_data|
         enunciado = q_data['enunciation']
+        alternativas = q_data['options']
         next unless enunciado.present?
 
-        disciplina_nome = q_data['disciplina']
-        assunto_nome = q_data['assunto']
+        disciplina_nome = q_data['breadcrumbs'][0]
+        assunto_nome = q_data['breadcrumbs'][-1]
 
         disciplina = nil
         if disciplina_nome.present?
@@ -54,15 +56,18 @@ class QuestoesQconcursos < SeedMigration::Migration
             disciplina ||= assunto.disciplina if assunto
           end
         end
+        puts("disciplina", disciplina)
+        puts("assunto", assunto)
 
-        Questao.find_or_create_by!(enunciado: enunciado, prova: prova) do |q|
-          q.discursiva = false
-          q.ano = ano
-          q.concurso = prova.concurso
-          q.assunto = assunto
-          q.disciplina = disciplina
-          q.texto = texto
-        end
+        questao = Questao.find_or_initialize_by(enunciado: enunciado, prova: prova)
+        questao.discursiva = false
+        questao.ano = ano
+        questao.concurso = prova.concurso
+        questao.assunto = assunto
+        questao.disciplina = disciplina
+        questao.texto = texto
+        questao.alternativas = alternativas
+        questao.save!
       end
     end
     puts "Import finished!"

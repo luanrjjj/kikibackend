@@ -21,6 +21,10 @@ class OrgaosController < ApplicationController
     render json: @orgao
   end
 
+  def all
+    render json: Disciplina.order(:nome)
+  end
+
   def create
     @orgao = Orgao.new(orgao_params)
 
