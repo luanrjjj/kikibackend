@@ -157,6 +157,7 @@ GEM
     minitest (6.0.1)
       prism (~> 1.5)
     msgpack (1.8.0)
+    mustache (1.1.1)
     net-imap (0.6.2)
       date
       net-protocol
@@ -301,6 +302,7 @@ GEM
       fugit (~> 1.11)
       railties (>= 7.1)
       thor (>= 1.3.1)
+    sqlite3 (2.9.0-x86_64-linux-gnu)
     sshkit (1.25.0)
       base64
       logger
@@ -350,17 +352,20 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
+  mustache
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)
   rack-cors
   rails (~> 8.0.0)
   rubocop-rails-omakase
+  rubyzip
   seed_migration
   selenium-webdriver
   solid_cable
   solid_cache
   solid_queue
+  sqlite3
   stimulus-rails
   thruster
   turbo-rails

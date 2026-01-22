@@ -3,6 +3,8 @@ class CreateQuestaos < ActiveRecord::Migration[8.0]
     create_table :questaos do |t|
       t.text :texto
       t.boolean :discursiva, null: false
+      t.date :anulada
+      t.date :desatualizada
       t.integer :ano, null: false
       t.json :alternativas
       t.string :correta
