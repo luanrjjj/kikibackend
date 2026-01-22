@@ -94,7 +94,7 @@ module GenankiApp
         end
       end
 
-      card_ords.add(0) if card_ords.empty?
+      # card_ords.add(0) if card_ords.empty?
 
       card_ords.map { |ord| GenankiApp::Card.new(ord) }
     end

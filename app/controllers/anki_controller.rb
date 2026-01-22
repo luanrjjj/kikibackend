@@ -129,7 +129,7 @@ class AnkiController < ApplicationController
       elsif card_type == 'cloze'
         note = GenankiApp::Note.new(
           model: model,
-          fields: [q['texto'], q['extra']]
+          fields: [q['enunciado'], q['extra']]
         )
       elsif card_type == 'image_occlusion'
         # I'm assuming the image is passed as a file path
