@@ -49,6 +49,15 @@ module GenankiApp
     def req
       return @_req if defined?(@_req)
 
+      if @model_type == CLOZE
+        # Special handling for cloze models, which have a syntax that Mustache can't parse.
+        # This assumes that the first field is the one with the cloze deletions.
+        @_req = @templates.each_with_index.map do |template, i|
+          [i, 'any', [0]]
+        end
+        return @_req
+      end
+
       sentinel = 'SeNtInEl'
       field_names = @fields.map { |f| f['name'] }
 
