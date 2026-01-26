@@ -14,6 +14,18 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_15_023014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
+  create_table "area_de_atuacaos", force: :cascade do |t|
+    t.string "nome", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "area_de_formacaos", force: :cascade do |t|
+    t.string "nome", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "assuntos", force: :cascade do |t|
     t.string "nome", null: false
     t.bigint "disciplina_id", null: false
@@ -63,10 +75,15 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_15_023014) do
     t.bigint "orgao_id", null: false
     t.bigint "banca_id", null: false
     t.bigint "concurso_id", null: false
+    t.bigint "area_de_formacao_id"
+    t.bigint "area_de_atuacao_id"
     t.integer "ano"
+    t.string "escolaridade"
     t.string "pdfs_folder_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["area_de_atuacao_id"], name: "index_provas_on_area_de_atuacao_id"
+    t.index ["area_de_formacao_id"], name: "index_provas_on_area_de_formacao_id"
     t.index ["banca_id"], name: "index_provas_on_banca_id"
     t.index ["concurso_id"], name: "index_provas_on_concurso_id"
     t.index ["orgao_id"], name: "index_provas_on_orgao_id"
@@ -75,6 +92,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_15_023014) do
   create_table "questaos", force: :cascade do |t|
     t.text "texto"
     t.boolean "discursiva", null: false
+    t.date "anulada"
+    t.date "desatualizada"
     t.integer "ano", null: false
     t.json "alternativas"
     t.string "correta"
@@ -122,6 +141,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_15_023014) do
   add_foreign_key "assuntos", "disciplinas"
   add_foreign_key "concursos", "bancas"
   add_foreign_key "concursos", "orgaos"
+  add_foreign_key "provas", "area_de_atuacaos"
+  add_foreign_key "provas", "area_de_formacaos"
   add_foreign_key "provas", "bancas"
   add_foreign_key "provas", "concursos"
   add_foreign_key "provas", "orgaos"

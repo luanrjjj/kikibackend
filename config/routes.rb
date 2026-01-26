@@ -14,12 +14,13 @@ Rails.application.routes.draw do
 
   resources :questaos, defaults: { format: :json } do
     get :all, on: :collection
-
     get :count, on: :collection
+    get :filters_page_questaos, on: :collection
   end
 
   resources :provas, defaults: { format: :json } do
     get :all, on: :collection
+    get :paginated_by_ano, on: :collection
   end
 
   post 'anki/generate', to: 'anki#generate'

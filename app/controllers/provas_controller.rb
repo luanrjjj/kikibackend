@@ -17,6 +17,25 @@ class ProvasController < ApplicationController
         total_count: Prova.count,
         total_pages: (Prova.count.to_f / per_page).ceil
       }
+        }
+      end
+
+  def paginated_by_ano
+    page = [params.fetch(:page, 1).to_i, 1].max
+    per_page = [params.fetch(:per_page, 20).to_i, 1].max
+    @provas = Prova.includes(:orgao, :banca, :concurso)
+                    .order(ano: :desc)
+                    .offset((page - 1) * per_page)
+                    .limit(per_page)
+
+    render json: {
+      data: @provas.as_json(include: [:orgao, :banca, :concurso]),
+      meta: {
+        current_page: page,
+        per_page: per_page,
+        total_count: Prova.count,
+        total_pages: (Prova.count.to_f / per_page).ceil
+      }
     }
   end
 
@@ -61,6 +80,6 @@ class ProvasController < ApplicationController
     end
 
     def prova_params
-      params.require(:prova).permit(:nome, :orgao_id, :banca_id, :concurso_id, :ano, :pdfs_folder_url)
+      params.require(:prova).permit(:nome, :orgao_id, :banca_id, :concurso_id, :ano, :escolaridade, :pdfs_folder_url)
     end
 end

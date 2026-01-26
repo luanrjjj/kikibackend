@@ -20,29 +20,7 @@ class QuestaosController < ApplicationController
     }
   end
 
-  # GET /questaos/count
-  def count
-    @questaos = Questao.all
 
-    if params[:bancas].present?
-      @questaos = @questaos.joins(prova: :banca).where(bancas: { id: params[:bancas] })
-    end
-
-    if params[:ano].present?
-      if params[:ano].to_s.include?('-')
-        start_year, end_year = params[:ano].split('-').map(&:to_i)
-        @questaos = @questaos.where(ano: start_year..end_year)
-      else
-        @questaos = @questaos.where(ano: params[:ano])
-      end
-    end
-
-    if params[:escolaridade].present?
-      @questaos = @questaos.joins(prova: :cargo).where(cargos: { escolaridade: params[:escolaridade] })
-    end
-
-    render json: { count: @questaos.count }
-  end
 
   # GET /questaos/1
   def show
@@ -72,6 +50,61 @@ class QuestaosController < ApplicationController
   # DELETE /questaos/1
   def destroy
     @questao.destroy!
+  end
+
+
+   # GET /questaos/count
+    def count
+    @questaos = Questao.distinct
+
+    if params[:bancas].present?
+      @questaos = @questaos.joins(prova: :banca).where(bancas: { id: params[:bancas] })
+    end
+
+    if params[:ano].present?
+      if params[:ano].to_s.include?('-')
+        start_year, end_year = params[:ano].split('-').map(&:to_i)
+        @questaos = @questaos.where(ano: start_year..end_year)
+      else
+        @questaos = @questaos.where(ano: params[:ano])
+      end
+    end
+
+    if params[:escolaridade].present?
+      @questaos = @questaos.joins(prova: :cargo).where(cargos: { escolaridade: params[:escolaridade] })
+    end
+
+    render json: { count: @questaos.count }
+  end
+
+  #GET /questao/filters_page_questaos
+  def filters_questaos
+    @questaos = Questao.distinct
+
+    if params[:bancas].present?
+      @questaos = @questaos.joins(prova: :banca).where(bancas: { id: params[:bancas] })
+    end
+
+    if params[:ano].present?
+      if params[:ano].to_s.include?('-')
+        start_year, end_year = params[:ano].split('-').map(&:to_i)
+        @questaos = @questaos.where(ano: start_year..end_year)
+      else
+        @questaos = @questaos.where(ano: params[:ano])
+      end
+    end
+
+    if params[:escolaridade].present?
+      @questaos = @questaos.joins(prova: :cargo).where(cargos: { escolaridade: params[:escolaridade] })
+    end
+
+    total_count = @questaos.count
+    page = params[:page]&.to_i || 1
+    per_page = params[:per_page]&.to_i || 10
+    @questaos = @questaos.offset((page - 1) * per_page).limit(per_page)
+
+
+    render json: { questoes: @questaos, total_count: total_count }
   end
 
   private

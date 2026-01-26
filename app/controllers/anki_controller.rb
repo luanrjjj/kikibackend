@@ -126,6 +126,8 @@ class AnkiController < ApplicationController
           model: model,
           fields: [q['enunciado'], q['resposta']]
         )
+
+        #Consertar o q['extra'] parametro, alem disso o cloze precisa ser estilizado.
       elsif card_type == 'cloze'
         note = GenankiApp::Note.new(
           model: model,
