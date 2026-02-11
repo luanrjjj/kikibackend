@@ -1,0 +1,2 @@
+class AreaDeFormacao < ApplicationRecord
+end

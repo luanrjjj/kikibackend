@@ -9,6 +9,7 @@ class CreateQuestaos < ActiveRecord::Migration[8.0]
       t.json :alternativas
       t.string :correta
       t.string :enunciado, null:false
+      t.integer :numero_questao, null:false
       t.references :prova, index: true, null: false, foreign_key: true
       t.references :concurso, index: true,  foreign_key: true
       t.references :assunto, index: true, foreign_key: true

@@ -21,7 +21,11 @@ Rails.application.routes.draw do
   resources :provas, defaults: { format: :json } do
     get :all, on: :collection
     get :paginated_by_ano, on: :collection
+    get :questaos, on: :collection
   end
+
+  resources :area_de_formacao, only: [:index, :show]
+  resources :area_de_atuacao, only: [:index, :show]
 
   post 'anki/generate', to: 'anki#generate'
 

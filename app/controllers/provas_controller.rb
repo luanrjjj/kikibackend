@@ -1,5 +1,5 @@
 class ProvasController < ApplicationController
-  before_action :set_prova, only: %i[ show update destroy ]
+  before_action :set_prova, only: %i[ show update destroy questaos ]
 
   # GET /provas
   def index
@@ -42,6 +42,11 @@ class ProvasController < ApplicationController
   # GET /provas/all
   def all
     render json: Prova.order(:nome)
+  end
+
+  def questaos
+    @questaos = @prova.questaos
+    render json: @questaos
   end
 
   # GET /provas/1
