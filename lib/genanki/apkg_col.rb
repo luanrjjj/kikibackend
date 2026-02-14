@@ -1,6 +1,6 @@
 module Genanki
   class ApkgCol
-    SQL = <<~'SQL'
+    APKG_COL = <<~'SQL'
     INSERT INTO col VALUES(
         null,
         1411124400,

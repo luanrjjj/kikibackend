@@ -1,6 +1,6 @@
 module Genanki
   class ApkgSchema
-    SQL = <<~SQL
+    APKG_SCHEMA = <<~SQL
     CREATE TABLE col (
         id              integer primary key,
         crt             integer not null,

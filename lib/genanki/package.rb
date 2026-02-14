@@ -53,8 +53,8 @@ module Genanki
     end
 
     def write_to_db(db, timestamp, id_gen)
-      db.execute_batch(Genanki::APKG_SCHEMA)
-      db.execute_batch(Genanki::APKG_COL)
+      db.execute_batch(Genanki::ApkgSchema::APKG_SCHEMA)
+      db.execute_batch(Genanki::ApkgCol::APKG_COL)
 
       @decks.each do |deck|
         deck.write_to_db(db, timestamp, id_gen)
