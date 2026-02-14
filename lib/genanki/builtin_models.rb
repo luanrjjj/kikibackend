@@ -1,7 +1,8 @@
 require_relative 'model'
 
-module GenankiApp
-  BASIC_MODEL = Model.new(
+module Genanki
+  class BuiltinModels
+  BASIC_MODEL = Genanki::Model.new(
     model_id: 1559383000,
     name: 'Basic (genanki)',
     fields: [
@@ -18,7 +19,7 @@ module GenankiApp
     css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\n"
   )
 
-  BASIC_AND_REVERSED_CARD_MODEL = Model.new(
+  BASIC_AND_REVERSED_CARD_MODEL = Genanki::Model.new(
     model_id: 1485830179,
     name: 'Basic (and reversed card) (genanki)',
     fields: [
@@ -40,7 +41,7 @@ module GenankiApp
     css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\n"
   )
 
-  BASIC_OPTIONAL_REVERSED_CARD_MODEL = Model.new(
+  BASIC_OPTIONAL_REVERSED_CARD_MODEL = Genanki::Model.new(
     model_id: 1382232460,
     name: 'Basic (optional reversed card) (genanki)',
     fields: [
@@ -63,7 +64,7 @@ module GenankiApp
     css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\n"
   )
 
-  BASIC_TYPE_IN_THE_ANSWER_MODEL = Model.new(
+  BASIC_TYPE_IN_THE_ANSWER_MODEL = Genanki::Model.new(
     model_id: 1305534440,
     name: 'Basic (type in the answer) (genanki)',
     fields: [
@@ -80,10 +81,10 @@ module GenankiApp
     css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\n"
   )
 
-  CLOZE_MODEL = Model.new(
+  CLOZE_MODEL = Genanki::Model.new(
     model_id: 1550428389,
     name: 'Cloze (genanki)',
-    model_type: Model::CLOZE,
+    model_type: Genanki::Model::CLOZE,
     fields: [
       { 'name' => 'Text', 'font' => 'Arial' },
       { 'name' => 'Back Extra', 'font' => 'Arial' }
@@ -105,5 +106,6 @@ module GenankiApp
       return fixed_fields
     end
     fields
+  end
   end
 end

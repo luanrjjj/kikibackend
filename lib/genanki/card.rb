@@ -1,4 +1,4 @@
-module GenankiApp
+module Genanki
   class Card
     def initialize(ord, suspend: false)
       @ord = ord

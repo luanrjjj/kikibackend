@@ -1,7 +1,7 @@
 require 'yaml'
 require 'mustache'
 
-module GenankiApp
+module Genanki
   class Model
     FRONT_BACK = 0
     CLOZE = 1

@@ -2,7 +2,7 @@ require 'set'
 require_relative 'card'
 require_relative 'util'
 
-module GenankiApp
+module Genanki
   class Note
     attr_accessor :model, :fields, :due
     attr_writer :tags, :sort_field, :guid
@@ -33,9 +33,9 @@ module GenankiApp
 
     def cards
       @cards ||= begin
-        if @model.model_type == GenankiApp::Model::FRONT_BACK
+        if @model.model_type == Genanki::Model::FRONT_BACK
           _front_back_cards
-        elsif @model.model_type == GenankiApp::Model::CLOZE
+        elsif @model.model_type == Genanki::Model::CLOZE
           _cloze_cards
         else
           raise ArgumentError, 'Expected model_type CLOZE or FRONT_BACK'
@@ -44,7 +44,7 @@ module GenankiApp
     end
 
     def guid
-      @guid ||= GenankiApp::Util.guid_for(*@fields)
+      @guid ||= Genanki::Util.guid_for(*@fields)
     end
 
     def write_to_db(cursor, timestamp, deck_id, id_gen)
@@ -96,7 +96,7 @@ module GenankiApp
 
       # card_ords.add(0) if card_ords.empty?
 
-      card_ords.map { |ord| GenankiApp::Card.new(ord) }
+      card_ords.map { |ord| Genanki::Card.new(ord) }
     end
 
     def _front_back_cards
@@ -105,9 +105,9 @@ module GenankiApp
         present_fields = required_field_ords.map { |ord| @fields[ord] && !@fields[ord].empty? }
 
         if any_or_all == 'any'
-          rv << GenankiApp::Card.new(card_ord) if present_fields.any?
+          rv << Genanki::Card.new(card_ord) if present_fields.any?
         elsif any_or_all == 'all'
-          rv << GenankiApp::Card.new(card_ord) if present_fields.all?
+          rv << Genanki::Card.new(card_ord) if present_fields.all?
         end
       end
       rv

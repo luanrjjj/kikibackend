@@ -1,6 +1,6 @@
 require 'json'
 
-module GenankiApp
+module Genanki
   class Deck
     attr_accessor :deck_id, :name, :description, :notes, :models
 
@@ -73,7 +73,7 @@ module GenankiApp
 
     def write_to_file(file)
       # Write this deck to a .apkg file.
-      GenankiApp::Package.new(self).write_to_file(file)
+      Genanki::Package.new(self).write_to_file(file)
     end
   end
 end

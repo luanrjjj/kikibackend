@@ -7,12 +7,12 @@ require_relative 'deck'
 require_relative 'apkg_schema'
 require_relative 'apkg_col'
 
-module GenankiApp
+module Genanki
   class Package
     attr_accessor :decks, :media_files
 
     def initialize(deck_or_decks = nil, media_files: nil)
-      @decks = deck_or_decks.is_a?(GenankiApp::Deck) ? [deck_or_decks] : (deck_or_decks || [])
+      @decks = deck_or_decks.is_a?(Genanki::Deck) ? [deck_or_decks] : (deck_or_decks || [])
       @media_files = (media_files || []).uniq
     end
 
@@ -53,8 +53,8 @@ module GenankiApp
     end
 
     def write_to_db(db, timestamp, id_gen)
-      db.execute_batch(GenankiApp::APKG_SCHEMA)
-      db.execute_batch(GenankiApp::APKG_COL)
+      db.execute_batch(Genanki::APKG_SCHEMA)
+      db.execute_batch(Genanki::APKG_COL)
 
       @decks.each do |deck|
         deck.write_to_db(db, timestamp, id_gen)

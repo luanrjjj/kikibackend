@@ -1,5 +1,6 @@
-module GenankiApp
-  APKG_SCHEMA = <<~SQL
+module Genanki
+  class ApkgSchema
+    SQL = <<~SQL
     CREATE TABLE col (
         id              integer primary key,
         crt             integer not null,
@@ -72,4 +73,5 @@ module GenankiApp
     CREATE INDEX ix_revlog_cid on revlog (cid);
     CREATE INDEX ix_notes_csum on notes (csum);
   SQL
+  end
 end

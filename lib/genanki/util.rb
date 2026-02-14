@@ -1,6 +1,6 @@
 require 'digest'
 
-module GenankiApp
+module Genanki
   module Util
     def self.guid_for(*fields)
       hash_str = fields.join('__')
