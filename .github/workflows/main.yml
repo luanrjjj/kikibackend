@@ -29,6 +29,5 @@ jobs:
           push: true
           tags: |
             alfredfd/kikibackend:latest
-            alfredfd/kikibackend:${{ github.sha }} # Also tags with the commit ID for safety
           cache-from: type=gha
           cache-to: type=gha,mode=max
