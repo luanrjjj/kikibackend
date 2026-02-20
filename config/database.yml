@@ -32,7 +32,7 @@ test:
 production:
   primary:
     <<: *default
-    database: rails_production
+    database: defaultdb
   cache:
     <<: *default
     database: rails_production_cache
