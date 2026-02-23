@@ -10,8 +10,10 @@ class CreateProvas < ActiveRecord::Migration[8.0]
       t.integer :ano
       t.string :escolaridade
       t.string :pdfs_folder_url
+      t.date :data_prova_aplicacao
       t.timestamps
     end
+    execute "ALTER SEQUENCE provas_id_seq RESTART WITH 14007;"
   end
 end
     '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   '
