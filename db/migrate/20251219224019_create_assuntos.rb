@@ -5,5 +5,7 @@ class CreateAssuntos < ActiveRecord::Migration[8.0]
       t.references :disciplina, index: true, null: false, foreign_key: true
       t.timestamps
     end
+    execute "ALTER SEQUENCE assuntos_id_seq RESTART WITH 14007;"
+
   end
 end
