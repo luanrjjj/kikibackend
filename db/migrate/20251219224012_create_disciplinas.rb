@@ -4,5 +4,7 @@ class CreateDisciplinas < ActiveRecord::Migration[8.0]
       t.string :nome, null: false
       t.timestamps
     end
+    execute "ALTER SEQUENCE disciplinas_id_seq RESTART WITH 14007;"
+
   end
 end

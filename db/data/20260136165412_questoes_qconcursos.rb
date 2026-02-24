@@ -18,6 +18,11 @@ class QuestoesQconcursos < SeedMigration::Migration
       banca_nome = item['banca']
       ano = item['ano'].to_i
       nome_prova = item['nome_prova']
+      puts("orgao", orgao_nome)
+      puts("banca", banca_nome)
+      puts("ano", ano)
+      puts("nome_prova", nome_prova)
+
 
       next unless orgao_nome.present? && banca_nome.present? && ano > 0 && nome_prova.present?
 
@@ -28,7 +33,11 @@ class QuestoesQconcursos < SeedMigration::Migration
       # next unless orgao && banca
 
       prova = Prova.where(nome: nome_prova, orgao: orgao, banca: banca, ano: ano).first
-      # next unless prova
+      puts("prova", prova.inspect)
+      puts("prova_id", prova&.id)
+      puts("prova_nome", prova&.nome)
+
+      next unless prova
 
       questoes = item['questoes']
       # next unless questoes.is_a?(Array)
@@ -41,6 +50,8 @@ class QuestoesQconcursos < SeedMigration::Migration
 
         disciplina_nome = q_data['breadcrumbs'][0]
         assunto_nome = q_data['breadcrumbs'][-1]
+        referencia_id = q_data['id']
+        numero_questao = q_data['numero_questao']
 
         disciplina = nil
         if disciplina_nome.present?
@@ -61,7 +72,7 @@ class QuestoesQconcursos < SeedMigration::Migration
 
         texto_obj = nil
         if support_text.present?
-          texto_obj = Texto.find_or_create_by(texto: support_text, prova: prova, concurso: prova.concurso)
+          texto_obj = Texto.find_or_create_by(texto: support_text, prova_id: prova.id, concurso_id: prova.concurso_id)
         end
 
         questao = Questao.find_or_initialize_by(enunciado: enunciado, prova: prova)
@@ -70,9 +81,10 @@ class QuestoesQconcursos < SeedMigration::Migration
         questao.concurso = prova.concurso
         questao.assunto = assunto
         questao.disciplina = disciplina
-        questao.texto = texto_obj
+        questao.texto_id = texto_obj&.id
         questao.alternativas = alternativas
-        questao.sistema_ref_id = q_data['id']
+        questao.sistema_ref_id = referencia_id
+        questao.numero_questao = numero_questao
         questao.save!
       end
     end

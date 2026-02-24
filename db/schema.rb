@@ -80,6 +80,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_15_023014) do
     t.integer "ano"
     t.string "escolaridade"
     t.string "pdfs_folder_url"
+    t.date "data_prova_aplicacao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["area_de_atuacao_id"], name: "index_provas_on_area_de_atuacao_id"
@@ -90,7 +91,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_15_023014) do
   end
 
   create_table "questaos", force: :cascade do |t|
-    t.text "texto"
     t.boolean "discursiva", null: false
     t.date "anulada"
     t.date "desatualizada"
@@ -98,16 +98,20 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_15_023014) do
     t.json "alternativas"
     t.string "correta"
     t.string "enunciado", null: false
+    t.integer "numero_questao", null: false
+    t.string "sistema_ref_id"
     t.bigint "prova_id", null: false
     t.bigint "concurso_id"
     t.bigint "assunto_id"
     t.bigint "disciplina_id"
+    t.bigint "texto_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["assunto_id"], name: "index_questaos_on_assunto_id"
     t.index ["concurso_id"], name: "index_questaos_on_concurso_id"
     t.index ["disciplina_id"], name: "index_questaos_on_disciplina_id"
     t.index ["prova_id"], name: "index_questaos_on_prova_id"
+    t.index ["texto_id"], name: "index_questaos_on_texto_id"
   end
 
   create_table "seed_migration_data_migrations", id: :serial, force: :cascade do |t|
@@ -120,12 +124,10 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_15_023014) do
     t.string "texto", null: false
     t.bigint "prova_id", null: false
     t.bigint "concurso_id", null: false
-    t.bigint "questao_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["concurso_id"], name: "index_textos_on_concurso_id"
     t.index ["prova_id"], name: "index_textos_on_prova_id"
-    t.index ["questao_id"], name: "index_textos_on_questao_id"
   end
 
   create_table "topicos", force: :cascade do |t|
@@ -150,9 +152,9 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_15_023014) do
   add_foreign_key "questaos", "concursos"
   add_foreign_key "questaos", "disciplinas"
   add_foreign_key "questaos", "provas"
+  add_foreign_key "questaos", "textos"
   add_foreign_key "textos", "concursos"
   add_foreign_key "textos", "provas"
-  add_foreign_key "textos", "questaos"
   add_foreign_key "topicos", "assuntos"
   add_foreign_key "topicos", "disciplinas"
 end

@@ -6,5 +6,8 @@ class CreateOrgaos < ActiveRecord::Migration[8.0]
       t.string :logo_url
       t.timestamps
     end
+
+    execute "ALTER SEQUENCE orgaos_id_seq RESTART WITH 14007;"
+
   end
 end
