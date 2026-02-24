@@ -5,8 +5,28 @@ class QuestaosController < ApplicationController
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
+
     @questaos = Questao.includes(:prova, :assunto, :disciplina)
-                       .offset((page - 1) * per_page)
+
+    if params[:disciplina_id].present?
+      @questaos = @questaos.where(disciplina_id: params[:disciplina_id])
+    end
+
+    if params[:prova_id].present?
+      @questaos = @questaos.where(prova_id: params[:prova_id])
+    end
+
+    if params[:assunto_id].present?
+      @questaos = @questaos.where(assunto_id: params[:assunto_id])
+    end
+
+    if params[:search].present?
+      @questaos = @questaos.where("enunciado ILIKE ?", "%#{params[:search]}%")
+    end
+
+    total_count = @questaos.count
+
+    @questaos = @questaos.offset((page - 1) * per_page)
                        .limit(per_page)
 
     render json: {
@@ -14,13 +34,11 @@ class QuestaosController < ApplicationController
       meta: {
         current_page: page,
         per_page: per_page,
-        total_count: Questao.count,
-        total_pages: (Questao.count.to_f / per_page).ceil
+        total_count: total_count,
+        total_pages: (total_count.to_f / per_page).ceil
       }
     }
   end
-
-
 
   # GET /questaos/1
   def show
