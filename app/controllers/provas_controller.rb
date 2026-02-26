@@ -45,12 +45,9 @@ class ProvasController < ApplicationController
   end
 
   def questaos
-    @questaos = @prova.questaos.order(:numero_questao)
-    render json: @questaos.as_json(include: {
-      assunto: {},
-      disciplina: {},
-      texto: {}
-    })
+    @questaos = @prova.questaos.order(:numero_questao).includes(:assunto, :disciplina, :texto)
+    options = { include: [:assunto, :disciplina, :texto] }
+    render json: QuestaoSerializer.new(@questaos, options).serializable_hash
   end
 
   # GET /provas/1

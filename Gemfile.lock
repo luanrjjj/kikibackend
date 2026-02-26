@@ -108,6 +108,8 @@ GEM
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
     fugit (1.12.1)
       et-orbi (~> 1.4)
       raabro (~> 1.4)
@@ -349,6 +351,7 @@ DEPENDENCIES
   brakeman
   capybara
   debug
+  fast_jsonapi
   importmap-rails
   jbuilder
   kamal

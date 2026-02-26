@@ -10,7 +10,5 @@ class Questao < ApplicationRecord
   validates :ano, presence: true
   validates :discursiva, inclusion: { in: [true, false] }
 
-   def as_json(options = {})
-    super(options.merge(except: [:created_at, :updated_at, :validado_admin]))
-  end
+
 end
