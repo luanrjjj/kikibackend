@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_02_24_100000) do
+ActiveRecord::Schema[8.0].define(version: 2026_02_27_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -123,6 +123,18 @@ ActiveRecord::Schema[8.0].define(version: 2026_02_24_100000) do
     t.datetime "migrated_on", precision: nil
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "token"
+    t.string "ip_address"
+    t.string "user_agent"
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_sessions_on_token", unique: true
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
   create_table "textos", force: :cascade do |t|
     t.string "texto", null: false
     t.bigint "prova_id", null: false
@@ -143,6 +155,24 @@ ActiveRecord::Schema[8.0].define(version: 2026_02_24_100000) do
     t.index ["disciplina_id"], name: "index_topicos_on_disciplina_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.string "name"
+    t.string "subscription_status"
+    t.string "plan"
+    t.string "stripe_customer_id"
+    t.datetime "current_period_end"
+    t.datetime "trial_ends_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid"
+    t.index ["stripe_customer_id"], name: "index_users_on_stripe_customer_id", unique: true
+  end
+
   add_foreign_key "assuntos", "disciplinas"
   add_foreign_key "concursos", "bancas"
   add_foreign_key "concursos", "orgaos"
@@ -156,6 +186,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_02_24_100000) do
   add_foreign_key "questaos", "disciplinas"
   add_foreign_key "questaos", "provas"
   add_foreign_key "questaos", "textos"
+  add_foreign_key "sessions", "users"
   add_foreign_key "textos", "concursos"
   add_foreign_key "textos", "provas"
   add_foreign_key "topicos", "assuntos"
