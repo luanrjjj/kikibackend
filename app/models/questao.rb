@@ -4,9 +4,13 @@ class Questao < ApplicationRecord
   belongs_to :assunto, optional: true
   belongs_to :disciplina, optional: true
 
-  has_many :textos
+  belongs_to :texto, optional: true
 
   validates :enunciado, presence: true
   validates :ano, presence: true
   validates :discursiva, inclusion: { in: [true, false] }
+
+   def as_json(options = {})
+    super(options.merge(except: [:created_at, :updated_at, :validado_admin]))
+  end
 end

@@ -12,7 +12,7 @@ class AnkiController < ApplicationController
       return
     end
 
-    deck = GenankiApp::Deck.new(
+    deck = Genanki::Deck.new(
       deck_id: Time.now.to_i,
       name: "Anki Deck #{Time.now.strftime('%Y-%m-%d')}"
     )
@@ -26,7 +26,7 @@ class AnkiController < ApplicationController
 
       if model.nil?
         if card_type == 'basic'
-          model = GenankiApp::Model.new(
+          model = Genanki::Model.new(
             model_id: 1699392319,
             name: 'QuestaoModel',
             fields: [
@@ -42,7 +42,7 @@ class AnkiController < ApplicationController
             ]
           )
         elsif card_type == 'basic_and_reversed'
-          model = GenankiApp::Model.new(
+          model = Genanki::Model.new(
             model_id: 1699392321,
             name: 'QuestaoModelReversed',
             fields: [
@@ -63,10 +63,10 @@ class AnkiController < ApplicationController
             ]
           )
         elsif card_type == 'cloze'
-          model = GenankiApp::Model.new(
+          model = Genanki::Model.new(
             model_id: 1699392320, # different model_id
             name: 'ClozeModel',
-            model_type: GenankiApp::Model::CLOZE,
+            model_type: Genanki::Model::CLOZE,
             fields: [
               { 'name' => 'Texto' },
               { 'name' => 'Extra' }
@@ -80,7 +80,7 @@ class AnkiController < ApplicationController
             ]
           )
         elsif card_type == 'image_occlusion'
-          model = GenankiApp::Model.new(
+          model = Genanki::Model.new(
             model_id: 1699392322,
             name: 'ImageOcclusionModel',
             fields: [
@@ -117,19 +117,19 @@ class AnkiController < ApplicationController
 
         back = "#{alternatives_html}<br><strong>Resposta Correta: #{q['correta']}</strong>"
 
-        note = GenankiApp::Note.new(
+        note = Genanki::Note.new(
           model: model,
           fields: [front, back]
         )
       elsif card_type == 'basic_and_reversed'
-        note = GenankiApp::Note.new(
+        note = Genanki::Note.new(
           model: model,
           fields: [q['enunciado'], q['resposta']]
         )
 
         #Consertar o q['extra'] parametro, alem disso o cloze precisa ser estilizado.
       elsif card_type == 'cloze'
-        note = GenankiApp::Note.new(
+        note = Genanki::Note.new(
           model: model,
           fields: [q['enunciado'], q['extra']]
         )
@@ -139,7 +139,7 @@ class AnkiController < ApplicationController
         if q['image_path'] && File.exist?(q['image_path'])
           media_files << q['image_path']
           image_name = File.basename(q['image_path'])
-          note = GenankiApp::Note.new(
+          note = Genanki::Note.new(
             model: model,
             fields: [image_name, q['masks'], q['header'], q['footer']]
           )
@@ -149,7 +149,7 @@ class AnkiController < ApplicationController
       deck.add_note(note) if note
     end
 
-    pkg = GenankiApp::Package.new(deck, media_files: media_files)
+    pkg = Genanki::Package.new(deck, media_files: media_files)
     file_name = "anki_deck_#{Time.now.to_i}.apkg"
     file_path = Rails.root.join('tmp', file_name)
 
