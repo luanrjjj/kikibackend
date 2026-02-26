@@ -45,6 +45,37 @@ class QuestaosController < ApplicationController
     render json: @questao.as_json(include: [:prova, :assunto, :disciplina, :textos])
   end
 
+  # GET /questaos/stats
+  def stats
+    @questaos = Questao.all
+
+    if params[:disciplina_id].present?
+      @questaos = @questaos.where(disciplina_id: params[:disciplina_id])
+    end
+
+    if params[:prova_id].present?
+      @questaos = @questaos.where(prova_id: params[:prova_id])
+    end
+
+    if params[:assunto_id].present?
+      @questaos = @questaos.where(assunto_id: params[:assunto_id])
+    end
+
+    if params[:search].present?
+      @questaos = @questaos.where("enunciado ILIKE ?", "%#{params[:search]}%")
+    end
+
+    total_count = @questaos.count
+    validated_count = @questaos.where.not(validado_admin: nil).count
+    by_year = @questaos.group(:ano).count.sort.to_h
+
+    render json: {
+      total_count: total_count,
+      validated_count: validated_count,
+      by_year: by_year
+    }
+  end
+
   # POST /questaos
   def create
     @questao = Questao.new(questao_params)
@@ -134,6 +165,7 @@ class QuestaosController < ApplicationController
       params.require(:questao).permit(
         :texto, :enunciado, :discursiva, :ano, :correta,
         :prova_id, :concurso_id, :assunto_id, :disciplina_id,
+        :validado_admin, :sistema_ref_id,
         alternativas: [:value, :text]
       )
     end

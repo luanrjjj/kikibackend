@@ -45,7 +45,7 @@ class ProvasController < ApplicationController
   end
 
   def questaos
-    @questaos = @prova.questaos
+    @questaos = @prova.questaos.order(:numero_questao).includes(:assunto, :disciplina)
     render json: @questaos
   end
 
