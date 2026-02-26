@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   end
 
   resources :questaos, defaults: { format: :json } do
+    member do
+      patch :validate
+    end
     get :all, on: :collection
     get :count, on: :collection
     get :filters_page_questaos, on: :collection

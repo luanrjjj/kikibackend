@@ -1,12 +1,12 @@
 class QuestaosController < ApplicationController
-  before_action :set_questao, only: %i[ show update destroy ]
+  before_action :set_questao, only: %i[ show update destroy validate ]
 
   # GET /questaos
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
 
-    @questaos = Questao.includes(:prova, :assunto, :disciplina)
+    @questaos = Questao.includes(:prova, :assunto, :disciplina).order(id: :asc)
 
     if params[:disciplina_id].present?
       @questaos = @questaos.where(disciplina_id: params[:disciplina_id])
@@ -39,6 +39,15 @@ class QuestaosController < ApplicationController
       }
     }
   end
+
+  def validate
+    if @questao.update(validado_admin: Time.current)
+      render json: @questao
+    else
+      render json: @questao.errors, status: :unprocessable_entity
+    end
+  end
+
 
   # GET /questaos/1
   def show
