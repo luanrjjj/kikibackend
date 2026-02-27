@@ -1,5 +1,7 @@
 class QuestaosController < ApplicationController
   before_action :set_questao, only: %i[ show update destroy validate ]
+  before_action :authenticate_admin!, only: %i[ index stats ]
+
 
   # GET /questaos
   def index
@@ -40,21 +42,9 @@ class QuestaosController < ApplicationController
     }
   end
 
-  def validate
-    if @questao.update(validado_admin: Time.current)
-      render json: @questao
-    else
-      render json: @questao.errors, status: :unprocessable_entity
-    end
-  end
 
 
-  # GET /questaos/1
-  def show
-    render json: @questao.as_json(include: [:prova, :assunto, :disciplina, :textos])
-  end
-
-  # GET /questaos/stats
+    # GET /questaos/stats
   def stats
     @questaos = Questao.all
 
@@ -84,6 +74,22 @@ class QuestaosController < ApplicationController
       by_year: by_year
     }
   end
+
+  def validate
+    if @questao.update(validado_admin: Time.current)
+      render json: @questao
+    else
+      render json: @questao.errors, status: :unprocessable_entity
+    end
+  end
+
+
+  # GET /questaos/1
+  def show
+    render json: @questao.as_json(include: [:prova, :assunto, :disciplina, :textos])
+  end
+
+
 
   # POST /questaos
   def create
@@ -177,5 +183,16 @@ class QuestaosController < ApplicationController
         :validado_admin, :sistema_ref_id,
         alternativas: [:value, :text]
       )
+    end
+
+    def authenticate_admin!
+      token = request.headers['Authorization']&.split(' ')&.last
+      verification = User.verify_admin_token(token)
+
+      if verification == :unauthorized
+        render json: { error: 'Unauthorized' }, status: :unauthorized
+      elsif verification == :forbidden
+        render json: { error: 'Forbidden' }, status: :forbidden
+      end
     end
 end
