@@ -13,6 +13,8 @@ class QuestoesQconcursos < SeedMigration::Migration
     json_data = File.read(file_path)
     provas_list = JSON.parse(json_data)
 
+    id_counter = 500
+
     provas_list.each do |item|
       orgao_nome = item['orgao']
       banca_nome = item['banca']
@@ -76,6 +78,13 @@ class QuestoesQconcursos < SeedMigration::Migration
         end
 
         questao = Questao.find_or_initialize_by(enunciado: enunciado, prova: prova)
+
+        if questao.real_id.blank?
+          suffix = (0...2).map { (('0'..'9').to_a + ('A'..'Z').to_a).sample }.join
+          questao.real_id = "R#{id_counter}#{suffix}"
+          id_counter += 1
+        end
+
         questao.discursiva = false
         questao.ano = ano
         questao.concurso = prova.concurso
