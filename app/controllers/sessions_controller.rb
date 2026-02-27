@@ -22,11 +22,12 @@ class SessionsController < ApplicationController
       expires_at: 2.weeks.from_now
     )
 
-    render json: {
-      message: "Autenticado com sucesso",
-      user: user.as_json(except: :password_digest),
-      token: session.token
-    }, status: :ok
+    query_params = {
+      token: session.token,
+      user: user.as_json(except: :password_digest).to_json
+    }
+
+    redirect_to "http://localhost:5173/provas?#{query_params.to_query}", allow_other_host: true
   end
 
   def failure
