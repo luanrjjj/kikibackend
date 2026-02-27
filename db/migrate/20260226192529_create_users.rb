@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration[8.0]
       t.string :name
       t.string :subscription_status
       t.string :plan
+      t.boolean :admin, default: false
       t.string :stripe_customer_id
       t.datetime :current_period_end
       t.datetime :trial_ends_at
