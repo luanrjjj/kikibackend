@@ -66,11 +66,15 @@ class QuestaosController < ApplicationController
 
     total_count = @questaos.count
     validated_count = @questaos.where.not(validado_admin: nil).count
+    with_correct_answer_count = @questaos.where.not(correta: [nil, ""]).count
+    with_disciplina_assunto_count = @questaos.where.not(disciplina_id: nil).where.not(assunto_id: nil).count
     by_year = @questaos.group(:ano).count.sort.to_h
 
     render json: {
       total_count: total_count,
       validated_count: validated_count,
+      with_correct_answer_count: with_correct_answer_count,
+      with_disciplina_assunto_count: with_disciplina_assunto_count,
       by_year: by_year
     }
   end
