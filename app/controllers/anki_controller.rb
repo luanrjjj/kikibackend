@@ -39,7 +39,8 @@ class AnkiController < ApplicationController
                 'qfmt' => '{{Enunciado}}',
                 'afmt' => '{{FrontSide}}<hr id="answer">{{Resposta}}'
               }
-            ]
+            ],
+            css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\ndetails {\n margin-top: 10px;\n}\nsummary {\n cursor: pointer;\n user-select: none;\n}\n"
           )
         elsif card_type == 'basic_and_reversed'
           model = Genanki::Model.new(
@@ -60,7 +61,8 @@ class AnkiController < ApplicationController
                 'qfmt' => '{{Resposta}}',
                 'afmt' => '{{FrontSide}}<hr id="answer">{{Enunciado}}'
               }
-            ]
+            ],
+            css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\ndetails {\n margin-top: 10px;\n}\nsummary {\n cursor: pointer;\n user-select: none;\n}\n"
           )
         elsif card_type == 'cloze'
           model = Genanki::Model.new(
@@ -103,23 +105,9 @@ class AnkiController < ApplicationController
 
       note = nil
       if card_type == 'basic'
-        front = "<strong>#{q['enunciado']}</strong><br><br>#{q['texto']}"
-
-        alternatives_html = "<ul>"
-        if q['alternativas'].is_a?(Array)
-          q['alternativas'].each do |alt|
-             val = alt['value'] || alt[:value]
-             txt = alt['text'] || alt[:text]
-             alternatives_html += "<li><strong>#{val}</strong>: #{txt}</li>"
-          end
-        end
-        alternatives_html += "</ul>"
-
-        back = "#{alternatives_html}<br><strong>Resposta Correta: #{q['correta']}</strong>"
-
         note = Genanki::Note.new(
           model: model,
-          fields: [front, back]
+          fields: [q['enunciado'], q['correta']]
         )
       elsif card_type == 'basic_and_reversed'
         note = Genanki::Note.new(

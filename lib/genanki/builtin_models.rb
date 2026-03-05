@@ -16,7 +16,7 @@ module Genanki
         'afmt' => '{{FrontSide}}\n\n<hr id=answer>\n\n{{Back}}'
       }
     ],
-    css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\n"
+    css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\ndetails {\n margin-top: 10px;\n}\nsummary {\n cursor: pointer;\n user-select: none;\n}\n"
   )
 
   BASIC_AND_REVERSED_CARD_MODEL = Genanki::Model.new(
@@ -38,7 +38,7 @@ module Genanki
         'afmt' => '{{FrontSide}}\n\n<hr id=answer>\n\n{{Front}}'
       }
     ],
-    css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\n"
+    css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\ndetails {\n margin-top: 10px;\n}\nsummary {\n cursor: pointer;\n user-select: none;\n}\n"
   )
 
   BASIC_OPTIONAL_REVERSED_CARD_MODEL = Genanki::Model.new(
@@ -61,7 +61,7 @@ module Genanki
         'afmt' => '{{FrontSide}}\n\n<hr id=answer>\n\n{{Front}}'
       }
     ],
-    css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\n"
+    css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\ndetails {\n margin-top: 10px;\n}\nsummary {\n cursor: pointer;\n user-select: none;\n}\n"
   )
 
   BASIC_TYPE_IN_THE_ANSWER_MODEL = Genanki::Model.new(
@@ -78,7 +78,7 @@ module Genanki
         'afmt' => '{{Front}}\n\n<hr id=answer>\n\n{{type:Back}}'
       }
     ],
-    css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\n"
+    css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\ndetails {\n margin-top: 10px;\n}\nsummary {\n cursor: pointer;\n user-select: none;\n}\n"
   )
 
   CLOZE_MODEL = Genanki::Model.new(
