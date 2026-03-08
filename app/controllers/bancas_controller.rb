@@ -1,5 +1,6 @@
 class BancasController < ApplicationController
   before_action :set_banca, only: %i[ show update destroy ]
+  before_action :authenticate_admin!, only: %i[ index all ]
 
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
@@ -54,5 +55,16 @@ class BancasController < ApplicationController
 
     def banca_params
       params.require(:banca).permit(:nome, :sigla, :logo, :total_concursos)
+    end
+
+    def authenticate_admin!
+      token = request.headers['Authorization']&.split(' ')&.last
+      verification = User.verify_admin_token(token)
+
+      if verification == :unauthorized
+        render json: { error: 'Unauthorized' }, status: :unauthorized
+      elsif verification == :forbidden
+        render json: { error: 'Forbidden' }, status: :forbidden
+      end
     end
 end

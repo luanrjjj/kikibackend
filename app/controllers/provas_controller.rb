@@ -1,5 +1,6 @@
 class ProvasController < ApplicationController
   before_action :set_prova, only: %i[ show update destroy questaos ]
+  before_action :authenticate_admin!, only: %i[ index all paginated_by_ano]
 
   # GET /provas
   def index
@@ -51,7 +52,14 @@ class ProvasController < ApplicationController
 
   # GET /provas/1
   def show
-    render json: @prova.as_json(include: [:orgao, :banca, :concurso])
+    render json: @prova.as_json(include: [
+      :orgao,
+      :banca,
+      :concurso,
+      questaos: {
+        include: [:assunto, :disciplina, :texto]
+      }
+    ])
   end
 
   # POST /provas
@@ -86,5 +94,16 @@ class ProvasController < ApplicationController
 
     def prova_params
       params.require(:prova).permit(:nome, :orgao_id, :banca_id, :concurso_id, :ano, :escolaridade, :pdfs_folder_url)
+    end
+
+    def authenticate_admin!
+      token = request.headers['Authorization']&.split(' ')&.last
+      verification = User.verify_admin_token(token)
+
+      if verification == :unauthorized
+        render json: { error: 'Unauthorized' }, status: :unauthorized
+      elsif verification == :forbidden
+        render json: { error: 'Forbidden' }, status: :forbidden
+      end
     end
 end

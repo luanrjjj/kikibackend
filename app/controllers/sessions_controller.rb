@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
       user.uid = auth_hash.uid
       user.password = SecureRandom.hex(16)
       user.save!
+      AsaasService.create_customer(user)
     end
 
     # Cria a sessão
