@@ -11,15 +11,15 @@ class ProvasController < ApplicationController
                    .limit(per_page)
 
     render json: {
-      data: @provas.as_json(include: [:orgao, :banca, :concurso]),
+      data: @provas.as_json(prova_json_options),
       meta: {
         current_page: page,
         per_page: per_page,
         total_count: Prova.count,
         total_pages: (Prova.count.to_f / per_page).ceil
       }
-        }
-      end
+    }
+  end
 
   def paginated_by_ano
     page = [params.fetch(:page, 1).to_i, 1].max
@@ -30,7 +30,7 @@ class ProvasController < ApplicationController
                     .limit(per_page)
 
     render json: {
-      data: @provas.as_json(include: [:orgao, :banca, :concurso]),
+      data: @provas.as_json(prova_json_options),
       meta: {
         current_page: page,
         per_page: per_page,
@@ -42,7 +42,7 @@ class ProvasController < ApplicationController
 
   # GET /provas/all
   def all
-    render json: Prova.order(:nome)
+    render json: Prova.order(:nome).as_json(except: %i[created_at updated_at validado_admin])
   end
 
   def questaos
@@ -65,7 +65,7 @@ class ProvasController < ApplicationController
       hash[disciplina][:assuntos] << { nome: assunto, total: count }
     end
 
-    render json: @prova.as_json(include: [:orgao, :banca, :concurso]).merge(
+    render json: @prova.as_json(prova_json_options).merge(
       questaos_summary: {
         total: @prova.questaos.count,
         disciplinas: summary.map { |name, data| { nome: name, **data } }
@@ -105,6 +105,17 @@ class ProvasController < ApplicationController
 
     def prova_params
       params.require(:prova).permit(:nome, :orgao_id, :banca_id, :concurso_id, :ano, :escolaridade, :pdfs_folder_url)
+    end
+
+    def prova_json_options
+      {
+        include: {
+          orgao: { except: %i[created_at updated_at] },
+          banca: { except: %i[created_at updated_at] },
+          concurso: { except: %i[created_at updated_at validado_admin] }
+        },
+        except: %i[created_at updated_at validado_admin]
+      }
     end
 
     def authenticate_admin!
