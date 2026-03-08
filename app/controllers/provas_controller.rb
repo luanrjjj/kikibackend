@@ -52,14 +52,25 @@ class ProvasController < ApplicationController
 
   # GET /provas/1
   def show
-    render json: @prova.as_json(include: [
-      :orgao,
-      :banca,
-      :concurso,
-      questaos: {
-        include: [:assunto, :disciplina, :texto]
+    stats = @prova.questaos
+                  .left_joins(:disciplina, :assunto)
+                  .group('disciplinas.nome', 'assuntos.nome')
+                  .count
+
+    summary = stats.each_with_object({}) do |((d_nome, a_nome), count), hash|
+      disciplina = d_nome || "Sem Disciplina"
+      assunto = a_nome || "Sem Assunto"
+      hash[disciplina] ||= { total: 0, assuntos: [] }
+      hash[disciplina][:total] += count
+      hash[disciplina][:assuntos] << { nome: assunto, total: count }
+    end
+
+    render json: @prova.as_json(include: [:orgao, :banca, :concurso]).merge(
+      questaos_summary: {
+        total: @prova.questaos.count,
+        disciplinas: summary.map { |name, data| { nome: name, **data } }
       }
-    ])
+    )
   end
 
   # POST /provas
