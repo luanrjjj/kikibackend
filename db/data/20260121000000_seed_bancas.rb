@@ -14,11 +14,13 @@ class SeedBancas < SeedMigration::Migration
       nome = data['nome'] || data['nome']
       sigla = data['sigla']
       total_concursos = data['total_concursos']
+      url = data['url']
 
       next unless nome.present?
 
       banca_model.find_or_create_by!(nome: nome) do |b|
         b.sigla = sigla || nome
+        b.logo = url
         b.total_concursos = total_concursos || 0
       end
     end

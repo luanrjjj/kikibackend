@@ -18,6 +18,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem "faraday"
 gem "faraday-multipart"
+gem "dotenv-rails", groups: [:development, :test]
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem "rack-cors"
 gem "fast_jsonapi"

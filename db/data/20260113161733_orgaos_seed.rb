@@ -11,7 +11,7 @@ class OrgaosSeed < SeedMigration::Migration
     orgao_model = Class.new(ActiveRecord::Base) { self.table_name = 'orgaos' }
 
     orgaos_data.each do |data|
-      orgao_model.find_or_create_by!(nome: data['nome'])
+      orgao_model.find_or_create_by!(nome: data['nome'], logo_url: data['logo_url'])
     end
   end
 
