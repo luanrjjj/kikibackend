@@ -1,6 +1,6 @@
 class ProvasController < ApplicationController
   before_action :set_prova, only: %i[ show update destroy questaos ]
-  before_action :authenticate_admin!, only: %i[ index all paginated_by_ano]
+  before_action :authenticate_admin!, only: %i[ index all]
 
   # GET /provas
   def index

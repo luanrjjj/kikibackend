@@ -41,7 +41,9 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: 'sessions#failure'
 
-  resources :payments, only: [:create], defaults: { format: :json }
+  resources :payments, only: [:create], defaults: { format: :json } do
+    post :subscribe, on: :collection
+  end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
