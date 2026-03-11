@@ -10,6 +10,11 @@ class PaymentsController < ApplicationController
   end
 
   def subscribe
+    # CEP validation (Brazilian format: 00000-000 or 00000000)
+    unless payment_params[:cep] =~ /\A\d{5}-?\d{3}\z/
+      return render json: { error: "CEP inválido. Informe um CEP válido com 8 dígitos." }, status: :unprocessable_entity
+    end
+
     subscription = AsaasService.create_subscription(
       payment_params.merge(
         email: current_user.email,
