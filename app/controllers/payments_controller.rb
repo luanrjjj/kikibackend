@@ -33,7 +33,14 @@ class PaymentsController < ApplicationController
         asaas_customer_id: subscription["customer"],
         subscription_status: "ACTIVE",
         plan: payment_params[:plan] || "MONTHLY",
-        current_period_end: Date.parse(subscription["nextDueDate"])
+        current_period_end: Date.parse(subscription["nextDueDate"]),
+        cpf: payment_params[:cpf],
+        telefone: payment_params[:phone],
+        cep: payment_params[:cep],
+        endereco: payment_params[:address],
+        endereco_numero: payment_params[:address_number],
+        cidade: payment_params[:city],
+        estado: payment_params[:state]
       )
     end
 

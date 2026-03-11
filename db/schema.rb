@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_08_204351) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_09_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -172,6 +172,12 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_08_204351) do
     t.string "uid"
     t.string "asaas_customer_id"
     t.string "cpf"
+    t.string "cep"
+    t.string "telefone"
+    t.string "endereco"
+    t.string "endereco_numero"
+    t.string "cidade"
+    t.string "estado"
     t.index ["asaas_customer_id"], name: "index_users_on_asaas_customer_id", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid"
