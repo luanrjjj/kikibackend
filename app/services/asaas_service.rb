@@ -6,6 +6,8 @@ class AsaasService < BaseService
     cpf = user_data.respond_to?(:cpf) ? user_data.cpf : user_data[:cpf]
     phone = user_data.respond_to?(:phone) ? user_data[:phone] : nil
     cep = user_data.respond_to?(:cep) ? user_data[:cep] : nil
+    address = user_data.respond_to?(:address) ? user_data[:address] : nil
+    address_number = user_data.respond_to?(:address_number) ? user_data[:address_number] : nil
 
     response = conn(asaas_url).post('v3/customers') do |req|
       req.headers['access_token'] ="$aact_hmlg_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjgzZTU0YTE2LWZjMWEtNGFlZC04MmU5LTYyNzUxZTU5MjFkOTo6JGFhY2hfOTc5YTI5YzQtZmQwNS00MGIzLTg4ZTAtYjBkYzFiMDk3Nzdk"
@@ -15,7 +17,9 @@ class AsaasService < BaseService
         email: email,
         cpfCnpj: cpf,
         mobilePhone: phone,
-        postalCode: cep
+        postalCode: cep,
+        address: address,
+        addressNumber: address_number
       }.compact.to_json
     end
     response.body
@@ -45,7 +49,11 @@ class AsaasService < BaseService
           email: payment_params[:email],
           cpfCnpj: payment_params[:cpf],
           phone: payment_params[:phone],
-          cep: payment_params[:cep]
+          postalCode: payment_params[:cep],
+          addressStreet: payment_params[:address],
+          addressNumber: payment_params[:address_number],
+          city: payment_params[:city],
+          state: payment_params[:state]
         }
       }.to_json
     end
@@ -78,6 +86,10 @@ class AsaasService < BaseService
           cpfCnpj: subscription_params[:cpf],
           phone: subscription_params[:phone],
           postalCode: subscription_params[:cep],
+          addressStreet: subscription_params[:address],
+          addressNumber: subscription_params[:address_number],
+          city: subscription_params[:city],
+          state: subscription_params[:state]
         }
       }.to_json
     end
