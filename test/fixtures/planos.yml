@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome_do_plano: MyString
+  valor: 9.99
+  valor_promocional: 9.99
+  data_inicio_promocao: 2026-03-12 14:54:30
+  data_fim_promocao: 2026-03-12 14:54:30
+
+two:
+  nome_do_plano: MyString
+  valor: 9.99
+  valor_promocional: 9.99
+  data_inicio_promocao: 2026-03-12 14:54:30
+  data_fim_promocao: 2026-03-12 14:54:30

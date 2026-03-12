@@ -31,6 +31,25 @@ class SessionsController < ApplicationController
     redirect_to "http://localhost:5173/login?#{query_params.to_query}", allow_other_host: true
   end
 
+  def authenticate
+    user = User.find_by(email: params[:email])
+
+    if user&.authenticate(params[:password])
+      session = user.sessions.create!(
+        ip_address: request.remote_ip,
+        user_agent: request.user_agent,
+        expires_at: 2.weeks.from_now
+      )
+
+      render json: {
+        token: session.token,
+        user: user.as_json(except: :password_digest)
+      }
+    else
+      render json: { error: "Email ou senha inválidos" }, status: :unauthorized
+    end
+  end
+
   def failure
     render json: { error: "Falha na autenticação", message: params[:message] }, status: :unauthorized
   end

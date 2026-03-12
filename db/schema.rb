@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_12_140453) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_12_145907) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -80,6 +80,18 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_12_140453) do
     t.datetime "updated_at", null: false
     t.string "tipo"
     t.index ["user_id"], name: "index_pagamentos_on_user_id"
+  end
+
+  create_table "planos", force: :cascade do |t|
+    t.string "nome_do_plano"
+    t.decimal "valor_mensal", precision: 8, scale: 2
+    t.decimal "valor_promocional_mensal", precision: 8, scale: 2
+    t.datetime "data_inicio_promocao"
+    t.datetime "data_fim_promocao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "valor_anual", precision: 8, scale: 2
+    t.decimal "valor_promocional_anual", precision: 8, scale: 2
   end
 
   create_table "provas", force: :cascade do |t|

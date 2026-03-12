@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: 'sessions#failure'
+  post '/auth/login', to: 'sessions#authenticate'
 
   resources :payments, only: [:index, :create], defaults: { format: :json } do
     post :subscribe, on: :collection
