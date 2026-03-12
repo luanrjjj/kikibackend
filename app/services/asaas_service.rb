@@ -27,7 +27,7 @@ class AsaasService < BaseService
 
   def self.create_payment(payment_params)
     customer_id = ensure_customer(payment_params)
-    return customer_id if customer_id.is_a?(Hash) && customer_id[:error]
+    return customer_id if customer_id.is_a?(Hash) && customer_id['error']
 
     response = conn(asaas_url).post('v3/payments') do |req|
       req.headers['access_token'] ="$aact_hmlg_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjgzZTU0YTE2LWZjMWEtNGFlZC04MmU5LTYyNzUxZTU5MjFkOTo6JGFhY2hfOTc5YTI5YzQtZmQwNS00MGIzLTg4ZTAtYjBkYzFiMDk3Nzdk"
@@ -62,7 +62,7 @@ class AsaasService < BaseService
 
   def self.create_subscription(subscription_params)
     customer_id = ensure_customer(subscription_params)
-    return customer_id if customer_id.is_a?(Hash) && customer_id[:error]
+    return customer_id if customer_id.is_a?(Hash) && customer_id['error']
 
     response = conn(asaas_url).post('v3/subscriptions') do |req|
       req.headers['access_token'] ="$aact_hmlg_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjgzZTU0YTE2LWZjMWEtNGFlZC04MmU5LTYyNzUxZTU5MjFkOTo6JGFhY2hfOTc5YTI5YzQtZmQwNS00MGIzLTg4ZTAtYjBkYzFiMDk3Nzdk"
@@ -106,7 +106,7 @@ class AsaasService < BaseService
       if new_customer['id']
         new_customer['id']
       else
-        { error: 'Não foi possível criar o cliente no Asaas', details: new_customer['errors'] }
+        { 'error' => 'Não foi possível criar o cliente no Asaas', 'details' => new_customer['errors'] }
       end
     end
   end

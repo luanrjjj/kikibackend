@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   resources :area_de_formacao, only: [:index, :show]
   resources :area_de_atuacao, only: [:index, :show]
+  resources :planos, only: [:index], defaults: { format: :json }
 
   post 'anki/generate', to: 'anki#generate'
 

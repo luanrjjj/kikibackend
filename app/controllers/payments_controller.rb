@@ -15,18 +15,18 @@ class PaymentsController < ApplicationController
       return render json: { error: "CEP inválido. Informe um CEP válido com 8 dígitos." }, status: :unprocessable_entity
     end
 
-    payment_response = AsaasService.create_payment(
+    payment_response = StripeService.create_payment(
       payment_params.merge(
         email: current_user.email,
         name: current_user.name
       )
     )
 
-    if payment_response["id"]
+    if payment_response["id"] && !payment_response["error"]
       current_user.pagamentos.create!(
-        gateway: :asaas,
+        gateway: :stripe,
         consumer_id: payment_response["customer"],
-        tipo: :credit_card # AsaasService default is CREDIT_CARD
+        tipo: :credit_card
       )
     end
 
@@ -39,17 +39,17 @@ class PaymentsController < ApplicationController
       return render json: { error: "CEP inválido. Informe um CEP válido com 8 dígitos." }, status: :unprocessable_entity
     end
 
-    subscription = AsaasService.create_subscription(
+    subscription = StripeService.create_subscription(
       payment_params.merge(
         email: current_user.email,
         name: current_user.name
       )
     )
+
     puts "Subscription response: #{subscription.inspect}"
 
-    if subscription["id"]
-      current_user.update(
-        asaas_customer_id: subscription["customer"],
+    if subscription["id"] && !subscription["error"]
+      user_updates = {
         subscription_status: "ACTIVE",
         plan: payment_params[:plan] || "MONTHLY",
         current_period_end: Date.parse(subscription["nextDueDate"]),
@@ -59,13 +59,16 @@ class PaymentsController < ApplicationController
         endereco: payment_params[:address],
         endereco_numero: payment_params[:address_number],
         cidade: payment_params[:city],
-        estado: payment_params[:state]
-      )
+        estado: payment_params[:state],
+        stripe_customer_id: subscription["customer"]
+      }
+
+      current_user.update(user_updates)
 
       current_user.pagamentos.create!(
-        gateway: :asaas,
+        gateway: :stripe,
         consumer_id: subscription["customer"],
-        tipo: :credit_card # AsaasService default is CREDIT_CARD
+        tipo: :credit_card
       )
     end
 
@@ -78,7 +81,8 @@ class PaymentsController < ApplicationController
     params.require(:payment).permit(
       :card_number, :expiry_date, :cvv, :card_holder_name,
       :value, :email, :cpf, :cycle, :plan, :phone, :cep,
-      :address, :address_number, :city, :state
+      :address, :address_number, :city, :state,
+      :token, :payment_method_id
     )
   end
 end
