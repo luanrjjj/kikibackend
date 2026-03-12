@@ -1,17 +1,36 @@
 class PaymentsController < ApplicationController
+  def index
+    # As requested, only the logged-in user with the id equal to the user_id passed can have access
+    if params[:user_id].present? && current_user.id != params[:user_id].to_i
+      return render json: { error: "Acesso negado" }, status: :forbidden
+    end
+
+    @pagamentos = current_user.pagamentos.order(created_at: :desc)
+    render json: @pagamentos
+  end
+
   def create
     # CEP validation (Brazilian format: 00000-000 or 00000000)
     unless payment_params[:cep] =~ /\A\d{5}-?\d{3}\z/
       return render json: { error: "CEP inválido. Informe um CEP válido com 8 dígitos." }, status: :unprocessable_entity
     end
 
-    payment = AsaasService.create_payment(
+    payment_response = AsaasService.create_payment(
       payment_params.merge(
         email: current_user.email,
         name: current_user.name
       )
     )
-    render json: payment
+
+    if payment_response["id"]
+      current_user.pagamentos.create!(
+        gateway: :asaas,
+        consumer_id: payment_response["customer"],
+        tipo: :credit_card # AsaasService default is CREDIT_CARD
+      )
+    end
+
+    render json: payment_response
   end
 
   def subscribe
@@ -41,6 +60,12 @@ class PaymentsController < ApplicationController
         endereco_numero: payment_params[:address_number],
         cidade: payment_params[:city],
         estado: payment_params[:state]
+      )
+
+      current_user.pagamentos.create!(
+        gateway: :asaas,
+        consumer_id: subscription["customer"],
+        tipo: :credit_card # AsaasService default is CREDIT_CARD
       )
     end
 
