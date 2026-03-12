@@ -1,6 +1,6 @@
 require 'json'
 
-class OrgaosSeed < SeedMigration::Migration
+class UpdateOrgaosSigla < SeedMigration::Migration
   def up
     json_path = Rails.root.join('db', 'json_seeds', 'orgaos_tec_concursos.json')
     return unless File.exist?(json_path)
@@ -11,15 +11,15 @@ class OrgaosSeed < SeedMigration::Migration
     orgao_model = Class.new(ActiveRecord::Base) { self.table_name = 'orgaos' }
 
     orgaos_data.each do |data|
-      orgao_model.find_or_create_by!(nome: data['nome']) do |o|
-        o.logo_url = data['logo_url']
-        o.sigla = data['sigla']
+      orgao = orgao_model.find_by(nome: data['nome'])
+      if orgao
+        orgao.update!(sigla: data['sigla'])
       end
     end
   end
 
   def down
     orgao_model = Class.new(ActiveRecord::Base) { self.table_name = 'orgaos' }
-    orgao_model.delete_all
+    orgao_model.update_all(sigla: nil)
   end
 end
