@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_11_100000) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_12_134304) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -70,6 +70,15 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_11_100000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "sigla"
+  end
+
+  create_table "pagamentos", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "gateway"
+    t.string "consumer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_pagamentos_on_user_id"
   end
 
   create_table "provas", force: :cascade do |t|
@@ -188,6 +197,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_11_100000) do
   add_foreign_key "assuntos", "disciplinas"
   add_foreign_key "concursos", "bancas"
   add_foreign_key "concursos", "orgaos"
+  add_foreign_key "pagamentos", "users"
   add_foreign_key "provas", "area_de_atuacaos"
   add_foreign_key "provas", "area_de_formacaos"
   add_foreign_key "provas", "bancas"
