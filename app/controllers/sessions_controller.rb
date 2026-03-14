@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
       user: user.as_json(except: :password_digest).to_json
     }
 
-    redirect_to "#{ENV['SESSION_URL']}/login?#{query_params.to_query}", allow_other_host: true
+    redirect_to "#{ENV['SESSION_BASE_NEW_URL']}/login?#{query_params.to_query}", allow_other_host: true
   end
 
   def authenticate
