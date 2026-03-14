@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   def create
+    Rails.logger.debug("FRONT_URL: #{ENV['FRONT_URL']}")
+    puts "FRONT_URL: #{ENV['FRONT_URL']}"
     auth_hash = request.env['omniauth.auth']
     email = auth_hash.info.email
 
@@ -13,7 +15,7 @@ class SessionsController < ApplicationController
       user.uid = auth_hash.uid
       user.password = SecureRandom.hex(16)
       user.save!
-      AsaasService.create_customer(user)
+      StripeService.create_customer(user)
     end
 
     # Cria a sessão
