@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def create
-    Rails.logger.debug("FRONT_URL: #{ENV['FRONT_URL']}")
-    puts "FRONT_URL: #{ENV['FRONT_URL']}"
+    Rails.logger.debug("FRONT_URL: #{ENV['SESSION_URL']}")
+    puts "SESSION_URL: #{ENV['SESSION_URL']}"
     auth_hash = request.env['omniauth.auth']
     email = auth_hash.info.email
 
@@ -29,9 +29,8 @@ class SessionsController < ApplicationController
       token: session.token,
       user: user.as_json(except: :password_digest).to_json
     }
-    Rails.logger.debug("FRONT_URL: #{ENV['FRONT_URL']}")
-    puts "FRONT_URL: #{ENV['FRONT_URL']}"
-    # redirect_to "#{ENV['FRONT_URL']}/login?#{query_params.to_query}", allow_other_host: true
+
+    redirect_to "#{ENV['SESSION_URL']}/login?#{query_params.to_query}", allow_other_host: true
   end
 
   def authenticate
