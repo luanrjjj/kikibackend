@@ -27,8 +27,8 @@ class SessionsController < ApplicationController
       token: session.token,
       user: user.as_json(except: :password_digest).to_json
     }
-
-    redirect_to "#{FRONT_URL}/api/login?#{query_params.to_query}", allow_other_host: true
+    Rails.logger.info("FRONT_URL: #{ENV['FRONT_URL']}")
+    redirect_to "#{ENV['FRONT_URL']}/login?#{query_params.to_query}", allow_other_host: true
   end
 
   def authenticate
