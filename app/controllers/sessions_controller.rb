@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
       user: user.as_json(except: :password_digest).to_json
     }
 
-    redirect_to "http://localhost:5173/login?#{query_params.to_query}", allow_other_host: true
+    redirect_to "#{FRONT_URL}/login?#{query_params.to_query}", allow_other_host: true
   end
 
   def authenticate
