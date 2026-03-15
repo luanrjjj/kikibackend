@@ -1,6 +1,7 @@
 class BancasController < ApplicationController
   before_action :set_banca, only: %i[ show update destroy ]
   # before_action :authenticate_admin!, only: %i[ all ]
+  skip_before_action :authenticate_user!, only: [:all]
 
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
