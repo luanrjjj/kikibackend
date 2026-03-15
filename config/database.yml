@@ -11,7 +11,7 @@ default: &default
   encoding: unicode
   host: <%= ENV.fetch("DO_DB_HOST", "localhost") %>
   username: <%= ENV.fetch("DO_DB_USER", "postgres") %>
-  port: <%= ENV.fetch("DO_DB_PORT", 5433) %>
+  port: <%= ENV.fetch("DO_DB_PORT", 5432) %>
   password: <%= ENV.fetch("DO_DB_PASSWORD", nil) %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling

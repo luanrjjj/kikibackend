@@ -1,33 +1,16 @@
 # encoding: UTF-8
+# This file is auto-generated from the current content of the database. Instead
+# of editing this file, please use the migrations feature of Seed Migration to
+# incrementally modify your database, and then regenerate this seed file.
+#
+# If you need to create the database on another system, you should be using
+# db:seed, not running all the migrations from scratch. The latter is a flawed
+# and unsustainable approach (the more migrations you'll amass, the slower
+# it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended to check this file into your version control system.
+
 ActiveRecord::Base.transaction do
-  # Planos Seeds
-  Plano.find_or_create_by!(nome_do_plano: 'Free') do |p|
-    p.valor_mensal = 0.00
-    p.valor_promocional_mensal = 0.00
-    p.valor_anual = 0.00
-    p.valor_promocional_anual = 0.00
-    p.data_inicio_promocao = Time.current
-    p.data_fim_promocao = 1.year.from_now
-  end
-
-  Plano.find_or_create_by!(nome_do_plano: 'Medium') do |p|
-    p.valor_mensal = 29.90
-    p.valor_promocional_mensal = 19.90
-    p.valor_anual = 299.00
-    p.valor_promocional_anual = 199.00
-    p.data_inicio_promocao = Time.current
-    p.data_fim_promocao = 1.month.from_now
-  end
-
-  Plano.find_or_create_by!(nome_do_plano: 'Pro') do |p|
-    p.valor_mensal = 59.90
-    p.valor_promocional_mensal = 44.90
-    p.valor_anual = 599.00
-    p.valor_promocional_anual = 449.00
-    p.data_inicio_promocao = Time.current
-    p.data_fim_promocao = 6.months.from_now
-  end
 end
 
-SeedMigration::Migrator.bootstrap(20260227124408)
-puts 'Planos seeded successfully!'
+SeedMigration::Migrator.bootstrap(20260311100001)

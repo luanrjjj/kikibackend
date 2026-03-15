@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
       user.password = SecureRandom.hex(16)
       user.save!
       StripeService.create_customer(user)
+      UserMailer.welcome_email(user).deliver_later
     end
 
     # Cria a sessão
@@ -56,6 +57,8 @@ class SessionsController < ApplicationController
     user = User.new(register_params)
 
     if user.save
+      StripeService.create_customer(user)
+      UserMailer.welcome_email(user).deliver_later
       session = user.sessions.create!(
         ip_address: request.remote_ip,
         user_agent: request.user_agent,
@@ -68,6 +71,32 @@ class SessionsController < ApplicationController
       }, status: :created
     else
       render json: { error: user.errors.full_messages.to_sentence }, status: :unprocessable_entity
+    end
+  end
+
+  def forgot_password
+    user = User.find_by(email: params[:email])
+
+    if user
+      user.generate_password_reset_token!
+      UserMailer.password_reset_email(user).deliver_later
+    end
+
+    # Always render success to avoid email enumeration
+    render json: { message: "Se o e-mail existir em nossa base, as instruções de redefinição foram enviadas." }
+  end
+
+  def reset_password
+    user = User.find_by(reset_password_token: params[:token])
+
+    if user&.password_reset_period_valid?
+      if user.reset_password!(params[:password])
+        render json: { message: "Senha redefinida com sucesso." }
+      else
+        render json: { error: user.errors.full_messages.to_sentence }, status: :unprocessable_entity
+      end
+    else
+      render json: { error: "Link de redefinição inválido ou expirado." }, status: :unauthorized
     end
   end
 

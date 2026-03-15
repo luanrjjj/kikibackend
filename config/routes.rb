@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'sessions#failure'
   post '/auth/login', to: 'sessions#authenticate'
   post '/auth/register', to: 'sessions#register'
+  post '/auth/forgot_password', to: 'sessions#forgot_password'
+  post '/auth/reset_password', to: 'sessions#reset_password'
 
   resources :payments, only: [:index, :create], defaults: { format: :json } do
     post :subscribe, on: :collection

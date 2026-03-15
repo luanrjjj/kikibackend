@@ -76,7 +76,6 @@ class StripeService < BaseService
       payment_method_id,
       { customer: customer_id }
     )
-
     # Set as default payment method
     Stripe::Customer.update(
       customer_id,

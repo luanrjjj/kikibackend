@@ -23,6 +23,7 @@ gem "dotenv-rails", groups: [:development, :test]
 gem "rack-cors"
 gem "fast_jsonapi"
 gem "stripe"
+gem "postmark-rails"
 
 gem "bcrypt"
 gem "omniauth"
@@ -74,6 +75,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "letter_opener"
 end
 
 group :test do

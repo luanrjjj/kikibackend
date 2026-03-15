@@ -5,6 +5,22 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
 
+  def generate_password_reset_token!
+    self.reset_password_token = SecureRandom.urlsafe_base64
+    self.reset_password_sent_at = Time.current
+    save!
+  end
+
+  def password_reset_period_valid?
+    reset_password_sent_at > 2.hours.ago
+  end
+
+  def reset_password!(new_password)
+    self.reset_password_token = nil
+    self.password = new_password
+    save!
+  end
+
   def self.verify_admin_token(token)
     session = Session.includes(:user).find_by(token: token)
 

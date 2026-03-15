@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Bem-vindo ao Apolo Anki, <%= @user.name %>!</h1>
+    <p>
+      Você se cadastrou com sucesso no apoloconcursos.com.br.
+    </p>
+    <p>
+      Para acessar sua conta, basta clicar no link abaixo:
+    </p>
+    <p>
+      <%= link_to 'Fazer Login', @url %>
+    </p>
+    <p>Obrigado por se juntar a nós!</p>
+  </body>
+</html>
