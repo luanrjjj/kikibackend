@@ -52,7 +52,32 @@ class SessionsController < ApplicationController
     end
   end
 
+  def register
+    user = User.new(register_params)
+
+    if user.save
+      session = user.sessions.create!(
+        ip_address: request.remote_ip,
+        user_agent: request.user_agent,
+        expires_at: 2.weeks.from_now
+      )
+
+      render json: {
+        token: session.token,
+        user: user.as_json(except: :password_digest)
+      }, status: :created
+    else
+      render json: { error: user.errors.full_messages.to_sentence }, status: :unprocessable_entity
+    end
+  end
+
   def failure
     render json: { error: "Falha na autenticação", message: params[:message] }, status: :unauthorized
+  end
+
+  private
+
+  def register_params
+    params.permit(:email, :password, :password_confirmation, :name)
   end
 end
