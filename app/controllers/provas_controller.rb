@@ -24,8 +24,18 @@ class ProvasController < ApplicationController
   def paginated_by_ano
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
+    
     @provas = Prova.includes(:orgao, :banca, :concurso)
-                    .order(ano: :desc)
+    
+    # Apply filters
+    @provas = @provas.where("provas.nome ILIKE ?", "%#{params[:nome]}%") if params[:nome].present?
+    @provas = @provas.where(ano: params[:ano]) if params[:ano].present?
+    @provas = @provas.where(banca_id: params[:banca_id]) if params[:banca_id].present?
+    @provas = @provas.where(area_de_atuacao_id: params[:area_de_atuacao_id]) if params[:area_de_atuacao_id].present?
+    @provas = @provas.where(area_de_formacao_id: params[:area_de_formacao_id]) if params[:area_de_formacao_id].present?
+
+    total_count = @provas.count
+    @provas = @provas.order(ano: :desc)
                     .offset((page - 1) * per_page)
                     .limit(per_page)
 
@@ -34,8 +44,8 @@ class ProvasController < ApplicationController
       meta: {
         current_page: page,
         per_page: per_page,
-        total_count: Prova.count,
-        total_pages: (Prova.count.to_f / per_page).ceil
+        total_count: total_count,
+        total_pages: (total_count.to_f / per_page).ceil
       }
     }
   end
