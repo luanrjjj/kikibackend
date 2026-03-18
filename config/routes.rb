@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   resources :concursos, defaults: { format: :json } do
     get :all, on: :collection
+    get :public_index, on: :collection
   end
 
   resources :disciplinas, defaults: { format: :json } do
@@ -31,6 +32,8 @@ Rails.application.routes.draw do
     get :all, on: :collection
     get :paginated_by_ano, on: :collection
     get :questaos, on: :collection
+    get :stats, on: :collection
+    get :years, on: :collection
   end
 
   resources :area_de_formacao, only: [:index, :show]

@@ -1,5 +1,6 @@
 class ConcursosController < ApplicationController
   before_action :set_concurso, only: %i[ show update destroy ]
+  skip_before_action :authenticate_user!, only: [:public_index]
 
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
@@ -8,6 +9,29 @@ class ConcursosController < ApplicationController
     puts @concursos
     render json: {
       data: @concursos.as_json(include: [:banca, :orgao]),
+      meta: {
+        current_page: page,
+        per_page: per_page,
+        total_count: Concurso.count,
+        total_pages: (Concurso.count.to_f / per_page).ceil
+      }
+    }
+  end
+
+  def public_index
+    page = [params.fetch(:page, 1).to_i, 1].max
+    per_page = [params.fetch(:per_page, 10).to_i, 1].max
+    
+    @concursos = Concurso.includes(:banca, :provas)
+                         .order(inscricoes_ate: :desc)
+                         .offset((page - 1) * per_page)
+                         .limit(per_page)
+
+    render json: {
+      data: @concursos.as_json(include: { 
+        banca: { only: [:id, :nome, :sigla] },
+        provas: { only: [:id, :nome, :ano] }
+      }),
       meta: {
         current_page: page,
         per_page: per_page,
