@@ -23,7 +23,17 @@ class ConcursosController < ApplicationController
     per_page = [params.fetch(:per_page, 10).to_i, 1].max
     
     @concursos = Concurso.includes(:banca, :provas, :orgao)
-                         .order(inscricoes_ate: :desc)
+    
+    if params[:banca_id].present?
+      @concursos = @concursos.where(banca_id: params[:banca_id])
+    end
+
+    if params[:ano].present?
+      @concursos = @concursos.joins(:provas).where(provas: { ano: params[:ano] }).distinct
+    end
+
+    total_count = @concursos.count
+    @concursos = @concursos.order(inscricoes_ate: :desc)
                          .offset((page - 1) * per_page)
                          .limit(per_page)
 
@@ -36,8 +46,8 @@ class ConcursosController < ApplicationController
       meta: {
         current_page: page,
         per_page: per_page,
-        total_count: Concurso.count,
-        total_pages: (Concurso.count.to_f / per_page).ceil
+        total_count: total_count,
+        total_pages: (total_count.to_f / per_page).ceil
       }
     }
   end
