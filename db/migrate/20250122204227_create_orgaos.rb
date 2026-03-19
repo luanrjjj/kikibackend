@@ -2,8 +2,10 @@ class CreateOrgaos < ActiveRecord::Migration[8.0]
   def change
     create_table :orgaos do |t|
       t.string :nome, null: false
+      t.string :sigla
       t.string :sede
       t.string :logo_url
+      t.string :esfera # municipal, estadual, federal
       t.timestamps
     end
 
