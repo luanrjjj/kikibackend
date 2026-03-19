@@ -78,8 +78,8 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
 
     if user
-      user.generate_password_reset_token!
-      UserMailer.password_reset_email(user).deliver_later
+      password_reset = user.password_resets.create!
+      UserMailer.password_reset_email(password_reset).deliver_later
     end
 
     # Always render success to avoid email enumeration
@@ -87,10 +87,21 @@ class SessionsController < ApplicationController
   end
 
   def reset_password
-    user = User.find_by(reset_password_token: params[:token])
+    # Verifica o token na tabela password_resets
+    password_reset = PasswordReset.find_by(token: params[:token])
 
-    if user&.password_reset_period_valid?
-      if user.reset_password!(params[:password])
+    if password_reset && !password_reset.expired?
+      user = password_reset.user
+      
+      # Opcional: validar também o email se foi passado na URL
+      if params[:email].present? && user.email != params[:email]
+        render json: { error: "Link de redefinição inválido para este e-mail." }, status: :unauthorized
+        return
+      end
+
+      if user.update(password: params[:password], password_confirmation: params[:password_confirmation])
+        # Destruir o token após o uso
+        password_reset.destroy
         render json: { message: "Senha redefinida com sucesso." }
       else
         render json: { error: user.errors.full_messages.to_sentence }, status: :unprocessable_entity
