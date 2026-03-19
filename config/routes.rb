@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     get :years, on: :collection
   end
 
+  resources :prova_questaos, only: [:index], defaults: { format: :json }
+
   resources :area_de_formacao, only: [:index, :show]
   resources :area_de_atuacao, only: [:index, :show]
   resources :planos, only: [:index], defaults: { format: :json }
