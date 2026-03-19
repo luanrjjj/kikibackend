@@ -92,7 +92,11 @@ class ProvasController < ApplicationController
   end
 
   def questaos
-    @questaos = @prova.questaos.order(:numero_questao).includes(:assunto, :disciplina, :texto)
+    @questaos = @prova.questaos
+                      .joins(:prova_questaos)
+                      .where(prova_questaos: { prova_id: @prova.id })
+                      .order('prova_questaos.numero_questao ASC')
+                      .includes(:assunto, :disciplina, :texto)
     render json: QuestaoSerializer.new(@questaos).serializable_hash
   end
 

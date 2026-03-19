@@ -3,7 +3,8 @@ class Prova < ApplicationRecord
   belongs_to :banca
   belongs_to :concurso
 
-  has_many :questaos
+  has_many :prova_questaos, dependent: :destroy
+  has_many :questaos, through: :prova_questaos
   has_many :textos
 
   validates :nome, presence: true

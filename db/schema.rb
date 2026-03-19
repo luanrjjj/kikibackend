@@ -104,6 +104,17 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_18_120000) do
     t.decimal "valor_promocional_anual", precision: 8, scale: 2
   end
 
+  create_table "prova_questaos", force: :cascade do |t|
+    t.bigint "prova_id", null: false
+    t.bigint "questao_id", null: false
+    t.integer "numero_questao", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prova_id", "questao_id"], name: "index_prova_questaos_on_prova_id_and_questao_id", unique: true
+    t.index ["prova_id"], name: "index_prova_questaos_on_prova_id"
+    t.index ["questao_id"], name: "index_prova_questaos_on_questao_id"
+  end
+
   create_table "provas", force: :cascade do |t|
     t.string "nome", null: false
     t.bigint "orgao_id", null: false
@@ -133,10 +144,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_18_120000) do
     t.json "alternativas"
     t.string "correta"
     t.string "enunciado", null: false
-    t.integer "numero_questao", null: false
     t.string "sistema_ref_id"
-    t.string "real_id", null: false
-    t.bigint "prova_id", null: false
     t.bigint "concurso_id"
     t.bigint "assunto_id"
     t.bigint "disciplina_id"
@@ -147,7 +155,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_18_120000) do
     t.index ["assunto_id"], name: "index_questaos_on_assunto_id"
     t.index ["concurso_id"], name: "index_questaos_on_concurso_id"
     t.index ["disciplina_id"], name: "index_questaos_on_disciplina_id"
-    t.index ["prova_id"], name: "index_questaos_on_prova_id"
     t.index ["texto_id"], name: "index_questaos_on_texto_id"
   end
 
@@ -225,6 +232,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_18_120000) do
   add_foreign_key "concursos", "orgaos"
   add_foreign_key "pagamentos", "users"
   add_foreign_key "password_resets", "users"
+  add_foreign_key "prova_questaos", "provas"
+  add_foreign_key "prova_questaos", "questaos"
   add_foreign_key "provas", "area_de_atuacaos"
   add_foreign_key "provas", "area_de_formacaos"
   add_foreign_key "provas", "bancas"
@@ -233,7 +242,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_18_120000) do
   add_foreign_key "questaos", "assuntos"
   add_foreign_key "questaos", "concursos"
   add_foreign_key "questaos", "disciplinas"
-  add_foreign_key "questaos", "provas"
   add_foreign_key "questaos", "textos"
   add_foreign_key "sessions", "users"
   add_foreign_key "textos", "concursos"

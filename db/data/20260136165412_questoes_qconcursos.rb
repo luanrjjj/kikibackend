@@ -74,17 +74,18 @@ class QuestoesQconcursos < SeedMigration::Migration
 
         texto_obj = nil
         if support_text.present?
-          texto_obj = Texto.find_or_create_by(texto: support_text, prova_id: prova.id, concurso_id: prova.concurso_id)
+          texto_obj = Texto.find_or_create_by(texto: support_text, concurso_id: prova.concurso_id)
         end
 
-        questao = Questao.find_or_initialize_by(enunciado: enunciado, prova: prova)
-
-        if questao.real_id.blank?
-          suffix = (0...2).map { (('0'..'9').to_a + ('A'..'Z').to_a).sample }.join
-          questao.real_id = "R#{id_counter}#{suffix}"
-          id_counter += 1
+        # Tenta encontrar pela referência do sistema primeiro, se não tiver usa o enunciado
+        questao = nil
+        if referencia_id.present?
+          questao = Questao.find_or_initialize_by(sistema_ref_id: referencia_id)
+        else
+          questao = Questao.find_or_initialize_by(enunciado: enunciado, ano: ano)
         end
 
+        questao.enunciado = enunciado
         questao.discursiva = false
         questao.ano = ano
         questao.concurso = prova.concurso
@@ -93,14 +94,21 @@ class QuestoesQconcursos < SeedMigration::Migration
         questao.texto_id = texto_obj&.id
         questao.alternativas = alternativas
         questao.sistema_ref_id = referencia_id
-        questao.numero_questao = numero_questao
         questao.save!
+
+        # Cria a relação intermediária
+        ProvaQuestao.find_or_create_by!(
+          prova: prova,
+          questao: questao,
+          numero_questao: numero_questao
+        )
       end
     end
     puts "Import finished!"
   end
 
   def down
+    ProvaQuestao.delete_all
     Questao.delete_all
   end
 end

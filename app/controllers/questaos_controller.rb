@@ -8,14 +8,14 @@ class QuestaosController < ApplicationController
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
 
-    @questaos = Questao.includes(:prova, :assunto, :disciplina).order(id: :asc)
+    @questaos = Questao.includes(:provas, :assunto, :disciplina).order(id: :asc)
 
     if params[:disciplina_id].present?
       @questaos = @questaos.where(disciplina_id: params[:disciplina_id])
     end
 
     if params[:prova_id].present?
-      @questaos = @questaos.where(prova_id: params[:prova_id])
+      @questaos = @questaos.joins(:prova_questaos).where(prova_questaos: { prova_id: params[:prova_id] })
     end
 
     if params[:assunto_id].present?
@@ -32,7 +32,7 @@ class QuestaosController < ApplicationController
                        .limit(per_page)
 
     render json: {
-      data: @questaos.as_json(include: [:prova, :assunto, :disciplina]),
+      data: @questaos.as_json(include: [:provas, :assunto, :disciplina]),
       meta: {
         current_page: page,
         per_page: per_page,
@@ -53,7 +53,7 @@ class QuestaosController < ApplicationController
     end
 
     if params[:prova_id].present?
-      @questaos = @questaos.where(prova_id: params[:prova_id])
+      @questaos = @questaos.joins(:prova_questaos).where(prova_questaos: { prova_id: params[:prova_id] })
     end
 
     if params[:assunto_id].present?
@@ -90,7 +90,7 @@ class QuestaosController < ApplicationController
 
   # GET /questaos/1
   def show
-    render json: @questao.as_json(include: [:prova, :assunto, :disciplina, :textos])
+    render json: @questao.as_json(include: [:provas, :assunto, :disciplina, :texto])
   end
 
 
@@ -126,7 +126,7 @@ class QuestaosController < ApplicationController
     @questaos = Questao.distinct
 
     if params[:bancas].present?
-      @questaos = @questaos.joins(prova: :banca).where(bancas: { id: params[:bancas] })
+      @questaos = @questaos.joins(provas: :banca).where(bancas: { id: params[:bancas] })
     end
 
     if params[:ano].present?
@@ -139,7 +139,7 @@ class QuestaosController < ApplicationController
     end
 
     if params[:escolaridade].present?
-      @questaos = @questaos.joins(prova: :cargo).where(cargos: { escolaridade: params[:escolaridade] })
+      @questaos = @questaos.joins(:provas).where(provas: { escolaridade: params[:escolaridade] })
     end
 
     render json: { count: @questaos.count }
@@ -150,7 +150,7 @@ class QuestaosController < ApplicationController
     @questaos = Questao.distinct
 
     if params[:bancas].present?
-      @questaos = @questaos.joins(prova: :banca).where(bancas: { id: params[:bancas] })
+      @questaos = @questaos.joins(provas: :banca).where(bancas: { id: params[:bancas] })
     end
 
     if params[:ano].present?
@@ -163,7 +163,7 @@ class QuestaosController < ApplicationController
     end
 
     if params[:escolaridade].present?
-      @questaos = @questaos.joins(prova: :cargo).where(cargos: { escolaridade: params[:escolaridade] })
+      @questaos = @questaos.joins(:provas).where(provas: { escolaridade: params[:escolaridade] })
     end
 
     total_count = @questaos.count
@@ -183,7 +183,7 @@ class QuestaosController < ApplicationController
     def questao_params
       params.require(:questao).permit(
         :texto, :enunciado, :discursiva, :ano, :correta,
-        :prova_id, :concurso_id, :assunto_id, :disciplina_id,
+        :concurso_id, :assunto_id, :disciplina_id,
         :validado_admin, :sistema_ref_id,
         alternativas: [:value, :text]
       )
