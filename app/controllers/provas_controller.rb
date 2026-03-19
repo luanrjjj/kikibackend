@@ -38,6 +38,11 @@ class ProvasController < ApplicationController
     
     # Apply filters
     @provas = @provas.where("provas.nome ILIKE ?", "%#{params[:nome]}%") if params[:nome].present?
+    
+    if params[:concurso_nome].present?
+      @provas = @provas.joins(:concurso).where("concursos.nome ILIKE ?", "%#{params[:concurso_nome]}%")
+    end
+
     @provas = @provas.where(ano: params[:ano]) if params[:ano].present?
     @provas = @provas.where(banca_id: params[:banca_id]) if params[:banca_id].present?
     @provas = @provas.where(area_de_atuacao_id: params[:area_de_atuacao_id]) if params[:area_de_atuacao_id].present?

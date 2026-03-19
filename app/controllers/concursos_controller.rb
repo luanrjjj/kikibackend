@@ -24,6 +24,10 @@ class ConcursosController < ApplicationController
     
     @concursos = Concurso.includes(:banca, :provas, :orgao)
     
+    if params[:nome].present?
+      @concursos = @concursos.where("concursos.nome ILIKE ?", "%#{params[:nome]}%")
+    end
+
     if params[:banca_id].present?
       @concursos = @concursos.where(banca_id: params[:banca_id])
     end
@@ -39,7 +43,7 @@ class ConcursosController < ApplicationController
 
     render json: {
       data: @concursos.as_json(include: { 
-        banca: { only: [:id, :nome, :sigla] },
+        banca: { only: [:id, :nome, :sigla, :logo] },
         orgao: { only: [:id, :nome, :logo_url] },
         provas: { only: [:id, :nome, :ano] }
       }),
