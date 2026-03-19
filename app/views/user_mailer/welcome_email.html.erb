@@ -1,19 +1,172 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
   <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="supported-color-schemes" content="light dark" />
+    <title></title>
+    <style type="text/css" rel="stylesheet" media="all">
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+
+      body {
+        width: 100% !important;
+        height: 100%;
+        margin: 0;
+        -webkit-text-size-adjust: none;
+        background-color: #f8fafc;
+        color: #3f3f46;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      .wrapper {
+        width: 100%;
+        table-layout: fixed;
+        background-color: #f8fafc;
+        padding-bottom: 40px;
+        padding-top: 40px;
+      }
+
+      .content {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 32px;
+        overflow: hidden;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border: 1px solid #f1f5f9;
+      }
+
+      .header {
+        padding: 40px 40px 20px;
+        text-align: center;
+      }
+
+      .logo-text {
+        font-weight: 800;
+        font-size: 24px;
+        color: #5522fa;
+        text-decoration: none;
+        letter-spacing: -1px;
+      }
+
+      .body-content {
+        padding: 0 40px 40px;
+        text-align: left;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 6px 16px;
+        background-color: rgba(85, 34, 250, 0.1);
+        color: #5522fa;
+        font-size: 11px;
+        font-weight: 700;
+        border-radius: 9999px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        font-size: 28px;
+        font-weight: 800;
+        color: #18181b;
+        margin: 0 0 16px;
+        letter-spacing: -0.025em;
+        line-height: 1.2;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #71717a;
+        margin: 0 0 24px;
+      }
+
+      .button-container {
+        padding: 10px 0 30px;
+        text-align: center;
+      }
+
+      .button {
+        display: inline-block;
+        background-color: #5522fa;
+        color: #ffffff !important;
+        padding: 16px 32px;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(85, 34, 250, 0.2);
+      }
+
+      .footer {
+        padding: 32px 40px;
+        text-align: center;
+        font-size: 13px;
+        color: #a1a1aa;
+      }
+
+      .divider {
+        height: 1px;
+        background-color: #f1f5f9;
+        margin: 0 40px;
+      }
+
+      @media only screen and (max-width: 600px) {
+        .content {
+          width: 90% !important;
+          border-radius: 24px;
+        }
+        .header, .body-content, .footer {
+          padding-left: 24px !important;
+          padding-right: 24px !important;
+        }
+      }
+    </style>
   </head>
   <body>
-    <h1>Bem-vindo ao Apolo Anki, <%= @user.name %>!</h1>
-    <p>
-      Você se cadastrou com sucesso no apoloconcursos.com.br.
-    </p>
-    <p>
-      Para acessar sua conta, basta clicar no link abaixo:
-    </p>
-    <p>
-      <%= link_to 'Fazer Login', @url %>
-    </p>
-    <p>Obrigado por se juntar a nós!</p>
+    <div class="wrapper">
+      <table class="content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+        <tr>
+          <td>
+            <div class="header">
+              <span class="logo-text">APOLO</span>
+            </div>
+
+            <div class="body-content">
+              <div class="badge">BEM-VINDO</div>
+              <h1>Sua jornada começa agora</h1>
+              <p>Olá, <strong><%= @user.name %></strong>!</p>
+              <p>
+                É um prazer ter você conosco no <strong>Apolo Anki</strong>. 
+                Nossa missão é transformar sua preparação para concursos através de uma memorização inteligente e eficiente.
+              </p>
+              <p>
+                Você já pode acessar nossa plataforma e começar a explorar todos os recursos disponíveis para impulsionar seus estudos.
+              </p>
+              
+              <div class="button-container">
+                <a href="<%= @url %>" class="button">Começar a Estudar</a>
+              </div>
+
+              <p style="font-size: 14px; margin-bottom: 0;">
+                Se precisar de qualquer ajuda, nossa equipe está sempre à disposição.
+              </p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="footer">
+              <p style="margin-bottom: 8px; font-size: 13px;">© <%= Time.now.year %> Apolo Anki. Todos os direitos reservados.</p>
+              <p style="font-size: 11px;">Você recebeu este e-mail porque se cadastrou na plataforma Apolo Anki.</p>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
   </body>
 </html>

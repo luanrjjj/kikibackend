@@ -9,6 +9,7 @@ class UserMailer < ApplicationMailer
     @user = password_reset.user
     @password_reset = password_reset
     @url  = "#{ENV['SESSION_BASE_NEW_URL']}/reset-password?token=#{@password_reset.token}&email=#{CGI.escape(@user.email)}"
+    
     mail(to: @user.email, subject: 'Redefinição de Senha - Apolo Anki')
   end
 end
