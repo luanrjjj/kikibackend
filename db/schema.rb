@@ -65,11 +65,12 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_18_120000) do
 
   create_table "orgaos", force: :cascade do |t|
     t.string "nome", null: false
+    t.string "sigla"
     t.string "sede"
     t.string "logo_url"
+    t.string "esfera"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "sigla"
   end
 
   create_table "pagamentos", force: :cascade do |t|
