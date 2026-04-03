@@ -12,6 +12,12 @@ class AnkiController < ApplicationController
       return
     end
 
+    # Tenta identificar a prova e o concurso a partir das questões (se houver essa info)
+    # ou de parâmetros diretos se forem enviados.
+    first_q = questoes.first
+    prova_id = params[:prova_id] || first_q['prova_id']
+    concurso_id = params[:concurso_id] || first_q['concurso_id']
+
     deck = Genanki::Deck.new(
       deck_id: Time.now.to_i,
       name: "Anki Deck #{Time.now.strftime('%Y-%m-%d')}"
@@ -142,6 +148,14 @@ class AnkiController < ApplicationController
     file_path = Rails.root.join('tmp', file_name)
 
     pkg.write_to_file(file_path)
+
+    # Registrar a exportação no banco de dados
+    Export.create!(
+      user: current_user,
+      prova_id: prova_id,
+      concurso_id: concurso_id,
+      questoes_count: questoes.length
+    )
 
     send_file file_path, type: 'application/apkg', disposition: 'attachment', filename: file_name
   end

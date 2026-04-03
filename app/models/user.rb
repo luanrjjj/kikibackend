@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
   has_many :pagamentos, dependent: :destroy
   has_many :password_resets, dependent: :destroy
+  has_many :exports, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
 
