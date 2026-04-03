@@ -41,6 +41,8 @@ class SeedAssuntosTopicos < SeedMigration::Migration
           topicos.each do |topico_data|
             topico_nome = topico_data.is_a?(Hash) ? (topico_data['nome'] || topico_data['name']) : topico_data.to_s
             next unless topico_nome.present?
+            puts "Creating topico: #{topico_nome}"
+
 
             Topico.find_or_create_by!(nome: topico_nome, assunto: assunto) do |t|
               t.disciplina = assunto.disciplina

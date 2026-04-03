@@ -5,3 +5,21 @@ end
 
 OmniAuth.config.allowed_request_methods = %i[get post]
 OmniAuth.config.silence_get_warning = true
+
+# Em produção, se a API estiver atrás de um prefixo como /api (configurado no Nginx),
+# precisamos garantir que o OmniAuth gere a redirect_uri correta incluindo esse prefixo.
+if Rails.env.production?
+  OmniAuth.config.full_host = ->(env) {
+    scheme = env['rack.url_scheme']
+    host = env['HTTP_HOST']
+    
+    # Se houver X-Forwarded-Host (comum em proxies), usamos ele
+    if env['HTTP_X_FORWARDED_HOST']
+      host = env['HTTP_X_FORWARDED_HOST'].split(',').first.strip
+      scheme = env['HTTP_X_FORWARDED_PROTO'] || scheme
+    end
+
+    # Como a API está sendo servida sob o prefixo /api no Nginx, forçamos o prefixo
+    "#{scheme}://#{host}/api"
+  }
+end

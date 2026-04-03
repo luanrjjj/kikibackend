@@ -16761,5 +16761,4764 @@
         "correct_answer": null
       }
     ]
+  },
+  {
+    "numero_questao": 1,
+    "id": "Q3862500",
+    "breadcrumbs": [
+      "Português",
+      "Interpretação de Textos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "O texto afirma que o comportamento de consumo impulsivo",
+    "options": [
+      {
+        "value": "A",
+        "text": "afeta atualmente cerca de 71,44 milhões de pessoas\nno Brasil."
+      },
+      {
+        "value": "B",
+        "text": "leva a sentimentos relacionados à culpa, à vergonha e\nao fracasso."
+      },
+      {
+        "value": "C",
+        "text": "é intensificado pelo uso das mídias sociais e pela\ncomparação social."
+      },
+      {
+        "value": "D",
+        "text": "aparece como consequência da falta de autocontrole\ne do endividamento."
+      },
+      {
+        "value": "E",
+        "text": "gera endividamentos quando se desconsideram as\nconsequências financeiras."
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 2,
+    "id": "Q3862501",
+    "breadcrumbs": [
+      "Português",
+      "Interpretação de Textos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Uma das estratégias argumentativas usadas pela autora é",
+    "options": [
+      {
+        "value": "A",
+        "text": "concluir o texto ilustrando os aspectos ressaltados no\ntítulo — os fatores comportamentais e os efeitos psicológicos do endividamento."
+      },
+      {
+        "value": "B",
+        "text": "apresentar as causas psicológicas e socioeconômicas\ndo endividamento antes de suas consequências."
+      },
+      {
+        "value": "C",
+        "text": "detalhar os aspectos socioeconômicos atrelados ao\nendividamento antes de relacioná-los aos aspectos\npsicológicos."
+      },
+      {
+        "value": "D",
+        "text": "exemplificar os comportamentos impulsivos como forma de evidenciar as consequências do endividamento."
+      },
+      {
+        "value": "E",
+        "text": "iniciar o texto com um detalhamento dos fatores causadores do endividamento."
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 3,
+    "id": "Q3862502",
+    "breadcrumbs": [
+      "Português",
+      "Interpretação de Textos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Ao usar a palavra “holística” na conclusão do texto, a autora indica que o endividamento deve ser observado de\nmaneira que se",
+    "options": [
+      {
+        "value": "A",
+        "text": "apresentem os aspectos sociais como geradores dos\naspectos psicológicos."
+      },
+      {
+        "value": "B",
+        "text": "enfoquem os aspectos individuais da pessoa endividada."
+      },
+      {
+        "value": "C",
+        "text": "relacionem globalmente os aspectos sociais e individuais envolvidos."
+      },
+      {
+        "value": "D",
+        "text": "levantem os aspectos sociais e individuais como solução para o problema das dívidas."
+      },
+      {
+        "value": "E",
+        "text": "ignorem os aspectos macrossociais que levam à produção de dívidas."
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 4,
+    "id": "Q3862503",
+    "breadcrumbs": [
+      "Português",
+      "Interpretação de Textos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Na organização do texto, os parágrafos 2, 4 e 5 têm a\nfunção de",
+    "options": [
+      {
+        "value": "A",
+        "text": "detalhar fatores responsáveis pelo endividamento das\npessoas."
+      },
+      {
+        "value": "B",
+        "text": "relatar casos recentes dos fatores do endividamento\nbancário."
+      },
+      {
+        "value": "C",
+        "text": "introduzir uma proposta de solução do problema do\nendividamento."
+      },
+      {
+        "value": "D",
+        "text": "exemplificar a questão da inadimplência com o relato\nde casos particulares."
+      },
+      {
+        "value": "E",
+        "text": "atribuir à mídia a culpa pelo comportamento irresponsável das pessoas."
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 5,
+    "id": "Q3862504",
+    "breadcrumbs": [
+      "Português",
+      "Interpretação de Textos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "De acordo com a ordem das ideias apresentadas no texto, observa-se que, depois de afirmar que podem ocorrer,\ncomo efeito psicológico do endividamento, sentimentos\nrelacionados à culpa, à vergonha e ao fracasso, o texto\nexplica que",
+    "options": [
+      {
+        "value": "A",
+        "text": "as ferramentas relacionadas às mídias sociais podem desempenhar um papel importante na criação de\ndesejos e necessidades, gerando gastos acima das\npossibilidades financeiras das pessoas."
+      },
+      {
+        "value": "B",
+        "text": "as formas de lidar com as dívidas envolvem o desenvolvimento de hábitos de consumo conscientes, a elaboração de um plano de pagamento de dívidas e a\ncriação de um fundo de emergência."
+      },
+      {
+        "value": "C",
+        "text": "a quantidade da população brasileira que vive em situação de inadimplência, de acordo com o Mapa da\nInadimplência e Negociações de Dívidas da Serasa, é\nde quase a metade."
+      },
+      {
+        "value": "D",
+        "text": "o estresse financeiro relacionado à dificuldade de pagar as dívidas pode levar a problemas de sono, irritabilidade, baixa autoestima, depressão e dificuldades\nde concentração."
+      },
+      {
+        "value": "E",
+        "text": "o tipo de socialização econômica que as crianças e\nos jovens recebem varia, e isso pode fazer diferença\npara eles se endividarem quando adultos."
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 6,
+    "id": "Q3862505",
+    "breadcrumbs": [
+      "Português",
+      "Sintaxe,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "A frase em que a concordância do verbo em destaque está\nde acordo com a norma-padrão da Língua Portuguesa é:",
+    "options": [
+      {
+        "value": "A",
+        "text": "Ao analisar os fatores causadores do endividamento\ncrônico da população brasileira,identifica-se desvios\ncomportamentais e psicológicos."
+      },
+      {
+        "value": "B",
+        "text": "Faltamaos consumidores, que são altamente influenciados pelas mídias sociais, um planejamento de suas\nfinanças."
+      },
+      {
+        "value": "C",
+        "text": "Em inúmeros países,responsabiliza-seas redes sociais por investir massivamente no estímulo do consumo, resultando em uma sociedade endividada."
+      },
+      {
+        "value": "D",
+        "text": "Ao promover uma educação financeira da população,evita-se os efeitos psicológicos nocivos do endividamento, como estresse e ansiedade em altos níveis."
+      },
+      {
+        "value": "E",
+        "text": "Fica evidente, quando seanalisamos índices de\ninadimplência no Brasil, que é necessário investigar a\ninfluência que a pressão pelo consumo exerce sobre\nos cidadãos."
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 7,
+    "id": "Q3862506",
+    "breadcrumbs": [
+      "Português",
+      "Interpretação de Textos,",
+      "Sintaxe,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "No trecho “As pessoas podem se sentir inadequadas ou\nfracassadas por não conseguirem lidar com suas finanças adequadamente. Esses sentimentos podem afetar\nnegativamente a autoestima e a autoconfiança, dificultando a busca por ajuda e soluções para o problema,\nalém de enfraquecer a saúde mental e levar a um comportamento de enfrentamento que é prejudicial à saúde.”\n(7o\n parágrafo), a relação lógica entre os dois períodos\npode ser expressa por",
+    "options": [
+      {
+        "value": "A",
+        "text": "mas"
+      },
+      {
+        "value": "B",
+        "text": "desde que"
+      },
+      {
+        "value": "C",
+        "text": "desse modo"
+      },
+      {
+        "value": "D",
+        "text": "embora"
+      },
+      {
+        "value": "E",
+        "text": "para que"
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 8,
+    "id": "Q3862507",
+    "breadcrumbs": [
+      "Português",
+      "Crase,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "O uso do sinal indicativo de crase, nas palavras em destaque, está de acordo com a norma-padrão da Língua Portuguesa em:",
+    "options": [
+      {
+        "value": "A",
+        "text": "A liberação excessiva de crédito tem levado a populaçãoàuma situação financeira delicada."
+      },
+      {
+        "value": "B",
+        "text": "As políticas públicas devem voltar-seàredução do\nendividamento das famílias."
+      },
+      {
+        "value": "C",
+        "text": "O aumento dos preços levou muitas famíliasàgastar\nmais do que podiam."
+      },
+      {
+        "value": "D",
+        "text": "O governo tem procurado implementar medidas de\napoio financeiro anteàsituação de endividamento\ncrescente."
+      },
+      {
+        "value": "E",
+        "text": "Os consumidores recorremàempréstimos para tentar\nresolver seus problemas."
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 9,
+    "id": "Q3862508",
+    "breadcrumbs": [
+      "Comunicação Social",
+      "Comunicação Pública na Comunicação Social,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "De acordo com o Manual de Redação da Presidência da\nRepública, o atributo da precisão",
+    "options": [
+      {
+        "value": "A",
+        "text": "articula-se à dispensa de estratégias de revisão de\ntextos oficiais."
+      },
+      {
+        "value": "B",
+        "text": "opõe-se ao princípio da clareza na construção de textos oficiais."
+      },
+      {
+        "value": "C",
+        "text": "refere-se à substituição da linguagem técnica pela linguagem comum na escrita de textos oficiais."
+      },
+      {
+        "value": "D",
+        "text": "relaciona-se ao cuidado de reconhecer os conhecimentos do leitor na elaboração de textos oficiais."
+      },
+      {
+        "value": "E",
+        "text": "vincula-se à necessidade do emprego de sinonímias\npara fins estilísticos na produção de textos oficiais."
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 10,
+    "id": "Q3862509",
+    "breadcrumbs": [
+      "Português",
+      "Ortografia,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "No texto aparecem palavras como “autocontrole”,\n“autoestima” e “autoconfiança”. Segundo o Novo Acordo\nOrtográfico, estão também corretamente grafadas sem\nhífen as palavras:",
+    "options": [
+      {
+        "value": "A",
+        "text": "autoacusação e autooxidante"
+      },
+      {
+        "value": "B",
+        "text": "autocarro e autoônibus"
+      },
+      {
+        "value": "C",
+        "text": "autociclo e autohemoterapia"
+      },
+      {
+        "value": "D",
+        "text": "autoagressão e autossuficiente"
+      },
+      {
+        "value": "E",
+        "text": "autobservação e autorregulamentação"
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 11,
+    "id": "Q3862510",
+    "breadcrumbs": [
+      "Inglês",
+      "Interpretação de texto | Reading comprehension,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "The main purpose of the text is to",
+    "options": [
+      {
+        "value": "A",
+        "text": "argue that customers should cultivate better buying\nhabits so that their debt levels decrease and they\ncan become eligible to receive credit from banking\ninstitutions."
+      },
+      {
+        "value": "B",
+        "text": "emphasize the need for more incisive measures to be\ntaken by the government to curb the rise in popular\ndebt related to monthly household purchases."
+      },
+      {
+        "value": "C",
+        "text": "illustrate how grocery shopping data can promote\ninclusion by providing insights into the financial health\nof individuals without a formal credit history"
+      },
+      {
+        "value": "D",
+        "text": "protest against the use of supermarket customers’\npersonal data by banks and other credit institutions."
+      },
+      {
+        "value": "E",
+        "text": "report on the recent increase in debt among\nshopping center customers, due to habits that indicate\nconsumerism."
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 12,
+    "id": "Q3862511",
+    "breadcrumbs": [
+      "Inglês",
+      "Pronomes | Pronouns,",
+      "Interpretação de texto | Reading comprehension,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "In the excerpt of paragraph 1, “Globally, 1.4 billion adults\nhave no access to formal financial services because\nthey\nlack a credit history”, the pronoun\nthey\nrefers to",
+    "options": [
+      {
+        "value": "A",
+        "text": "formal financial services"
+      },
+      {
+        "value": "B",
+        "text": "1.4 billion adults"
+      },
+      {
+        "value": "C",
+        "text": "credit history"
+      },
+      {
+        "value": "D",
+        "text": "globally"
+      },
+      {
+        "value": "E",
+        "text": "access"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 13,
+    "id": "Q3862512",
+    "breadcrumbs": [
+      "Inglês",
+      "Palavras conectivas | Connective words,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "In the fragment of paragraph 2, “this represents\nnot just\na\nmoral imperative,\nbut also\na major opportunity to unlock a\nnew and largely untapped market”, the linking words\nnot\njust\n…\nbut also\nindicate a(an)",
+    "options": [
+      {
+        "value": "A",
+        "text": "absolute alternative"
+      },
+      {
+        "value": "B",
+        "text": "brief comparison"
+      },
+      {
+        "value": "C",
+        "text": "clear contrast"
+      },
+      {
+        "value": "D",
+        "text": "deep consequence"
+      },
+      {
+        "value": "E",
+        "text": "emphatic addition"
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 14,
+    "id": "Q3862513",
+    "breadcrumbs": [
+      "Inglês",
+      "Vocabulário | Vocabulary,",
+      "Sinônimos | Synonyms,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "In the section of paragraph 3 “These four\nkey\ncharacteristics highlight why grocery data is so insightful\nfor credit scoring people with no credit history”, the term\nkey\ncan be substituted, with no change in meaning, by",
+    "options": [
+      {
+        "value": "A",
+        "text": "important"
+      },
+      {
+        "value": "B",
+        "text": "casual"
+      },
+      {
+        "value": "C",
+        "text": "peripheral"
+      },
+      {
+        "value": "D",
+        "text": "unusual"
+      },
+      {
+        "value": "E",
+        "text": "minor"
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 15,
+    "id": "Q3862514",
+    "breadcrumbs": [
+      "Inglês",
+      "Interpretação de texto | Reading comprehension,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "In paragraph 5, the sentence “Financial inclusion has\nremained out of reach for far too many, for far too long”\nmeans that",
+    "options": [
+      {
+        "value": "A",
+        "text": "for many years, a large number of people have\nremained unable to access affordable credit."
+      },
+      {
+        "value": "B",
+        "text": "in a long time, banks and governmental administration\nwere unable to collaborate systematically."
+      },
+      {
+        "value": "C",
+        "text": "many people have not been interested in becoming\neligible for low-income credit access programs lately."
+      },
+      {
+        "value": "D",
+        "text": "despite the new technology, most people do not have\naccess to e-commerce, because they are in debt."
+      },
+      {
+        "value": "E",
+        "text": "the increase in the credit card eligibility has\ncontributed to higher profits for financial institutions."
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 16,
+    "id": "Q3862515",
+    "breadcrumbs": [
+      "Gestão de Pessoas",
+      "Comportamento de Pessoas nas Organizações,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "As técnicas e boas práticas adotadas pelas organizações\nno contexto do trabalho à distância (teletrabalho) afetam o\ncomportamento organizacional, principalmente através de\nsua influência na identificação organizacional, um construto que mede o nível de conexão afetiva e cognitiva entre o trabalhador e a organização.\nNa relação entre os elementos do teletrabalho e a identificação organizacional, verifica-se que",
+    "options": [
+      {
+        "value": "A",
+        "text": "uma boa relação do teletrabalhador com o gestor, baseada em alta confiança e alto controle, afeta positivamente a identificação organizacional."
+      },
+      {
+        "value": "B",
+        "text": "o suporte material é suficiente para uma boa identificação organizacional nas práticas do teletrabalho, e\nmais relevante do que o suporte social e simbólico"
+      },
+      {
+        "value": "C",
+        "text": "a intensidade do teletrabalho não afeta o nível de\nidentificação organizacional, independentemente do\nsentido que o teletrabalhador atribui às práticas da organização."
+      },
+      {
+        "value": "D",
+        "text": "a força da identificação organizacional aumenta,\nquando as práticas e arranjos do teletrabalho desfavorecem a sensação de pertencimento ao grupo e a\ndespersonalização."
+      },
+      {
+        "value": "E",
+        "text": "normas claras e suporte organizacional adequado\nafetam positivamente a identificação organizacional,\npois contribuem para o sentimento de confiança."
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 17,
+    "id": "Q3862516",
+    "breadcrumbs": [
+      "Gestão de Pessoas",
+      "Comportamento de Pessoas nas Organizações,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Um funcionário de um banco é emocionalmente instável,\nincapaz de despertar muito entusiasmo ou interesse em\nseus subordinados. Sua consciência sobre suas próprias\nemoções e as emoções dos outros é quase nula.\nNormalmente reage de forma exagerada aos problemas.\nEle não entende por que seus subordinados ficam perturbados com ele.\nEssa descrição caracteriza um funcionário que possui\nbaixa",
+    "options": [
+      {
+        "value": "A",
+        "text": "dissonância emocional"
+      },
+      {
+        "value": "B",
+        "text": "autoconcordância"
+      },
+      {
+        "value": "C",
+        "text": "autoavaliação básica"
+      },
+      {
+        "value": "D",
+        "text": "habilidade conceitual"
+      },
+      {
+        "value": "E",
+        "text": "inteligência emocional"
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 18,
+    "id": "Q3862517",
+    "breadcrumbs": [
+      "Engenharia de Software",
+      "Processos de Software - Desenvolvimento Ágil,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Em um time ágil utilizando\nScrum\n, uma nova\nSprint\nfoi iniciada com o objetivo de entregar alguns relatórios importantes para a gestão de contas de um banco comercial.\nNo terceiro dia da\nSprint\n, uma\nDeveloper\nassumiu a tarefa,\nplanejada para quatro horas, de integrar uma consulta a\num serviço externo, para a qual precisava de credenciais\nde autenticação no serviço. Durante o dia, os responsáveis por esse serviço não responderam aos seus pedidos\npela credencial, o que estava acertado de ser feito com\npresteza, em até trinta minutos. Com isso, a tarefa não\npôde ser completada no dia.\nDe acordo com as práticas do\nScrum\n, além de outras\nações possíveis, é essencial",
+    "options": [
+      {
+        "value": "A",
+        "text": "ajustar oProduct Backlogpara incluir o atraso."
+      },
+      {
+        "value": "B",
+        "text": "devolver a tarefa no fim do dia para oScrum Master."
+      },
+      {
+        "value": "C",
+        "text": "identificar o impedimento no próximoDaily Scrum."
+      },
+      {
+        "value": "D",
+        "text": "informar oProduct Ownersobre o problema"
+      },
+      {
+        "value": "E",
+        "text": "registrar o ocorrido na próximaSprint Review."
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 19,
+    "id": "Q3862518",
+    "breadcrumbs": [
+      "Gerência de Projetos",
+      "Conceitos básicos no Gerenciamento de Projetos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Ao monitorar o uso do seu aplicativo para\nsmartphones\n,\num banco digital percebeu que havia muitas reclamações\nde usuários quanto à facilidade de realizar algumas tarefas comuns. Com o objetivo de resolver esse problema,\nfoi constituído um time de\nDesign Thinking\n.\nO time resolveu basear seu processo de trabalho na técnica do duplo diamante, sugerida pelo\nDesign Council\ndo\nReino Unido, que propõe",
+    "options": [
+      {
+        "value": "A",
+        "text": "divergir e convergir em busca de uma visão do problema e depois divergir e convergir em busca de uma\nsolução."
+      },
+      {
+        "value": "B",
+        "text": "divergir para buscar ideias brilhantes e convergir para\nbuscar soluções brilhantes."
+      },
+      {
+        "value": "C",
+        "text": "produzir duas propostas de alto valor agregado para\nescolha do cliente."
+      },
+      {
+        "value": "D",
+        "text": "produzir, ao mesmo tempo, maior valor para o cliente\ne para o fornecedor."
+      },
+      {
+        "value": "E",
+        "text": "produzir uma solução bruta, protótipo, e, a seguir, uma\nsolução lapidada, final."
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 20,
+    "id": "Q3862519",
+    "breadcrumbs": [
+      "Conhecimentos Bancários",
+      "Estatística descritiva (análise exploratória de dados),"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "As práticas de sustentabilidade podem estar presentes\nem organizações do setor bancário sob as formas de concessão de crédito, oferta de produtos, gestão de resíduos\ne reformulação de processos, entre outros.\nUma das práticas de finanças sustentáveis que se destaca é o crédito responsável, que envolve o",
+    "options": [
+      {
+        "value": "A",
+        "text": "uso mais eficiente de energia e de materiais, em especial o de papel, a fim de reduzir os custos econômicos\ne os impactos ambientais."
+      },
+      {
+        "value": "B",
+        "text": "conjunto de controles, políticas e processos para a\nproteção das informações dos clientes nos seus aspectos de confidencialidade, integridade e disponibilidade."
+      },
+      {
+        "value": "C",
+        "text": "financiamento e o empréstimo de valores apropriados,\ntaxas razoáveis, prazos adequados e aconselhamento financeiro, considerando-se a capacidade de pagamento do cliente."
+      },
+      {
+        "value": "D",
+        "text": "investimento em fundos socialmente responsáveis,\nque possuem em suas carteiras somente ações de\nempresas geridas de acordo com as melhores práticas de governança corporativa."
+      },
+      {
+        "value": "E",
+        "text": "empréstimo de pequenos valores para um público de\nbaixa renda, geralmente, sem acesso às linhas de\ncrédito tradicionais, que são concedidas a grupos,\ncom amortizações semanais e com prazo de um ano."
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 21,
+    "id": "Q3862520",
+    "breadcrumbs": [
+      "Direito Digital",
+      "Lei nº 13.709 de 2018 - Lei Geral de Proteção de Dados Pessoais (LGPD),"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "A Lei Geral de Proteção de Dados Pessoais (LGPD) do\nBrasil dispõe sobre o tratamento de dados pessoais, com\no objetivo de proteger os direitos fundamentais de liberdade e de privacidade e o livre desenvolvimento da personalidade da pessoa natural. As atividades de tratamento de\ndados pessoais deverão observar a boa-fé e os princípios\nde proteção de dados pessoais elencados na LGPD. Um\ndesses princípios implica a limitação do tratamento ao mínimo necessário para a realização de suas finalidades,\ncom abrangência dos dados pertinentes, proporcionais e\nnão excessivos em relação às finalidades do tratamento\nde dados.\nEsse é o princípio da",
+    "options": [
+      {
+        "value": "A",
+        "text": "adequação"
+      },
+      {
+        "value": "B",
+        "text": "finalidade"
+      },
+      {
+        "value": "C",
+        "text": "necessidade"
+      },
+      {
+        "value": "D",
+        "text": "prevenção"
+      },
+      {
+        "value": "E",
+        "text": "transparência"
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 22,
+    "id": "Q3862521",
+    "breadcrumbs": [
+      "Segurança da Informação",
+      "Criptografia,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Os mecanismos de segurança são utilizados para implementar serviços de segurança. Um mecanismo pode\noperar por conta própria ou em conjunto com outros para\nfornecer um serviço específico. Um dos principais mecanismos de segurança usa algoritmos matemáticos para\ntransformar os dados em um código secreto e, subsequentemente, permite a recuperação dos dados através\nde um algoritmo e um ou mais segredos.\nEsse mecanismo de segurança é o de",
+    "options": [
+      {
+        "value": "A",
+        "text": "assinatura digital"
+      },
+      {
+        "value": "B",
+        "text": "cifragem de dados simétrica"
+      },
+      {
+        "value": "C",
+        "text": "resumo de mensagem"
+      },
+      {
+        "value": "D",
+        "text": "certificação de chave pública"
+      },
+      {
+        "value": "E",
+        "text": "certificação de carimbo de tempo"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 23,
+    "id": "Q3862522",
+    "breadcrumbs": [
+      "Direito do Trabalho",
+      "Das relações laborais,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "A Caixa tem o compromisso permanente com o cumprimento das leis, das normas e dos regulamentos internos\ne externos que regem a Instituição, entendendo que o\nenfrentamento de atitudes de assédio representa um dos\nmaiores desafios para a promoção de ambientes laborais\nsaudáveis e respeitosos.\nConsidere a situação hipotética a seguir.\nEm uma manhã, uma funcionária, ao abrir o grupo de\nmensagens da equipe de trabalho, percebeu que um colega havia postado mensagens depreciativas, atribuindo\na ela apelidos pejorativos. A situação, ainda que constrangedora, não a surpreendeu, uma vez que o colega já havia espalhado rumores e boatos ofensivos a seu respeito.\nAliás, já era até mesmo habitual que o colega criticasse a\nsua vida pessoal e a sua aparência física, em público e no\nprivado. A funcionária resolveu, então, informar-se sobre\nas diretrizes da empresa a respeito do enfrentamento de\ncondutas de assédio moral e sexual no trabalho.\nUma situação como a descrita",
+    "options": [
+      {
+        "value": "A",
+        "text": "não configuraria qualquer tipo de assédio, pois o assédio se caracteriza por ação executada por chefe em\nrelação a algum subordinado, o que não é o caso."
+      },
+      {
+        "value": "B",
+        "text": "não configuraria qualquer tipo de assédio, pois atos\nrealizados em ambiente virtual, como mensagens e\npostagens em redes sociais, não caracterizam assédio moral."
+      },
+      {
+        "value": "C",
+        "text": "configuraria assédio moral, pois o fato de o perpetuador ser um colega do sexo masculino e a vítima ser\numa mulher caracteriza tal tipo de assédio."
+      },
+      {
+        "value": "D",
+        "text": "configuraria assédio moral, pois basta que alguém se\nsinta constrangido por um único ato ou gesto realizado\npor qualquer colega para que se caracterize assédio\nmoral."
+      },
+      {
+        "value": "E",
+        "text": "configuraria assédio moral, pois trata-se de situações\nconstrangedoras, que ocorreram de forma repetitiva,\nprolongada e com intencionalidade de ferir a autoestima da funcionária."
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 24,
+    "id": "Q3862523",
+    "breadcrumbs": [
+      "Meio Ambiente",
+      "Desenvolvimento Sustentável,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Considere a notícia a seguir sobre a Política de Responsabilidade Socioambiental da Caixa Econômica Federal.\nA Caixa firmou, nesta segunda-feira (10), durante a\nCOP 30 em Belém (PA), o compromisso em adotar\npráticas empresariais e em executar políticas públicas\ndirecionadas à transição energética, ao investimento\nem infraestrutura sustentável e à preservação de ecossistemas. É o chamado Compromisso de Belém para a\nTransição Energética justa.\nCom o anúncio, o banco reafirma seus compromissos\nalinhados às diretrizes internacionais para o desenvolvimento sustentável, além de promover cooperação\ntécnica com os participantes e troca de boas práticas\nde governança verde.\nDisponível em: https://caixanoticias.caixa.gov.br/Paginas/\nNot%C3%ADcias/2025/11-NOVEMBRO/CAIXA-adere-aoCompromisso-de-Belem-com-foco-na--transicao-energetica-\n-justa.aspx. Acesso em: 2 dez. 2025. Adaptado.\nDe acordo com a notícia, o compromisso firmado pela\nCaixa é uma das formas de implementação de sua Política de Responsabilidade Socioambiental porque busca\nfomentar o(a)",
+    "options": [
+      {
+        "value": "A",
+        "text": "crescimento econômico e o controle social"
+      },
+      {
+        "value": "B",
+        "text": "desenvolvimento social e o equilíbrio fiscal"
+      },
+      {
+        "value": "C",
+        "text": "acesso a recursos não renováveis e a economia verde"
+      },
+      {
+        "value": "D",
+        "text": "política monetária e a governança corporativa"
+      },
+      {
+        "value": "E",
+        "text": "inclusão social e a preservação ambiental"
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 25,
+    "id": "Q3862524",
+    "breadcrumbs": [
+      "Ética na Administração Pública",
+      "Código de Ética da Caixa Econômica Federal,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Em julho de 2025, observou-se um movimento atípico de\ncompra e venda de dólares possivelmente associado ao\nanúncio sobre a nova política tarifária que seria implementada pelo presidente dos Estados Unidos. Em função\ndisso, a Advocacia-Geral da União pediu que a Polícia\nFederal (PF) e a Comissão de Valores Mobiliários (CVM)\ninvestigassem se houve o vazamento de informações no\nmercado financeiro, no Brasil, para lucrar com a compra\ne venda de dólares durante o anúncio do tarifaço americano. Foi identificado um movimento bilionário suspeito\nno mercado de câmbio americano no dia do anúncio do\ntarifaço.\nNesse contexto, segundo o Código de Ética, Conduta e\nIntegridade da Caixa, uma conduta como a descrita, caso\nse confirmasse, no âmbito das relações de trabalho com a\nCaixa, configuraria conflito de interesses, pois",
+    "options": [
+      {
+        "value": "A",
+        "text": "ameaçaria o sigilo bancário no momento em que o colaborador da Caixa tivesse que prestar esclarecimento à PF e à CVM."
+      },
+      {
+        "value": "B",
+        "text": "teria havido, na compra e venda de dólares, envio de\ndinheiro para o exterior sem a devida autorização legal e sem declaração às autoridades fiscais, como o\nBanco Central e a Receita Federal."
+      },
+      {
+        "value": "C",
+        "text": "estariam identificadas, nessa prática, transações clandestinas que visam a ocultar a origem de recursos financeiros, prejudicando a política cambial e a estabilidade monetária do país."
+      },
+      {
+        "value": "D",
+        "text": "estaria caracterizada a divulgação ou uso de informação privilegiada, em proveito próprio ou de terceiros,\nobtida em razão das atividades exercidas."
+      },
+      {
+        "value": "E",
+        "text": "teria ocorrido o uso indevido de dinheiro de particulares para atividades especulativas na bolsa de valores,\no que incorre em ato ilícito que causa prejuízo aos\ncofres públicos."
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 26,
+    "id": "Q3862525",
+    "breadcrumbs": [
+      "Matemática",
+      "Aritmética e Problemas,",
+      "Probabilidade,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Durante o processo de auditoria, a probabilidade de um\nbanco selecionar uma transação para inspeção é diretamente proporcional ao valor financeiro movimentado nessa transação. Considere cinco transações\ncom os seguintes valores: R$ 1 mil, R$ 2 mil, R$ 3 mil,\nR$ 4 mil e R$ 5 mil.\nCom base apenas nessas transações, a probabilidade de\na transação de R$ 5 mil ser escolhida para inspeção é",
+    "options": [
+      {
+        "value": "A",
+        "text": ""
+      },
+      {
+        "value": "B",
+        "text": ""
+      },
+      {
+        "value": "C",
+        "text": ""
+      },
+      {
+        "value": "D",
+        "text": ""
+      },
+      {
+        "value": "E",
+        "text": ""
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 27,
+    "id": "Q3862526",
+    "breadcrumbs": [
+      "Estatística",
+      "Inferência estatística,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Um banco público deseja verificar se o valor médio dos\nfinanciamentos habitacionais concedidos difere entre três\nfaixas de renda familiar:\n• até R$ 4.000,00;\n• entre R$ 4.001,00 e R$ 8.000,00;\n• acima de R$ 8.000,00.\nAo aplicar a Análise de Variância (ANOVA), obteve-se,\npara a estatística F, um valor de F = 18,6 e o valor-crítico\ndo teste ao nível de significância de 5% é F\ncrítico\n= 16,9.\nA partir do teste, pode-se concluir que",
+    "options": [
+      {
+        "value": "A",
+        "text": "o valor médio dos financiamentos é igual nas três faixas de renda."
+      },
+      {
+        "value": "B",
+        "text": "há evidências estatísticas de que as três faixas de\nrenda apresentam médias de financiamento diferentes entre si."
+      },
+      {
+        "value": "C",
+        "text": "há evidências estatísticas de que as três faixas de\nrenda apresentam variâncias de financiamento diferentes entre si."
+      },
+      {
+        "value": "D",
+        "text": "há evidências estatísticas de que pelo menos uma\ndas faixas de renda apresenta média de financiamento diferente das demais."
+      },
+      {
+        "value": "E",
+        "text": "há evidências estatísticas de que quanto maior a faixa\nde renda familiar, maior o valor médio dos financiamentos habitacionais concedidos."
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 28,
+    "id": "Q3862527",
+    "breadcrumbs": [
+      "Matemática",
+      "Aritmética e Problemas,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Um gerente de um banco tem cinco contas-correntes\nsob sua gestão. As duas menores contas têm saldo de\nR$ 3 mil e R$ 5 mil, respectivamente. A amplitude, a\nmédia e a mediana do saldo das cinco contas são de\nR$ 27 mil, R$ 11 mil e R$ 7 mil, respectivamente.\nDentre os saldos dessas cinco contas, o segundo maior é",
+    "options": [
+      {
+        "value": "A",
+        "text": "R$ 7 mil"
+      },
+      {
+        "value": "B",
+        "text": "R$ 10 mil"
+      },
+      {
+        "value": "C",
+        "text": "R$ 15 mil"
+      },
+      {
+        "value": "D",
+        "text": "R$ 20 mil"
+      },
+      {
+        "value": "E",
+        "text": "R$ 30 mil"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 29,
+    "id": "Q3862528",
+    "breadcrumbs": [
+      "Estatística",
+      "Estatística descritiva (análise exploratória de dados),"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Geralmente, quanto menor a empresa, maior o seu grau\nde endividamento. Matematicamente, isso significa que a\ncorrelação linear entre tamanho da empresa e grau de\nendividamento é",
+    "options": [
+      {
+        "value": "A",
+        "text": "crescente"
+      },
+      {
+        "value": "B",
+        "text": "decrescente"
+      },
+      {
+        "value": "C",
+        "text": "nula"
+      },
+      {
+        "value": "D",
+        "text": "positiva"
+      },
+      {
+        "value": "E",
+        "text": "negativa"
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 30,
+    "id": "Q3862529",
+    "breadcrumbs": [
+      "Estatística",
+      "Cálculo de Probabilidades,",
+      "Principais distribuições de probabilidade,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "No segmento\npremium\nde um banco, um gerente é responsável por atender 5 clientes e oferecer a eles um determinado produto financeiro. O número de clientes desse\ngerente que contratarão o produto segue uma distribuição\nbinomial, cujo valor esperado é 1.\nA probabilidade de que esse gerente não consiga vender\no produto a nenhum de seus clientes é de, aproximadamente,",
+    "options": [
+      {
+        "value": "A",
+        "text": "20%"
+      },
+      {
+        "value": "B",
+        "text": "25%"
+      },
+      {
+        "value": "C",
+        "text": "33%"
+      },
+      {
+        "value": "D",
+        "text": "50%"
+      },
+      {
+        "value": "E",
+        "text": "75%"
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 31,
+    "id": "Q3863760",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Sistemas Termomecânicos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um estabelecimento industrial pretende instalar um grupo gerador a diesel para, de forma alternativa, alimentar\nas máquinas do setor de produção durante interrupções\nno fornecimento de energia pela concessionária. A rede\nelétrica que supre esses equipamentos opera com frequência de 60 Hz.\nConsiderando-se que o alternador selecionado para o\ngrupo gerador possui 6 polos, a velocidade de regime estacionário do motor diesel que aciona o rotor, em rotações\npor minuto (RPM), será de",
+    "options": [
+      {
+        "value": "A",
+        "text": "720"
+      },
+      {
+        "value": "B",
+        "text": "900"
+      },
+      {
+        "value": "C",
+        "text": "1200"
+      },
+      {
+        "value": "D",
+        "text": "1800"
+      },
+      {
+        "value": "E",
+        "text": "3600"
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 32,
+    "id": "Q3863761",
+    "breadcrumbs": [
+      "Engenharia Elétrica",
+      "Geração de Energia,",
+      "Máquinas Elétricas,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "O Brasil possui grande potencial para a exploração da\nenergia eólica, principalmente na região nordeste. Os aerogeradores podem utilizar diferentes tipos de máquinas\nelétricas para converter energia mecânica do vento em\nenergia elétrica. Entre essas máquinas, o gerador de indução (também chamado de gerador assíncrono) é uma\ndas configurações mais tradicionais, especialmente nos\nmodelos de turbinas eólicas de velocidade fixa ou parcialmente variável.\nOs geradores de indução utilizados nos aerogeradores,\nem condições normais de operação, funcionam com",
+    "options": [
+      {
+        "value": "A",
+        "text": "escorregamento entre 1% e 10%."
+      },
+      {
+        "value": "B",
+        "text": "escorregamento entre 90% e 100%."
+      },
+      {
+        "value": "C",
+        "text": "velocidade mecânica do eixo do rotor no mesmo sentido e exatamente igual à velocidade síncrona."
+      },
+      {
+        "value": "D",
+        "text": "velocidade mecânica do eixo do rotor no mesmo sentido e abaixo da velocidade síncrona."
+      },
+      {
+        "value": "E",
+        "text": "velocidade mecânica do eixo do rotor no mesmo sentido e acima da velocidade síncrona."
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 33,
+    "id": "Q3863762",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Materiais de Construção Mecânica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um engenheiro precisa enterrar tubos de aço num solo \nbastante úmido e sabe que o exterior dos tubos estará \nsujeito à corrosão.\nPara minimizar o processo corrosivo, ele emprega a proteção catódica, que consiste em",
+    "options": [
+      {
+        "value": "A",
+        "text": "pintar o tubo com uma camada de tinta isolante e impermeável."
+      },
+      {
+        "value": "B",
+        "text": "anodizar a superfície externa do tubo de aço antes de\nenterrá-lo."
+      },
+      {
+        "value": "C",
+        "text": "aplicar uma camada de material cerâmico sobre a superfície do tubo."
+      },
+      {
+        "value": "D",
+        "text": "aplicar eletrodos de magnésio, em contato elétrico\ncom o tubo."
+      },
+      {
+        "value": "E",
+        "text": "aplicar um potencial elétrico anódico sobre o tubo em\nespaçamentos regulares."
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 34,
+    "id": "Q3863763",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Materiais de Construção Mecânica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "A junção de dois materiais distintos é bastante comum\nnos processos de fabricação de diversas máquinas e\nseus componentes.\nQual das junções a seguir pode apresentar corrosão galvânica?",
+    "options": [
+      {
+        "value": "A",
+        "text": "Aço-cobre"
+      },
+      {
+        "value": "B",
+        "text": "Cerâmica-vidro"
+      },
+      {
+        "value": "C",
+        "text": "Cobre-cerâmica"
+      },
+      {
+        "value": "D",
+        "text": "Polímero-aço"
+      },
+      {
+        "value": "E",
+        "text": "Vidro-polímero"
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 35,
+    "id": "Q3863764",
+    "breadcrumbs": [
+      "Eletrotécnica",
+      "Equipamentos e Componentes,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "A construção de dispositivos elétricos para aplicações de\nbaixa e alta potência dependem do uso de materiais isolantes.\nOs dois materiais mais empregados como isolantes elétricos são",
+    "options": [
+      {
+        "value": "A",
+        "text": "polietileno e alumínio"
+      },
+      {
+        "value": "B",
+        "text": "alumínio e óxido de alumínio"
+      },
+      {
+        "value": "C",
+        "text": "cobre e alumínio"
+      },
+      {
+        "value": "D",
+        "text": "cobre e polietileno"
+      },
+      {
+        "value": "E",
+        "text": "óxido de alumínio e polietileno"
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 36,
+    "id": "Q3863765",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Materiais de Construção Mecânica,",
+      "Mecânica dos Sólidos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um engenheiro interessado em escolher um material metálico para uma peça mecânica que não pode sofrer deformação permanente deve considerar algumas propriedades que podem ser obtidas num ensaio de tração.\nEssas propriedades são a(o)",
+    "options": [
+      {
+        "value": "A",
+        "text": "energia absorvida até a fratura e a dureza Vickers."
+      },
+      {
+        "value": "B",
+        "text": "módulo de Young e o limite de resistência mecânica."
+      },
+      {
+        "value": "C",
+        "text": "módulo de Young e o limite de escoamento mecânico."
+      },
+      {
+        "value": "D",
+        "text": "limite de resistência mecânica e a energia absorvida\naté a fratura."
+      },
+      {
+        "value": "E",
+        "text": "limite de escoamento mecânico e a redução da área\nna estricção."
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 37,
+    "id": "Q3863766",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Termodinâmica,",
+      "Sistemas Termomecânicos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "A eficiência térmica de um ciclo Brayton teórico é estimada\nem 64%. Medições indicam que apenas o valor de 48% é\nalcançado.\nEssa diferença pode ser justificada",
+    "options": [
+      {
+        "value": "A",
+        "text": "pelo fato de que o ciclo teórico é calculado supondo\nprocessos reais."
+      },
+      {
+        "value": "B",
+        "text": "pela inexistência de uma torre de resfriamento na saída da câmara de combustão."
+      },
+      {
+        "value": "C",
+        "text": "pelo calor específico, que não é o mesmo ao longo do\nciclo."
+      },
+      {
+        "value": "D",
+        "text": "pela variação de energia cinética, que não pode ser\ndesprezada dentro de cada tubulação."
+      },
+      {
+        "value": "E",
+        "text": "pelas perdas no isolamento na tubulação, por exemplo, entre a saída da câmara de combustão e a entrada da turbina."
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 38,
+    "id": "Q3863767",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Termodinâmica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um pneu de automóvel é inicialmente inflado até a pressão manométrica de 200 kPa. A temperatura medida é\nde 27 o\nC, e a pressão atmosférica é de 100 kPa. Após ter\ndirigido por 3 horas, a temperatura medida no pneu passa\na 45 o\nC.\nDesprezando-se eventuais variações de massa e de\nvolume, a nova pressão manométrica no interior do pneu\né, em kPa,",
+    "options": [
+      {
+        "value": "A",
+        "text": "218"
+      },
+      {
+        "value": "B",
+        "text": "318"
+      },
+      {
+        "value": "C",
+        "text": "333"
+      },
+      {
+        "value": "D",
+        "text": "400"
+      },
+      {
+        "value": "E",
+        "text": "418"
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 39,
+    "id": "Q3863768",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Termodinâmica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Dois ambientes de temperaturas constantes estão separados por uma parede sólida cuja espessura é L e cujo\nmaterial tem condutividade térmica k. Essa parede será\nsubstituída por outra parede que possui a mesma área\ntransversal e espessura igual a L/2 .\nPara que a troca de calor entre os dois ambientes permaneça inalterada com relação à parede original, a condutividade térmica do material da nova parede deve ser",
+    "options": [
+      {
+        "value": "A",
+        "text": "k/4"
+      },
+      {
+        "value": "B",
+        "text": "k/2"
+      },
+      {
+        "value": "C",
+        "text": "k"
+      },
+      {
+        "value": "D",
+        "text": "2k"
+      },
+      {
+        "value": "E",
+        "text": "4k"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 40,
+    "id": "Q3863769",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Mecânica dos Fluidos,",
+      "Sistemas Fluidomecânicos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Uma tubulação de diâmetro D e comprimento L é usada para a conexão entre um reservatório, de pressão P\nconstante, e o ambiente, de pressão Patm. A diferença\nde cotas pode ser desprezada, bem como as perdas nos\nacidentes (conexões, registros etc.). O regime de escoamento é turbulento, dentro da zona totalmente rugosa (no\nqual o coeficiente de fricção só depende da razão entre a\nrugosidade e o diâmetro).\nNessas condições, se o comprimento L for aumentado\npara 4L, verifica-se que a(o)",
+    "options": [
+      {
+        "value": "A",
+        "text": "vazão na tubulação será reduzida pela metade."
+      },
+      {
+        "value": "B",
+        "text": "velocidade na tubulação não será alterada."
+      },
+      {
+        "value": "C",
+        "text": "vazão na tubulação não será alterada."
+      },
+      {
+        "value": "D",
+        "text": "velocidade na tubulação será duplicada."
+      },
+      {
+        "value": "E",
+        "text": "fator de fricção será alterado."
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 41,
+    "id": "Q3863770",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Sistemas Termomecânicos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Uma turbina a vapor, operando dentro de um ciclo de\nRankine, recebe fluido da caldeira com entalpia = 3.200 kJ/kg.\nA eficiência (isentrópica) da turbina é de 80%, e a entalpia\nda saída da turbina real é 2.200 kJ/kg.\nA entalpia na saída da turbina isentrópica associada vale,\nem kJ/kg,",
+    "options": [
+      {
+        "value": "A",
+        "text": "1.520"
+      },
+      {
+        "value": "B",
+        "text": "1.620"
+      },
+      {
+        "value": "C",
+        "text": "1.700"
+      },
+      {
+        "value": "D",
+        "text": "1.850"
+      },
+      {
+        "value": "E",
+        "text": "1.950"
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 42,
+    "id": "Q3863771",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Termodinâmica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Uma máquina térmica que segue o modelo de Carnot trabalha entre as temperaturas de 900 K (fonte quente) e\n300 K (fonte fria). A fonte quente libera cerca de 1.200 kJ\nde energia à substância de trabalho.\nO trabalho líquido produzido pela citada máquina vale,\nem kJ,",
+    "options": [
+      {
+        "value": "A",
+        "text": "500"
+      },
+      {
+        "value": "B",
+        "text": "600"
+      },
+      {
+        "value": "C",
+        "text": "800"
+      },
+      {
+        "value": "D",
+        "text": "1.200"
+      },
+      {
+        "value": "E",
+        "text": "1.400"
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 43,
+    "id": "Q3863772",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Mecânica dos Fluidos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Considere um tubo de raio R no qual escoa, em regime\nlaminar, um fluido Newtoniano.\nA razão do raio interno r pelo raio do tubo para a qual a\nvelocidade local v(r) é igual à velocidade média do escoamento é aproximadamente",
+    "options": [
+      {
+        "value": "A",
+        "text": "0,22"
+      },
+      {
+        "value": "B",
+        "text": "0,41"
+      },
+      {
+        "value": "C",
+        "text": "0,59"
+      },
+      {
+        "value": "D",
+        "text": "0,71"
+      },
+      {
+        "value": "E",
+        "text": "0,82"
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 44,
+    "id": "Q3863773",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Termodinâmica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Em um ciclo Brayton teórico, as seguintes informações\nforam coletadas:\n• Gás Perfeito, com cp = 1,0 kJ/(kg.K), constante;\n• Entrada no compressor: temperatura de 300 K;\n• Saída do compressor: temperatura de 550 K;\n• Entrada da turbina: 1.400 K; e\n• Saída da turbina: 700 K.\nCom essas informações, a eficiência térmica do ciclo vale",
+    "options": [
+      {
+        "value": "A",
+        "text": "52,9%"
+      },
+      {
+        "value": "B",
+        "text": "46,3%"
+      },
+      {
+        "value": "C",
+        "text": "55,2%"
+      },
+      {
+        "value": "D",
+        "text": "68,1%"
+      },
+      {
+        "value": "E",
+        "text": "37,8%"
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 45,
+    "id": "Q3863774",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Termodinâmica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Trocadores de Calor são equipamentos de uso industrial\npara aquecer ou resfriar correntes de fluidos sem misturá-las. A esse respeito, considere as afirmações a seguir.\nI - A diferença de temperaturas entre a entrada e a saída\nda corrente quente é sempre igual à diferença de temperaturas entre a entrada e a saída da corrente fria.\nII - A diferença de Temperatura Média Logarítmica não\npode ser substituída pela média aritmética entre as\ntemperaturas envolvidas.\nIII - Nos trocadores de calor, a corrente quente é sempre\nutilizada na carcaça do trocador, enquanto a corrente\nfria é sempre utilizada dentro dos tubos.\nEstá correto\nAPENAS\no que se afirma em",
+    "options": [
+      {
+        "value": "A",
+        "text": "I"
+      },
+      {
+        "value": "B",
+        "text": "II"
+      },
+      {
+        "value": "C",
+        "text": "III"
+      },
+      {
+        "value": "D",
+        "text": "I e II"
+      },
+      {
+        "value": "E",
+        "text": "II e III"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 46,
+    "id": "Q3863775",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Sistemas Fluidomecânicos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um engenheiro precisa selecionar um motor elétrico para\nacionar uma bomba centrífuga em um sistema de irrigação. O motor deve ter potência suficiente para fornecer a\nenergia hidráulica necessária ao fluido, compensando as\nperdas de eficiência da bomba. Essa bomba centrífuga\ndeve elevar uma vazão mássica de água de 10 kg/s a\numa altura manométrica total de 20 m. A eficiência total\nda bomba é de 80%, e a aceleração da gravidade é de\n10 m/s²\n.\nA potência elétrica necessária para acionar a bomba, em\nkW, é",
+    "options": [
+      {
+        "value": "A",
+        "text": "1,6"
+      },
+      {
+        "value": "B",
+        "text": "2,0"
+      },
+      {
+        "value": "C",
+        "text": "2,5"
+      },
+      {
+        "value": "D",
+        "text": "3,2"
+      },
+      {
+        "value": "E",
+        "text": "4,0"
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 47,
+    "id": "Q3863776",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Termodinâmica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um estudante de engenharia mecânica está aprendendo\nos quatro processos fundamentais que compõem o ciclo\nde uma usina termelétrica a vapor (Ciclo de Rankine):\nbombeamento, aquecimento, expansão e condensação.\nNo ciclo de Rankine ideal, que modela o funcionamento\nde usinas termelétricas a vapor, o processo de compressão do fluido de trabalho (água) ocorre em qual equipamento e sob quais condições termodinâmicas?",
+    "options": [
+      {
+        "value": "A",
+        "text": "Turbina, sob expansão isentrópica"
+      },
+      {
+        "value": "B",
+        "text": "Caldeira, sob aquecimento isobárico"
+      },
+      {
+        "value": "C",
+        "text": "Condensador, sob rejeição de calor isobárica"
+      },
+      {
+        "value": "D",
+        "text": "Bomba, sob compressão isentrópica"
+      },
+      {
+        "value": "E",
+        "text": "Reaquecedor, sob aquecimento isobárico"
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 48,
+    "id": "Q3863777",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Termodinâmica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um engenheiro projeta um atuador pneumático (sistema\npistão-cilindro) para uma linha de montagem. O sistema\ndeve realizar trabalho ao expandir o ar (gás ideal) para\nempurrar uma peça. Durante a expansão, o sistema é\naquecido para manter a pressão constante. Para essa solução, adotou-se o modelo de um gás ideal contido em\num cilindro com pistão que sofre uma expansão isobárica\nreversível a uma pressão constante de P = 200 kPa. O\nvolume inicial do gás é 0,5 m³\n, e o final, 1,5 m³\n. Durante\nesse processo, o gás recebe Q = 350 kJ de calor.\nQual é a variação da energia interna do gás durante essa\nexpansão, em kJ?",
+    "options": [
+      {
+        "value": "A",
+        "text": "-200"
+      },
+      {
+        "value": "B",
+        "text": "-150"
+      },
+      {
+        "value": "C",
+        "text": "50"
+      },
+      {
+        "value": "D",
+        "text": "150"
+      },
+      {
+        "value": "E",
+        "text": "200"
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 49,
+    "id": "Q3863778",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Termodinâmica,",
+      "Sistemas Termomecânicos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um engenheiro de manutenção precisa especificar a capacidade máxima de um chiller (refrigerador industrial) de\n5 kW para resfriar o fluido de corte de um centro de usinagem. O chiller deve operar no limite teórico (Ciclo de\nCarnot) entre a temperatura ambiente (fonte quente) e a\ntemperatura do fluido (fonte fria). Para isso, o engenheiro\nconsiderou um ciclo de refrigeração ideal (Ciclo de Carnot) que opera entre uma fonte fria a -23,15 °C e uma\nfonte quente a 26,85 °C.\nSe o refrigerador opera com uma potência de entrada de\n5 kW, qual é a taxa máxima de remoção de calor que o\nequipamento pode fornecer ao ambiente frio, em kW?",
+    "options": [
+      {
+        "value": "A",
+        "text": "25"
+      },
+      {
+        "value": "B",
+        "text": "30"
+      },
+      {
+        "value": "C",
+        "text": "45"
+      },
+      {
+        "value": "D",
+        "text": "50"
+      },
+      {
+        "value": "E",
+        "text": "60"
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 50,
+    "id": "Q3863779",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Mecânica dos Fluidos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um engenheiro precisa calcular a perda de carga em um trecho de um oleoduto. Nesse oleoduto, flui um óleo com viscosidade dinâmica de 0,5 Pa·s e densidade de 800 kg/m³\n, que\nescoa em regime laminar por uma tubulação horizontal de\ndiâmetro de 0,1 m e comprimento de 10 m. A velocidade\nmédia do escoamento é de 1,0 m/s.\nQual é a perda de carga devido ao atrito ao longo da tubulação, em metros?\nDado  g = 10m/s²",
+    "options": [
+      {
+        "value": "A",
+        "text": "1"
+      },
+      {
+        "value": "B",
+        "text": "2"
+      },
+      {
+        "value": "C",
+        "text": "4"
+      },
+      {
+        "value": "D",
+        "text": "8"
+      },
+      {
+        "value": "E",
+        "text": "16"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 51,
+    "id": "Q3863780",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Termodinâmica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um engenheiro está projetando um trocador de calor\n(casco e tubos) para resfriar óleo de um motor industrial.\nPara dimensionar a área de troca térmica necessária, ele\nprecisa primeiro calcular o Coeficiente Global de Transferência de Calor (U), que representa a resistência total à\ntransferência de calor. Nesse trocador, o calor passa por\nduas etapas principais de convecção, sendo a primeira\na convecção interna, do fluido interno para a parede do\ntubo, com coeficiente de 100 W/(m²\n·K), e a segunda a\nconvecção externa, da parede do tubo para o óleo externo, com coeficiente de 50 W/(m²\n·K).\nDesprezando-se a resistência térmica da própria parede do\ntubo (condução) e qualquer efeito de sujeira (incrustação),\no Coeficiente Global de Transferência de Calor (U) do trocador, em W/(m²\n·K), é",
+    "options": [
+      {
+        "value": "A",
+        "text": "33,33"
+      },
+      {
+        "value": "B",
+        "text": "66,66"
+      },
+      {
+        "value": "C",
+        "text": "73,50"
+      },
+      {
+        "value": "D",
+        "text": "147,00"
+      },
+      {
+        "value": "E",
+        "text": "150,66"
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 52,
+    "id": "Q3863781",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Termodinâmica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um engenheiro projeta a parede plana de um forno industrial com duas camadas X\n1\ne X\n2\nde refratários. A camada\nX\n1\ntem espessura de 0,05 m e condutividade térmica de\n1,0 W/(m.K). A camada X\n2\ntem espessura de 0,10 m e condutividade térmica de 0,5 W/(m.K). A temperatura da superfície externa da camada X\n1\n(lado quente) é de 100 °C, e a\nda superfície externa da camada X\n2\n(lado frio) é de 20 °C.\nA taxa de transferência de calor por unidade de área dessa parede composta, em W/m²\n, é",
+    "options": [
+      {
+        "value": "A",
+        "text": "160"
+      },
+      {
+        "value": "B",
+        "text": "320"
+      },
+      {
+        "value": "C",
+        "text": "480"
+      },
+      {
+        "value": "D",
+        "text": "640"
+      },
+      {
+        "value": "E",
+        "text": "800"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 53,
+    "id": "Q3863782",
+    "breadcrumbs": [
+      "Estatística",
+      "Principais distribuições de probabilidade,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um engenheiro monitora um processo de retífica de eixos com o Controle Estatístico de Processo. Um eixo produzido está dentro dos limites de especificação quando\nseu diâmetro está entre 49,98 mm e 50,02 mm. Os dados\nhistóricos indicam que o diâmetro dos eixos segue uma\ndistribuição normal, com média de 50,00 mm e desvio padrão de 0,01 mm.\nA porcentagem aproximada de eixos produzidos em que\nse espera obter um diâmetro dentro dos limites de especificação é",
+    "options": [
+      {
+        "value": "A",
+        "text": "68,2%"
+      },
+      {
+        "value": "B",
+        "text": "95,4%"
+      },
+      {
+        "value": "C",
+        "text": "99,7%"
+      },
+      {
+        "value": "D",
+        "text": "99,9%"
+      },
+      {
+        "value": "E",
+        "text": "100%"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 54,
+    "id": "Q3863783",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Sistemas Fluidomecânicos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um técnico em mecânica está realizando treinamento em\numa bomba centrífuga de um sistema de abastecimento\nde água. Ele identifica que o rotor (impulsor) está desgastado e que a voluta apresenta corrosão. O engenheiro\nresponsável explica a função de cada componente.\nO componente da bomba que é primariamente responsável\npor converter a alta velocidade do fluido (energia cinética)\nem aumento de pressão (energia de escoamento) é a(o)",
+    "options": [
+      {
+        "value": "A",
+        "text": "carcaça"
+      },
+      {
+        "value": "B",
+        "text": "eixo"
+      },
+      {
+        "value": "C",
+        "text": "rotor"
+      },
+      {
+        "value": "D",
+        "text": "selo mecânico"
+      },
+      {
+        "value": "E",
+        "text": "voluta"
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 55,
+    "id": "Q3863784",
+    "breadcrumbs": [
+      "Matemática",
+      "Probabilidade,",
+      "Estatística,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um engenheiro de qualidade inspeciona um lote de 100\npeças usinadas. Dentre essas peças, 5 apresentam defeito de acabamento superficial (D1), e 8, defeito dimensional (D2). Sabe-se que 2 peças apresentam ambos os\ndefeitos (D1 e D2).\nAo selecionar aleatoriamente uma peça desse lote, a probabilidade de que a peça selecionada apresente pelo menos um dos defeitos é",
+    "options": [
+      {
+        "value": "A",
+        "text": "0,05"
+      },
+      {
+        "value": "B",
+        "text": "0,08"
+      },
+      {
+        "value": "C",
+        "text": "0,11"
+      },
+      {
+        "value": "D",
+        "text": "0,13"
+      },
+      {
+        "value": "E",
+        "text": "0,15"
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 56,
+    "id": "Q3863785",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um engenheiro de soldagem precisa selecionar um processo para soldar tubulações na indústria, em que a qualidade do cordão (sem acabamento e sem contaminação)\né crítica. Em comparação com a soldagem por eletrodo\nrevestido, o processo TIG oferece vantagens significativas em termos de qualidade e controle.\nUma vantagem da soldagem TIG em relação à soldagem\npor arame revestido é que o",
+    "options": [
+      {
+        "value": "A",
+        "text": "TIG é o processo mais produtivo para soldagem de\nchapas grossas de aço carbono, devido à sua alta\ntaxa de deposição."
+      },
+      {
+        "value": "B",
+        "text": "eletrodo de tungstênio é consumível e contribui para\na formação do cordão de solda, sendo protegido pelo\ngás inerte"
+      },
+      {
+        "value": "C",
+        "text": "TIG é um processo de soldagem que utiliza um fluxo\ngranular para proteger o arco e a poça de fusão, semelhante ao arco submerso."
+      },
+      {
+        "value": "D",
+        "text": "processo TIG requer o uso de varetas de adição revestidas com fluxo para gerar uma camada de escória\nsobre o cordão, necessária para proteger o metal de\nsolda da oxidação durante o resfriamento."
+      },
+      {
+        "value": "E",
+        "text": "processo TIG é ideal para a soldagem de materiais\nreativos, como alumínio e magnésio, pois o gás inerte\nprotege a poça de fusão da contaminação atmosférica."
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 57,
+    "id": "Q3863786",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Sistemas Mecânicos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um engenheiro de manufatura precisa decidir como fabricar uma biela para um motor de alto desempenho. Ele\npode usiná-la (removendo material de um bloco) ou forjá-\n-la (conformando o metal).\nO processo de fabricação que utiliza forças compressivas\npara alterar a forma de um material, mantendo seu volume constante e melhorando suas propriedades mecânicas (como resistência e tenacidade) devido ao encruamento, é classificado como",
+    "options": [
+      {
+        "value": "A",
+        "text": "Conformação Mecânica, por meio de processos como\no forjamento e a laminação."
+      },
+      {
+        "value": "B",
+        "text": "Fresamento, por meio da remoção de material com\nmúltiplas arestas de corte."
+      },
+      {
+        "value": "C",
+        "text": "Furação, por meio da formação de furos cilíndricos\ncom brocas."
+      },
+      {
+        "value": "D",
+        "text": "Retífica por abrasão para um acabamento superficial\nde alta precisão."
+      },
+      {
+        "value": "E",
+        "text": "Torneamento, por meio da remoção de material com\nferramenta de ponta única."
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 58,
+    "id": "Q3863787",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Sistemas Mecânicos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um engenheiro precisa garantir que o torno CNC selecionado para uma operação de desbaste pesado tenha\npotência de motor suficiente. Em uma operação de torneamento, a velocidade de corte é de 150 m/min, o avanço é de 0,2 mm/rotação, e a profundidade de corte é de\n2,0 mm. A pressão específica de corte do material é de\n2000 N/mm²\n.\nA potência de corte necessária para essa operação, em\nkW, é",
+    "options": [
+      {
+        "value": "A",
+        "text": "0,5"
+      },
+      {
+        "value": "B",
+        "text": "1,0"
+      },
+      {
+        "value": "C",
+        "text": "1,5"
+      },
+      {
+        "value": "D",
+        "text": "2,0"
+      },
+      {
+        "value": "E",
+        "text": "2,5"
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 59,
+    "id": "Q3863788",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Termodinâmica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um engenheiro de projeto está avaliando o desempenho\nteórico (ideal) de uma turbina a gás do ciclo de Brayton. A\neficiência desse ciclo depende fundamentalmente da razão de pressão do compressor. Esse engenheiro considerou um modelo ideal de ciclo para representar o funcionamento de turbinas a gás, que operam com uma razão de\npressão igual a 128. O ar (considerado um gás ideal, com\nrazão entre os calores específicos, a pressão e o volume\nconstantes, de 1,4) entra no compressor a 300 K.\nA eficiência térmica desse ciclo é",
+    "options": [
+      {
+        "value": "A",
+        "text": "50%"
+      },
+      {
+        "value": "B",
+        "text": "60%"
+      },
+      {
+        "value": "C",
+        "text": "75%"
+      },
+      {
+        "value": "D",
+        "text": "80%"
+      },
+      {
+        "value": "E",
+        "text": "85%"
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 60,
+    "id": "Q3863789",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Mecânica dos Sólidos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "O critério de falha de Tresca (Teoria da máxima tensão\ncisalhante) estabelece que a tensão cisalhante máxima\natuante em uma estrutura deve ser menor ou igual à tensão cisalhante máxima atuante em um corpo de prova de\nmesmo material da estrutura sob ensaio uniaxial. Sejam\n1\ne\n﻿\n2\nas tensões principais de sinais opostos atuantes\nem um ponto da estrutura sujeito a um estado plano de\ntensões e\nY\na tensão normal atuante em um corpo de\nprova do mesmo material da estrutura e submetido a um\nensaio uniaxial.\nA expressão que representa o critério de falha de Tresca é",
+    "options": [
+      {
+        "value": "A",
+        "text": ""
+      },
+      {
+        "value": "B",
+        "text": ""
+      },
+      {
+        "value": "C",
+        "text": ""
+      },
+      {
+        "value": "D",
+        "text": ""
+      },
+      {
+        "value": "E",
+        "text": ""
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 61,
+    "id": "Q3863790",
+    "breadcrumbs": [
+      "Física",
+      "Conteúdos Básicos,",
+      "Dinâmica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "A Segunda Lei de Newton estabelece que, se um conjunto\nde forças, cuja resultante não é nula, for aplicado a uma\npartícula, esta estará sujeita a uma aceleração proporcional à resultante das forças.\nAssim, quando duas forças perpendiculares entre si de\nvalores 30 N e 40 N são aplicadas a uma partícula de\nmassa igual a 2,0 kg, a aceleração, expressa em m/s²\n, a\nque a partícula estará sujeita vale",
+    "options": [
+      {
+        "value": "A",
+        "text": "2,5"
+      },
+      {
+        "value": "B",
+        "text": "25"
+      },
+      {
+        "value": "C",
+        "text": "100"
+      },
+      {
+        "value": "D",
+        "text": "250"
+      },
+      {
+        "value": "E",
+        "text": "1.250"
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 62,
+    "id": "Q3863791",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Mecânica dos Sólidos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "As frequências naturais de uma estrutura são importantes\npara determinar eventuais ressonâncias.\nNo caso de uma viga biapoiada sem amortecimento, suas\nfrequências naturais\nNÃO\ndependem do(a)",
+    "options": [
+      {
+        "value": "A",
+        "text": "massa da viga"
+      },
+      {
+        "value": "B",
+        "text": "geometria da viga"
+      },
+      {
+        "value": "C",
+        "text": "condição de contorno da viga"
+      },
+      {
+        "value": "D",
+        "text": "carregamento a que a viga está sujeita"
+      },
+      {
+        "value": "E",
+        "text": "módulo de elasticidade do material da viga"
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 63,
+    "id": "Q3863792",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Mecânica dos Sólidos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Na superfície de um eixo são colados dois extensômetros elétricos nas direções x e y a 45\no\ncom a direção longitudinal do\neixo, conforme mostrado na Figura.\nNessa configuração, quando o eixo é submetido a um torque, T, as deformações específicas medidas pelos extensômetros\nnas direções x e y são\ne\n, respectivamente.\nCom relação às deformações específicas, depreende-se que",
+    "options": [
+      {
+        "value": "A",
+        "text": "é positiva eé negativa"
+      },
+      {
+        "value": "B",
+        "text": "é negativa eé positiva"
+      },
+      {
+        "value": "C",
+        "text": "é nula eé nula."
+      },
+      {
+        "value": "D",
+        "text": "ambas são positivas"
+      },
+      {
+        "value": "E",
+        "text": "ambas são negativas"
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 64,
+    "id": "Q3863793",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Mecânica dos Sólidos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "A seção transversal retangular de uma viga sob flexão está sujeita à ação de dois momentos fletores, My\n e Mz\n, sendo y e\nz os eixos principais de inércia da seção, conforme mostrado na Figura.\nAs tensões normais,\n, atuantes nos pontos A, B e C da seção transversal são, respectivamente,",
+    "options": [
+      {
+        "value": "A",
+        "text": "nula, de tração e de compressão"
+      },
+      {
+        "value": "B",
+        "text": "nula, nula e de tração"
+      },
+      {
+        "value": "C",
+        "text": "de tração, nula e de compressão"
+      },
+      {
+        "value": "D",
+        "text": "de compressão, nula e de tração"
+      },
+      {
+        "value": "E",
+        "text": "de compressão, nula e de compressão"
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 65,
+    "id": "Q3863794",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Materiais de Construção Mecânica,",
+      "Mecânica dos Sólidos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Uma barra de alumínio com seção transversal de 100 cm²\nestá sujeita a uma carga axial de tração de 14 kN.\nSe o módulo de elasticidade do alumínio é de 70 GPa, a\ndeformação específica em um ponto da barra, na direção\nlongitudinal, é de",
+    "options": [
+      {
+        "value": "A",
+        "text": "1,0 x 10-⁵"
+      },
+      {
+        "value": "B",
+        "text": "2,0 x 10-⁵"
+      },
+      {
+        "value": "C",
+        "text": "1,0 x 10-⁴"
+      },
+      {
+        "value": "D",
+        "text": "2,0 x 10-⁴"
+      },
+      {
+        "value": "E",
+        "text": "4,0 x 10-⁴"
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 66,
+    "id": "Q3863795",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Sistemas Mecânicos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "As engrenagens helicoidais são amplamente utilizadas\nnos sistemas de transmissão por apresentarem vantagens como transmissão progressiva de esforços e baixo\nnível de ruído.\nEssas engrenagens transmitem aos eixos aos quais estão\nrigidamente acopladas solicitações de",
+    "options": [
+      {
+        "value": "A",
+        "text": "torção, apenas"
+      },
+      {
+        "value": "B",
+        "text": "flexão, apenas"
+      },
+      {
+        "value": "C",
+        "text": "flexão combinada com torção, apenas"
+      },
+      {
+        "value": "D",
+        "text": "flexão combinada com carga axial, apenas"
+      },
+      {
+        "value": "E",
+        "text": "flexão combinada com carga axial e torção"
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 67,
+    "id": "Q3863796",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Sistemas Mecânicos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Considere o sistema mecânico, mostrado na Figura, constituído por uma barra rígida de massa m rotulada em seu centro\nde massa G e uma mola de rigidez k.\nDesejando-se diminuir a frequência natural de vibração do sistema em 40%, a rigidez da mola deve ser",
+    "options": [
+      {
+        "value": "A",
+        "text": "aumentada em 36%"
+      },
+      {
+        "value": "B",
+        "text": "aumentada em 40%"
+      },
+      {
+        "value": "C",
+        "text": "reduzida em 40%"
+      },
+      {
+        "value": "D",
+        "text": "aumentada em 60%"
+      },
+      {
+        "value": "E",
+        "text": "reduzida em 64%"
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 68,
+    "id": "Q3863797",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Mecânica dos Sólidos,",
+      "Sistemas Mecânicos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Em um mecanismo de quatro barras, uma das barras conduzidas possui momento de inércia em relação ao centro\nde massa G de 0,5 kg.m²\n.\nSe a barra está sob ação das duas forças indicadas na\nFigura, o valor de sua aceleração angular, expressa em\nrad/s², é",
+    "options": [
+      {
+        "value": "A",
+        "text": "10"
+      },
+      {
+        "value": "B",
+        "text": "20"
+      },
+      {
+        "value": "C",
+        "text": "30"
+      },
+      {
+        "value": "D",
+        "text": "40"
+      },
+      {
+        "value": "E",
+        "text": "50"
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 69,
+    "id": "Q3863798",
+    "breadcrumbs": [
+      "Engenharia Mecânica",
+      "Mecânica dos Sólidos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um motor elétrico, modelado como sistema de um grau\nde liberdade (deslocamento vertical x), é apoiado sobre\numa base elástica de rigidez k e está sujeito a um forçamento harmônico F (t) = F\no\nsen (\nt), conforme mostrado\nna Figura.\nO motor possui um seletor de velocidades que o permite\noperar em 4 rotações distintas, tais que n\n1\n< n\n2\n< n\n3\n< n\n4\n.\nA frequência natural do sistema tem seu valor entre n\n2\ne\nn\n3\n, e a amplitude do movimento vibratório do motor é a\nmesma nas rotações n\n2\ne n\n3\n.\nAs menores amplitudes do deslocamento vibratório do\nmotor, desconsiderando-se qualquer efeito dissipativo no\nsistema, ocorrem nas rotações",
+    "options": [
+      {
+        "value": "A",
+        "text": "n1e n2"
+      },
+      {
+        "value": "B",
+        "text": "n1e n3"
+      },
+      {
+        "value": "C",
+        "text": "n1e n4"
+      },
+      {
+        "value": "D",
+        "text": "n2e n4"
+      },
+      {
+        "value": "E",
+        "text": "n3e n4"
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 70,
+    "id": "Q3863799",
+    "breadcrumbs": [
+      "Física",
+      "Dinâmica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico |",
+    "support_text": "",
+    "enunciation": "Um operador deve elevar uma carga P de 500 N a uma aceleração de 0,8 m/s²\n utilizando um sistema de cabo e roldanas,\nconforme mostrado na Figura.\nNessas condições, a força F, exercida pelo operador, necessária para essa elevação, expressa em N, é de\nDado\ng = 10 m/s²",
+    "options": [
+      {
+        "value": "A",
+        "text": "45"
+      },
+      {
+        "value": "B",
+        "text": "250"
+      },
+      {
+        "value": "C",
+        "text": "270"
+      },
+      {
+        "value": "D",
+        "text": "400"
+      },
+      {
+        "value": "E",
+        "text": "500"
+      }
+    ],
+    "correct_answer": null
+  },
+
+  {
+    "numero_questao": 1,
+    "id": "Q3862500",
+    "breadcrumbs": [
+      "Português",
+      "Interpretação de Textos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "O texto afirma que o comportamento de consumo impulsivo",
+    "options": [
+      {
+        "value": "A",
+        "text": "afeta atualmente cerca de 71,44 milhões de pessoas\nno Brasil."
+      },
+      {
+        "value": "B",
+        "text": "leva a sentimentos relacionados à culpa, à vergonha e\nao fracasso."
+      },
+      {
+        "value": "C",
+        "text": "é intensificado pelo uso das mídias sociais e pela\ncomparação social."
+      },
+      {
+        "value": "D",
+        "text": "aparece como consequência da falta de autocontrole\ne do endividamento."
+      },
+      {
+        "value": "E",
+        "text": "gera endividamentos quando se desconsideram as\nconsequências financeiras."
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 2,
+    "id": "Q3862501",
+    "breadcrumbs": [
+      "Português",
+      "Interpretação de Textos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Uma das estratégias argumentativas usadas pela autora é",
+    "options": [
+      {
+        "value": "A",
+        "text": "concluir o texto ilustrando os aspectos ressaltados no\ntítulo — os fatores comportamentais e os efeitos psicológicos do endividamento."
+      },
+      {
+        "value": "B",
+        "text": "apresentar as causas psicológicas e socioeconômicas\ndo endividamento antes de suas consequências."
+      },
+      {
+        "value": "C",
+        "text": "detalhar os aspectos socioeconômicos atrelados ao\nendividamento antes de relacioná-los aos aspectos\npsicológicos."
+      },
+      {
+        "value": "D",
+        "text": "exemplificar os comportamentos impulsivos como forma de evidenciar as consequências do endividamento."
+      },
+      {
+        "value": "E",
+        "text": "iniciar o texto com um detalhamento dos fatores causadores do endividamento."
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 3,
+    "id": "Q3862502",
+    "breadcrumbs": [
+      "Português",
+      "Interpretação de Textos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Ao usar a palavra “holística” na conclusão do texto, a autora indica que o endividamento deve ser observado de\nmaneira que se",
+    "options": [
+      {
+        "value": "A",
+        "text": "apresentem os aspectos sociais como geradores dos\naspectos psicológicos."
+      },
+      {
+        "value": "B",
+        "text": "enfoquem os aspectos individuais da pessoa endividada."
+      },
+      {
+        "value": "C",
+        "text": "relacionem globalmente os aspectos sociais e individuais envolvidos."
+      },
+      {
+        "value": "D",
+        "text": "levantem os aspectos sociais e individuais como solução para o problema das dívidas."
+      },
+      {
+        "value": "E",
+        "text": "ignorem os aspectos macrossociais que levam à produção de dívidas."
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 4,
+    "id": "Q3862503",
+    "breadcrumbs": [
+      "Português",
+      "Interpretação de Textos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Na organização do texto, os parágrafos 2, 4 e 5 têm a\nfunção de",
+    "options": [
+      {
+        "value": "A",
+        "text": "detalhar fatores responsáveis pelo endividamento das\npessoas."
+      },
+      {
+        "value": "B",
+        "text": "relatar casos recentes dos fatores do endividamento\nbancário."
+      },
+      {
+        "value": "C",
+        "text": "introduzir uma proposta de solução do problema do\nendividamento."
+      },
+      {
+        "value": "D",
+        "text": "exemplificar a questão da inadimplência com o relato\nde casos particulares."
+      },
+      {
+        "value": "E",
+        "text": "atribuir à mídia a culpa pelo comportamento irresponsável das pessoas."
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 5,
+    "id": "Q3862504",
+    "breadcrumbs": [
+      "Português",
+      "Interpretação de Textos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "De acordo com a ordem das ideias apresentadas no texto, observa-se que, depois de afirmar que podem ocorrer,\ncomo efeito psicológico do endividamento, sentimentos\nrelacionados à culpa, à vergonha e ao fracasso, o texto\nexplica que",
+    "options": [
+      {
+        "value": "A",
+        "text": "as ferramentas relacionadas às mídias sociais podem desempenhar um papel importante na criação de\ndesejos e necessidades, gerando gastos acima das\npossibilidades financeiras das pessoas."
+      },
+      {
+        "value": "B",
+        "text": "as formas de lidar com as dívidas envolvem o desenvolvimento de hábitos de consumo conscientes, a elaboração de um plano de pagamento de dívidas e a\ncriação de um fundo de emergência."
+      },
+      {
+        "value": "C",
+        "text": "a quantidade da população brasileira que vive em situação de inadimplência, de acordo com o Mapa da\nInadimplência e Negociações de Dívidas da Serasa, é\nde quase a metade."
+      },
+      {
+        "value": "D",
+        "text": "o estresse financeiro relacionado à dificuldade de pagar as dívidas pode levar a problemas de sono, irritabilidade, baixa autoestima, depressão e dificuldades\nde concentração."
+      },
+      {
+        "value": "E",
+        "text": "o tipo de socialização econômica que as crianças e\nos jovens recebem varia, e isso pode fazer diferença\npara eles se endividarem quando adultos."
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 6,
+    "id": "Q3862505",
+    "breadcrumbs": [
+      "Português",
+      "Sintaxe,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "A frase em que a concordância do verbo em destaque está\nde acordo com a norma-padrão da Língua Portuguesa é:",
+    "options": [
+      {
+        "value": "A",
+        "text": "Ao analisar os fatores causadores do endividamento\ncrônico da população brasileira,identifica-se desvios\ncomportamentais e psicológicos."
+      },
+      {
+        "value": "B",
+        "text": "Faltamaos consumidores, que são altamente influenciados pelas mídias sociais, um planejamento de suas\nfinanças."
+      },
+      {
+        "value": "C",
+        "text": "Em inúmeros países,responsabiliza-seas redes sociais por investir massivamente no estímulo do consumo, resultando em uma sociedade endividada."
+      },
+      {
+        "value": "D",
+        "text": "Ao promover uma educação financeira da população,evita-se os efeitos psicológicos nocivos do endividamento, como estresse e ansiedade em altos níveis."
+      },
+      {
+        "value": "E",
+        "text": "Fica evidente, quando seanalisamos índices de\ninadimplência no Brasil, que é necessário investigar a\ninfluência que a pressão pelo consumo exerce sobre\nos cidadãos."
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 7,
+    "id": "Q3862506",
+    "breadcrumbs": [
+      "Português",
+      "Interpretação de Textos,",
+      "Sintaxe,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "No trecho “As pessoas podem se sentir inadequadas ou\nfracassadas por não conseguirem lidar com suas finanças adequadamente. Esses sentimentos podem afetar\nnegativamente a autoestima e a autoconfiança, dificultando a busca por ajuda e soluções para o problema,\nalém de enfraquecer a saúde mental e levar a um comportamento de enfrentamento que é prejudicial à saúde.”\n(7o\n parágrafo), a relação lógica entre os dois períodos\npode ser expressa por",
+    "options": [
+      {
+        "value": "A",
+        "text": "mas"
+      },
+      {
+        "value": "B",
+        "text": "desde que"
+      },
+      {
+        "value": "C",
+        "text": "desse modo"
+      },
+      {
+        "value": "D",
+        "text": "embora"
+      },
+      {
+        "value": "E",
+        "text": "para que"
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 8,
+    "id": "Q3862507",
+    "breadcrumbs": [
+      "Português",
+      "Crase,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "O uso do sinal indicativo de crase, nas palavras em destaque, está de acordo com a norma-padrão da Língua Portuguesa em:",
+    "options": [
+      {
+        "value": "A",
+        "text": "A liberação excessiva de crédito tem levado a populaçãoàuma situação financeira delicada."
+      },
+      {
+        "value": "B",
+        "text": "As políticas públicas devem voltar-seàredução do\nendividamento das famílias."
+      },
+      {
+        "value": "C",
+        "text": "O aumento dos preços levou muitas famíliasàgastar\nmais do que podiam."
+      },
+      {
+        "value": "D",
+        "text": "O governo tem procurado implementar medidas de\napoio financeiro anteàsituação de endividamento\ncrescente."
+      },
+      {
+        "value": "E",
+        "text": "Os consumidores recorremàempréstimos para tentar\nresolver seus problemas."
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 9,
+    "id": "Q3862508",
+    "breadcrumbs": [
+      "Comunicação Social",
+      "Comunicação Pública na Comunicação Social,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "De acordo com o Manual de Redação da Presidência da\nRepública, o atributo da precisão",
+    "options": [
+      {
+        "value": "A",
+        "text": "articula-se à dispensa de estratégias de revisão de\ntextos oficiais."
+      },
+      {
+        "value": "B",
+        "text": "opõe-se ao princípio da clareza na construção de textos oficiais."
+      },
+      {
+        "value": "C",
+        "text": "refere-se à substituição da linguagem técnica pela linguagem comum na escrita de textos oficiais."
+      },
+      {
+        "value": "D",
+        "text": "relaciona-se ao cuidado de reconhecer os conhecimentos do leitor na elaboração de textos oficiais."
+      },
+      {
+        "value": "E",
+        "text": "vincula-se à necessidade do emprego de sinonímias\npara fins estilísticos na produção de textos oficiais."
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 10,
+    "id": "Q3862509",
+    "breadcrumbs": [
+      "Português",
+      "Ortografia,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "No texto aparecem palavras como “autocontrole”,\n“autoestima” e “autoconfiança”. Segundo o Novo Acordo\nOrtográfico, estão também corretamente grafadas sem\nhífen as palavras:",
+    "options": [
+      {
+        "value": "A",
+        "text": "autoacusação e autooxidante"
+      },
+      {
+        "value": "B",
+        "text": "autocarro e autoônibus"
+      },
+      {
+        "value": "C",
+        "text": "autociclo e autohemoterapia"
+      },
+      {
+        "value": "D",
+        "text": "autoagressão e autossuficiente"
+      },
+      {
+        "value": "E",
+        "text": "autobservação e autorregulamentação"
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 11,
+    "id": "Q3862510",
+    "breadcrumbs": [
+      "Inglês",
+      "Interpretação de texto | Reading comprehension,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "The main purpose of the text is to",
+    "options": [
+      {
+        "value": "A",
+        "text": "argue that customers should cultivate better buying\nhabits so that their debt levels decrease and they\ncan become eligible to receive credit from banking\ninstitutions."
+      },
+      {
+        "value": "B",
+        "text": "emphasize the need for more incisive measures to be\ntaken by the government to curb the rise in popular\ndebt related to monthly household purchases."
+      },
+      {
+        "value": "C",
+        "text": "illustrate how grocery shopping data can promote\ninclusion by providing insights into the financial health\nof individuals without a formal credit history"
+      },
+      {
+        "value": "D",
+        "text": "protest against the use of supermarket customers’\npersonal data by banks and other credit institutions."
+      },
+      {
+        "value": "E",
+        "text": "report on the recent increase in debt among\nshopping center customers, due to habits that indicate\nconsumerism."
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 12,
+    "id": "Q3862511",
+    "breadcrumbs": [
+      "Inglês",
+      "Pronomes | Pronouns,",
+      "Interpretação de texto | Reading comprehension,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "In the excerpt of paragraph 1, “Globally, 1.4 billion adults\nhave no access to formal financial services because\nthey\nlack a credit history”, the pronoun\nthey\nrefers to",
+    "options": [
+      {
+        "value": "A",
+        "text": "formal financial services"
+      },
+      {
+        "value": "B",
+        "text": "1.4 billion adults"
+      },
+      {
+        "value": "C",
+        "text": "credit history"
+      },
+      {
+        "value": "D",
+        "text": "globally"
+      },
+      {
+        "value": "E",
+        "text": "access"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 13,
+    "id": "Q3862512",
+    "breadcrumbs": [
+      "Inglês",
+      "Palavras conectivas | Connective words,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "In the fragment of paragraph 2, “this represents\nnot just\na\nmoral imperative,\nbut also\na major opportunity to unlock a\nnew and largely untapped market”, the linking words\nnot\njust\n…\nbut also\nindicate a(an)",
+    "options": [
+      {
+        "value": "A",
+        "text": "absolute alternative"
+      },
+      {
+        "value": "B",
+        "text": "brief comparison"
+      },
+      {
+        "value": "C",
+        "text": "clear contrast"
+      },
+      {
+        "value": "D",
+        "text": "deep consequence"
+      },
+      {
+        "value": "E",
+        "text": "emphatic addition"
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 14,
+    "id": "Q3862513",
+    "breadcrumbs": [
+      "Inglês",
+      "Vocabulário | Vocabulary,",
+      "Sinônimos | Synonyms,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "In the section of paragraph 3 “These four\nkey\ncharacteristics highlight why grocery data is so insightful\nfor credit scoring people with no credit history”, the term\nkey\ncan be substituted, with no change in meaning, by",
+    "options": [
+      {
+        "value": "A",
+        "text": "important"
+      },
+      {
+        "value": "B",
+        "text": "casual"
+      },
+      {
+        "value": "C",
+        "text": "peripheral"
+      },
+      {
+        "value": "D",
+        "text": "unusual"
+      },
+      {
+        "value": "E",
+        "text": "minor"
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 15,
+    "id": "Q3862514",
+    "breadcrumbs": [
+      "Inglês",
+      "Interpretação de texto | Reading comprehension,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "In paragraph 5, the sentence “Financial inclusion has\nremained out of reach for far too many, for far too long”\nmeans that",
+    "options": [
+      {
+        "value": "A",
+        "text": "for many years, a large number of people have\nremained unable to access affordable credit."
+      },
+      {
+        "value": "B",
+        "text": "in a long time, banks and governmental administration\nwere unable to collaborate systematically."
+      },
+      {
+        "value": "C",
+        "text": "many people have not been interested in becoming\neligible for low-income credit access programs lately."
+      },
+      {
+        "value": "D",
+        "text": "despite the new technology, most people do not have\naccess to e-commerce, because they are in debt."
+      },
+      {
+        "value": "E",
+        "text": "the increase in the credit card eligibility has\ncontributed to higher profits for financial institutions."
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 16,
+    "id": "Q3862515",
+    "breadcrumbs": [
+      "Gestão de Pessoas",
+      "Comportamento de Pessoas nas Organizações,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "As técnicas e boas práticas adotadas pelas organizações\nno contexto do trabalho à distância (teletrabalho) afetam o\ncomportamento organizacional, principalmente através de\nsua influência na identificação organizacional, um construto que mede o nível de conexão afetiva e cognitiva entre o trabalhador e a organização.\nNa relação entre os elementos do teletrabalho e a identificação organizacional, verifica-se que",
+    "options": [
+      {
+        "value": "A",
+        "text": "uma boa relação do teletrabalhador com o gestor, baseada em alta confiança e alto controle, afeta positivamente a identificação organizacional."
+      },
+      {
+        "value": "B",
+        "text": "o suporte material é suficiente para uma boa identificação organizacional nas práticas do teletrabalho, e\nmais relevante do que o suporte social e simbólico"
+      },
+      {
+        "value": "C",
+        "text": "a intensidade do teletrabalho não afeta o nível de\nidentificação organizacional, independentemente do\nsentido que o teletrabalhador atribui às práticas da organização."
+      },
+      {
+        "value": "D",
+        "text": "a força da identificação organizacional aumenta,\nquando as práticas e arranjos do teletrabalho desfavorecem a sensação de pertencimento ao grupo e a\ndespersonalização."
+      },
+      {
+        "value": "E",
+        "text": "normas claras e suporte organizacional adequado\nafetam positivamente a identificação organizacional,\npois contribuem para o sentimento de confiança."
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 17,
+    "id": "Q3862516",
+    "breadcrumbs": [
+      "Gestão de Pessoas",
+      "Comportamento de Pessoas nas Organizações,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Um funcionário de um banco é emocionalmente instável,\nincapaz de despertar muito entusiasmo ou interesse em\nseus subordinados. Sua consciência sobre suas próprias\nemoções e as emoções dos outros é quase nula.\nNormalmente reage de forma exagerada aos problemas.\nEle não entende por que seus subordinados ficam perturbados com ele.\nEssa descrição caracteriza um funcionário que possui\nbaixa",
+    "options": [
+      {
+        "value": "A",
+        "text": "dissonância emocional"
+      },
+      {
+        "value": "B",
+        "text": "autoconcordância"
+      },
+      {
+        "value": "C",
+        "text": "autoavaliação básica"
+      },
+      {
+        "value": "D",
+        "text": "habilidade conceitual"
+      },
+      {
+        "value": "E",
+        "text": "inteligência emocional"
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 18,
+    "id": "Q3862517",
+    "breadcrumbs": [
+      "Engenharia de Software",
+      "Processos de Software - Desenvolvimento Ágil,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Em um time ágil utilizando\nScrum\n, uma nova\nSprint\nfoi iniciada com o objetivo de entregar alguns relatórios importantes para a gestão de contas de um banco comercial.\nNo terceiro dia da\nSprint\n, uma\nDeveloper\nassumiu a tarefa,\nplanejada para quatro horas, de integrar uma consulta a\num serviço externo, para a qual precisava de credenciais\nde autenticação no serviço. Durante o dia, os responsáveis por esse serviço não responderam aos seus pedidos\npela credencial, o que estava acertado de ser feito com\npresteza, em até trinta minutos. Com isso, a tarefa não\npôde ser completada no dia.\nDe acordo com as práticas do\nScrum\n, além de outras\nações possíveis, é essencial",
+    "options": [
+      {
+        "value": "A",
+        "text": "ajustar oProduct Backlogpara incluir o atraso."
+      },
+      {
+        "value": "B",
+        "text": "devolver a tarefa no fim do dia para oScrum Master."
+      },
+      {
+        "value": "C",
+        "text": "identificar o impedimento no próximoDaily Scrum."
+      },
+      {
+        "value": "D",
+        "text": "informar oProduct Ownersobre o problema"
+      },
+      {
+        "value": "E",
+        "text": "registrar o ocorrido na próximaSprint Review."
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 19,
+    "id": "Q3862518",
+    "breadcrumbs": [
+      "Gerência de Projetos",
+      "Conceitos básicos no Gerenciamento de Projetos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Ao monitorar o uso do seu aplicativo para\nsmartphones\n,\num banco digital percebeu que havia muitas reclamações\nde usuários quanto à facilidade de realizar algumas tarefas comuns. Com o objetivo de resolver esse problema,\nfoi constituído um time de\nDesign Thinking\n.\nO time resolveu basear seu processo de trabalho na técnica do duplo diamante, sugerida pelo\nDesign Council\ndo\nReino Unido, que propõe",
+    "options": [
+      {
+        "value": "A",
+        "text": "divergir e convergir em busca de uma visão do problema e depois divergir e convergir em busca de uma\nsolução."
+      },
+      {
+        "value": "B",
+        "text": "divergir para buscar ideias brilhantes e convergir para\nbuscar soluções brilhantes."
+      },
+      {
+        "value": "C",
+        "text": "produzir duas propostas de alto valor agregado para\nescolha do cliente."
+      },
+      {
+        "value": "D",
+        "text": "produzir, ao mesmo tempo, maior valor para o cliente\ne para o fornecedor."
+      },
+      {
+        "value": "E",
+        "text": "produzir uma solução bruta, protótipo, e, a seguir, uma\nsolução lapidada, final."
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 20,
+    "id": "Q3862519",
+    "breadcrumbs": [
+      "Conhecimentos Bancários",
+      "Estatística descritiva (análise exploratória de dados),"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "As práticas de sustentabilidade podem estar presentes\nem organizações do setor bancário sob as formas de concessão de crédito, oferta de produtos, gestão de resíduos\ne reformulação de processos, entre outros.\nUma das práticas de finanças sustentáveis que se destaca é o crédito responsável, que envolve o",
+    "options": [
+      {
+        "value": "A",
+        "text": "uso mais eficiente de energia e de materiais, em especial o de papel, a fim de reduzir os custos econômicos\ne os impactos ambientais."
+      },
+      {
+        "value": "B",
+        "text": "conjunto de controles, políticas e processos para a\nproteção das informações dos clientes nos seus aspectos de confidencialidade, integridade e disponibilidade."
+      },
+      {
+        "value": "C",
+        "text": "financiamento e o empréstimo de valores apropriados,\ntaxas razoáveis, prazos adequados e aconselhamento financeiro, considerando-se a capacidade de pagamento do cliente."
+      },
+      {
+        "value": "D",
+        "text": "investimento em fundos socialmente responsáveis,\nque possuem em suas carteiras somente ações de\nempresas geridas de acordo com as melhores práticas de governança corporativa."
+      },
+      {
+        "value": "E",
+        "text": "empréstimo de pequenos valores para um público de\nbaixa renda, geralmente, sem acesso às linhas de\ncrédito tradicionais, que são concedidas a grupos,\ncom amortizações semanais e com prazo de um ano."
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 21,
+    "id": "Q3862520",
+    "breadcrumbs": [
+      "Direito Digital",
+      "Lei nº 13.709 de 2018 - Lei Geral de Proteção de Dados Pessoais (LGPD),"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "A Lei Geral de Proteção de Dados Pessoais (LGPD) do\nBrasil dispõe sobre o tratamento de dados pessoais, com\no objetivo de proteger os direitos fundamentais de liberdade e de privacidade e o livre desenvolvimento da personalidade da pessoa natural. As atividades de tratamento de\ndados pessoais deverão observar a boa-fé e os princípios\nde proteção de dados pessoais elencados na LGPD. Um\ndesses princípios implica a limitação do tratamento ao mínimo necessário para a realização de suas finalidades,\ncom abrangência dos dados pertinentes, proporcionais e\nnão excessivos em relação às finalidades do tratamento\nde dados.\nEsse é o princípio da",
+    "options": [
+      {
+        "value": "A",
+        "text": "adequação"
+      },
+      {
+        "value": "B",
+        "text": "finalidade"
+      },
+      {
+        "value": "C",
+        "text": "necessidade"
+      },
+      {
+        "value": "D",
+        "text": "prevenção"
+      },
+      {
+        "value": "E",
+        "text": "transparência"
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 22,
+    "id": "Q3862521",
+    "breadcrumbs": [
+      "Segurança da Informação",
+      "Criptografia,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Os mecanismos de segurança são utilizados para implementar serviços de segurança. Um mecanismo pode\noperar por conta própria ou em conjunto com outros para\nfornecer um serviço específico. Um dos principais mecanismos de segurança usa algoritmos matemáticos para\ntransformar os dados em um código secreto e, subsequentemente, permite a recuperação dos dados através\nde um algoritmo e um ou mais segredos.\nEsse mecanismo de segurança é o de",
+    "options": [
+      {
+        "value": "A",
+        "text": "assinatura digital"
+      },
+      {
+        "value": "B",
+        "text": "cifragem de dados simétrica"
+      },
+      {
+        "value": "C",
+        "text": "resumo de mensagem"
+      },
+      {
+        "value": "D",
+        "text": "certificação de chave pública"
+      },
+      {
+        "value": "E",
+        "text": "certificação de carimbo de tempo"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 23,
+    "id": "Q3862522",
+    "breadcrumbs": [
+      "Direito do Trabalho",
+      "Das relações laborais,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "A Caixa tem o compromisso permanente com o cumprimento das leis, das normas e dos regulamentos internos\ne externos que regem a Instituição, entendendo que o\nenfrentamento de atitudes de assédio representa um dos\nmaiores desafios para a promoção de ambientes laborais\nsaudáveis e respeitosos.\nConsidere a situação hipotética a seguir.\nEm uma manhã, uma funcionária, ao abrir o grupo de\nmensagens da equipe de trabalho, percebeu que um colega havia postado mensagens depreciativas, atribuindo\na ela apelidos pejorativos. A situação, ainda que constrangedora, não a surpreendeu, uma vez que o colega já havia espalhado rumores e boatos ofensivos a seu respeito.\nAliás, já era até mesmo habitual que o colega criticasse a\nsua vida pessoal e a sua aparência física, em público e no\nprivado. A funcionária resolveu, então, informar-se sobre\nas diretrizes da empresa a respeito do enfrentamento de\ncondutas de assédio moral e sexual no trabalho.\nUma situação como a descrita",
+    "options": [
+      {
+        "value": "A",
+        "text": "não configuraria qualquer tipo de assédio, pois o assédio se caracteriza por ação executada por chefe em\nrelação a algum subordinado, o que não é o caso."
+      },
+      {
+        "value": "B",
+        "text": "não configuraria qualquer tipo de assédio, pois atos\nrealizados em ambiente virtual, como mensagens e\npostagens em redes sociais, não caracterizam assédio moral."
+      },
+      {
+        "value": "C",
+        "text": "configuraria assédio moral, pois o fato de o perpetuador ser um colega do sexo masculino e a vítima ser\numa mulher caracteriza tal tipo de assédio."
+      },
+      {
+        "value": "D",
+        "text": "configuraria assédio moral, pois basta que alguém se\nsinta constrangido por um único ato ou gesto realizado\npor qualquer colega para que se caracterize assédio\nmoral."
+      },
+      {
+        "value": "E",
+        "text": "configuraria assédio moral, pois trata-se de situações\nconstrangedoras, que ocorreram de forma repetitiva,\nprolongada e com intencionalidade de ferir a autoestima da funcionária."
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 24,
+    "id": "Q3862523",
+    "breadcrumbs": [
+      "Meio Ambiente",
+      "Desenvolvimento Sustentável,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Considere a notícia a seguir sobre a Política de Responsabilidade Socioambiental da Caixa Econômica Federal.\nA Caixa firmou, nesta segunda-feira (10), durante a\nCOP 30 em Belém (PA), o compromisso em adotar\npráticas empresariais e em executar políticas públicas\ndirecionadas à transição energética, ao investimento\nem infraestrutura sustentável e à preservação de ecossistemas. É o chamado Compromisso de Belém para a\nTransição Energética justa.\nCom o anúncio, o banco reafirma seus compromissos\nalinhados às diretrizes internacionais para o desenvolvimento sustentável, além de promover cooperação\ntécnica com os participantes e troca de boas práticas\nde governança verde.\nDisponível em: https://caixanoticias.caixa.gov.br/Paginas/\nNot%C3%ADcias/2025/11-NOVEMBRO/CAIXA-adere-aoCompromisso-de-Belem-com-foco-na--transicao-energetica-\n-justa.aspx. Acesso em: 2 dez. 2025. Adaptado.\nDe acordo com a notícia, o compromisso firmado pela\nCaixa é uma das formas de implementação de sua Política de Responsabilidade Socioambiental porque busca\nfomentar o(a)",
+    "options": [
+      {
+        "value": "A",
+        "text": "crescimento econômico e o controle social"
+      },
+      {
+        "value": "B",
+        "text": "desenvolvimento social e o equilíbrio fiscal"
+      },
+      {
+        "value": "C",
+        "text": "acesso a recursos não renováveis e a economia verde"
+      },
+      {
+        "value": "D",
+        "text": "política monetária e a governança corporativa"
+      },
+      {
+        "value": "E",
+        "text": "inclusão social e a preservação ambiental"
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 25,
+    "id": "Q3862524",
+    "breadcrumbs": [
+      "Ética na Administração Pública",
+      "Código de Ética da Caixa Econômica Federal,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Em julho de 2025, observou-se um movimento atípico de\ncompra e venda de dólares possivelmente associado ao\nanúncio sobre a nova política tarifária que seria implementada pelo presidente dos Estados Unidos. Em função\ndisso, a Advocacia-Geral da União pediu que a Polícia\nFederal (PF) e a Comissão de Valores Mobiliários (CVM)\ninvestigassem se houve o vazamento de informações no\nmercado financeiro, no Brasil, para lucrar com a compra\ne venda de dólares durante o anúncio do tarifaço americano. Foi identificado um movimento bilionário suspeito\nno mercado de câmbio americano no dia do anúncio do\ntarifaço.\nNesse contexto, segundo o Código de Ética, Conduta e\nIntegridade da Caixa, uma conduta como a descrita, caso\nse confirmasse, no âmbito das relações de trabalho com a\nCaixa, configuraria conflito de interesses, pois",
+    "options": [
+      {
+        "value": "A",
+        "text": "ameaçaria o sigilo bancário no momento em que o colaborador da Caixa tivesse que prestar esclarecimento à PF e à CVM."
+      },
+      {
+        "value": "B",
+        "text": "teria havido, na compra e venda de dólares, envio de\ndinheiro para o exterior sem a devida autorização legal e sem declaração às autoridades fiscais, como o\nBanco Central e a Receita Federal."
+      },
+      {
+        "value": "C",
+        "text": "estariam identificadas, nessa prática, transações clandestinas que visam a ocultar a origem de recursos financeiros, prejudicando a política cambial e a estabilidade monetária do país."
+      },
+      {
+        "value": "D",
+        "text": "estaria caracterizada a divulgação ou uso de informação privilegiada, em proveito próprio ou de terceiros,\nobtida em razão das atividades exercidas."
+      },
+      {
+        "value": "E",
+        "text": "teria ocorrido o uso indevido de dinheiro de particulares para atividades especulativas na bolsa de valores,\no que incorre em ato ilícito que causa prejuízo aos\ncofres públicos."
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 26,
+    "id": "Q3862525",
+    "breadcrumbs": [
+      "Matemática",
+      "Aritmética e Problemas,",
+      "Probabilidade,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Durante o processo de auditoria, a probabilidade de um\nbanco selecionar uma transação para inspeção é diretamente proporcional ao valor financeiro movimentado nessa transação. Considere cinco transações\ncom os seguintes valores: R$ 1 mil, R$ 2 mil, R$ 3 mil,\nR$ 4 mil e R$ 5 mil.\nCom base apenas nessas transações, a probabilidade de\na transação de R$ 5 mil ser escolhida para inspeção é",
+    "options": [
+      {
+        "value": "A",
+        "text": ""
+      },
+      {
+        "value": "B",
+        "text": ""
+      },
+      {
+        "value": "C",
+        "text": ""
+      },
+      {
+        "value": "D",
+        "text": ""
+      },
+      {
+        "value": "E",
+        "text": ""
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 27,
+    "id": "Q3862526",
+    "breadcrumbs": [
+      "Estatística",
+      "Inferência estatística,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Um banco público deseja verificar se o valor médio dos\nfinanciamentos habitacionais concedidos difere entre três\nfaixas de renda familiar:\n• até R$ 4.000,00;\n• entre R$ 4.001,00 e R$ 8.000,00;\n• acima de R$ 8.000,00.\nAo aplicar a Análise de Variância (ANOVA), obteve-se,\npara a estatística F, um valor de F = 18,6 e o valor-crítico\ndo teste ao nível de significância de 5% é F\ncrítico\n= 16,9.\nA partir do teste, pode-se concluir que",
+    "options": [
+      {
+        "value": "A",
+        "text": "o valor médio dos financiamentos é igual nas três faixas de renda."
+      },
+      {
+        "value": "B",
+        "text": "há evidências estatísticas de que as três faixas de\nrenda apresentam médias de financiamento diferentes entre si."
+      },
+      {
+        "value": "C",
+        "text": "há evidências estatísticas de que as três faixas de\nrenda apresentam variâncias de financiamento diferentes entre si."
+      },
+      {
+        "value": "D",
+        "text": "há evidências estatísticas de que pelo menos uma\ndas faixas de renda apresenta média de financiamento diferente das demais."
+      },
+      {
+        "value": "E",
+        "text": "há evidências estatísticas de que quanto maior a faixa\nde renda familiar, maior o valor médio dos financiamentos habitacionais concedidos."
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 28,
+    "id": "Q3862527",
+    "breadcrumbs": [
+      "Matemática",
+      "Aritmética e Problemas,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Um gerente de um banco tem cinco contas-correntes\nsob sua gestão. As duas menores contas têm saldo de\nR$ 3 mil e R$ 5 mil, respectivamente. A amplitude, a\nmédia e a mediana do saldo das cinco contas são de\nR$ 27 mil, R$ 11 mil e R$ 7 mil, respectivamente.\nDentre os saldos dessas cinco contas, o segundo maior é",
+    "options": [
+      {
+        "value": "A",
+        "text": "R$ 7 mil"
+      },
+      {
+        "value": "B",
+        "text": "R$ 10 mil"
+      },
+      {
+        "value": "C",
+        "text": "R$ 15 mil"
+      },
+      {
+        "value": "D",
+        "text": "R$ 20 mil"
+      },
+      {
+        "value": "E",
+        "text": "R$ 30 mil"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 29,
+    "id": "Q3862528",
+    "breadcrumbs": [
+      "Estatística",
+      "Estatística descritiva (análise exploratória de dados),"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "Geralmente, quanto menor a empresa, maior o seu grau\nde endividamento. Matematicamente, isso significa que a\ncorrelação linear entre tamanho da empresa e grau de\nendividamento é",
+    "options": [
+      {
+        "value": "A",
+        "text": "crescente"
+      },
+      {
+        "value": "B",
+        "text": "decrescente"
+      },
+      {
+        "value": "C",
+        "text": "nula"
+      },
+      {
+        "value": "D",
+        "text": "positiva"
+      },
+      {
+        "value": "E",
+        "text": "negativa"
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 30,
+    "id": "Q3862529",
+    "breadcrumbs": [
+      "Estatística",
+      "Cálculo de Probabilidades,",
+      "Principais distribuições de probabilidade,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Provas: CESGRANRIO - 2026 - Caixa - Arquiteto | CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista | CESGRANRIO - 2026 - Caixa - Engenheiro Mecânico | CESGRANRIO - 2026 - Caixa - Engenheiro Civil | CESGRANRIO - 2026 - Caixa - Engenheiro de Segurança do Trabalho | CESGRANRIO - 2026 - Caixa - Médico do Trabalho |",
+    "support_text": "",
+    "enunciation": "No segmento\npremium\nde um banco, um gerente é responsável por atender 5 clientes e oferecer a eles um determinado produto financeiro. O número de clientes desse\ngerente que contratarão o produto segue uma distribuição\nbinomial, cujo valor esperado é 1.\nA probabilidade de que esse gerente não consiga vender\no produto a nenhum de seus clientes é de, aproximadamente,",
+    "options": [
+      {
+        "value": "A",
+        "text": "20%"
+      },
+      {
+        "value": "B",
+        "text": "25%"
+      },
+      {
+        "value": "C",
+        "text": "33%"
+      },
+      {
+        "value": "D",
+        "text": "50%"
+      },
+      {
+        "value": "E",
+        "text": "75%"
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 31,
+    "id": "Q3862600",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Os diagramas sequenciais representam redes elétricas de\nforma simplificada, destacando o fluxo de potências e conexões. Essa representação torna mais clara a interação\nentre os elementos e o comportamento global da rede.\nSobre a representação de redes elétricas por meio de diagramas sequenciais (componentes simétricas), verifica-se\nque os(as)",
+    "options": [
+      {
+        "value": "A",
+        "text": "diagramas sequenciais são utilizados exclusivamente\npara análise de sistemas equilibrados."
+      },
+      {
+        "value": "B",
+        "text": "geradores apresentam a impedância de sequência positiva que, por sua vez, é sempre igual à de sequência\nnegativa."
+      },
+      {
+        "value": "C",
+        "text": "motores de indução possuem a componente de\nsequência negativa que é a responsável pela redução\ndo torque disponível sob condições de desequilíbrio."
+      },
+      {
+        "value": "D",
+        "text": "transformadores apresentam o mesmo comportamento para sequência zero independentemente da conexão dos enrolamentos."
+      },
+      {
+        "value": "E",
+        "text": "linhas de transmissão apresentam impedâncias idênticas para as sequências positiva, negativa e zero,\npois a simetria das fases elimina diferenças nessas\nsequências."
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 32,
+    "id": "Q3862601",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "A proteção de sistemas elétricos garante segurança, continuidade do fornecimento e preservação dos equipamentos. Seu objetivo é minimizar danos, evitar acidentes e\nmanter a estabilidade da rede elétrica.\nConsiderando-se a coordenação entre dispositivos de\nproteção e os requisitos fundamentais para a garantia da\nseletividade, sensibilidade, confiabilidade e rapidez na\nproteção de sistemas elétricos de potência, conclui-se\nque a",
+    "options": [
+      {
+        "value": "A",
+        "text": "seletividade garante que somente o dispositivo mais\nsensível ao defeito atue, sem a necessidade de coordenação de tempos entre os dispositivos a montante\ne jusante."
+      },
+      {
+        "value": "B",
+        "text": "seletividade e continuidade de serviço é alcançada\npela abordagem de proteção primária e secundária,\nmesmo em sistemas modernos com alta automação e\nsupervisão digital."
+      },
+      {
+        "value": "C",
+        "text": "sensibilidade de o relé detectar correntes próximas à\nnominal é um atributo mais importante do que a temporização de atuação do relé."
+      },
+      {
+        "value": "D",
+        "text": "coordenação entre dispositivos de proteção deve\nsempre priorizar a rapidez, mesmo que isso ocasione\ndesligamentos simultâneos em diferentes níveis do\nsistema."
+      },
+      {
+        "value": "E",
+        "text": "confiabilidade da proteção está relacionada à ausência de atuações indevidas, uma vez que o suporte de\nretaguarda elimina os efeitos das ocorrências de faltas."
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 33,
+    "id": "Q3862602",
+    "breadcrumbs": [
+      "Engenharia Elétrica",
+      "Circuitos Elétricos na Engenharia Elétrica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Uma carga indutiva desconhecida é alimentada por uma\nfonte senoidal. Um Wattímetro, um Voltímetro e um Amperímetro foram instalados para realizar as leituras nessa\ncarga. Os valores registrados foram:\n• Potência: 6.000 W.\n• Tensão: 250 V.\n• Corrente elétrica: 30 A.\nCom base nessas leituras, os valores da potência aparente solicitada pela carga, do fator de potência e da sua\nreatância indutiva são iguais a",
+    "options": [
+      {
+        "value": "A",
+        "text": "6.000 VA - 1,0 - zero"
+      },
+      {
+        "value": "B",
+        "text": "6.000 VA - 0,9 - 4,0 Ω"
+      },
+      {
+        "value": "C",
+        "text": "7.500 VA - 0,9 - 5,0 Ω"
+      },
+      {
+        "value": "D",
+        "text": "7.500 VA - 0,8 - 4,0 Ω"
+      },
+      {
+        "value": "E",
+        "text": "7.500 VA - 0,8 - 5,0 Ω"
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 34,
+    "id": "Q3862603",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "O Sistema Internacional de Unidades (SI) é o sistema de\nmedição mais usado no mundo, adotado pela maioria dos\npaíses para garantir a padronização, precisão e comunicação em ciência, comércio e tecnologia.\nConsiderando-se as medições elétricas e o Sistema Internacional de Unidades (SI), verifica-se que a(o)",
+    "options": [
+      {
+        "value": "A",
+        "text": "energia elétrica expressa em quilowatt-hora (kWh) é\npermitida pelo SI para o uso oficial."
+      },
+      {
+        "value": "B",
+        "text": "grandeza potência elétrica complexa pode ser considerada uma unidade fundamental do SI."
+      },
+      {
+        "value": "C",
+        "text": "unidade coulomb é considerada uma unidade fundamental do SI, enquanto o ampère é uma unidade derivada obtida a partir dela"
+      },
+      {
+        "value": "D",
+        "text": "SI permite a livre criação de símbolos para unidades\nderivadas utilizadas em eletricidade."
+      },
+      {
+        "value": "E",
+        "text": "volt, o ohm e o farad dependem de combinações de\ngrandezas fundamentais para sua definição."
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 35,
+    "id": "Q3862604",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Em um sistema elétrico trifásico com base S\nbase\n=100√3 MVA\ne V\nbase\n= 20 kV, ocorreu uma falta fase-terra. A tensão de\npré-falta é igual a 0,8 p.u., e as impedâncias de sequência\nvistas no ponto de falta, em p.u., são:\n• Z\n1\n= j0,10 p.u.\n• Z\n2\n= j0,10 p.u.\n• Z\n0\n= j0,20 p.u.\nA corrente de curto-circuito fase-terra no ponto de falta em\np.u. e em ampères é igual a",
+    "options": [
+      {
+        "value": "A",
+        "text": "7,5 p.u. e 37,5 kA"
+      },
+      {
+        "value": "B",
+        "text": "7,5 p.u. e 30,0 kA"
+      },
+      {
+        "value": "C",
+        "text": "6,0 p.u. e 37,5 kA"
+      },
+      {
+        "value": "D",
+        "text": "6,0 p.u. e 30,0 kA"
+      },
+      {
+        "value": "E",
+        "text": "5,5 p.u. e 37,5 kA"
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 36,
+    "id": "Q3862605",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Nos sistemas elétricos de alta tensão, os equipamentos\nde manobra desempenham papel fundamental na operação, proteção e confiabilidade do sistema.\nSobre o funcionamento e as características desses equipamentos, verifica-se que o(a)",
+    "options": [
+      {
+        "value": "A",
+        "text": "disjuntor a vácuo possui baixa capacidade de interrupção, sendo utilizado apenas em níveis de tensão\ninferior a 15 kV."
+      },
+      {
+        "value": "B",
+        "text": "disjuntor a SF6garante excelente isolamento e capacidade de interrupção, porém seu uso vem sendo progressivamente revisado devido ao elevado potencial\nde aquecimento global associado ao gás."
+      },
+      {
+        "value": "C",
+        "text": "disjuntor a óleo simples é amplamente utilizado atualmente em sistemas de transmissão modernos."
+      },
+      {
+        "value": "D",
+        "text": "religador automático é empregado exclusivamente em\nsistemas de transmissão de alta tensão."
+      },
+      {
+        "value": "E",
+        "text": "seccionadora pode interromper correntes de carga\nmoderadas, sendo muito utilizada como dispositivo\nprincipal de interrupção em linhas de transmissão."
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 37,
+    "id": "Q3862606",
+    "breadcrumbs": [
+      "Gerência de Projetos",
+      "Conceitos básicos no Gerenciamento de Projetos,",
+      "Áreas de conhecimento,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Um profissional encarregado do planejamento e da execução de um projeto utiliza a técnica de Valor Agregado\npara avaliar o seu acompanhamento. Após um tempo de\nexecução, os dados do projeto levantados são:\n• Valor Planejado (PV): R$ 500 mil\n• Valor Agregado (EV): R$ 440 mil\n• Custo Real (AC): R$ 550 mil\nConsiderando-se os Índices de Desempenho de Prazo\n(SPI), o Desempenho de Custo (CPI) e suas interpretações, conclui-se que",
+    "options": [
+      {
+        "value": "A",
+        "text": "SPI = 0,88 e CPI = 0,80 - Projeto atrasado e acima do\norçamento"
+      },
+      {
+        "value": "B",
+        "text": "SPI = 0,88 e CPI = 0,80 - Projeto adiantado e acima\ndo orçamento"
+      },
+      {
+        "value": "C",
+        "text": "SPI = 0,88 e CPI = 0,80 - Projeto atrasado e abaixo\ndo orçamento"
+      },
+      {
+        "value": "D",
+        "text": "SPI = 0,80 e CPI = 1,88 - Projeto adiantado e acima\ndo orçamento"
+      },
+      {
+        "value": "E",
+        "text": "SPI = 0,80 e CPI = 1,88 - Projeto atrasado e acima do\norçamento"
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 38,
+    "id": "Q3862607",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Um transformador de corrente (TC) 5TP10 de relação nominal 400/5 ampère é utilizado em uma subestação industrial para alimentar um amperímetro.\nQuando a corrente primária do TC for igual a 200 A, a corrente secundária real estará compreendida entre",
+    "options": [
+      {
+        "value": "A",
+        "text": "2,00 A e 3,00 A"
+      },
+      {
+        "value": "B",
+        "text": "2,125 A e 2,875 A"
+      },
+      {
+        "value": "C",
+        "text": "2,250 A e 2,750 A"
+      },
+      {
+        "value": "D",
+        "text": "2,50 A e 3,00 A"
+      },
+      {
+        "value": "E",
+        "text": "2,375 A e 2,625 A"
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 39,
+    "id": "Q3862608",
+    "breadcrumbs": [
+      "Engenharia Elétrica",
+      "Transmissão,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "O estudo de linhas de transmissão é frequentemente realizado por meio de modelos de quadripolos, cuja representação matricial permite relacionar as tensões e correntes nos terminais de envio (Terminal 1) e de recepção\n(Terminal 2).\nConsiderando-se uma linha de transmissão curta, cujos\nefeitos capacitivos são desprezíveis, a relação entre as\ngrandezas nos terminais pode ser expressa pelas constantes genéricas",
+    "options": [
+      {
+        "value": "A",
+        "text": "A=1, B=Impedância, C=0 e D=1"
+      },
+      {
+        "value": "B",
+        "text": "A=0, B=Impedância, C=0 e D=1"
+      },
+      {
+        "value": "C",
+        "text": "A= Impedância, B=1, C=1 e D=1"
+      },
+      {
+        "value": "D",
+        "text": "A=Impedância, B=0, C=1 e D=1"
+      },
+      {
+        "value": "E",
+        "text": "A=1, B=0, C= Impedância e D=0"
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 40,
+    "id": "Q3862609",
+    "breadcrumbs": [
+      "Engenharia Elétrica",
+      "Instalações Elétricas em Engenharia Elétrica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "A resistividade elétrica do solo é um parâmetro crítico em\nqualquer projeto de aterramento, sendo que, em condições normais para solos estratificados, seu valor varia significativamente com a profundidade e tende a aumentar\nquando a(o)",
+    "options": [
+      {
+        "value": "A",
+        "text": "granulometria do solo diminui."
+      },
+      {
+        "value": "B",
+        "text": "porosidade do solo diminui."
+      },
+      {
+        "value": "C",
+        "text": "umidade do solo aumenta."
+      },
+      {
+        "value": "D",
+        "text": "teor de água presente no solo diminui."
+      },
+      {
+        "value": "E",
+        "text": "teor de sais dissolvidos no solo aumenta."
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 41,
+    "id": "Q3862610",
+    "breadcrumbs": [
+      "Engenharia Elétrica",
+      "Instalações Elétricas em Engenharia Elétrica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "O índice isoceraúnico (IK) influencia o projeto do sistema\nde proteção contra descargas atmosféricas em diversos\naspectos e representa o(a)",
+    "options": [
+      {
+        "value": "A",
+        "text": "fator usado exclusivamente para determinar o número\nde condutores de descida."
+      },
+      {
+        "value": "B",
+        "text": "número médio anual de dias com ocorrência de trovoadas em uma região."
+      },
+      {
+        "value": "C",
+        "text": "número total de descargas nuvem-solo, registradas\ndiariamente em um território."
+      },
+      {
+        "value": "D",
+        "text": "densidade de corrente típica dos raios em uma localidade."
+      },
+      {
+        "value": "E",
+        "text": "quantidade anual média de descargas que atingem\numa edificação específica."
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 42,
+    "id": "Q3862611",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Durante a caracterização elétrica de um transformador\nmonofásico, são realizados os ensaios a vazio e de curto-\n-circuito para determinação de seus parâmetros equivalentes.\nConsiderando-se esse cenário, conclui-se que no ensaio",
+    "options": [
+      {
+        "value": "A",
+        "text": "de curto-circuito a tensão aplicada ao transformador é\nmantida no valor nominal para permitir a circulação da\ncorrente nominal nos enrolamentos."
+      },
+      {
+        "value": "B",
+        "text": "a vazio é possível determinar diretamente a impedância de dispersão do transformador, pois o fluxo magnético está no valor máximo."
+      },
+      {
+        "value": "C",
+        "text": "a vazio a potência medida representa predominantemente as perdas magnéticas no núcleo, as perdas por\nhisterese e correntes parasitas, sendo desprezíveis\nas perdas no cobre."
+      },
+      {
+        "value": "D",
+        "text": "de curto-circuito é possível determinar a impedância \nequivalenteshuntdo transformador, resultante das \nindutâncias de dispersão e resistências dos enrola\nmentos."
+      },
+      {
+        "value": "E",
+        "text": "de curto-circuito determinam-se as perdas no ferro,\ndesconsiderando-se as perdas ôhmicas dos enrolamentos."
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 43,
+    "id": "Q3862612",
+    "breadcrumbs": [
+      "Engenharia Elétrica",
+      "Análise de SEP,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Segundo a NR 10, as atividades realizadas em instalações integrantes do Sistema Elétrico de Potência (SEP)\ndemandam requisitos adicionais de segurança em razão\ndos altos níveis de energia e da possibilidade de energização remota.\nConsiderando-se essas atividades, verifica-se que a(o)",
+    "options": [
+      {
+        "value": "A",
+        "text": "Análise de Risco é dispensável, para atividades no\nSEP, desde que o desligamento seja assegurado por\nchave seccionadora tripolar."
+      },
+      {
+        "value": "B",
+        "text": "comunicação de rotina em atividades no SEP é facultativa, desde que o risco residual seja considerado\nbaixo."
+      },
+      {
+        "value": "C",
+        "text": "NR 10 permite que profissionais não autorizados realizem serviços no SEP, desde que estejam sob supervisão permanente de um engenheiro eletricista."
+      },
+      {
+        "value": "D",
+        "text": "curso complementar específico para SEP é obrigatório somente para trabalhos acima de 138.000 volts."
+      },
+      {
+        "value": "E",
+        "text": "trabalho no SEP exige capacitação específica, autorização formal e procedimentos de coordenação e comunicação que garantam o sincronismo operacional\nentre os envolvidos."
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 44,
+    "id": "Q3862613",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Um consumidor que possui demanda contratada de\n75.000 watts e apresenta fator de carga igual a 0,50 consome, em 30 dias, a energia ativa, em megawatts hora,\nigual a",
+    "options": [
+      {
+        "value": "A",
+        "text": "25,5"
+      },
+      {
+        "value": "B",
+        "text": "27,0"
+      },
+      {
+        "value": "C",
+        "text": "30,5"
+      },
+      {
+        "value": "D",
+        "text": "32,0"
+      },
+      {
+        "value": "E",
+        "text": "37,5"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 45,
+    "id": "Q3862614",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Em uma instalação elétrica monofásica alimentada em\n220 V, 60 Hz, as correntes harmônicas medidas são:\n• Componente fundamental: 100 A\n• 3a\n harmônica: 12 A\n• 5a\n harmônica: 6 A\n• 7a\n harmônica: 6 A\n• 9a\n harmônica: 3 A\nConsiderando-se esses dados, a distorção harmônica total de corrente da instalação é igual a",
+    "options": [
+      {
+        "value": "A",
+        "text": "7,5%"
+      },
+      {
+        "value": "B",
+        "text": "10,0%"
+      },
+      {
+        "value": "C",
+        "text": "12,5%"
+      },
+      {
+        "value": "D",
+        "text": "15,0%"
+      },
+      {
+        "value": "E",
+        "text": "17,5%"
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 46,
+    "id": "Q3862615",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Considere um circuito trifásico, cuja sequência \nde fases é dita a, b, c, e as tensões de linha são E\nbc =\n220\n∠\n0\no\nV\nrms\ne E\nab\n= 220\n∠12\n0\no\nV\nrms\n,\nalimentando \numa carga ligada na configuração estrela, sem aterramento,\nnão balanceada, formada pelas impedâncias de \nfase Z\na\n=\n11\n∠\n60\no\n,\nZ\nb\n= 11\n∠3\n0\no\ne Z\nc\n= 0\n.\nHá um \nprimeiro Wattímetro conectado entre as linhas a e c, e um \nsegundo Wattímetro conectado entre as linhas b e c.\nDiante do exposto, as leituras das medidas no primeiro e\nsegundo Wattímetros, em W, são, respectivamente,",
+    "options": [
+      {
+        "value": "A",
+        "text": "2.200 e 4.400"
+      },
+      {
+        "value": "B",
+        "text": "2.200 e 3.810"
+      },
+      {
+        "value": "C",
+        "text": "3.810 e 4.400"
+      },
+      {
+        "value": "D",
+        "text": "3.810 e 2.200"
+      },
+      {
+        "value": "E",
+        "text": "4.400 e 2.200"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 47,
+    "id": "Q3862616",
+    "breadcrumbs": [
+      "Gerência de Projetos",
+      "Conceitos básicos no Gerenciamento de Projetos,",
+      "Áreas de conhecimento,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Na área de gestão de projetos, há diversos conceitos e\nferramentas essenciais que, quando aplicados de forma\nintegrada, contribuem significativamente para a organização e o acompanhamento das etapas de um projeto, tais\ncomo diagramas de rede, caminho crítico e folgas.\nNesse sentido, a partir de um diagrama de rede das atividades do projeto é possível identificar",
+    "options": [
+      {
+        "value": "A",
+        "text": "as folgas no caminho crítico do projeto."
+      },
+      {
+        "value": "B",
+        "text": "a estrutura hierárquica de responsabilidades da equipe do projeto."
+      },
+      {
+        "value": "C",
+        "text": "a disponibilidade de suprimentos e equipamentos."
+      },
+      {
+        "value": "D",
+        "text": "o caminho mais longo como aquele que determina a\nduração mínima do projeto."
+      },
+      {
+        "value": "E",
+        "text": "os custos do projeto por meio da análise de valor\nagregado."
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 48,
+    "id": "Q3862617",
+    "breadcrumbs": [
+      "Gerência de Projetos",
+      "Conceitos básicos no Gerenciamento de Projetos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "O gerenciamento de projetos consiste na aplicação de conhecimentos, habilidades, ferramentas e técnicas às atividades do projeto, de maneira a atender aos seus requisitos, segundo definição dada pelo\nProject Management\nInstitute\n(PMI).\nUm objetivo do gerenciamento de projetos é",
+    "options": [
+      {
+        "value": "A",
+        "text": "definir a estrutura organizacional permanente da empresa."
+      },
+      {
+        "value": "B",
+        "text": "garantir o sucesso absoluto dos projetos."
+      },
+      {
+        "value": "C",
+        "text": "eliminar todos os riscos envolvidos durante a execução dos projetos."
+      },
+      {
+        "value": "D",
+        "text": "padronizar um método de trabalho, garantindo que\nseja rigidamente seguido para alcançar bons resultados com consistência."
+      },
+      {
+        "value": "E",
+        "text": "gerar valor para o cliente e para as partes interessadas do projeto."
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 49,
+    "id": "Q3862618",
+    "breadcrumbs": [
+      "Gerência de Projetos",
+      "PMBOK e Processos de Gerenciamento de Projetos,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "O PMBOK é um guia de boas práticas em gerenciamento de projetos organizando processos e áreas de conhecimento. Segundo esse guia, o ciclo de vida do projeto\npossui cinco fases: iniciação, planejamento, execução,\nmonitoramento e controle, e encerramento.\nConsiderando-se o PMBOK, na fase de planejamento, as\nações",
+    "options": [
+      {
+        "value": "A",
+        "text": "do projeto relacionadas ao monitoramento e controle\nsão executadas somente quando se fala em riscos do\nprojeto."
+      },
+      {
+        "value": "B",
+        "text": "são executadas, com detalhe e profundidade, no início do projeto, ou durante as outras fases do ciclo de\nvida do projeto."
+      },
+      {
+        "value": "C",
+        "text": "de mobilização de equipe, de recursos e de fornecedores garantem a integração e o alinhamento para a\nconclusão do projeto"
+      },
+      {
+        "value": "D",
+        "text": "de controle do cronograma de mobilização de fornecedores e do estudo de viabilidade garantem a execução do projeto dentro do orçamento previsto."
+      },
+      {
+        "value": "E",
+        "text": "relacionadas à iniciação do projeto compreendem a\nliberação de recursos e a identificação de desvios."
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 50,
+    "id": "Q3862619",
+    "breadcrumbs": [
+      "Gerência de Projetos",
+      "PMBOK e Processos de Gerenciamento de Projetos,",
+      "Áreas de conhecimento,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Um banco está iniciando um projeto de modernização da\ninfraestrutura elétrica de suas agências bancárias. O engenheiro eletricista responsável, durante o planejamento do\nprojeto, define como cada fase do projeto será executada.\n  Diante desse cenário, esse engenheiro eletricista deve\nconsiderar que no planejamento desse projeto",
+    "options": [
+      {
+        "value": "A",
+        "text": "a equipe designada para atuar no projeto deve ser\nfixa."
+      },
+      {
+        "value": "B",
+        "text": "o Termo de Abertura do Projeto (TAP) e oBusinessCase devem ser detalhados e aprofundados para a\nexecução do projeto."
+      },
+      {
+        "value": "C",
+        "text": "a criação do cronograma e a alocação de recursos\nsão as únicas atividades dessa fase."
+      },
+      {
+        "value": "D",
+        "text": "as fases de execução não podem sofrer mudanças,\npois impactariam o cronograma."
+      },
+      {
+        "value": "E",
+        "text": "os riscos associados ao fornecimento de energia serão eliminados."
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 51,
+    "id": "Q3862620",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Considere um circuito elétrico do tipo RLC série, alimentado por uma fonte de tensão e tendo todos os seus componentes considerados ideais. Esse circuito é composto por\numa fonte de tensão v(t), por um resistor R = 4 Ohms, um\nindutor L = 10 mH e um capacitor C = 100\nF\n. Ao ser excitado por um impulso de tensão, gerado na fonte v(t) =\n(t),\ncirculará na malha uma corrente elétrica representada por\num sinal senoidal exponencialmente amortecido, que tenderá a zero em regime permanente.\nO valor do coeficiente de amortecimento\ndesse sinal\nde corrente elétrica senoidal amortecida é",
+    "options": [
+      {
+        "value": "A",
+        "text": "0,0"
+      },
+      {
+        "value": "B",
+        "text": "0,2"
+      },
+      {
+        "value": "C",
+        "text": "0,4"
+      },
+      {
+        "value": "D",
+        "text": "0,6"
+      },
+      {
+        "value": "E",
+        "text": "0,8"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 52,
+    "id": "Q3862621",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Uma grandeza elétrica no modelo de um circuito de corrente alternada é expressa pelo polinômio\nI(z) = z\n4\n+ 7z\n3\n+ 59z\n2\n+ 343z + K,\nonde z é uma variável complexa e K é uma constante real.\nSabendo-se que esse polinômio tem duas raízes imaginárias, cujos módulos medem 7, qual o valor da constante K?",
+    "options": [
+      {
+        "value": "A",
+        "text": "250"
+      },
+      {
+        "value": "B",
+        "text": "380"
+      },
+      {
+        "value": "C",
+        "text": "490"
+      },
+      {
+        "value": "D",
+        "text": "-730"
+      },
+      {
+        "value": "E",
+        "text": "-10.094"
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 53,
+    "id": "Q3862622",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Um circuito elétrico é representado por um modelo de sistema linear e tem como entrada uma fonte de tensão v\ni\n(t)\ne como saída a tensão v\no\n(t) medida no circuito.\nA função de transferência desse sistema, no domínio de\nLaplace, é assim definida:\nConsiderando-se um impulso na entrada v\ni\n(t) = (t), a expressão matemática do sinal de saída, v\no\n(t), no domínio\ndo tempo, para valores de t > 0, é",
+    "options": [
+      {
+        "value": "A",
+        "text": "4e-2t+ 3e-3t"
+      },
+      {
+        "value": "B",
+        "text": "5e-3t+ 2e-2t"
+      },
+      {
+        "value": "C",
+        "text": "4e-t+ 3e-2t"
+      },
+      {
+        "value": "D",
+        "text": "7e-2t+ 18e-3t"
+      },
+      {
+        "value": "E",
+        "text": "6e-2t+ 5e-3t"
+      }
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "numero_questao": 54,
+    "id": "Q3862623",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "O modelo de um sistema linear de 2\na\nordem, no domínio\nde Laplace, é representado por uma função de transferência G(s) que liga a entrada x(t), cuja Transformada de\nLaplace (TL) é X(s), a uma saída y(t), cuja TL é Y(s), dada\npor:\nConsidere a aplicação de um degrau unitário, como sinal\ntemporal na entrada desse sistema x(t) = u(t).\nA resposta temporal na saída será oscilatória e com frequência natural amortecida (\n﻿\nd\n), em rad/s, igual a",
+    "options": [
+      {
+        "value": "A",
+        "text": "10,0"
+      },
+      {
+        "value": "B",
+        "text": "9,5"
+      },
+      {
+        "value": "C",
+        "text": "8,0"
+      },
+      {
+        "value": "D",
+        "text": "5,0"
+      },
+      {
+        "value": "E",
+        "text": "4,5"
+      }
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "numero_questao": 55,
+    "id": "Q3862624",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "A Figura a seguir mostra um circuito elétrico puramente\nresistivo com todos os seus componentes considerados\nideais. Esse circuito é alimentado por uma fonte de Tensão Contínua (CC) de 15 volts.\nQuais são os valores das grandezas V\nth\ne R\nth\ndo circuito\nEquivalente Thevenin, medidos entre os pontos A e B?",
+    "options": [
+      {
+        "value": "A",
+        "text": "Vth= 10 V e Rth= 45,8"
+      },
+      {
+        "value": "B",
+        "text": "Vth= 6 V e Rth= 65,0"
+      },
+      {
+        "value": "C",
+        "text": "Vth= 6 V e Rth= 66,6"
+      },
+      {
+        "value": "D",
+        "text": "Vth= 9 V e Rth= 50,0"
+      },
+      {
+        "value": "E",
+        "text": "Vth= 9 V e Rth= 60,0"
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 56,
+    "id": "Q3862625",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "A dinâmica que relaciona a saída y(t) com a entrada u(t) de um sistema linear e contínuo no tempo é matematicamente\nmodelada, no domínio de Laplace, pela Função de Transferência dada por:\nAplica-se a esse sistema uma realimentação de saída, cuja lei de controle é u(t) = -K y(t) + r(t), caracterizando uma nova\ndinâmica, dessa vez, em malha fechada, na qual r(t) passa a ser uma nova entrada, conhecida como entrada de referência\ndo sistema Malha Fechada.\nA expressão da função de transferência de malha fechada,\n, ligando a saída com a entrada de referência é",
+    "options": [
+      {
+        "value": "A",
+        "text": ""
+      },
+      {
+        "value": "B",
+        "text": ""
+      },
+      {
+        "value": "C",
+        "text": ""
+      },
+      {
+        "value": "D",
+        "text": ""
+      },
+      {
+        "value": "E",
+        "text": ""
+      }
+    ],
+    "correct_answer": "E"
+  },
+  {
+    "numero_questao": 57,
+    "id": "Q3862626",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Um sistema linear, causal e invariante no tempo tem uma dinâmica que relaciona o sinal de entrada x(t) com o sinal de\nsaída y(t) através da equação diferencial:\nSabendo-se que se trata de um sistema de 3a\n ordem e que um dos polos da função de transferência é real e igual a -4,\nos outros dois polos são",
+    "options": [
+      {
+        "value": "A",
+        "text": "complexos conjugados s1,2= -4+j10"
+      },
+      {
+        "value": "B",
+        "text": "reais s1= -2 e s2= -5"
+      },
+      {
+        "value": "C",
+        "text": "reais s1= -3 e s2= -8"
+      },
+      {
+        "value": "D",
+        "text": "complexos conjugados s1,2= -2+j5"
+      },
+      {
+        "value": "E",
+        "text": "complexos conjugados s1,2= -5+j2"
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 58,
+    "id": "Q3862627",
+    "breadcrumbs": [
+      "Física",
+      "Magnetismo,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Considere uma carga elétrica, positiva de 2\nC, que se \nmove com velocidade\n, em uma região do espaço submetida a um campo magnético\n, cujos valores são:\nem que\n,\ne\nsão os vetores unitários nas direções \ndos eixos x, y e z, respectivamente.\nDiante desse cenário, o vetor força magnética, em N, é",
+    "options": [
+      {
+        "value": "A",
+        "text": ""
+      },
+      {
+        "value": "B",
+        "text": ""
+      },
+      {
+        "value": "C",
+        "text": ""
+      },
+      {
+        "value": "D",
+        "text": ""
+      },
+      {
+        "value": "E",
+        "text": ""
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 59,
+    "id": "Q3862628",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Considere uma instalação fabril hipotética, cujas cargas\nligadas em Y e △ são alimentadas por uma rede trifásica,\ncom tensão entre fases de 200\n√3\nV. Nessa instalação,\nexistem duas cargas com as características descritas a\nseguir:\nCarga 1: ligada em estrela. Impedância Z\nY\n= j 2,4\nCarga 2: ligada em delta. Impedância Z\n△\n=\nj 7,2\nA impedância do alimentador desde o quadro de distribuição até as cargas é 1,6\npor fase.\nDiante do exposto, o módulo da corrente de linha, em A, \nno alimentador é, aproximadamente,",
+    "options": [
+      {
+        "value": "A",
+        "text": "166 √3"
+      },
+      {
+        "value": "B",
+        "text": "100√3"
+      },
+      {
+        "value": "C",
+        "text": "166"
+      },
+      {
+        "value": "D",
+        "text": "100"
+      },
+      {
+        "value": "E",
+        "text": "71"
+      }
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "numero_questao": 60,
+    "id": "Q3862629",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Um circuito RLC série é alimentado por uma fonte de\ntensão alternada que gera um sinal senoidal dado por:\nv(t)=140 cos (1.000t + 30°)V. Esse circuito é composto pelos seguintes elementos, todos considerados ideais:\nR = 30\n,  L = 45 mH  e C = 200\nF\nA potência ativa, em W, fornecida pela fonte ao circuito,\naproximadamente, é",
+    "options": [
+      {
+        "value": "A",
+        "text": "60"
+      },
+      {
+        "value": "B",
+        "text": "120"
+      },
+      {
+        "value": "C",
+        "text": "200"
+      },
+      {
+        "value": "D",
+        "text": "235"
+      },
+      {
+        "value": "E",
+        "text": "254"
+      }
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "numero_questao": 61,
+    "id": "Q3862630",
+    "breadcrumbs": [
+      "Engenharia Elétrica",
+      "Análise de SEP,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "O estudo das Componentes Simétricas é fundamental\npara entender os sistemas trifásicos desequilibrados, em\nparticular, quando se realiza a análise de curto-circuitos.\nCom relação à teoria das Componentes Simétricas aplicada a sistemas trifásicos, conclui-se que a(s)",
+    "options": [
+      {
+        "value": "A",
+        "text": "componente de sequência positiva é formada por um\nsistema trifásico de três fasores com mesma magnitude, defasados 120° entre si, e que possuem a mesma\nsequência de fase (ex: A-B-C) do sistema original desequilibrado."
+      },
+      {
+        "value": "B",
+        "text": "componente de sequência negativa é formada por um\nsistema trifásico de três fasores com a mesma magnitude dos componentes de sequência positiva, defasados 120° entre si, entretanto, na sequência de fase\ninversa (ex: A-C-B) à do sistema original."
+      },
+      {
+        "value": "C",
+        "text": "componente de sequência zero é formada por três fasores de mesma magnitude e em fase, e sua existência independe da presença de um caminho de retorno\npelo neutro ou terra do sistema."
+      },
+      {
+        "value": "D",
+        "text": "corrente de falta é calculada utilizando-se a associação em série das redes de sequência positiva, negativa e zero, para um curto-circuito trifásico simétrico\n(equilibrado)."
+      },
+      {
+        "value": "E",
+        "text": "correntes de sequência zero podem fluir livremente do lado em Delta para o lado em Estrela, em um\ntransformador com ligação Delta-Estrela (com neutro\naterrado)."
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 62,
+    "id": "Q3862631",
+    "breadcrumbs": [
+      "Engenharia Elétrica",
+      "Análise de SEP,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Um gerador síncrono operando em vazio, ligado em Y e solidamente aterrado, opera com tensão terminal de 1 p.u. e possui as seguintes impedâncias de sequência:\n• impedância de sequência positiva: j0,25 p.u.\n• impedância de sequência negativa: j0,25 p.u.\n• impedância de sequência zero: j0,10 p.u.\nConsiderando-se que, em um dado momento de sua operação, ocorra uma falta fase-fase no gerador, o módulo da corrente de falta, em kA, em uma das fases com defeito é aproximadamente",
+    "options": [
+      {
+        "value": "A",
+        "text": "2,0"
+      },
+      {
+        "value": "B",
+        "text": "2,8"
+      },
+      {
+        "value": "C",
+        "text": "3,4"
+      },
+      {
+        "value": "D",
+        "text": "4,0"
+      },
+      {
+        "value": "E",
+        "text": "5,8"
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 63,
+    "id": "Q3862632",
+    "breadcrumbs": [
+      "Engenharia Elétrica",
+      "Geração de Energia,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Um painel fotovoltaico encontra-se instalado em uma região hipotética, submetida a uma irradiância de 1.000 W/m\n2\n.\nDados da placa:\n  - área: 2 m\n2\n;\n  - tensão terminal nominal: 20 V;\n  - corrente terminal nominal: 30 A.\nConsiderando-se essas informações, o rendimento do painel, em percentual, é",
+    "options": [
+      {
+        "value": "A",
+        "text": "1"
+      },
+      {
+        "value": "B",
+        "text": "1,5"
+      },
+      {
+        "value": "C",
+        "text": "3"
+      },
+      {
+        "value": "D",
+        "text": "30"
+      },
+      {
+        "value": "E",
+        "text": "60"
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 64,
+    "id": "Q3862633",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Em um motor de corrente contínua\nshunt\n, a resistência total do circuito\nshunt\né 30\ne a resistência de armadura é 0,5\n.\nEsse motor opera com tensão e corrente terminais iguais a 240 V e 50 A, respectivamente.\nConsiderando-se que, para as condições de operação desse motor, as suas perdas por atrito, ventilação e do núcleo sejam\n1000W, seu torque de saída, em Nm, é aproximadamente\nDado\nCurva de magnetização linear levantada a 2000 rpm;\nE\nA\n(I\nf\n) = 30 I\nf\n,\nem que\n:\nE\nA\né a tensão induzida em volts;\ne I\nf\né a corrente de campo, em ampère;\nπ\n= 3.",
+    "options": [
+      {
+        "value": "A",
+        "text": "5"
+      },
+      {
+        "value": "B",
+        "text": "45"
+      },
+      {
+        "value": "C",
+        "text": "50"
+      },
+      {
+        "value": "D",
+        "text": "56"
+      },
+      {
+        "value": "E",
+        "text": "60"
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 65,
+    "id": "Q3862634",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Em uma instalação industrial, um Disjuntor em Caixa Moldada DA (Montante) alimenta um painel. Desse painel, sai um\ncircuito protegido por um Disjuntor em Caixa Moldada DB (Jusante).\nOs parâmetros dos disjuntores são:\n• Disjuntor DA (Montante):\n  - Corrente Nominal: 400 A\n  - Disparo Magnético: Fixo em 3.000 A\n  - Capacidade de Ruptura Última: 50 kA\n• Disjuntor DB (Jusante):\n  - Corrente Nominal: 160 A\n  - Disparo Magnético: Ajustado para 1.600 A\n  - Capacidade de Ruptura Última: 25 kA\nConsidere que ocorreu um curto-circuito trifásico de alta intensidade, logo após o Disjuntor DB. A partir do estudo de curto - - circuito, calculou-se que a corrente de defeito nesse ponto foi de 30 kA.\nCom relação à correta coordenação de proteção, conclui-se que",
+    "options": [
+      {
+        "value": "A",
+        "text": "haverá seletividade total, pois a corrente de defeito (30 kA) está acima do disparo magnético de ambos, fazendo com\nque apenas o disjuntor DB, mais rápido, atue."
+      },
+      {
+        "value": "B",
+        "text": "ocorrerá seletividade amperimétrica, pois o ajuste magnético de DB (1.600 A) é menor que o ajuste de DA (3.000 A),\ngarantindo que DB atue sozinho."
+      },
+      {
+        "value": "C",
+        "text": "haverá seletividade, o Disjuntor DB irá atuar, pois a corrente de defeito (30 kA) é superior à sua capacidade de ruptura,\nque é igual a 25 kA."
+      },
+      {
+        "value": "D",
+        "text": "haverá seletividade total, pois a capacidade de ruptura de DA (50 kA) é suficiente para segurar o defeito, permitindo\nque DB interrompa a corrente de 30 kA com segurança."
+      },
+      {
+        "value": "E",
+        "text": "não haverá seletividade, ocorrerá uma proteção de retaguarda (backup), onde DA atuará para proteger DB, pois a\ncorrente de defeito (30 kA) excede a capacidade de ruptura de DB que é de 25 kA."
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 66,
+    "id": "Q3862635",
+    "breadcrumbs": [
+      "Engenharia Elétrica",
+      "Instalações Elétricas em Engenharia Elétrica,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Em um projeto de instalação elétrica de baixa tensão, é essencial que o engenheiro dimensione corretamente os condutores de cada circuito, levando em conta, entre outros critérios, a queda de tensão admissível. A Tabela a seguir apresenta a\nqueda de tensão de três circuitos, no contexto de um projeto elétrico de baixa tensão. Esses circuitos partem de quadros\nde distribuição distintos, que são alimentados pelo Quadro Geral de Baixa Tensão (QGBT). O QGBT, por sua vez, é suprido\ndiretamente pelo ponto de entrega (PE), que representa o ponto de conexão entre a instalação do consumidor e o sistema\nelétrico da concessionária.\nQueda de tensão percentual por trecho em relação\nao valor nominal da instalação\nConsiderando-se que a tensão dos equipamentos previstos para os circuitos é coincidente com a tensão nominal da instalação, pelos critérios de queda de tensão, se o ponto de entrega é nos terminais do secundário do transformador",
+    "options": [
+      {
+        "value": "A",
+        "text": "de propriedade da unidade consumidora, as quedas de tensão nos circuitos 1 e 2 são admissíveis."
+      },
+      {
+        "value": "B",
+        "text": "de propriedade da unidade consumidora, a queda de tensão no circuito 2 é admissível."
+      },
+      {
+        "value": "C",
+        "text": "de propriedade da unidade consumidora, as quedas de tensão nos circuitos 1 e 3 são admissíveis."
+      },
+      {
+        "value": "D",
+        "text": "da distribuidora, a queda de tensão no circuito 1 é admissível."
+      },
+      {
+        "value": "E",
+        "text": "da distribuidora, a queda de tensão no circuito 3 é admissível."
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 67,
+    "id": "Q3862636",
+    "breadcrumbs": [
+      "Engenharia Elétrica",
+      "Acionamentos e Controles Elétricos,",
+      "Máquinas Elétricas,"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Os motores trifásicos assíncronos possuem ampla aplicação nos setores industrial, comercial e até mesmo em sistemas\nprediais, graças à sua robustez, baixo custo, simplicidade de manutenção e elevada eficiência. São comumente utilizados\nem equipamentos como bombas centrífugas, compressores de ar, ventiladores industriais, correias transportadoras e sistemas de climatização.\nConsiderando-se as características eletromecânicas e de operação dos motores trifásicos assíncronos, nos modelos com\nrotor tipo",
+    "options": [
+      {
+        "value": "A",
+        "text": "gaiola de esquilo, os enrolamentos do rotor são posicionados nas diversas ranhuras do rotor, isolados do núcleo de\nferro, com os enrolamentos trifásicos ligados em delta ou estrela, permitindo alterar a resistência do rotor e, consequentemente, o torque de partida."
+      },
+      {
+        "value": "B",
+        "text": "bobinado, os condutores formam um circuito fechado conectado internamente dentro do rotor, o que não permite alterar a resistência do rotor e, consequentemente, o torque de partida."
+      },
+      {
+        "value": "C",
+        "text": "bobinado, os condutores são curto-circuitados em cada terminal por anéis terminais contínuos, o que não permite alterar a resistência do rotor e, consequentemente, o torque de partida."
+      },
+      {
+        "value": "D",
+        "text": "gaiola de esquilo, é possível variar a resistência total do rotor por fase, utilizando um resistor trifásico equilibrado variável ligado aos anéis coletores por meio de escovas, permitindo variar a resistência do rotor e, consequentemente, o\ntorque de partida."
+      },
+      {
+        "value": "E",
+        "text": "bobinado, cada terminal do enrolamento é levado a anéis coletores, que são isolados do eixo do rotor, e podem ser\nligados a resistências externas, permitindo alterar a resistência do rotor e, consequentemente, o torque de partida."
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 68,
+    "id": "Q3862637",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "No sistema de controle em malha fechada descrito no diagrama de blocos da Figura a seguir, o sinal de erro atuante E(s)\nestá definido como a diferença entre o sinal de referência R(s) e o sinal de realimentação negativa.\nConsiderando-se esse diagrama de blocos, a função de transferência do sinal de referência R(s) para o sinal de erro atuante\nE(s) é",
+    "options": [
+      {
+        "value": "A",
+        "text": ""
+      },
+      {
+        "value": "B",
+        "text": ""
+      },
+      {
+        "value": "C",
+        "text": ""
+      },
+      {
+        "value": "D",
+        "text": ""
+      },
+      {
+        "value": "E",
+        "text": ""
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 69,
+    "id": "Q3862638",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "O valor da reatância em regime permanente de um gerador síncrono, conforme informado pelo fabricante do equipamento,\né de 0,3 por unidade (p.u.), considerando-se como bases de potência e tensão, respectivamente, 300 MVA e 20 kV. Considere que os dados de reatância desse gerador devem ser incorporados a um projeto de sistema elétrico de potência cuja\ncorrente base é 8 kA e cuja tensão base é 25 kV.\nO valor da reatância por unidade do gerador, convertido para a base do projeto, em p.u., é",
+    "options": [
+      {
+        "value": "A",
+        "text": "0,124"
+      },
+      {
+        "value": "B",
+        "text": "0,128"
+      },
+      {
+        "value": "C",
+        "text": "0,192"
+      },
+      {
+        "value": "D",
+        "text": "0,196"
+      },
+      {
+        "value": "E",
+        "text": "0,216"
+      }
+    ],
+    "correct_answer": null
+  },
+  {
+    "numero_questao": 70,
+    "id": "Q3862639",
+    "breadcrumbs": [
+      "Não definido"
+    ],
+    "info": "Ano: 2026 Banca: CESGRANRIO Órgão: Caixa Prova: CESGRANRIO - 2026 - Caixa - Engenheiro Eletricista |",
+    "support_text": "",
+    "enunciation": "Uma parte significativa dos geradores utilizados em sistemas elétricos de potência são máquinas síncronas trifásicas.\nNesse tipo de máquina, a velocidade do rotor e o número de polos mantém relação direta com a frequência de geração.\nCom relação às características eletromecânicas e de operação dos geradores síncronos que operam no sistema elétrico\nbrasileiro, os construídos com rotor",
+    "options": [
+      {
+        "value": "A",
+        "text": "de polos salientes possuem um menor número de polos e operam em velocidades mecânicas mais altas quando comparados aos construídos com rotor cilíndrico."
+      },
+      {
+        "value": "B",
+        "text": "de polos salientes possuem um maior número de polos e operam em velocidades mecânicas mais altas quando comparados aos construídos com rotor cilíndrico."
+      },
+      {
+        "value": "C",
+        "text": "cilíndrico possuem um menor número de polos e operam em velocidades mecânicas mais altas quando comparados\naos construídos com rotor de polos salientes."
+      },
+      {
+        "value": "D",
+        "text": "cilíndrico possuem um maior número de polos e operam em velocidades mecânicas mais baixas quando comparados\naos construídos com rotor de polos salientes."
+      },
+      {
+        "value": "E",
+        "text": "cilíndrico possuem um maior número de polos e operam em velocidades mecânicas mais altas quando comparados\naos construídos com rotor de polos salientes."
+      }
+    ],
+    "correct_answer": null
   }
 ]

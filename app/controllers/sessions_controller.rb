@@ -31,7 +31,11 @@ class SessionsController < ApplicationController
       user: user.as_json(except: :password_digest).to_json
     }
 
-    redirect_to "#{ENV['SESSION_BASE_NEW_URL']}/login?#{query_params.to_query}", allow_other_host: true
+    # Define a URL do frontend para redirecionamento
+    # Se SESSION_BASE_NEW_URL contiver /api (comum por confusão de config), nós removemos
+    frontend_base = (ENV['SESSION_BASE_NEW_URL'] || ENV['API_URL'] || "").gsub(/\/api\/?$/, '')
+    
+    redirect_to "#{frontend_base}/login?#{query_params.to_query}", allow_other_host: true
   end
 
   def authenticate
