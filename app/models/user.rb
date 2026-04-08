@@ -24,7 +24,15 @@ class User < ApplicationRecord
   end
 
   def subscribed?
-    admin? || subscription_status == "ACTIVE"
+    admin? || (subscription_status&.upcase == "ACTIVE" && current_period_end.present? && current_period_end > Time.current)
+  end
+
+  def monthly_exports_count
+    exports.where(created_at: Time.current.all_month).count
+  end
+
+  def can_export?
+    subscribed? || monthly_exports_count < 3
   end
 
   def self.verify_admin_token(token)

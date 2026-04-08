@@ -23,6 +23,25 @@ class BancasController < ApplicationController
     render json: Banca.order(:nome)
   end
 
+  def questoes_count
+    counts = Banca.joins(provas: :questaos)
+                 .group('bancas.id', 'bancas.nome', 'bancas.logo')
+                 .select('bancas.id, bancas.nome, bancas.logo,
+                         count(questaos.id) as total_questoes,
+                         count(CASE WHEN questaos.correta IS NOT NULL AND questaos.correta != \'\' THEN 1 END) as com_gabarito')
+                 .order('total_questoes DESC')
+
+    render json: counts.map { |b|
+      {
+        id: b.id,
+        nome: b.nome,
+        logo: b.logo,
+        total_questoes: b.total_questoes,
+        com_gabarito: b.com_gabarito
+      }
+    }
+  end
+
   def show
     render json: @banca
   end

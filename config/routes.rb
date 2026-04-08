@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
   resources :bancas, defaults: { format: :json } do
     get :all, on: :collection
+    get :questoes_count, on: :collection
   end
   resources :assuntos, defaults: { format: :json } do
     get :all, on: :collection

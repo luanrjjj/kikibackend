@@ -4,7 +4,7 @@ require 'genanki/model'
 require 'genanki/note'
 
 class AnkiController < ApplicationController
-  before_action :authenticate_subscription
+  before_action :verify_export_limit
   def generate
     questoes = params[:questoes]
 
