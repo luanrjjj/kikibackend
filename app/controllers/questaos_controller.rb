@@ -1,4 +1,5 @@
 class QuestaosController < ApplicationController
+  before_action :authenticate_subscription, only: %i[ filters_questaos ]
   before_action :set_questao, only: %i[ show update destroy validate ]
   before_action :authenticate_admin!, only: %i[ index stats ]
 
@@ -187,16 +188,5 @@ class QuestaosController < ApplicationController
         :validado_admin, :sistema_ref_id,
         alternativas: [:value, :text]
       )
-    end
-
-    def authenticate_admin!
-      token = request.headers['Authorization']&.split(' ')&.last
-      verification = User.verify_admin_token(token)
-
-      if verification == :unauthorized
-        render json: { error: 'Unauthorized' }, status: :unauthorized
-      elsif verification == :forbidden
-        render json: { error: 'Forbidden' }, status: :forbidden
-      end
     end
 end

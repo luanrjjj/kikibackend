@@ -9,6 +9,23 @@ class ApplicationController < ActionController::API
 
   private
 
+  def authenticate_admin!
+    token = request.headers['Authorization']&.split(' ')&.last
+    verification = User.verify_admin_token(token)
+
+    if verification == :unauthorized
+      render json: { error: 'Unauthorized' }, status: :unauthorized
+    elsif verification == :forbidden
+      render json: { error: 'Forbidden' }, status: :forbidden
+    end
+  end
+
+  def authenticate_subscription
+    unless current_user&.subscribed?
+      render json: { error: 'Active subscription required' }, status: :method_not_allowed
+    end
+  end
+
   def authenticate_user!
     token = request.headers['Authorization']&.split(' ')&.last
     if token

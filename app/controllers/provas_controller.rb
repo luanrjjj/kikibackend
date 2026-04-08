@@ -1,4 +1,5 @@
 class ProvasController < ApplicationController
+  before_action :authenticate_subscription, only: %i[ questaos ]
   before_action :set_prova, only: %i[ show update destroy questaos ]
   before_action :authenticate_admin!, only: %i[ index all stats years ]
 
@@ -166,16 +167,5 @@ class ProvasController < ApplicationController
         },
         except: %i[created_at updated_at validado_admin]
       }
-    end
-
-    def authenticate_admin!
-      token = request.headers['Authorization']&.split(' ')&.last
-      verification = User.verify_admin_token(token)
-
-      if verification == :unauthorized
-        render json: { error: 'Unauthorized' }, status: :unauthorized
-      elsif verification == :forbidden
-        render json: { error: 'Forbidden' }, status: :forbidden
-      end
     end
 end

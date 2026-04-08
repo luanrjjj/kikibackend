@@ -56,15 +56,4 @@ class DisciplinasController < ApplicationController
     def disciplina_params
       params.require(:disciplina).permit(:nome)
     end
-
-    def authenticate_admin!
-      token = request.headers['Authorization']&.split(' ')&.last
-      verification = User.verify_admin_token(token)
-
-      if verification == :unauthorized
-        render json: { error: 'Unauthorized' }, status: :unauthorized
-      elsif verification == :forbidden
-        render json: { error: 'Forbidden' }, status: :forbidden
-      end
-    end
 end

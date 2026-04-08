@@ -23,6 +23,10 @@ class User < ApplicationRecord
     save!
   end
 
+  def subscribed?
+    admin? || subscription_status == "ACTIVE"
+  end
+
   def self.verify_admin_token(token)
     session = Session.includes(:user).find_by(token: token)
 

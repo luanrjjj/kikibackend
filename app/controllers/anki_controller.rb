@@ -4,6 +4,7 @@ require 'genanki/model'
 require 'genanki/note'
 
 class AnkiController < ApplicationController
+  before_action :authenticate_subscription
   def generate
     questoes = params[:questoes]
 
