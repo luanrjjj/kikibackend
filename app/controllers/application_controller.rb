@@ -28,9 +28,9 @@ class ApplicationController < ActionController::API
 
   def verify_export_limit
     unless current_user&.can_export?
-      render json: { 
-        error: 'Limite de exportação atingido', 
-        message: 'Usuários do plano gratuito podem exportar até 3 provas por mês. Assine para exportações ilimitadas.' 
+      render json: {
+        error: 'Limite de exportação atingido',
+        message: 'Usuários do plano gratuito podem exportar até 3 provas por mês. Assine para exportações ilimitadas.'
       }, status: :forbidden
     end
   end
