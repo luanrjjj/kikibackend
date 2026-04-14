@@ -60,8 +60,30 @@ class ConcursosController < ApplicationController
     render json: @concurso
   end
 
+  def stats
+    @concursos = Concurso.all
+    
+    # Filter by name if search present
+    @concursos = @concursos.where("nome ILIKE ?", "%#{params[:search]}%") if params[:search].present?
+    
+    total_count = @concursos.count
+    
+    # Calculate by_year using provas associated with the concursos
+    by_year = Concurso.joins(:provas)
+                     .where(id: @concursos.pluck(:id))
+                     .group('provas.ano')
+                     .distinct
+                     .count('concursos.id')
+                     .sort.to_h
+
+    render json: {
+      total_count: total_count,
+      by_year: by_year
+    }
+  end
+
   def all
-    render json: Disciplina.order(:nome)
+    render json: Concurso.order(:nome)
   end
 
   def create

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :concursos, defaults: { format: :json } do
     get :all, on: :collection
     get :public_index, on: :collection
+    get :stats, on: :collection
   end
 
   resources :disciplinas, defaults: { format: :json } do

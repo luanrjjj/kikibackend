@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_04_14_120000) do
+ActiveRecord::Schema[8.0].define(version: 2026_04_14_150000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -170,6 +170,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_120000) do
     t.index ["assunto_id"], name: "index_questaos_on_assunto_id"
     t.index ["concurso_id"], name: "index_questaos_on_concurso_id"
     t.index ["disciplina_id"], name: "index_questaos_on_disciplina_id"
+    t.index ["sistema_ref_id"], name: "index_questaos_on_sistema_ref_id"
     t.index ["texto_id"], name: "index_questaos_on_texto_id"
   end
 
