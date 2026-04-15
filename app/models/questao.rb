@@ -1,6 +1,7 @@
 class Questao < ApplicationRecord
   has_many :prova_questaos, dependent: :destroy
   has_many :provas, through: :prova_questaos
+  has_many :resolucoes, dependent: :destroy
 
   belongs_to :concurso, optional: true
   belongs_to :assunto, optional: true

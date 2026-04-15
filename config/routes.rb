@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     end
     get :all, on: :collection
     get :count, on: :collection
+    get :ids, on: :collection
     get :filters_page_questaos, on: :collection
     get :stats, on: :collection
   end
@@ -43,6 +44,10 @@ Rails.application.routes.draw do
   resources :area_de_formacao, only: [:index, :show]
   resources :area_de_atuacao, only: [:index, :show]
   resources :planos, only: [:index], defaults: { format: :json }
+  resources :cadernos, defaults: { format: :json } do
+    get :questaos, on: :member
+  end
+  resources :resolucoes, only: [:create], defaults: { format: :json }
 
   post 'anki/generate', to: 'anki#generate'
 

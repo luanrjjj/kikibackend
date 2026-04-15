@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_04_14_150000) do
+ActiveRecord::Schema[8.0].define(version: 2026_04_14_170000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -41,6 +41,22 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_150000) do
     t.integer "total_concursos"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cadernos", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "prova_id"
+    t.bigint "concurso_id"
+    t.json "questoes_ids", default: []
+    t.string "nome", null: false
+    t.string "nome_da_pasta", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["concurso_id"], name: "index_cadernos_on_concurso_id"
+    t.index ["prova_id"], name: "index_cadernos_on_prova_id"
+    t.index ["user_id", "nome"], name: "index_cadernos_on_user_id_and_nome", unique: true
+    t.index ["user_id", "nome_da_pasta"], name: "index_cadernos_on_user_id_and_nome_da_pasta", unique: true
+    t.index ["user_id"], name: "index_cadernos_on_user_id"
   end
 
   create_table "concursos", force: :cascade do |t|
@@ -174,6 +190,19 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_150000) do
     t.index ["texto_id"], name: "index_questaos_on_texto_id"
   end
 
+  create_table "resolucoes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "questao_id", null: false
+    t.bigint "caderno_id"
+    t.string "resposta"
+    t.boolean "correta"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["caderno_id"], name: "index_resolucoes_on_caderno_id"
+    t.index ["questao_id"], name: "index_resolucoes_on_questao_id"
+    t.index ["user_id"], name: "index_resolucoes_on_user_id"
+  end
+
   create_table "seed_migration_data_migrations", id: :serial, force: :cascade do |t|
     t.string "version"
     t.integer "runtime"
@@ -244,6 +273,9 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_150000) do
   end
 
   add_foreign_key "assuntos", "disciplinas"
+  add_foreign_key "cadernos", "concursos"
+  add_foreign_key "cadernos", "provas"
+  add_foreign_key "cadernos", "users"
   add_foreign_key "concursos", "bancas"
   add_foreign_key "concursos", "orgaos"
   add_foreign_key "exports", "concursos"
@@ -262,6 +294,9 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_150000) do
   add_foreign_key "questaos", "concursos"
   add_foreign_key "questaos", "disciplinas"
   add_foreign_key "questaos", "textos"
+  add_foreign_key "resolucoes", "cadernos"
+  add_foreign_key "resolucoes", "questaos"
+  add_foreign_key "resolucoes", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "textos", "concursos"
   add_foreign_key "textos", "provas"

@@ -150,6 +150,37 @@ class QuestaosController < ApplicationController
     render json: { count: @questaos.count }
   end
 
+  def ids
+    @questaos = Questao.distinct
+
+    if params[:bancas].present?
+      @questaos = @questaos.joins(provas: :banca).where(bancas: { id: params[:bancas] })
+    end
+
+    if params[:ano].present?
+      if params[:ano].to_s.include?('-')
+        start_year, end_year = params[:ano].split('-').map(&:to_i)
+        @questaos = @questaos.where(ano: start_year..end_year)
+      else
+        @questaos = @questaos.where(ano: params[:ano])
+      end
+    end
+
+    if params[:escolaridade].present?
+      @questaos = @questaos.joins(:provas).where(provas: { escolaridade: params[:escolaridade] })
+    end
+
+    if params[:assuntos].present?
+      @questaos = @questaos.where(assunto_id: params[:assuntos])
+    end
+
+    if params[:disciplinas].present?
+      @questaos = @questaos.where(disciplina_id: params[:disciplinas])
+    end
+
+    render json: { ids: @questaos.pluck(:id) }
+  end
+
   #GET /questao/filters_page_questaos
   def filters_questaos
     @questaos = Questao.distinct
