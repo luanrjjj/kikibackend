@@ -1,6 +1,6 @@
 class CreateResolucoes < ActiveRecord::Migration[8.0]
   def up
-    create_table :resolucoes do |t|
+    create_table :resolucaos do |t|
       t.references :user, null: false, foreign_key: true
       t.references :questao, null: false, foreign_key: true
       t.references :caderno, null: true, foreign_key: true
@@ -12,6 +12,6 @@ class CreateResolucoes < ActiveRecord::Migration[8.0]
   end
 
   def down
-    execute "DROP TABLE IF EXISTS resolucoes CASCADE;"
+    execute "DROP TABLE IF EXISTS resolucaos CASCADE;"
   end
 end

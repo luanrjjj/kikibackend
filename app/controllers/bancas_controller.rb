@@ -23,6 +23,10 @@ class BancasController < ApplicationController
     render json: Banca.order(:nome)
   end
 
+  def filters
+    render json: Banca.order(:nome).select(:id, :nome)
+  end
+
   def questoes_count
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max

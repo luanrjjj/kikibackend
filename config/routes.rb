@@ -2,13 +2,16 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :orgaos, defaults: { format: :json } do
     get :all, on: :collection
+    get :filters, on: :collection
   end
   resources :bancas, defaults: { format: :json } do
     get :all, on: :collection
+    get :filters, on: :collection
     get :questoes_count, on: :collection
   end
   resources :assuntos, defaults: { format: :json } do
     get :all, on: :collection
+    get :filters, on: :collection
   end
   resources :concursos, defaults: { format: :json } do
     get :all, on: :collection
@@ -18,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :disciplinas, defaults: { format: :json } do
     get :all, on: :collection
+    get :filters, on: :collection
   end
 
   resources :questaos, defaults: { format: :json } do

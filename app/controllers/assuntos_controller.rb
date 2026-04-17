@@ -21,6 +21,10 @@ class AssuntosController < ApplicationController
     render json: Assunto.order(:nome)
   end
 
+  def filters
+    render json: Assunto.order(:nome).select(:id, :nome, :disciplina_id)
+  end
+
   def show
     render json: @assunto
   end

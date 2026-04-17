@@ -44,5 +44,19 @@ class QuestaoSerializer
       }
     end
   end
+
+  attribute :resolucao do |object, params|
+    if params && params[:resolucoes]
+      res = params[:resolucoes][object.id]
+      if res
+        {
+          id: res.id,
+          resposta: res.resposta,
+          correta: res.correta,
+          created_at: res.created_at
+        }
+      end
+    end
+  end
 end
 

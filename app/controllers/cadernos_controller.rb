@@ -17,11 +17,18 @@ class CadernosController < ApplicationController
     @questaos = Questao.where(id: @caderno.questoes_ids)
                        .includes(:disciplina, :assunto, :concurso, :texto, :provas, concurso: :orgao, provas: :orgao)
     
+    # Fetch resolutions for this user, this notebook and these questions
+    resolucoes = current_user.resolucoes.where(caderno_id: @caderno.id, questao_id: @caderno.questoes_ids)
+
     # Optional: order questions by their original position in the questoes_ids array
-    # This ensures consistency for the user
     ordered_questaos = @caderno.questoes_ids.map { |id| @questaos.find { |q| q.id == id.to_i } }.compact
 
-    render json: QuestaoSerializer.new(ordered_questaos).serializable_hash
+    # We can pass resolutions to the serializer via params
+    render json: QuestaoSerializer.new(ordered_questaos, { 
+      params: { 
+        resolucoes: resolucoes.index_by(&:questao_id) 
+      } 
+    }).serializable_hash
   end
 
   # POST /cadernos

@@ -22,7 +22,11 @@ class OrgaosController < ApplicationController
   end
 
   def all
-    render json: Disciplina.order(:nome)
+    render json: Orgao.order(:nome)
+  end
+
+  def filters
+    render json: Orgao.order(:nome).select(:id, :nome)
   end
 
   def create

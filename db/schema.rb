@@ -190,7 +190,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_170000) do
     t.index ["texto_id"], name: "index_questaos_on_texto_id"
   end
 
-  create_table "resolucoes", force: :cascade do |t|
+  create_table "resolucaos", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "questao_id", null: false
     t.bigint "caderno_id"
@@ -198,9 +198,9 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_170000) do
     t.boolean "correta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["caderno_id"], name: "index_resolucoes_on_caderno_id"
-    t.index ["questao_id"], name: "index_resolucoes_on_questao_id"
-    t.index ["user_id"], name: "index_resolucoes_on_user_id"
+    t.index ["caderno_id"], name: "index_resolucaos_on_caderno_id"
+    t.index ["questao_id"], name: "index_resolucaos_on_questao_id"
+    t.index ["user_id"], name: "index_resolucaos_on_user_id"
   end
 
   create_table "seed_migration_data_migrations", id: :serial, force: :cascade do |t|
@@ -294,9 +294,9 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_170000) do
   add_foreign_key "questaos", "concursos"
   add_foreign_key "questaos", "disciplinas"
   add_foreign_key "questaos", "textos"
-  add_foreign_key "resolucoes", "cadernos"
-  add_foreign_key "resolucoes", "questaos"
-  add_foreign_key "resolucoes", "users"
+  add_foreign_key "resolucaos", "cadernos"
+  add_foreign_key "resolucaos", "questaos"
+  add_foreign_key "resolucaos", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "textos", "concursos"
   add_foreign_key "textos", "provas"

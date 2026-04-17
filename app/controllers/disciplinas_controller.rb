@@ -22,6 +22,10 @@ class DisciplinasController < ApplicationController
     render json: Disciplina.order(:nome)
   end
 
+  def filters
+    render json: Disciplina.order(:nome).select(:id, :nome)
+  end
+
   def show
     render json: @disciplina
   end
