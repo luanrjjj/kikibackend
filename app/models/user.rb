@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :password_resets, dependent: :destroy
   has_many :exports, dependent: :destroy
   has_many :cadernos, dependent: :destroy
+  has_many :pasta_cadernos, dependent: :destroy
   has_many :resolucoes, class_name: 'Resolucao', dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
@@ -26,7 +27,7 @@ class User < ApplicationRecord
   end
 
   def subscribed?
-    admin? || (subscription_status&.upcase == "ACTIVE" && current_period_end.present? && current_period_end > Time.current)
+    admin? || (subscription_status&.upcase == 'ACTIVE' && current_period_end.present? && current_period_end > Time.current)
   end
 
   def monthly_exports_count

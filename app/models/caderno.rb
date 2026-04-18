@@ -1,7 +1,11 @@
 class Caderno < ApplicationRecord
   belongs_to :user
   belongs_to :prova, optional: true
-  has_many :resolucoes, class_name: 'Resolucao', dependent: :nullify
+  belongs_to :concurso, optional: true
+  belongs_to :pasta_caderno
+  
+  has_many :resolucoes, class_name: 'Resolucao', dependent: :destroy
 
-  validates :questoes_ids, presence: true
+  validates :nome, presence: true, uniqueness: { scope: :user_id }
+  validates :pasta_caderno_id, presence: true
 end
