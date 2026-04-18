@@ -1,4 +1,4 @@
 class TextoSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :texto
+  attributes :id, :texto, :imagem_texto
 end

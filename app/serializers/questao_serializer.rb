@@ -23,8 +23,18 @@ class QuestaoSerializer
     end
   end
 
+  attribute :banca do |object|
+    banca = object.concurso&.banca || object.provas.first&.banca
+    if banca
+      {
+        id: banca.id,
+        nome: banca.nome,
+        logo: banca.logo
+      }
+    end
+  end
+
   attribute :orgao do |object|
-    # Get orgao from concurso or prova
     orgao = object.concurso&.orgao || object.provas.first&.orgao
     if orgao
       {
@@ -59,4 +69,3 @@ class QuestaoSerializer
     end
   end
 end
-
