@@ -3,7 +3,6 @@ class QuestaosController < ApplicationController
   before_action :set_questao, only: %i[ show update destroy validate ]
   before_action :authenticate_admin!, only: %i[ index stats ]
 
-
   # GET /questaos
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
@@ -24,7 +23,7 @@ class QuestaosController < ApplicationController
     end
 
     if params[:search].present?
-      @questaos = @questaos.where("enunciado ILIKE ?", "%#{params[:search]}%")
+      @questaos = @questaos.where('enunciado ILIKE ?', "%#{params[:search]}%")
     end
 
     total_count = @questaos.count
@@ -43,31 +42,13 @@ class QuestaosController < ApplicationController
     }
   end
 
-
-
-    # GET /questaos/stats
+  # GET /questaos/stats
   def stats
-    @questaos = Questao.all
-
-    if params[:disciplina_id].present?
-      @questaos = @questaos.where(disciplina_id: params[:disciplina_id])
-    end
-
-    if params[:prova_id].present?
-      @questaos = @questaos.joins(:prova_questaos).where(prova_questaos: { prova_id: params[:prova_id] })
-    end
-
-    if params[:assunto_id].present?
-      @questaos = @questaos.where(assunto_id: params[:assunto_id])
-    end
-
-    if params[:search].present?
-      @questaos = @questaos.where("enunciado ILIKE ?", "%#{params[:search]}%")
-    end
+    @questaos = apply_filters(Questao.all)
 
     total_count = @questaos.count
     validated_count = @questaos.where.not(validado_admin: nil).count
-    with_correct_answer_count = @questaos.where.not(correta: [nil, ""]).count
+    with_correct_answer_count = @questaos.where.not(correta: [nil, '']).count
     with_disciplina_count = @questaos.where.not(disciplina_id: nil).count
     with_assunto_count = @questaos.where.not(assunto_id: nil).count
     with_disciplina_assunto_count = @questaos.where.not(disciplina_id: nil).where.not(assunto_id: nil).count
@@ -92,13 +73,10 @@ class QuestaosController < ApplicationController
     end
   end
 
-
   # GET /questaos/1
   def show
     render json: @questao.as_json(include: [:provas, :assunto, :disciplina, :texto])
   end
-
-
 
   # POST /questaos
   def create
@@ -125,103 +103,81 @@ class QuestaosController < ApplicationController
     @questao.destroy!
   end
 
-
-   # GET /questaos/count
-    def count
-    @questaos = Questao.distinct
-
-    if params[:bancas].present?
-      @questaos = @questaos.joins(provas: :banca).where(bancas: { id: params[:bancas] })
-    end
-
-    if params[:ano].present?
-      if params[:ano].to_s.include?('-')
-        start_year, end_year = params[:ano].split('-').map(&:to_i)
-        @questaos = @questaos.where(ano: start_year..end_year)
-      else
-        @questaos = @questaos.where(ano: params[:ano])
-      end
-    end
-
-    if params[:escolaridade].present?
-      @questaos = @questaos.joins(:provas).where(provas: { escolaridade: params[:escolaridade] })
-    end
-
+  # GET /questaos/count
+  def count
+    @questaos = apply_filters(Questao.distinct)
     render json: { count: @questaos.count }
   end
 
+  # GET /questaos/ids
   def ids
-    @questaos = Questao.distinct
-
-    if params[:bancas].present?
-      @questaos = @questaos.joins(provas: :banca).where(bancas: { id: params[:bancas] })
-    end
-
-    if params[:ano].present?
-      if params[:ano].to_s.include?('-')
-        start_year, end_year = params[:ano].split('-').map(&:to_i)
-        @questaos = @questaos.where(ano: start_year..end_year)
-      else
-        @questaos = @questaos.where(ano: params[:ano])
-      end
-    end
-
-    if params[:escolaridade].present?
-      @questaos = @questaos.joins(:provas).where(provas: { escolaridade: params[:escolaridade] })
-    end
-
-    if params[:assuntos].present?
-      @questaos = @questaos.where(assunto_id: params[:assuntos])
-    end
-
-    if params[:disciplinas].present?
-      @questaos = @questaos.where(disciplina_id: params[:disciplinas])
-    end
-
+    @questaos = apply_filters(Questao.distinct)
     render json: { ids: @questaos.pluck(:id) }
   end
 
-  #GET /questao/filters_page_questaos
+  # GET /questaos/filters_page_questaos
   def filters_questaos
-    @questaos = Questao.distinct
-
-    if params[:bancas].present?
-      @questaos = @questaos.joins(provas: :banca).where(bancas: { id: params[:bancas] })
-    end
-
-    if params[:ano].present?
-      if params[:ano].to_s.include?('-')
-        start_year, end_year = params[:ano].split('-').map(&:to_i)
-        @questaos = @questaos.where(ano: start_year..end_year)
-      else
-        @questaos = @questaos.where(ano: params[:ano])
-      end
-    end
-
-    if params[:escolaridade].present?
-      @questaos = @questaos.joins(:provas).where(provas: { escolaridade: params[:escolaridade] })
-    end
+    @questaos = apply_filters(Questao.distinct)
 
     total_count = @questaos.count
     page = params[:page]&.to_i || 1
     per_page = params[:per_page]&.to_i || 10
     @questaos = @questaos.offset((page - 1) * per_page).limit(per_page)
 
-
     render json: { questoes: @questaos, total_count: total_count }
   end
 
   private
-    def set_questao
-      @questao = Questao.find(params[:id])
+
+  def set_questao
+    @questao = Questao.find(params[:id])
+  end
+
+  def apply_filters(scope)
+    questaos = scope
+
+    if params[:bancas].present?
+      questaos = questaos.joins(provas: :banca).where(bancas: { id: params[:bancas] })
     end
 
-    def questao_params
-      params.require(:questao).permit(
-        :texto, :enunciado, :discursiva, :ano, :correta,
-        :concurso_id, :assunto_id, :disciplina_id,
-        :validado_admin, :sistema_ref_id,
-        alternativas: [:value, :text]
-      )
+    if params[:orgaos].present?
+      questaos = questaos.joins(provas: :orgao).where(orgaos: { id: params[:orgaos] })
     end
+
+    if params[:ano].present?
+      if params[:ano].to_s.include?('-')
+        start_year, end_year = params[:ano].split('-').map(&:to_i)
+        questaos = questaos.where(ano: start_year..end_year)
+      else
+        questaos = questaos.where(ano: params[:ano])
+      end
+    end
+
+    if params[:escolaridade].present?
+      questaos = questaos.joins(:provas).where(provas: { escolaridade: params[:escolaridade] })
+    end
+
+    if params[:assuntos].present?
+      questaos = questaos.where(assunto_id: params[:assuntos])
+    end
+
+    if params[:disciplinas].present?
+      questaos = questaos.where(disciplina_id: params[:disciplinas])
+    end
+
+    if params[:search].present?
+      questaos = questaos.where('enunciado ILIKE ?', "%#{params[:search]}%")
+    end
+
+    questaos
+  end
+
+  def questao_params
+    params.require(:questao).permit(
+      :texto, :enunciado, :discursiva, :ano, :correta,
+      :concurso_id, :assunto_id, :disciplina_id,
+      :validado_admin, :sistema_ref_id,
+      alternativas: [:value, :text]
+    )
+  end
 end
