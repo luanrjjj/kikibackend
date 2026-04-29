@@ -56,6 +56,8 @@ Rails.application.routes.draw do
   resources :resolucoes, only: [:create], defaults: { format: :json }
 
   post 'anki/generate', to: 'anki#generate'
+  post 'anki/generate_ai', to: 'anki#generate_ai'
+  post 'anki/ai_generate_json', to: 'anki#ai_generate_json'
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: 'sessions#failure'
