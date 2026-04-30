@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :cadernos, dependent: :destroy
   has_many :pasta_cadernos, dependent: :destroy
   has_many :resolucoes, class_name: 'Resolucao', dependent: :destroy
+  has_many :comentarios, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
 

@@ -5,7 +5,8 @@ class Prova < ApplicationRecord
 
   has_many :prova_questaos, dependent: :destroy
   has_many :questaos, through: :prova_questaos
-  has_many :textos
+  has_many :comentarios, dependent: :destroy
+  has_many :textos, dependent: :destroy
   has_many :cadernos, dependent: :nullify
 
   validates :nome, presence: true

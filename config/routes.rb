@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get :all, on: :collection
     get :public_index, on: :collection
     get :stats, on: :collection
+    delete :destroy_by_name, on: :collection
   end
 
   resources :disciplinas, defaults: { format: :json } do
@@ -54,6 +55,7 @@ Rails.application.routes.draw do
     get :questaos, on: :member
   end
   resources :resolucoes, only: [:create], defaults: { format: :json }
+  resources :comentarios, only: [:index, :create], defaults: { format: :json }
 
   post 'anki/generate', to: 'anki#generate'
   post 'anki/generate_ai', to: 'anki#generate_ai'

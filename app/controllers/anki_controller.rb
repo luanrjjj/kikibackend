@@ -7,27 +7,40 @@ class AnkiController < ApplicationController
   before_action :verify_export_limit
   def generate
     questoes = params[:questoes]
+    title = params[:title] || "Anki Deck #{Time.now.strftime('%Y-%m-%d')}"
 
     if questoes.blank?
       render json: { error: 'Nenhuma questão fornecida' }, status: :bad_request
       return
     end
 
-    # Tenta identificar a prova e o concurso a partir das questões (se houver essa info)
-    # ou de parâmetros diretos se forem enviados.
     first_q = questoes.first
     prova_id = params[:prova_id] || first_q['prova_id']
     concurso_id = params[:concurso_id] || first_q['concurso_id']
 
-    deck = Genanki::Deck.new(
-      deck_id: Time.now.to_i,
-      name: "Anki Deck #{Time.now.strftime('%Y-%m-%d')}"
-    )
-
+    # Map to hold decks by name (to support sub-decks by subject)
+    decks = {}
+    
+    # Base deck for everything else
+    base_deck_id = Time.now.to_i
+    
     models = {}
     media_files = []
 
-    questoes.each do |q|
+    questoes.each_with_index do |q, idx|
+      # Determine deck name: "MainTitle::Subject" or just "MainTitle"
+      subject = q['assunto']
+      deck_name = subject.present? ? "#{title}::#{subject}" : title
+      
+      unless decks.key?(deck_name)
+        decks[deck_name] = Genanki::Deck.new(
+          deck_id: base_deck_id + idx, # Ensure unique IDs
+          name: deck_name
+        )
+      end
+      
+      current_deck = decks[deck_name]
+
       card_type = q['type'] || 'basic'
       model = models[card_type]
 
@@ -88,63 +101,40 @@ class AnkiController < ApplicationController
               }
             ]
           )
-        elsif card_type == 'image_occlusion'
-          model = Genanki::Model.new(
-            model_id: 1699392322,
-            name: 'ImageOcclusionModel',
-            fields: [
-              { 'name' => 'Image' },
-              { 'name' => 'Masks' },
-              { 'name' => 'Header' },
-              { 'name' => 'Footer' }
-            ],
-            templates: [
-              {
-                'name' => 'Image Occlusion',
-                'qfmt' => '{{Header}}<br><img src="{{Image}}"><br>{{Footer}}',
-                'afmt' => '{{FrontSide}}<hr id="answer">{{Masks}}'
-              }
-            ]
-          )
         end
         models[card_type] = model
       end
+
+      # Prepare tags (no spaces allowed)
+      tags = []
+      tags << q['disciplina'].gsub(/\s+/, '_') if q['disciplina'].present?
+      tags << q['assunto'].gsub(/\s+/, '_') if q['assunto'].present?
 
       note = nil
       if card_type == 'basic'
         note = Genanki::Note.new(
           model: model,
-          fields: [q['enunciado'], q['correta']]
+          fields: [q['enunciado'], q['correta']],
+          tags: tags
         )
       elsif card_type == 'basic_and_reversed'
         note = Genanki::Note.new(
           model: model,
-          fields: [q['enunciado'], q['resposta']]
+          fields: [q['enunciado'], q['resposta']],
+          tags: tags
         )
-
-        #Consertar o q['extra'] parametro, alem disso o cloze precisa ser estilizado.
       elsif card_type == 'cloze'
         note = Genanki::Note.new(
           model: model,
-          fields: [q['enunciado'], q['extra']]
+          fields: [q['enunciado'], q['extra']],
+          tags: tags
         )
-      elsif card_type == 'image_occlusion'
-        # I'm assuming the image is passed as a file path
-        # and I'm adding it to media_files to be included in the package.
-        if q['image_path'] && File.exist?(q['image_path'])
-          media_files << q['image_path']
-          image_name = File.basename(q['image_path'])
-          note = Genanki::Note.new(
-            model: model,
-            fields: [image_name, q['masks'], q['header'], q['footer']]
-          )
-        end
       end
 
-      deck.add_note(note) if note
+      current_deck.add_note(note) if note
     end
 
-    pkg = Genanki::Package.new(deck, media_files: media_files)
+    pkg = Genanki::Package.new(decks.values, media_files: media_files)
     file_name = "anki_deck_#{Time.now.to_i}.apkg"
     file_path = Rails.root.join('tmp', file_name)
 
@@ -191,7 +181,7 @@ class AnkiController < ApplicationController
 
   def generate_ai
     question_data = params[:question]
-
+    
     if question_data.blank?
       render json: { error: 'Dados da questão não fornecidos' }, status: :bad_request
       return
@@ -199,7 +189,7 @@ class AnkiController < ApplicationController
 
     enunciado = question_data['enunciado']
     texto_apoio = question_data.dig('texto', 'texto')
-
+    
     # Encontrar o texto da alternativa correta
     # Se a questão não tem 'correta' definida, tenta pegar da resolução do usuário
     correta_value = question_data['correta'] || question_data.dig('resolucao', 'resposta')
@@ -214,9 +204,14 @@ class AnkiController < ApplicationController
       return
     end
 
+    # For AI, we can also support sub-decks if discipline/subject is passed
+    title = "IA Anki - #{Time.now.strftime('%Y-%m-%d')}"
+    subject = question_data.dig('assunto', 'nome') || question_data['assunto']
+    deck_name = subject.present? ? "#{title}::#{subject}" : title
+
     deck = Genanki::Deck.new(
       deck_id: Time.now.to_i,
-      name: "IA Anki - #{Time.now.strftime('%Y-%m-%d')}"
+      name: deck_name
     )
 
     model = Genanki::Model.new(
@@ -236,10 +231,17 @@ class AnkiController < ApplicationController
       css: ".card {\n  font-family: 'Moniker', system-ui, -apple-system, sans-serif;\n  font-size: 18px;\n  text-align: left;\n  color: #3f3f46;\n  background-color: #f8fafc;\n  padding: 20px;\n}\n\n.container {\n  background-color: white;\n  border-radius: 12px;\n  border: 1px solid #e4e4e7;\n  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);\n  padding: 24px;\n  max-width: 600px;\n  margin: 0 auto;\n}\n\n.badge {\n  display: inline-flex;\n  padding: 4px 12px;\n  border-radius: 9999px;\n  background-color: rgba(85, 34, 250, 0.1);\n  color: #5522fa;\n  font-size: 10px;\n  font-weight: bold;\n  text-transform: uppercase;\n  letter-spacing: 0.05em;\n  margin-bottom: 12px;\n}\n\n.question {\n  font-weight: 800;\n  font-size: 1.25em;\n  line-height: 1.4;\n  color: #18181b;\n  letter-spacing: -0.025em;\n}\n\n.divider {\n  border: none;\n  border-top: 1px solid #e4e4e7;\n  margin: 20px 0;\n}\n\n.answer {\n  color: #3f3f46;\n  line-height: 1.6;\n  font-weight: 500;\n}\n"
     )
 
+    # Tags for AI cards
+    disciplina = question_data.dig('disciplina', 'nome') || question_data['disciplina']
+    tags = ["IA_Generated"]
+    tags << disciplina.gsub(/\s+/, '_') if disciplina.present?
+    tags << subject.gsub(/\s+/, '_') if subject.present?
+
     ai_cards.each do |card|
       note = Genanki::Note.new(
         model: model,
-        fields: [card['front'], card['back']]
+        fields: [card['front'], card['back']],
+        tags: tags
       )
       deck.add_note(note)
     end

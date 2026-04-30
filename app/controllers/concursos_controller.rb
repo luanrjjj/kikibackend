@@ -108,6 +108,30 @@ class ConcursosController < ApplicationController
     @concurso.destroy!
   end
 
+  # DELETE /concursos/destroy_by_name?nome=XXX
+  def destroy_by_name
+    if params[:nome].blank?
+      render json: { error: "Nome é obrigatório" }, status: :bad_request
+      return
+    end
+
+    @concursos = Concurso.where(nome: params[:nome])
+    count = @concursos.count
+
+    if count == 0
+      render json: { message: "Nenhum concurso encontrado com o nome: #{params[:nome]}" }, status: :not_found
+      return
+    end
+
+    @concursos.destroy_all
+
+    render json: { 
+      message: "Sucesso ao deletar concursos", 
+      count: count,
+      nome: params[:nome]
+    }, status: :ok
+  end
+
   private
     def set_concurso
       @concurso = Concurso.find(params[:id])
