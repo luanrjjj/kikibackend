@@ -22,7 +22,7 @@ class ConcursosController < ApplicationController
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 10).to_i, 1].max
     
-    @concursos = Concurso.includes(:banca, :provas, :orgao)
+    @concursos = Concurso.all
     
     if params[:nome].present?
       @concursos = @concursos.where("concursos.nome ILIKE ?", "%#{params[:nome]}%")
@@ -37,14 +37,15 @@ class ConcursosController < ApplicationController
     end
 
     total_count = @concursos.count
-    @concursos = @concursos.order(inscricoes_ate: :desc)
+    @concursos = @concursos.includes(:banca, :orgao, :provas)
+                         .order(inscricoes_ate: :desc)
                          .offset((page - 1) * per_page)
                          .limit(per_page)
 
     render json: {
       data: @concursos.as_json(include: { 
         banca: { only: [:id, :nome, :sigla, :logo] },
-        orgao: { only: [:id, :nome, :logo_url] },
+        orgao: { except: [:created_at, :updated_at] },
         provas: { only: [:id, :nome, :ano] }
       }),
       meta: {
