@@ -28,9 +28,15 @@ class AnkiController < ApplicationController
     media_files = []
 
     questoes.each_with_index do |q, idx|
-      # Determine deck name: "MainTitle::Subject" or just "MainTitle"
+      # Determine deck name hierarchy: "Title::Disciplina::Subject"
+      disciplina = q['disciplina']
       subject = q['assunto']
-      deck_name = subject.present? ? "#{title}::#{subject}" : title
+      
+      hierarchy = [title]
+      hierarchy << disciplina if disciplina.present?
+      hierarchy << subject if subject.present?
+      
+      deck_name = hierarchy.join("::")
       
       unless decks.key?(deck_name)
         decks[deck_name] = Genanki::Deck.new(
@@ -206,8 +212,14 @@ class AnkiController < ApplicationController
 
     # For AI, we can also support sub-decks if discipline/subject is passed
     title = "IA Anki - #{Time.now.strftime('%Y-%m-%d')}"
+    disciplina = question_data.dig('disciplina', 'nome') || question_data['disciplina']
     subject = question_data.dig('assunto', 'nome') || question_data['assunto']
-    deck_name = subject.present? ? "#{title}::#{subject}" : title
+    
+    hierarchy = [title]
+    hierarchy << disciplina if disciplina.present?
+    hierarchy << subject if subject.present?
+    
+    deck_name = hierarchy.join("::")
 
     deck = Genanki::Deck.new(
       deck_id: Time.now.to_i,
