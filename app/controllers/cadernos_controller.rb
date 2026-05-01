@@ -63,6 +63,15 @@ class CadernosController < ApplicationController
     @caderno.destroy!
   end
 
+  # PATCH/PUT /cadernos/1
+  def update
+    if @caderno.update(caderno_params)
+      render json: @caderno
+    else
+      render json: @caderno.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_caderno
