@@ -21,9 +21,9 @@ class ConcursosController < ApplicationController
   def public_index
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 10).to_i, 1].max
-    
+
     @concursos = Concurso.all
-    
+
     if params[:nome].present?
       @concursos = @concursos.where("concursos.nome ILIKE ?", "%#{params[:nome]}%")
     end
@@ -43,7 +43,7 @@ class ConcursosController < ApplicationController
                          .limit(per_page)
 
     render json: {
-      data: @concursos.as_json(include: { 
+      data: @concursos.as_json(include: {
         banca: { only: [:id, :nome, :sigla, :logo] },
         orgao: { except: [:created_at, :updated_at] },
         provas: { only: [:id, :nome, :ano] }
@@ -63,12 +63,12 @@ class ConcursosController < ApplicationController
 
   def stats
     @concursos = Concurso.all
-    
+
     # Filter by name if search present
     @concursos = @concursos.where("nome ILIKE ?", "%#{params[:search]}%") if params[:search].present?
-    
+
     total_count = @concursos.count
-    
+
     # Calculate by_year using provas associated with the concursos
     by_year = Concurso.joins(:provas)
                      .where(id: @concursos.pluck(:id))
@@ -126,8 +126,8 @@ class ConcursosController < ApplicationController
 
     @concursos.destroy_all
 
-    render json: { 
-      message: "Sucesso ao deletar concursos", 
+    render json: {
+      message: "Sucesso ao deletar concursos",
       count: count,
       nome: params[:nome]
     }, status: :ok
