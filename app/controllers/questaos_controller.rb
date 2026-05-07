@@ -137,11 +137,11 @@ class QuestaosController < ApplicationController
     questaos = scope
 
     if params[:bancas].present?
-      questaos = questaos.joins(provas: :banca).where(bancas: { id: params[:bancas] })
+      questaos = questaos.joins(:concurso).where(concursos: { banca_id: params[:bancas] })
     end
 
     if params[:orgaos].present?
-      questaos = questaos.joins(provas: :orgao).where(orgaos: { id: params[:orgaos] })
+      questaos = questaos.joins(:concurso).where(concursos: { orgao_id: params[:orgaos] })
     end
 
     if params[:ano].present?
@@ -154,7 +154,7 @@ class QuestaosController < ApplicationController
     end
 
     if params[:escolaridade].present?
-      questaos = questaos.joins(:provas).where(provas: { escolaridade: params[:escolaridade] })
+      questaos = questaos.joins(provas: :concurso).where(provas: { escolaridade: params[:escolaridade] })
     end
 
     if params[:assuntos].present?
@@ -163,6 +163,14 @@ class QuestaosController < ApplicationController
 
     if params[:disciplinas].present?
       questaos = questaos.where(disciplina_id: params[:disciplinas])
+    end
+
+    if params[:remover_anuladas] == 'true'
+      questaos = questaos.where(anulada: nil)
+    end
+
+    if params[:remover_desatualizadas] == 'true'
+      questaos = questaos.where(desatualizada: nil)
     end
 
     if params[:search].present?
