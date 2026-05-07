@@ -34,7 +34,9 @@ class OrgaosController < ApplicationController
   end
 
   def filters
-    render json: Orgao.order(:nome).select(:id, :nome)
+    scope = Orgao.order(:nome)
+    scope = scope.where('nome ILIKE ? OR sigla ILIKE ?', "%#{params[:search]}%", "%#{params[:search]}%") if params[:search].present?
+    render json: scope.pluck(:id, :nome).map { |id, nome| { id: id, nome: nome } }
   end
 
   def create

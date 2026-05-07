@@ -22,7 +22,9 @@ class AssuntosController < ApplicationController
   end
 
   def filters
-    render json: Assunto.order(:nome).select(:id, :nome, :disciplina_id)
+    scope = Assunto.order(:nome)
+    scope = scope.where('nome ILIKE ?', "%#{params[:search]}%") if params[:search].present?
+    render json: scope.pluck(:id, :nome, :disciplina_id).map { |id, nome, d_id| { id: id, nome: nome, disciplina_id: d_id } }
   end
 
   def show

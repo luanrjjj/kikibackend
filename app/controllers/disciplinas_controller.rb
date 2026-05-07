@@ -23,7 +23,9 @@ class DisciplinasController < ApplicationController
   end
 
   def filters
-    render json: Disciplina.order(:nome).select(:id, :nome)
+    scope = Disciplina.order(:nome)
+    scope = scope.where('nome ILIKE ?', "%#{params[:search]}%") if params[:search].present?
+    render json: scope.pluck(:id, :nome).map { |id, nome| { id: id, nome: nome } }
   end
 
   def show

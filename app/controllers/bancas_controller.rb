@@ -24,7 +24,9 @@ class BancasController < ApplicationController
   end
 
   def filters
-    render json: Banca.order(:nome).select(:id, :nome)
+    scope = Banca.order(:nome)
+    scope = scope.where('nome ILIKE ?', "%#{params[:search]}%") if params[:search].present?
+    render json: scope.pluck(:id, :nome).map { |id, nome| { id: id, nome: nome } }
   end
 
   def questoes_count
