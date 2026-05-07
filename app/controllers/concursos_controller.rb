@@ -29,11 +29,13 @@ class ConcursosController < ApplicationController
     end
 
     if params[:banca_id].present?
-      @concursos = @concursos.where(banca_id: params[:banca_id])
+      banca_ids = params[:banca_id].is_a?(Array) ? params[:banca_id] : [params[:banca_id]]
+      @concursos = @concursos.where(banca_id: banca_ids)
     end
 
     if params[:ano].present?
-      @concursos = @concursos.joins(:provas).where(provas: { ano: params[:ano] }).distinct
+      anos = params[:ano].is_a?(Array) ? params[:ano] : [params[:ano]]
+      @concursos = @concursos.joins(:provas).where(provas: { ano: anos }).distinct
     end
 
     total_count = @concursos.count

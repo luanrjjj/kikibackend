@@ -46,21 +46,25 @@ class QuestaosController < ApplicationController
   def stats
     @questaos = apply_filters(Questao.all)
 
-    total_count = @questaos.count
-    validated_count = @questaos.where.not(validado_admin: nil).count
-    with_correct_answer_count = @questaos.where.not(correta: [nil, '']).count
-    with_disciplina_count = @questaos.where.not(disciplina_id: nil).count
-    with_assunto_count = @questaos.where.not(assunto_id: nil).count
-    with_disciplina_assunto_count = @questaos.where.not(disciplina_id: nil).where.not(assunto_id: nil).count
+    # Otimização: Consolida múltiplas queries de contagem em uma única.
+    stats_data = @questaos.select(
+      "COUNT(*) AS total",
+      "COUNT(validado_admin) AS validated",
+      "COUNT(CASE WHEN correta IS NOT NULL AND correta != '' THEN 1 END) AS with_correct",
+      "COUNT(disciplina_id) AS with_disciplina",
+      "COUNT(assunto_id) AS with_assunto",
+      "COUNT(CASE WHEN disciplina_id IS NOT NULL AND assunto_id IS NOT NULL THEN 1 END) AS with_both"
+    ).to_a.first
+
     by_year = @questaos.group(:ano).count.sort.to_h
 
     render json: {
-      total_count: total_count,
-      validated_count: validated_count,
-      with_correct_answer_count: with_correct_answer_count,
-      with_disciplina_count: with_disciplina_count,
-      with_assunto_count: with_assunto_count,
-      with_disciplina_assunto_count: with_disciplina_assunto_count,
+      total_count: stats_data.total,
+      validated_count: stats_data.validated,
+      with_correct_answer_count: stats_data.with_correct,
+      with_disciplina_count: stats_data.with_disciplina,
+      with_assunto_count: stats_data.with_assunto,
+      with_disciplina_assunto_count: stats_data.with_both,
       by_year: by_year
     }
   end
@@ -105,19 +109,19 @@ class QuestaosController < ApplicationController
 
   # GET /questaos/count
   def count
-    @questaos = apply_filters(Questao.distinct)
+    @questaos = apply_filters(Questao.all)
     render json: { count: @questaos.count }
   end
 
   # GET /questaos/ids
   def ids
-    @questaos = apply_filters(Questao.distinct)
+    @questaos = apply_filters(Questao.all)
     render json: { ids: @questaos.pluck(:id) }
   end
 
   # GET /questaos/filters_page_questaos
   def filters_questaos
-    @questaos = apply_filters(Questao.distinct)
+    @questaos = apply_filters(Questao.all)
 
     total_count = @questaos.count
     page = params[:page]&.to_i || 1
@@ -154,7 +158,7 @@ class QuestaosController < ApplicationController
     end
 
     if params[:escolaridade].present?
-      questaos = questaos.joins(provas: :concurso).where(provas: { escolaridade: params[:escolaridade] })
+      questaos = questaos.where(id: ProvaQuestao.joins(:prova).where(provas: { escolaridade: params[:escolaridade] }).select(:questao_id))
     end
 
     if params[:assuntos].present?
