@@ -38,7 +38,7 @@ class ConcursosController < ApplicationController
 
     total_count = @concursos.count
     @concursos = @concursos.includes(:banca, :orgao, :provas)
-                         .order(inscricoes_ate: :desc)
+                         .order(Arel.sql("CASE WHEN inscricoes_ate >= CURRENT_DATE THEN 0 ELSE 1 END, inscricoes_ate ASC NULLS LAST"))
                          .offset((page - 1) * per_page)
                          .limit(per_page)
 
