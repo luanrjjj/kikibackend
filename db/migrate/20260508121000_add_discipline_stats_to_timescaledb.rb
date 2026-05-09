@@ -1,14 +1,10 @@
 class AddDisciplineStatsToTimescaledb < ActiveRecord::Migration[8.0]
-  disable_ddl_transaction!
-
   def up
-    # Create continuous aggregate for discipline stats
-    # Joining with questaos to get the discipline_id
+    # Create view for discipline stats using standard Postgres
     execute <<~SQL
-      CREATE MATERIALIZED VIEW IF NOT EXISTS user_discipline_stats
-      WITH (timescaledb.continuous) AS
+      CREATE OR REPLACE VIEW user_discipline_stats AS
       SELECT
-        time_bucket('1 day', r.created_at) AS bucket,
+        date_trunc('day', r.created_at) AS bucket,
         r.user_id,
         q.disciplina_id,
         count(*) AS total_resolucoes,
@@ -16,25 +12,11 @@ class AddDisciplineStatsToTimescaledb < ActiveRecord::Migration[8.0]
         count(*) FILTER (WHERE r.correta = false) AS total_erros
       FROM resolucaos r
       JOIN questaos q ON r.questao_id = q.id
-      GROUP BY bucket, r.user_id, q.disciplina_id;
-    SQL
-
-    # Set refresh policy
-    execute <<~SQL
-      DO $$
-      BEGIN
-        IF NOT EXISTS (SELECT 1 FROM timescaledb_information.jobs WHERE proc_name = 'policy_refresh_continuous_aggregate' AND hypertable_name = 'user_discipline_stats') THEN
-          PERFORM add_continuous_aggregate_policy('user_discipline_stats',
-            start_offset => INTERVAL '1 month',
-            end_offset => INTERVAL '1 hour',
-            schedule_interval => INTERVAL '1 hour');
-        END IF;
-      END $$;
+      GROUP BY 1, 2, 3;
     SQL
   end
 
   def down
-    execute "SELECT remove_continuous_aggregate_policy('user_discipline_stats', if_exists => true);"
-    execute "DROP MATERIALIZED VIEW IF EXISTS user_discipline_stats;"
+    execute "DROP VIEW IF EXISTS user_discipline_stats;"
   end
 end
