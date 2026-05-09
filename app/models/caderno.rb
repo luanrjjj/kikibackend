@@ -7,12 +7,28 @@ class Caderno < ApplicationRecord
   has_many :resolucoes, class_name: 'Resolucao', dependent: :destroy
 
   before_validation :set_default_pasta, on: :create
+  before_validation :ensure_unique_nome, on: :create
   before_create :populate_questoes_from_prova
 
   validates :nome, presence: true, uniqueness: { scope: :user_id }
   validates :pasta_caderno_id, presence: true
 
   private
+
+  def ensure_unique_nome
+    return if nome.blank? || !user_id.present?
+
+    # Strip existing " (n)" suffix to get the base name
+    base_nome = nome.gsub(/\s\(\d+\)$/, "")
+    new_nome = nome
+    counter = 1
+    
+    while user.cadernos.where.not(id: id).exists?(nome: new_nome)
+      new_nome = "#{base_nome} (#{counter})"
+      counter += 1
+    end
+    self.nome = new_nome
+  end
 
   def set_default_pasta
     return if pasta_caderno_id.present?
