@@ -1,6 +1,8 @@
+require 'clickhouse'
+
 class ClickhouseSyncService
   def self.client
-    @client ||= Clickhouse.connection(
+    @client ||= ::Clickhouse.connection(
       host:     ENV.fetch('CLICKHOUSE_HOST', 'localhost'),
       port:     ENV.fetch('CLICKHOUSE_PORT', '8123'),
       username: ENV.fetch('CLICKHOUSE_USER', 'default'),
