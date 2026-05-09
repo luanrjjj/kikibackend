@@ -2,13 +2,16 @@ require "clickhouse"
 
 class ClickhouseSyncService
   def self.client
-    @client ||= ::Clickhouse.connection(
-      host:     ENV.fetch("CLICKHOUSE_HOST", "localhost"),
-      port:     ENV.fetch("CLICKHOUSE_PORT", "8123"),
-      username: ENV.fetch("CLICKHOUSE_USER", "default"),
-      password: ENV.fetch("CLICKHOUSE_PASSWORD", ""),
-      database: ENV.fetch("CLICKHOUSE_DB", "default")
-    )
+    @client ||= begin
+      ::Clickhouse.establish_connection(
+        host:     ENV.fetch("CLICKHOUSE_HOST", "localhost"),
+        port:     ENV.fetch("CLICKHOUSE_PORT", "8123"),
+        username: ENV.fetch("CLICKHOUSE_USER", "default"),
+        password: ENV.fetch("CLICKHOUSE_PASSWORD", ""),
+        database: ENV.fetch("CLICKHOUSE_DB", "default")
+      )
+      ::Clickhouse.connection
+    end
   end
 
   def self.sync_resolution(resolucao_id)
