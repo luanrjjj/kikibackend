@@ -8,31 +8,54 @@ class QuestaosController < ApplicationController
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
 
-    @questaos = Questao.includes(:provas, :assunto, :disciplina).order(id: :asc)
+    # Fetch from ClickHouse
+    conditions = []
+    query_params = {}
 
     if params[:disciplina_id].present?
-      @questaos = @questaos.where(disciplina_id: params[:disciplina_id])
+      conditions << "disciplina_id = {disciplina_id:Int64}"
+      query_params[:disciplina_id] = params[:disciplina_id].to_i
     end
 
     if params[:prova_id].present?
-      @questaos = @questaos.joins(:prova_questaos).where(prova_questaos: { prova_id: params[:prova_id] })
+      conditions << "prova_id = {prova_id:Int64}"
+      query_params[:prova_id] = params[:prova_id].to_i
     end
 
     if params[:assunto_id].present?
-      @questaos = @questaos.where(assunto_id: params[:assunto_id])
+      conditions << "assunto_id = {assunto_id:Int64}"
+      query_params[:assunto_id] = params[:assunto_id].to_i
     end
 
     if params[:search].present?
-      @questaos = @questaos.where('enunciado ILIKE ?', "%#{params[:search]}%")
+      conditions << "enunciado ILIKE {search:String}"
+      query_params[:search] = "%#{params[:search]}%"
     end
 
-    total_count = @questaos.count
+    where_clause = conditions.any? ? "WHERE #{conditions.join(' AND ')}" : ""
+    
+    count_query = "SELECT count() as total FROM questaos #{where_clause}"
+    total_count = ClickhouseSyncService.client.query(count_query, query_params).to_hashes.first["total"]
 
-    @questaos = @questaos.offset((page - 1) * per_page)
-                       .limit(per_page)
+    data_query = <<~SQL
+      SELECT * FROM questaos 
+      #{where_clause}
+      ORDER BY id ASC 
+      LIMIT {limit:Int32} OFFSET {offset:Int32}
+    SQL
+    
+    query_params[:limit] = per_page
+    query_params[:offset] = (page - 1) * per_page
+
+    clickhouse_data = ClickhouseSyncService.client.query(data_query, query_params).to_hashes
+
+    # Parse alternativas from string to JSON
+    clickhouse_data.each do |row|
+      row["alternativas"] = JSON.parse(row["alternativas"]) if row["alternativas"].is_a?(String)
+    end
 
     render json: {
-      data: @questaos.as_json(include: [:provas, :assunto, :disciplina]),
+      data: clickhouse_data,
       meta: {
         current_page: page,
         per_page: per_page,

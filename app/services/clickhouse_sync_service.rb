@@ -16,6 +16,10 @@ class ClickhouseSyncService
 
   def self.sync_questao(questao_id)
     questao = Questao.find(questao_id)
+    concurso = questao.concurso
+    prova = questao.provas.first
+    orgao = concurso&.orgao
+    banca = concurso&.banca
     
     data = {
       id: questao.read_attribute(:id),
@@ -27,16 +31,39 @@ class ClickhouseSyncService
       correta: questao.correta,
       enunciado: questao.enunciado,
       sistema_ref_id: questao.sistema_ref_id,
-      concurso_id: questao.concurso_id,
-      assunto_id: questao.assunto_id,
-      disciplina_id: questao.disciplina_id,
-      prova_id: questao.provas.first&.id,
       texto_id: questao.texto_id,
       created_at: questao.created_at.strftime("%Y-%m-%d %H:%M:%S"),
       updated_at: questao.updated_at.strftime("%Y-%m-%d %H:%M:%S"),
       validado_admin: questao.validado_admin&.strftime("%Y-%m-%d %H:%M:%S"),
       disciplina_ref: questao.disciplina_ref,
-      assunto_ref: questao.assunto_ref.is_a?(Array) ? "[#{questao.assunto_ref.map { |s| "'#{s.to_s.gsub("'", "''")}'" }.join(",")}]" : "[]"
+      assunto_ref: questao.assunto_ref.is_a?(Array) ? "[#{questao.assunto_ref.map { |s| "'#{s.to_s.gsub("'", "''")}'" }.join(",")}]" : "[]",
+
+      # Concurso
+      concurso_id: concurso&.id,
+      concurso_nome: concurso&.nome,
+
+      # Prova
+      prova_id: prova&.id,
+      prova_nome: prova&.nome,
+      prova_ano: prova&.ano,
+
+      # Disciplina
+      disciplina_id: questao.disciplina_id,
+      disciplina_nome: questao.disciplina&.nome,
+
+      # Assunto
+      assunto_id: questao.assunto_id,
+      assunto_nome: questao.assunto&.nome,
+
+      # Orgao
+      orgao_id: orgao&.id,
+      orgao_nome: orgao&.nome,
+      orgao_sigla: orgao&.sigla,
+
+      # Banca
+      banca_id: banca&.id,
+      banca_nome: banca&.nome,
+      banca_sigla: banca&.sigla
     }
 
     client.insert_rows("questaos", rows: [ data ])
