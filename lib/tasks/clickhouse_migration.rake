@@ -52,7 +52,7 @@ namespace :clickhouse do
           created_at: q.created_at.strftime("%Y-%m-%d %H:%M:%S"),
           updated_at: q.updated_at.strftime("%Y-%m-%d %H:%M:%S"),
           disciplina_ref: q.disciplina_ref,
-          assunto_ref: q.assunto_ref.is_a?(Array) ? "[#{q.assunto_ref.map { |s| "'#{s.gsub("'", "\\'")}'" }.join(",")}]" : "[]"
+          assunto_ref: q.assunto_ref.is_a?(Array) ? "[#{q.assunto_ref.map { |s| "'#{s.to_s.gsub("'", "''")}'" }.join(",")}]" : "[]"
         }
       end
 
