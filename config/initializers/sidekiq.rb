@@ -3,10 +3,12 @@ Sidekiq.configure_server do |config|
     protocol = ENV['REDIS_SSL'] == 'true' ? 'rediss' : 'redis'
     auth = ENV['REDIS_PASSWORD'].present? ? "#{ENV['REDIS_USER']}:#{ENV['REDIS_PASSWORD']}@" : ""
     
-    config.redis = {
+    redis_config = {
       url: "#{protocol}://#{auth}#{ENV['REDIS_HOST']}:#{ENV['REDIS_PORT']}"
     }
-    config.redis[:ssl_params] = { verify_mode: OpenSSL::SSL::VERIFY_NONE } if protocol == 'rediss'
+    redis_config[:ssl_params] = { verify_mode: OpenSSL::SSL::VERIFY_NONE } if protocol == 'rediss'
+    
+    config.redis = redis_config
   else
     config.redis = { url: ENV.fetch('REDIS_URL', 'redis://localhost:6379/1') }
   end
@@ -17,10 +19,12 @@ Sidekiq.configure_client do |config|
     protocol = ENV['REDIS_SSL'] == 'true' ? 'rediss' : 'redis'
     auth = ENV['REDIS_PASSWORD'].present? ? "#{ENV['REDIS_USER']}:#{ENV['REDIS_PASSWORD']}@" : ""
     
-    config.redis = {
+    redis_config = {
       url: "#{protocol}://#{auth}#{ENV['REDIS_HOST']}:#{ENV['REDIS_PORT']}"
     }
-    config.redis[:ssl_params] = { verify_mode: OpenSSL::SSL::VERIFY_NONE } if protocol == 'rediss'
+    redis_config[:ssl_params] = { verify_mode: OpenSSL::SSL::VERIFY_NONE } if protocol == 'rediss'
+    
+    config.redis = redis_config
   else
     config.redis = { url: ENV.fetch('REDIS_URL', 'redis://localhost:6379/1') }
   end
