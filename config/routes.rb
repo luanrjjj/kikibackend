@@ -1,5 +1,9 @@
 require 'sidekiq/web'
 
+# Inject Rails session middleware into Sidekiq Web UI
+Sidekiq::Web.use ActionDispatch::Cookies
+Sidekiq::Web.use ActionDispatch::Session::CookieStore, Rails.application.config.session_options
+
 Rails.application.routes.draw do
   # Sidekiq Web UI with Basic Auth
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
