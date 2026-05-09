@@ -1,3 +1,4 @@
+
 namespace :clickhouse do
   desc "Migra todas as questões do PostgreSQL para o ClickHouse"
   task migrate_questaos: :environment do
