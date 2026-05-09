@@ -58,7 +58,8 @@ namespace :clickhouse do
 
       ClickhouseSyncService.client.insert(table_name, data)
       processed += batch.size
-      puts "Processadas: \#{processed} / \#{total_questaos} ((\#{processed}.to_f / \#{total_questaos} * 100).round(2)}%)"
+      progress = (processed.to_f / total_questaos * 100).round(2)
+      puts "Processadas: #{processed} / #{total_questaos} (#{progress}%)"
     end
 
     puts "Migração concluída com sucesso!"
