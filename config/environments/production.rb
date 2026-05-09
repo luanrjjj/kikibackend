@@ -23,6 +23,9 @@ Rails.application.configure do
 
   # Disable Rails's static asset server (Apache or NGINX will already do this).
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present? || true
+  
+  # Ensure assets from engines (like Sidekiq) are served
+  config.assets.compile = true if defined?(Sprockets)
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local

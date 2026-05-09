@@ -4,6 +4,9 @@ require 'sidekiq/web'
 Sidekiq::Web.use ActionDispatch::Cookies
 Sidekiq::Web.use ActionDispatch::Session::CookieStore, Rails.application.config.session_options
 
+# Disable CSP for Sidekiq Web UI to ensure JS/CSS from the engine load correctly
+Sidekiq::Web.use Rack::ContentSecurityPolicy, default_src: "'self' 'unsafe-inline' 'unsafe-eval'" if defined?(Rack::ContentSecurityPolicy)
+
 Rails.application.routes.draw do
   # Sidekiq Web UI with Basic Auth
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
