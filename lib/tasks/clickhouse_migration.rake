@@ -1,7 +1,7 @@
 namespace :clickhouse do
   desc "Migra todas as questões do PostgreSQL para o ClickHouse com dados desnormalizados"
   task migrate_questaos: :environment do
-    batch_size = 5000
+    batch_size = 1000
     table_name = "questaos"
 
     puts "Iniciando migração desnormalizada de questões para o ClickHouse..."
