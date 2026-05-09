@@ -36,7 +36,7 @@ namespace :clickhouse do
     Questao.find_in_batches(batch_size: batch_size) do |batch|
       data = batch.map do |q|
         {
-          id: q.id,
+          id: q.read_attribute(:id),
           discursiva: q.discursiva ? 1 : 0,
           anulada: q.anulada,
           desatualizada: q.desatualizada,
@@ -49,10 +49,10 @@ namespace :clickhouse do
           assunto_id: q.assunto_id,
           disciplina_id: q.disciplina_id,
           texto_id: q.texto_id,
-          created_at: q.created_at,
-          updated_at: q.updated_at,
+          created_at: q.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+          updated_at: q.updated_at.strftime("%Y-%m-%d %H:%M:%S"),
           disciplina_ref: q.disciplina_ref,
-          assunto_ref: q.assunto_ref || []
+          assunto_ref: q.assunto_ref.is_a?(Array) ? "[#{q.assunto_ref.map { |s| "'#{s.gsub("'", "\\'")}'" }.join(",")}]" : "[]"
         }
       end
 

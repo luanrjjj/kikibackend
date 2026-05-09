@@ -19,12 +19,12 @@ class ClickhouseSyncService
     questao = resolucao.questao
     concurso = questao.concurso
     orgao = concurso&.orgao
-    prova = questao.provas.first # Assumindo que pegamos a primeira prova associada
+    prova = questao.provas.first
     disciplina = questao.disciplina
     assunto = questao.assunto
 
     data = {
-      id: resolucao.id,
+      id: resolucao.read_attribute(:id),
       user_id: resolucao.user_id,
       questao_id: resolucao.questao_id,
       caderno_id: resolucao.caderno_id,
