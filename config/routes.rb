@@ -1,8 +1,5 @@
 require 'sidekiq/web'
 
-# Configure Sidekiq Web to use the same session as Rails for CSRF protection
-Sidekiq::Web.set :sessions, Rails.application.config.session_options
-
 Rails.application.routes.draw do
   # Sidekiq Web UI with Basic Auth
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
