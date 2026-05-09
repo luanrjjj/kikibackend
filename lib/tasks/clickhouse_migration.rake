@@ -21,9 +21,11 @@ namespace :clickhouse do
         concurso_id Nullable(Int64),
         assunto_id Nullable(Int64),
         disciplina_id Nullable(Int64),
+        prova_id Nullable(Int64),
         texto_id Nullable(Int64),
         created_at DateTime,
         updated_at DateTime,
+        validado_admin Nullable(DateTime),
         disciplina_ref Nullable(String),
         assunto_ref Array(String)
       ) ENGINE = MergeTree()
@@ -34,6 +36,9 @@ namespace :clickhouse do
     processed = 0
 
     Questao.find_in_batches(batch_size: batch_size) do |batch|
+      # Preload provas to avoid N+1
+      ActiveRecord::Associations::Preloader.new(records: batch, associations: :provas).call
+
       data = batch.map do |q|
         {
           id: q.read_attribute(:id),
@@ -48,9 +53,11 @@ namespace :clickhouse do
           concurso_id: q.concurso_id,
           assunto_id: q.assunto_id,
           disciplina_id: q.disciplina_id,
+          prova_id: q.provas.first&.id,
           texto_id: q.texto_id,
           created_at: q.created_at.strftime("%Y-%m-%d %H:%M:%S"),
           updated_at: q.updated_at.strftime("%Y-%m-%d %H:%M:%S"),
+          validado_admin: q.validado_admin&.strftime("%Y-%m-%d %H:%M:%S"),
           disciplina_ref: q.disciplina_ref,
           assunto_ref: q.assunto_ref.is_a?(Array) ? "[#{q.assunto_ref.map { |s| "'#{s.to_s.gsub("'", "''")}'" }.join(",")}]" : "[]"
         }

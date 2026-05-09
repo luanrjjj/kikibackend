@@ -16,5 +16,11 @@ class Questao < ApplicationRecord
   validates :ano, presence: true
   validates :discursiva, inclusion: { in: [true, false] }
 
+  after_commit :sync_to_clickhouse, on: [:create, :update]
 
+  private
+
+  def sync_to_clickhouse
+    QuestaoSyncJob.perform_async(self.id)
+  end
 end

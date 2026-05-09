@@ -14,6 +14,37 @@ class ClickhouseSyncService
     end
   end
 
+  def self.sync_questao(questao_id)
+    questao = Questao.find(questao_id)
+    
+    data = {
+      id: questao.read_attribute(:id),
+      discursiva: questao.discursiva ? 1 : 0,
+      anulada: questao.anulada,
+      desatualizada: questao.desatualizada,
+      ano: questao.ano,
+      alternativas: questao.alternativas.to_json,
+      correta: questao.correta,
+      enunciado: questao.enunciado,
+      sistema_ref_id: questao.sistema_ref_id,
+      concurso_id: questao.concurso_id,
+      assunto_id: questao.assunto_id,
+      disciplina_id: questao.disciplina_id,
+      prova_id: questao.provas.first&.id,
+      texto_id: questao.texto_id,
+      created_at: questao.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+      updated_at: questao.updated_at.strftime("%Y-%m-%d %H:%M:%S"),
+      validado_admin: questao.validado_admin&.strftime("%Y-%m-%d %H:%M:%S"),
+      disciplina_ref: questao.disciplina_ref,
+      assunto_ref: questao.assunto_ref.is_a?(Array) ? "[#{questao.assunto_ref.map { |s| "'#{s.to_s.gsub("'", "''")}'" }.join(",")}]" : "[]"
+    }
+
+    client.insert_rows("questaos", rows: [ data ])
+  rescue StandardError => e
+    Rails.logger.error "ClickhouseSyncService sync_questao Error: #{e.message}"
+    raise e
+  end
+
   def self.sync_resolution(resolucao_id)
     resolucao = Resolucao.find(resolucao_id)
     questao = resolucao.questao
@@ -58,7 +89,7 @@ class ClickhouseSyncService
 
     client.insert_rows("resolucaos", rows: [ data ])
   rescue StandardError => e
-    Rails.logger.error "ClickhouseSyncService Error: #{e.message}"
+    Rails.logger.error "ClickhouseSyncService sync_resolution Error: #{e.message}"
     raise e
   end
 end
