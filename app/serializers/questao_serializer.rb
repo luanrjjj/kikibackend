@@ -2,6 +2,10 @@ class QuestaoSerializer
   include FastJsonapi::ObjectSerializer
   attributes :id, :enunciado, :ano, :discursiva, :alternativas, :correta
 
+  attribute :comentarios_count do |object|
+    object.comentarios.count
+  end
+
   attribute :assunto do |object|
     AssuntoSerializer.new(object.assunto).serializable_hash.dig(:data, :attributes) if object.assunto
   end

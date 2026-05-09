@@ -1,10 +1,11 @@
 class ComentariosController < ApplicationController
+  before_action :authenticate_user! # Ensure user is logged in
   before_action :set_questao, only: [:index, :create]
 
   # GET /comentarios?questao_id=1
   def index
     if @questao
-      @comentarios = @questao.comentarios.includes(:user).order(created_at: :desc)
+      @comentarios = @questao.comentarios.includes(:user).order(votos_soma: :desc, created_at: :desc)
       render json: @comentarios.as_json(include: { user: { only: [:id, :name, :email] } })
     else
       render json: { error: 'Questão não encontrada' }, status: :not_found
@@ -13,20 +14,27 @@ class ComentariosController < ApplicationController
 
   # POST /comentarios
   def create
-    @comentario = @questao.comentarios.new(comentario_params)
-    @comentario.user = current_user # Assuming current_user is available
+    if @questao
+      @comentario = @questao.comentarios.new(comentario_params)
+      @comentario.user = current_user
 
-    if @comentario.save
-      render json: @comentario.as_json(include: { user: { only: [:id, :name, :email] } }), status: :created
+      if @comentario.save
+        render json: @comentario.as_json(include: { user: { only: [:id, :name, :email] } }), status: :created
+      else
+        render json: @comentario.errors, status: :unprocessable_entity
+      end
     else
-      render json: @comentario.errors, status: :unprocessable_entity
+      render json: { error: 'Questão não encontrada' }, status: :not_found
     end
   end
 
   private
 
   def set_questao
-    @questao = Questao.find(params[:questao_id]) if params[:questao_id].present?
+    id = params[:questao_id] || (params[:comentario] && params[:comentario][:questao_id])
+    @questao = Questao.find(id) if id.present?
+  rescue ActiveRecord::RecordNotFound
+    @questao = nil
   end
 
   def comentario_params

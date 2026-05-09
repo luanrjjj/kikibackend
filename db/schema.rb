@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_07_101842) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_09_020556) do
+  create_schema "_timescaledb_cache"
+  create_schema "_timescaledb_catalog"
+  create_schema "_timescaledb_config"
+  create_schema "_timescaledb_functions"
+  create_schema "_timescaledb_internal"
+  create_schema "timescaledb_experimental"
+  create_schema "timescaledb_information"
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "timescaledb"
 
   create_table "area_de_atuacaos", force: :cascade do |t|
     t.string "nome", null: false
@@ -68,6 +77,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_07_101842) do
     t.integer "votos_soma", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "texto"
     t.index ["concurso_id"], name: "index_comentarios_on_concurso_id"
     t.index ["prova_id"], name: "index_comentarios_on_prova_id"
     t.index ["questao_id"], name: "index_comentarios_on_questao_id"
@@ -222,7 +232,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_07_101842) do
     t.index ["validado_admin"], name: "index_questaos_on_validado_admin"
   end
 
-  create_table "resolucaos", force: :cascade do |t|
+  create_table "resolucaos", primary_key: ["id", "created_at"], force: :cascade do |t|
+    t.bigserial "id", null: false
     t.bigint "user_id", null: false
     t.bigint "questao_id", null: false
     t.bigint "caderno_id"
@@ -231,6 +242,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_07_101842) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["caderno_id"], name: "index_resolucaos_on_caderno_id"
+    t.index ["created_at"], name: "resolucaos_created_at_idx", order: :desc
     t.index ["questao_id"], name: "index_resolucaos_on_questao_id"
     t.index ["user_id"], name: "index_resolucaos_on_user_id"
   end
