@@ -8,12 +8,14 @@ Sidekiq::Web.use ActionDispatch::Session::CookieStore, Rails.application.config.
 Sidekiq::Web.use Rack::ContentSecurityPolicy, default_src: "'self' 'unsafe-inline' 'unsafe-eval'" if defined?(Rack::ContentSecurityPolicy)
 
 Rails.application.routes.draw do
-  # Sidekiq Web UI with Basic Auth
-  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-    ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV.fetch("SIDEKIQ_USERNAME", "admin"))) &
-      ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV.fetch("SIDEKIQ_PASSWORD", "password")))
+  scope '/api' do
+    # Sidekiq Web UI with Basic Auth
+    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+      ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV.fetch("SIDEKIQ_USERNAME", "admin"))) &
+        ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV.fetch("SIDEKIQ_PASSWORD", "password")))
+    end
+    mount Sidekiq::Web => '/sidekiq'
   end
-  mount Sidekiq::Web => '/sidekiq'
 
   resources :orgaos, defaults: { format: :json } do
     get :all, on: :collection
