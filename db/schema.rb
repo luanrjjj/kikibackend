@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_09_020556) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_09_120000) do
   create_schema "_timescaledb_cache"
   create_schema "_timescaledb_catalog"
   create_schema "_timescaledb_config"
@@ -202,7 +202,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_09_020556) do
     t.index ["orgao_id"], name: "index_provas_on_orgao_id"
   end
 
-  create_table "questaos", force: :cascade do |t|
+  create_table "questaos", primary_key: ["id", "created_at"], force: :cascade do |t|
+    t.bigserial "id", null: false
     t.boolean "discursiva", null: false
     t.date "anulada"
     t.date "desatualizada"
@@ -225,6 +226,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_09_020556) do
     t.index ["assunto_id"], name: "index_questaos_on_assunto_id"
     t.index ["concurso_id"], name: "index_questaos_on_concurso_id"
     t.index ["correta"], name: "index_questaos_on_correta"
+    t.index ["created_at"], name: "questaos_created_at_idx", order: :desc
     t.index ["desatualizada"], name: "index_questaos_on_desatualizada"
     t.index ["disciplina_id"], name: "index_questaos_on_disciplina_id"
     t.index ["sistema_ref_id"], name: "index_questaos_on_sistema_ref_id"
@@ -324,7 +326,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_09_020556) do
   add_foreign_key "cadernos", "users"
   add_foreign_key "comentarios", "concursos"
   add_foreign_key "comentarios", "provas"
-  add_foreign_key "comentarios", "questaos"
   add_foreign_key "comentarios", "users"
   add_foreign_key "concursos", "bancas"
   add_foreign_key "concursos", "orgaos"
@@ -335,7 +336,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_09_020556) do
   add_foreign_key "password_resets", "users"
   add_foreign_key "pasta_cadernos", "users"
   add_foreign_key "prova_questaos", "provas"
-  add_foreign_key "prova_questaos", "questaos"
   add_foreign_key "provas", "area_de_atuacaos"
   add_foreign_key "provas", "area_de_formacaos"
   add_foreign_key "provas", "bancas"
@@ -346,7 +346,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_09_020556) do
   add_foreign_key "questaos", "disciplinas"
   add_foreign_key "questaos", "textos"
   add_foreign_key "resolucaos", "cadernos"
-  add_foreign_key "resolucaos", "questaos"
   add_foreign_key "resolucaos", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "textos", "concursos"

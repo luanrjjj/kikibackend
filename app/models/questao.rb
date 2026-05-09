@@ -1,4 +1,6 @@
 class Questao < ApplicationRecord
+  self.primary_key = [:id, :created_at]
+
   has_many :prova_questaos, dependent: :destroy
   has_many :provas, through: :prova_questaos
   has_many :comentarios, dependent: :destroy

@@ -44,27 +44,32 @@ class QuestaosController < ApplicationController
 
   # GET /questaos/stats
   def stats
-    @questaos = apply_filters(Questao.all)
-
-    # Otimização: Consolida múltiplas queries de contagem em uma única.
-    stats_data = @questaos.select(
-      "COUNT(*) AS total",
-      "COUNT(validado_admin) AS validated",
-      "COUNT(CASE WHEN correta IS NOT NULL AND correta != '' THEN 1 END) AS with_correct",
-      "COUNT(disciplina_id) AS with_disciplina",
-      "COUNT(assunto_id) AS with_assunto",
-      "COUNT(CASE WHEN disciplina_id IS NOT NULL AND assunto_id IS NOT NULL THEN 1 END) AS with_both"
+    # Use the continuous aggregate for optimized stats
+    stats_data = ActiveRecord::Base.connection.execute(
+      "SELECT 
+        SUM(total_questaos) AS total,
+        SUM(total_validadas) AS validated,
+        SUM(total_com_resposta) AS with_correct,
+        SUM(total_com_disciplina) AS with_disciplina,
+        SUM(total_com_assunto) AS with_assunto
+       FROM admin_questao_stats"
     ).to_a.first
 
-    by_year = @questaos.group(:ano).count.sort.to_h
+    by_year_raw = ActiveRecord::Base.connection.execute(
+      "SELECT ano, SUM(total_questaos) as count 
+       FROM admin_questao_stats 
+       GROUP BY ano 
+       ORDER BY ano ASC"
+    )
+    
+    by_year = by_year_raw.each_with_object({}) { |row, hash| hash[row['ano']] = row['count'] }
 
     render json: {
-      total_count: stats_data.total,
-      validated_count: stats_data.validated,
-      with_correct_answer_count: stats_data.with_correct,
-      with_disciplina_count: stats_data.with_disciplina,
-      with_assunto_count: stats_data.with_assunto,
-      with_disciplina_assunto_count: stats_data.with_both,
+      total_count: stats_data['total'] || 0,
+      validated_count: stats_data['validated'] || 0,
+      with_correct_answer_count: stats_data['with_correct'] || 0,
+      with_disciplina_count: stats_data['with_disciplina'] || 0,
+      with_assunto_count: stats_data['with_assunto'] || 0,
       by_year: by_year
     }
   end
