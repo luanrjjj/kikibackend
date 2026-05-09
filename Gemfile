@@ -25,6 +25,7 @@ gem "fast_jsonapi"
 gem "stripe"
 gem "postmark-rails"
 gem "sidekiq"
+gem "clickhouse-ruby"
 
 gem "bcrypt"
 gem "omniauth"
