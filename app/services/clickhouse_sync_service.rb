@@ -56,7 +56,7 @@ class ClickhouseSyncService
       assunto_nome: assunto&.nome || "N/A"
     }
 
-    client.insert("resolucaos", [ data ])
+    client.insert_rows("resolucaos", rows: [ data ])
   rescue StandardError => e
     Rails.logger.error "ClickhouseSyncService Error: #{e.message}"
     raise e

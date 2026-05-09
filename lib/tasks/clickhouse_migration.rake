@@ -1,4 +1,3 @@
-
 namespace :clickhouse do
   desc "Migra todas as questões do PostgreSQL para o ClickHouse"
   task migrate_questaos: :environment do
@@ -57,7 +56,7 @@ namespace :clickhouse do
         }
       end
 
-      ClickhouseSyncService.client.insert(table_name, data)
+      ClickhouseSyncService.client.insert_rows(table_name, rows: data)
       processed += batch.size
       progress = (processed.to_f / total_questaos * 100).round(2)
       puts "Processadas: #{processed} / #{total_questaos} (#{progress}%)"
