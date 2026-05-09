@@ -139,7 +139,7 @@ class QuestaosController < ApplicationController
   private
 
   def set_questao
-    @questao = Questao.find(params[:id])
+    @questao = Questao.find_by!(id: params[:id])
   end
 
   def apply_filters(scope)

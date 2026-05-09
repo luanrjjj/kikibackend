@@ -1,6 +1,11 @@
 class QuestaoSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :enunciado, :ano, :discursiva, :alternativas, :correta
+  set_id { |object| object[:id] }
+  attributes :enunciado, :ano, :discursiva, :alternativas, :correta
+
+  attribute :id do |object|
+    object[:id]
+  end
 
   attribute :comentarios_count do |object|
     object.comentarios.count
@@ -61,10 +66,10 @@ class QuestaoSerializer
 
   attribute :resolucao do |object, params|
     if params && params[:resolucoes]
-      res = params[:resolucoes][object.id]
+      res = params[:resolucoes][object[:id]]
       if res
         {
-          id: res.id,
+          id: res[:id],
           resposta: res.resposta,
           correta: res.correta,
           created_at: res.created_at

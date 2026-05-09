@@ -28,16 +28,28 @@ class CadernosController < ApplicationController
 
   # GET /cadernos/1/questaos
   def questaos
-    @questaos = Questao.where(id: @caderno.questoes_ids)
-                       .includes(:disciplina, :assunto, :concurso, :texto, :provas, concurso: :orgao, provas: :orgao)
+    # Convert IDs to integers and remove nils
+    ids = Array(@caderno.questoes_ids).map(&:to_i).compact
     
-    resolucoes = current_user.resolucoes.where(caderno_id: @caderno.id, questao_id: @caderno.questoes_ids)
+    if ids.empty?
+      render json: { data: [] }
+      return
+    end
 
-    ordered_questaos = @caderno.questoes_ids.map { |id| @questaos.find { |q| q.id == id.to_i } }.compact
+    # Fetch all questions and index them by ID for O(1) lookup
+    questaos_by_id = Questao.where(id: ids)
+                       .includes(:disciplina, :assunto, :concurso, :texto, :provas, concurso: :orgao, provas: :orgao)
+                       .index_by { |q| q[:id] }
+    
+    # Maintain original order and duplicates if they exist
+    ordered_questaos = ids.map { |id| questaos_by_id[id] }.compact
+
+    # Fetch user resolutions for these questions in this notebook
+    resolucoes = current_user.resolucoes.where(caderno_id: @caderno.id, questao_id: ids).index_by { |r| r[:questao_id] }
 
     render json: QuestaoSerializer.new(ordered_questaos, { 
       params: { 
-        resolucoes: resolucoes.index_by(&:questao_id) 
+        resolucoes: resolucoes 
       } 
     }).serializable_hash
   end

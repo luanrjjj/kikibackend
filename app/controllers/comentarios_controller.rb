@@ -32,7 +32,7 @@ class ComentariosController < ApplicationController
 
   def set_questao
     id = params[:questao_id] || (params[:comentario] && params[:comentario][:questao_id])
-    @questao = Questao.find(id) if id.present?
+    @questao = Questao.find_by!(id: id) if id.present?
   rescue ActiveRecord::RecordNotFound
     @questao = nil
   end

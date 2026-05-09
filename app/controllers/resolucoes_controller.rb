@@ -1,6 +1,6 @@
 class ResolucoesController < ApplicationController
   def create
-    @questao = Questao.find(params[:resolucao][:questao_id])
+    @questao = Questao.find_by!(id: params[:resolucao][:questao_id])
     is_correct = @questao.correta == params[:resolucao][:resposta]
 
     @resolucao = current_user.resolucoes.new(resolucao_params)
