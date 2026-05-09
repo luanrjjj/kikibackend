@@ -21,6 +21,9 @@ Rails.application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
 
+  # Disable Rails's static asset server (Apache or NGINX will already do this).
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present? || true
+
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
