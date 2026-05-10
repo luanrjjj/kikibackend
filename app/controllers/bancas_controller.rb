@@ -17,16 +17,25 @@ class BancasController < ApplicationController
         total_pages: (Banca.count.to_f / per_page).ceil
       }
     }
+  rescue StandardError => e
+    Rails.logger.error "BancasController#index Error: #{e.message}\n#{e.backtrace.first(10).join("\n")}"
+    render json: { error: "Erro ao buscar bancas", message: e.message }, status: :internal_server_error
   end
 
   def all
     render json: Banca.order(:nome)
+  rescue StandardError => e
+    Rails.logger.error "BancasController#all Error: #{e.message}"
+    render json: { error: "Erro ao buscar todas as bancas" }, status: :internal_server_error
   end
 
   def filters
     scope = Banca.order(:nome)
     scope = scope.where('nome ILIKE ?', "%#{params[:search]}%") if params[:search].present?
     render json: scope.pluck(:id, :nome).map { |id, nome| { id: id, nome: nome } }
+  rescue StandardError => e
+    Rails.logger.error "BancasController#filters Error: #{e.message}"
+    render json: { error: "Erro ao filtrar bancas" }, status: :internal_server_error
   end
 
   def questoes_count
@@ -75,6 +84,9 @@ class BancasController < ApplicationController
     end
 
     render json: result
+  rescue StandardError => e
+    Rails.logger.error "BancasController#questoes_count Error: #{e.message}\n#{e.backtrace.first(10).join("\n")}"
+    render json: { error: "Erro ao calcular contagem de questões por banca", message: e.message }, status: :internal_server_error
   end
   def show
     render json: @banca
