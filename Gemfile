@@ -25,6 +25,7 @@ gem "fast_jsonapi"
 gem "stripe"
 gem "postmark-rails"
 gem "sidekiq"
+gem "redis", ">= 4.0.1"
 gem "clickhouse"
 
 gem "bcrypt"
