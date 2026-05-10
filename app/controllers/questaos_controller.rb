@@ -8,54 +8,30 @@ class QuestaosController < ApplicationController
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
 
-    # Fetch from ClickHouse
-    conditions = []
-    query_params = {}
+    # Fetch from PostgreSQL
+    questaos = Questao.all
 
     if params[:disciplina_id].present?
-      conditions << "disciplina_id = {disciplina_id:Int64}"
-      query_params[:disciplina_id] = params[:disciplina_id].to_i
+      questaos = questaos.where(disciplina_id: params[:disciplina_id].to_i)
     end
 
     if params[:prova_id].present?
-      conditions << "prova_id = {prova_id:Int64}"
-      query_params[:prova_id] = params[:prova_id].to_i
+      questaos = questaos.joins(:prova_questaos).where(prova_questaos: { prova_id: params[:prova_id].to_i })
     end
 
     if params[:assunto_id].present?
-      conditions << "assunto_id = {assunto_id:Int64}"
-      query_params[:assunto_id] = params[:assunto_id].to_i
+      questaos = questaos.where(assunto_id: params[:assunto_id].to_i)
     end
 
     if params[:search].present?
-      conditions << "enunciado ILIKE {search:String}"
-      query_params[:search] = "%#{params[:search]}%"
+      questaos = questaos.where("enunciado ILIKE ?", "%#{params[:search]}%")
     end
 
-    where_clause = conditions.any? ? "WHERE #{conditions.join(' AND ')}" : ""
-    
-    count_query = "SELECT count() as total FROM questaos #{where_clause}"
-    total_count = ClickhouseSyncService.client.query(count_query, query_params).to_hashes.first["total"]
-
-    data_query = <<~SQL
-      SELECT * FROM questaos 
-      #{where_clause}
-      ORDER BY id ASC 
-      LIMIT {limit:Int32} OFFSET {offset:Int32}
-    SQL
-    
-    query_params[:limit] = per_page
-    query_params[:offset] = (page - 1) * per_page
-
-    clickhouse_data = ClickhouseSyncService.client.query(data_query, query_params).to_hashes
-
-    # Parse alternativas from string to JSON
-    clickhouse_data.each do |row|
-      row["alternativas"] = JSON.parse(row["alternativas"]) if row["alternativas"].is_a?(String)
-    end
+    total_count = questaos.count
+    questaos_data = questaos.order(id: :asc).offset((page - 1) * per_page).limit(per_page)
 
     render json: {
-      data: clickhouse_data,
+      data: questaos_data,
       meta: {
         current_page: page,
         per_page: per_page,
@@ -68,21 +44,17 @@ class QuestaosController < ApplicationController
   # GET /questaos/stats
   def stats
     conditions = []
-    query_params = {}
 
     if params[:disciplina_id].present?
-      conditions << "disciplina_id = {disciplina_id:Int64}"
-      query_params[:disciplina_id] = params[:disciplina_id].to_i
+      conditions << "disciplina_id = #{params[:disciplina_id].to_i}"
     end
 
     if params[:assunto_id].present?
-      conditions << "assunto_id = {assunto_id:Int64}"
-      query_params[:assunto_id] = params[:assunto_id].to_i
+      conditions << "assunto_id = #{params[:assunto_id].to_i}"
     end
 
     if params[:prova_id].present?
-      conditions << "prova_id = {prova_id:Int64}"
-      query_params[:prova_id] = params[:prova_id].to_i
+      conditions << "prova_id = #{params[:prova_id].to_i}"
     end
 
     where_clause = conditions.any? ? "WHERE #{conditions.join(' AND ')}" : ""
@@ -100,7 +72,7 @@ class QuestaosController < ApplicationController
       #{where_clause}
     SQL
     
-    stats_data = ClickhouseSyncService.client.query(stats_query, query_params).to_hashes.first
+    stats_data = ClickhouseSyncService.client.query(stats_query).to_hashes.first
 
     by_year_query = <<~SQL
       SELECT ano, count() as count 
@@ -110,7 +82,7 @@ class QuestaosController < ApplicationController
       ORDER BY ano ASC
     SQL
     
-    by_year_raw = ClickhouseSyncService.client.query(by_year_query, query_params).to_hashes
+    by_year_raw = ClickhouseSyncService.client.query(by_year_query).to_hashes
     by_year = by_year_raw.each_with_object({}) { |row, hash| hash[row['ano']] = row['count'] }
 
     render json: {
