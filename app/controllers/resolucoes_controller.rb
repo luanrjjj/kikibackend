@@ -20,43 +20,47 @@ class ResolucoesController < ApplicationController
   def stats
     days = params[:days].to_i > 0 ? params[:days].to_i : 30
     
-    query = ActiveRecord::Base.sanitize_sql_array([
-      "SELECT 
-        toDate(created_at) as date,
-        count() as total_resolucoes,
-        sum(correta) as total_acertos,
-        count() - sum(correta) as total_erros
+    query = <<-SQL
+      SELECT 
+        created_at::date as date,
+        count(*) as total_resolucoes,
+        sum(case when correta then 1 else 0 end) as total_acertos,
+        sum(case when not correta then 1 else 0 end) as total_erros
       FROM resolucaos
-      WHERE user_id = ? 
-        AND created_at >= now() - INTERVAL ? DAY
+      WHERE user_id = :user_id 
+        AND created_at >= :start_date
       GROUP BY date
-      ORDER BY date DESC",
-      current_user.id, days
-    ])
+      ORDER BY date DESC
+    SQL
 
-    stats = ClickhouseSyncService.client.query(query).to_hashes
+    stats = Resolucao.connection.select_all(
+      ActiveRecord::Base.sanitize_sql_array([query, { user_id: current_user.id, start_date: days.days.ago }])
+    ).to_a
     render json: stats
   end
 
   def discipline_stats
     days = params[:days].to_i > 0 ? params[:days].to_i : 30
 
-    query = ActiveRecord::Base.sanitize_sql_array([
-      "SELECT 
-        disciplina_nome,
-        disciplina_id,
-        count() as total_resolucoes,
-        sum(correta) as total_acertos,
-        count() - sum(correta) as total_erros
-      FROM resolucaos
-      WHERE user_id = ? 
-        AND created_at >= now() - INTERVAL ? DAY
-      GROUP BY disciplina_nome, disciplina_id
-      ORDER BY total_resolucoes DESC",
-      current_user.id, days
-    ])
+    query = <<-SQL
+      SELECT 
+        d.nome as disciplina_nome,
+        d.id as disciplina_id,
+        count(r.*) as total_resolucoes,
+        sum(case when r.correta then 1 else 0 end) as total_acertos,
+        sum(case when not r.correta then 1 else 0 end) as total_erros
+      FROM resolucaos r
+      JOIN questaos q ON r.questao_id = q.id
+      JOIN disciplinas d ON q.disciplina_id = d.id
+      WHERE r.user_id = :user_id 
+        AND r.created_at >= :start_date
+      GROUP BY d.nome, d.id
+      ORDER BY total_resolucoes DESC
+    SQL
 
-    stats = ClickhouseSyncService.client.query(query).to_hashes
+    stats = Resolucao.connection.select_all(
+      ActiveRecord::Base.sanitize_sql_array([query, { user_id: current_user.id, start_date: days.days.ago }])
+    ).to_a
     render json: stats
   end
 
@@ -66,26 +70,27 @@ class ResolucoesController < ApplicationController
 
     sql_parts = [
       "SELECT 
-        assunto_nome,
-        count() as total_resolucoes,
-        sum(correta) as total_acertos,
-        count() - sum(correta) as total_erros
-      FROM resolucaos
-      WHERE user_id = ? 
-        AND created_at >= now() - INTERVAL ? DAY",
-      current_user.id, days
+        a.nome as assunto_nome,
+        count(r.*) as total_resolucoes,
+        sum(case when r.correta then 1 else 0 end) as total_acertos,
+        sum(case when not r.correta then 1 else 0 end) as total_erros
+      FROM resolucaos r
+      JOIN questaos q ON r.questao_id = q.id
+      JOIN assuntos a ON q.assunto_id = a.id
+      WHERE r.user_id = :user_id 
+        AND r.created_at >= :start_date",
+      { user_id: current_user.id, start_date: days.days.ago }
     ]
 
     if disciplina_id.present?
-      sql_parts[0] += " AND disciplina_id = ?"
-      sql_parts << disciplina_id
+      sql_parts[0] += " AND q.disciplina_id = :disciplina_id"
+      sql_parts[1][:disciplina_id] = disciplina_id
     end
 
-    sql_parts[0] += " GROUP BY assunto_nome ORDER BY total_resolucoes DESC"
+    sql_parts[0] += " GROUP BY a.nome ORDER BY total_resolucoes DESC"
 
     query = ActiveRecord::Base.sanitize_sql_array(sql_parts)
-
-    stats = ClickhouseSyncService.client.query(query).to_hashes
+    stats = Resolucao.connection.select_all(query).to_a
     render json: stats
   end
 
