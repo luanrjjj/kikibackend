@@ -48,7 +48,7 @@ class BancasController < ApplicationController
     result = Rails.cache.fetch(cache_key, expires_in: 12.hours) do
       query = Banca.joins(provas: :questaos)
                    .group('bancas.id', 'bancas.nome', 'bancas.logo')
-                   .select('bancas.id, bancas.nome, bancas.logo, 
+                   .select('bancas.id, bancas.nome, bancas.logo,
                            count(questaos.id) as total_questoes,
                            count(CASE WHEN questaos.correta IS NOT NULL AND questaos.correta != \'\' THEN 1 END) as com_gabarito')
 
@@ -61,18 +61,18 @@ class BancasController < ApplicationController
                     else
                       Banca.joins(provas: :questaos).distinct.count('bancas.id')
                     end
-      
+
       counts = query.order('total_questoes DESC').offset((page - 1) * per_page).limit(per_page)
 
       {
-        data: counts.map { |b| 
-          { 
-            id: b.id, 
-            nome: b.nome, 
+        data: counts.map { |b|
+          {
+            id: b.id,
+            nome: b.nome,
             logo: b.logo,
             total_questoes: b.total_questoes,
             com_gabarito: b.com_gabarito
-          } 
+          }
         },
         meta: {
           current_page: page,
