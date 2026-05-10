@@ -47,19 +47,19 @@ class BancasController < ApplicationController
 
     result = Rails.cache.fetch(cache_key, expires_in: 1.hour) do
       # Strategy: Use denormalized columns for O(1) performance
-      query = Banca.select(:id, :nome, :logo, :questaos_count, :com_gabarito_count)
+      base_query = Banca.all
 
       if search.present?
-        query = query.where('nome ILIKE ?', "%#{search}%")
+        base_query = base_query.where('nome ILIKE ?', "%#{search}%")
       end
 
-      total_count = query.count
+      total_count = base_query.count
 
-      # Order by the pre-calculated question count
-      bancas = query.order(questaos_count: :desc)
-                    .offset((page - 1) * per_page)
-                    .limit(per_page)
-
+      # Order and select specific columns for the results
+      bancas = base_query.select(:id, :nome, :logo, :questaos_count, :com_gabarito_count)
+                        .order(questaos_count: :desc)
+                        .offset((page - 1) * per_page)
+                        .limit(per_page)
       {
         data: bancas.map { |b| 
           { 
