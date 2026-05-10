@@ -32,42 +32,49 @@ class BancasController < ApplicationController
   def questoes_count
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
+    search = params[:search].to_s.strip
 
-    query = Banca.joins(provas: :questaos)
-                 .group('bancas.id', 'bancas.nome', 'bancas.logo')
-                 .select('bancas.id, bancas.nome, bancas.logo, 
-                         count(questaos.id) as total_questoes,
-                         count(CASE WHEN questaos.correta IS NOT NULL AND questaos.correta != \'\' THEN 1 END) as com_gabarito')
+    cache_key = "bancas/questoes_count/page_#{page}/per_#{per_page}/search_#{search.parameterize}"
 
-    if params[:search].present?
-      query = query.where('bancas.nome ILIKE ?', "%#{params[:search]}%")
+    result = Rails.cache.fetch(cache_key, expires_in: 12.hours) do
+      query = Banca.joins(provas: :questaos)
+                   .group('bancas.id', 'bancas.nome', 'bancas.logo')
+                   .select('bancas.id, bancas.nome, bancas.logo, 
+                           count(questaos.id) as total_questoes,
+                           count(CASE WHEN questaos.correta IS NOT NULL AND questaos.correta != \'\' THEN 1 END) as com_gabarito')
+
+      if search.present?
+        query = query.where('bancas.nome ILIKE ?', "%#{search}%")
+      end
+
+      total_count = if search.present?
+                      Banca.joins(provas: :questaos).where('bancas.nome ILIKE ?', "%#{search}%").distinct.count('bancas.id')
+                    else
+                      Banca.joins(provas: :questaos).distinct.count('bancas.id')
+                    end
+      
+      counts = query.order('total_questoes DESC').offset((page - 1) * per_page).limit(per_page)
+
+      {
+        data: counts.map { |b| 
+          { 
+            id: b.id, 
+            nome: b.nome, 
+            logo: b.logo,
+            total_questoes: b.total_questoes,
+            com_gabarito: b.com_gabarito
+          } 
+        },
+        meta: {
+          current_page: page,
+          per_page: per_page,
+          total_count: total_count,
+          total_pages: (total_count.to_f / per_page).ceil
+        }
+      }
     end
 
-    total_count = if params[:search].present?
-                    Banca.joins(provas: :questaos).where('bancas.nome ILIKE ?', "%#{params[:search]}%").distinct.count('bancas.id')
-                  else
-                    Banca.joins(provas: :questaos).distinct.count('bancas.id')
-                  end
-    
-    counts = query.order('total_questoes DESC').offset((page - 1) * per_page).limit(per_page)
-
-    render json: {
-      data: counts.map { |b| 
-        { 
-          id: b.id, 
-          nome: b.nome, 
-          logo: b.logo,
-          total_questoes: b.total_questoes,
-          com_gabarito: b.com_gabarito
-        } 
-      },
-      meta: {
-        current_page: page,
-        per_page: per_page,
-        total_count: total_count,
-        total_pages: (total_count.to_f / per_page).ceil
-      }
-    }
+    render json: result
   end
   def show
     render json: @banca
