@@ -43,36 +43,31 @@ class BancasController < ApplicationController
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
     search = params[:search].to_s.strip
 
-    cache_key = "bancas/questoes_count/page_#{page}/per_#{per_page}/search_#{search.parameterize}"
+    cache_key = "bancas/questoes_count/v2/page_#{page}/per_#{per_page}/search_#{search.parameterize}"
 
-    result = Rails.cache.fetch(cache_key, expires_in: 12.hours) do
-      # Optimization: Join through concursos which is a direct relation for Questao
-      query = Banca.joins(concursos: :questaos)
-                   .group('bancas.id', 'bancas.nome', 'bancas.logo')
-                   .select('bancas.id, bancas.nome, bancas.logo, 
-                           count(questaos.id) as total_questoes,
-                           count(CASE WHEN questaos.correta IS NOT NULL AND questaos.correta != \'\' THEN 1 END) as com_gabarito')
+    result = Rails.cache.fetch(cache_key, expires_in: 1.hour) do
+      # Strategy: Use denormalized columns for O(1) performance
+      query = Banca.select(:id, :nome, :logo, :questaos_count, :com_gabarito_count)
 
       if search.present?
-        query = query.where('bancas.nome ILIKE ?', "%#{search}%")
+        query = query.where('nome ILIKE ?', "%#{search}%")
       end
 
-      total_count = if search.present?
-                      Banca.joins(concursos: :questaos).where('bancas.nome ILIKE ?', "%#{search}%").distinct.count('bancas.id')
-                    else
-                      Banca.joins(concursos: :questaos).distinct.count('bancas.id')
-                    end
+      total_count = query.count
 
-      counts = query.order('total_questoes DESC').offset((page - 1) * per_page).limit(per_page)
+      # Order by the pre-calculated question count
+      bancas = query.order(questaos_count: :desc)
+                    .offset((page - 1) * per_page)
+                    .limit(per_page)
 
       {
-        data: counts.map { |b| 
+        data: bancas.map { |b| 
           { 
             id: b.id, 
             nome: b.nome, 
             logo: b.logo,
-            total_questoes: b.total_questoes,
-            com_gabarito: b.com_gabarito
+            total_questoes: b.questaos_count || 0,
+            com_gabarito: b.com_gabarito_count || 0
           } 
         },
         meta: {
@@ -87,9 +82,8 @@ class BancasController < ApplicationController
     render json: result
   rescue StandardError => e
     Rails.logger.error "BancasController#questoes_count Error: #{e.message}\n#{e.backtrace.first(10).join("\n")}"
-    render json: { error: "Erro ao calcular contagem de questões por banca", message: e.message }, status: :internal_server_error
+    render json: { error: "Erro ao buscar contagem de questões", message: e.message }, status: :internal_server_error
   end
-
   def show
     render json: @banca
   end
