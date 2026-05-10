@@ -46,11 +46,11 @@ class QuestaosController < ApplicationController
     conditions = []
 
     if params[:disciplina_id].present?
-      conditions << "disciplina_id = #{params[:disciplina_id].to_i}"
+      conditions << "disciplina_ref = '#{params[:disciplina_id].to_i}'"
     end
 
     if params[:assunto_id].present?
-      conditions << "assunto_id = #{params[:assunto_id].to_i}"
+      conditions << "assunto_ref = '#{params[:assunto_id].to_i}'"
     end
 
     if params[:prova_id].present?
@@ -59,35 +59,37 @@ class QuestaosController < ApplicationController
 
     where_clause = conditions.any? ? "WHERE #{conditions.join(' AND ')}" : ""
 
-    # Use ClickHouse for stats
+    # Use ClickHouse for stats (Using _ref columns to match schema)
     stats_query = <<~SQL
       SELECT 
         count() AS total,
-        countIf(validado_admin IS NOT NULL) AS validated,
         countIf(correta IS NOT NULL AND correta != '') AS with_correct,
-        countIf(disciplina_id > 0) AS with_disciplina,
-        countIf(assunto_id > 0) AS with_assunto,
-        countIf(disciplina_id > 0 AND assunto_id > 0) AS with_disciplina_assunto
+        countIf(disciplina_ref IS NOT NULL AND disciplina_ref != '') AS with_disciplina,
+        countIf(assunto_ref IS NOT NULL AND assunto_ref != '') AS with_assunto,
+        countIf((disciplina_ref IS NOT NULL AND disciplina_ref != '') AND (assunto_ref IS NOT NULL AND assunto_ref != '')) AS with_disciplina_assunto
       FROM questaos
       #{where_clause}
     SQL
     
     stats_data = ClickhouseSyncService.client.query(stats_query).to_hashes.first
 
+    year_conditions = conditions.dup
+    year_conditions << "questao_ano IS NOT NULL"
+    year_where_clause = "WHERE #{year_conditions.join(' AND ')}"
+
     by_year_query = <<~SQL
-      SELECT ano, count() as count 
+      SELECT CAST(questao_ano AS Int64) AS questao_ano, count() as count 
       FROM questaos 
-      #{where_clause}
-      GROUP BY ano 
-      ORDER BY ano ASC
+      #{year_where_clause}
+      GROUP BY questao_ano 
+      ORDER BY questao_ano ASC
     SQL
     
     by_year_raw = ClickhouseSyncService.client.query(by_year_query).to_hashes
-    by_year = by_year_raw.each_with_object({}) { |row, hash| hash[row['ano']] = row['count'] }
+    by_year = by_year_raw.each_with_object({}) { |row, hash| hash[row['questao_ano']] = row['count'] }
 
     render json: {
       total_count: stats_data['total'] || 0,
-      validated_count: stats_data['validated'] || 0,
       with_correct_answer_count: stats_data['with_correct'] || 0,
       with_disciplina_count: stats_data['with_disciplina'] || 0,
       with_assunto_count: stats_data['with_assunto'] || 0,
