@@ -10,6 +10,10 @@
 #     schedule: at 5am every day
 
 production:
+  refresh_admin_stats:
+    class: RefreshAdminStatsJob
+    schedule: every 12 hours
+
   refresh_banca_counts:
     class: RefreshBancaCountsJob
     schedule: at 1am every day

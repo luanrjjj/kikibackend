@@ -72,6 +72,13 @@ class ProvasController < ApplicationController
 
   # GET /provas/stats
   def stats
+    has_filters = params[:ano].present? || params[:banca_id].present? || params[:search].present?
+
+    if !has_filters && (cached_stats = Rails.cache.read("admin/stats/provas/global"))
+      render json: cached_stats
+      return
+    end
+
     @provas = Prova.all
     
     @provas = @provas.where(ano: params[:ano]) if params[:ano].present?

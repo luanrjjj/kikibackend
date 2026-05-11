@@ -43,57 +43,40 @@ class QuestaosController < ApplicationController
 
   # GET /questaos/stats
   def stats
-    conditions = []
+    has_filters = params[:disciplina_id].present? || params[:assunto_id].present? || params[:prova_id].present?
 
-    if params[:disciplina_id].present?
-      conditions << "disciplina_ref = '#{params[:disciplina_id].to_i}'"
+    if !has_filters && (cached_stats = Rails.cache.read("admin/stats/questaos/global"))
+      render json: cached_stats
+      return
     end
 
-    if params[:assunto_id].present?
-      conditions << "assunto_ref = '#{params[:assunto_id].to_i}'"
-    end
-
+    # Fallback to PostgreSQL for filtered stats
+    scope = Questao.all
+    scope = scope.where(disciplina_id: params[:disciplina_id]) if params[:disciplina_id].present?
+    scope = scope.where(assunto_id: params[:assunto_id]) if params[:assunto_id].present?
+    
     if params[:prova_id].present?
-      conditions << "prova_id = #{params[:prova_id].to_i}"
+      scope = scope.joins(:prova_questaos).where(prova_questaos: { prova_id: params[:prova_id] })
     end
 
-    where_clause = conditions.any? ? "WHERE #{conditions.join(' AND ')}" : ""
+    stats_data = scope.select(
+      "COUNT(*) as total",
+      "COUNT(*) FILTER (WHERE correta IS NOT NULL AND correta != '') as with_correct",
+      "COUNT(*) FILTER (WHERE disciplina_id IS NOT NULL) as with_disciplina",
+      "COUNT(*) FILTER (WHERE assunto_id IS NOT NULL) as with_assunto",
+      "COUNT(*) FILTER (WHERE disciplina_id IS NOT NULL AND assunto_id IS NOT NULL) as with_disciplina_assunto",
+      "COUNT(*) FILTER (WHERE validado_admin IS NOT NULL) as validated"
+    ).take
 
-    # Use ClickHouse for stats (Using _ref columns to match schema)
-    stats_query = <<~SQL
-      SELECT 
-        count() AS total,
-        countIf(correta IS NOT NULL AND correta != '') AS with_correct,
-        countIf(disciplina_ref IS NOT NULL AND disciplina_ref != '') AS with_disciplina,
-        countIf(assunto_ref IS NOT NULL AND assunto_ref != '') AS with_assunto,
-        countIf((disciplina_ref IS NOT NULL AND disciplina_ref != '') AND (assunto_ref IS NOT NULL AND assunto_ref != '')) AS with_disciplina_assunto
-      FROM questaos
-      #{where_clause}
-    SQL
-    
-    stats_data = ClickhouseSyncService.client.query(stats_query).to_hashes.first
-
-    year_conditions = conditions.dup
-    year_conditions << "questao_ano IS NOT NULL"
-    year_where_clause = "WHERE #{year_conditions.join(' AND ')}"
-
-    by_year_query = <<~SQL
-      SELECT CAST(questao_ano AS Int64) AS questao_ano, count() as count 
-      FROM questaos 
-      #{year_where_clause}
-      GROUP BY questao_ano 
-      ORDER BY questao_ano ASC
-    SQL
-    
-    by_year_raw = ClickhouseSyncService.client.query(by_year_query).to_hashes
-    by_year = by_year_raw.each_with_object({}) { |row, hash| hash[row['questao_ano']] = row['count'] }
+    by_year = scope.where.not(ano: nil).group(:ano).count.sort.to_h
 
     render json: {
-      total_count: stats_data['total'] || 0,
-      with_correct_answer_count: stats_data['with_correct'] || 0,
-      with_disciplina_count: stats_data['with_disciplina'] || 0,
-      with_assunto_count: stats_data['with_assunto'] || 0,
-      with_disciplina_assunto_count: stats_data['with_disciplina_assunto'] || 0,
+      total_count: stats_data.total || 0,
+      with_correct_answer_count: stats_data.with_correct || 0,
+      with_disciplina_count: stats_data.with_disciplina || 0,
+      with_assunto_count: stats_data.with_assunto || 0,
+      with_disciplina_assunto_count: stats_data.with_disciplina_assunto || 0,
+      validated_count: stats_data.validated || 0,
       by_year: by_year
     }
   end

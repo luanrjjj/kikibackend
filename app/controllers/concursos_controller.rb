@@ -64,6 +64,13 @@ class ConcursosController < ApplicationController
   end
 
   def stats
+    has_filters = params[:search].present?
+
+    if !has_filters && (cached_stats = Rails.cache.read("admin/stats/concursos/global"))
+      render json: cached_stats
+      return
+    end
+
     @concursos = Concurso.all
 
     # Filter by name if search present
