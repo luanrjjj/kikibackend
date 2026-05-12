@@ -98,5 +98,7 @@ Rails.application.routes.draw do
     end
 
     get 'up' => 'rails/health#show', as: :rails_health_check
+
+    post 'admin/refresh_stats', to: 'admin#refresh_stats'
   end
 end
