@@ -28,7 +28,10 @@ class QuestaosController < ApplicationController
     end
 
     total_count = questaos.count
-    questaos_data = questaos.order(id: :asc).offset((page - 1) * per_page).limit(per_page)
+    questaos_data = questaos.includes(:disciplina, :assunto, :provas, concurso: [:banca, :orgao])
+                            .order(id: :asc)
+                            .offset((page - 1) * per_page)
+                            .limit(per_page)
 
     render json: {
       data: questaos_data,
