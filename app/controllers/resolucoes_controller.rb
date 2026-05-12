@@ -94,6 +94,46 @@ class ResolucoesController < ApplicationController
     render json: stats
   end
 
+  def notebook_stats
+    caderno_id = params[:caderno_id]
+    return render json: { error: "Caderno ID is required" }, status: :bad_request if caderno_id.blank?
+
+    query = <<-SQL
+      SELECT 
+        count(*) as total_resolucoes,
+        sum(case when correta then 1 else 0 end) as total_acertos,
+        sum(case when not correta then 1 else 0 end) as total_erros
+      FROM resolucaos
+      WHERE user_id = :user_id 
+        AND caderno_id = :caderno_id
+    SQL
+
+    stats = Resolucao.connection.select_all(
+      ActiveRecord::Base.sanitize_sql_array([query, { user_id: current_user.id, caderno_id: caderno_id }])
+    ).first
+    render json: stats
+  end
+
+  def question_stats
+    questao_id = params[:questao_id]
+    return render json: { error: "Questao ID is required" }, status: :bad_request if questao_id.blank?
+
+    query = <<-SQL
+      SELECT 
+        count(*) as total_resolucoes,
+        sum(case when correta then 1 else 0 end) as total_acertos,
+        sum(case when not correta then 1 else 0 end) as total_erros,
+        count(DISTINCT user_id) as total_users
+      FROM resolucaos
+      WHERE questao_id = :questao_id
+    SQL
+
+    stats = Resolucao.connection.select_all(
+      ActiveRecord::Base.sanitize_sql_array([query, { questao_id: questao_id }])
+    ).first
+    render json: stats
+  end
+
   private
 
   def resolucao_params

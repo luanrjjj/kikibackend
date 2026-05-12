@@ -71,11 +71,15 @@ Rails.application.routes.draw do
     resources :cadernos, defaults: { format: :json } do
       get :questaos, on: :member
     end
+
     resources :resolucoes, only: [:create], defaults: { format: :json } do
       get :stats, on: :collection
       get :discipline_stats, on: :collection
       get :subject_stats, on: :collection
+      get :notebook_stats, on: :collection
+      get :question_stats, on: :collection
     end
+
     resources :comentarios, only: [:index, :create], defaults: { format: :json }
 
     post 'anki/generate', to: 'anki#generate'
