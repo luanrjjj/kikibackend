@@ -72,8 +72,9 @@ Rails.application.routes.draw do
       get :questaos, on: :member
     end
 
-    resources :resolucoes, only: [:create], defaults: { format: :json } do
+    resources :resolucoes, only: [:index, :create], defaults: { format: :json } do
       get :stats, on: :collection
+      get :global_stats, on: :collection
       get :discipline_stats, on: :collection
       get :subject_stats, on: :collection
       get :notebook_stats, on: :collection

@@ -19,7 +19,7 @@ class DisciplinasController < ApplicationController
   end
 
   def all
-    render json: Disciplina.order(:nome)
+    render json: Disciplina.select(:id, :nome).order(:nome)
   end
 
   def filters

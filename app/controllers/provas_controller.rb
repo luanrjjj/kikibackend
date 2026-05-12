@@ -67,7 +67,7 @@ class ProvasController < ApplicationController
 
   # GET /provas/all
   def all
-    render json: Prova.order(:nome).as_json(except: %i[created_at updated_at validado_admin])
+    render json: Prova.select(:id, :nome).order(:nome)
   end
 
   # GET /provas/stats

@@ -1,4 +1,62 @@
 class ResolucoesController < ApplicationController
+  before_action :authenticate_admin!, only: %i[ index global_stats ]
+
+  def index
+    page = [params.fetch(:page, 1).to_i, 1].max
+    per_page = [params.fetch(:per_page, 20).to_i, 1].max
+
+    resolucoes = Resolucao.includes(:user, :questao, :caderno)
+                          .order(created_at: :desc)
+                          .offset((page - 1) * per_page)
+                          .limit(per_page)
+
+    render json: {
+      data: resolucoes.as_json(include: {
+        user: { only: [:id, :email, :nome] },
+        questao: { only: [:id, :enunciado] },
+        caderno: { only: [:id, :nome] }
+      }),
+      meta: {
+        current_page: page,
+        per_page: per_page,
+        total_count: Resolucao.count,
+        total_pages: (Resolucao.count.to_f / per_page).ceil
+      }
+    }
+  end
+
+  def global_stats
+    days = params[:days].to_i > 0 ? params[:days].to_i : 30
+    
+    query = <<-SQL
+      SELECT 
+        created_at::date as date,
+        count(*) as total_resolucoes,
+        sum(case when correta then 1 else 0 end) as total_acertos,
+        sum(case when not correta then 1 else 0 end) as total_erros
+      FROM resolucaos
+      WHERE created_at >= :start_date
+      GROUP BY date
+      ORDER BY date DESC
+    SQL
+
+    stats = Resolucao.connection.select_all(
+      ActiveRecord::Base.sanitize_sql_array([query, { start_date: days.days.ago }])
+    ).to_a
+
+    summary = Resolucao.select(
+      "count(*) as total",
+      "sum(case when correta then 1 else 0 end) as acertos",
+      "sum(case when not correta then 1 else 0 end) as erros",
+      "count(DISTINCT user_id) as total_usuarios"
+    ).take
+
+    render json: {
+      daily_stats: stats,
+      summary: summary
+    }
+  end
+
   def create
     @questao = Questao.find_by!(id: params[:resolucao][:questao_id])
     is_correct = @questao.correta == params[:resolucao][:resposta]

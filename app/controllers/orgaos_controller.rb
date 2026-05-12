@@ -30,7 +30,7 @@ class OrgaosController < ApplicationController
   end
 
   def all
-    render json: Orgao.order(:nome)
+    render json: Orgao.select(:id, :nome, :sigla).order(:nome)
   end
 
   def filters

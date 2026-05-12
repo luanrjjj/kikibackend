@@ -23,7 +23,7 @@ class BancasController < ApplicationController
   end
 
   def all
-    render json: Banca.order(:nome)
+    render json: Banca.select(:id, :nome, :sigla).order(:nome)
   rescue StandardError => e
     Rails.logger.error "BancasController#all Error: #{e.message}"
     render json: { error: "Erro ao buscar todas as bancas" }, status: :internal_server_error

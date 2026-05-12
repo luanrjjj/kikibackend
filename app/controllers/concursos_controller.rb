@@ -93,7 +93,7 @@ class ConcursosController < ApplicationController
   end
 
   def all
-    render json: Concurso.order(:nome)
+    render json: Concurso.select(:id, :nome).order(:nome)
   end
 
   def create
