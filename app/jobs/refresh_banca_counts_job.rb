@@ -1,6 +1,6 @@
 class RefreshBancaCountsJob
   include Sidekiq::Job
-  queue_as :default
+  sidekiq_options queue: :default
 
   def perform
     Rails.logger.info "Iniciando atualização de contadores de bancas..."
