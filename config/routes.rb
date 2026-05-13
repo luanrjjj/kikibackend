@@ -81,7 +81,12 @@ Rails.application.routes.draw do
       get :question_stats, on: :collection
     end
 
-    resources :comentarios, only: [:index, :create], defaults: { format: :json }
+    resources :comentarios, only: [:index, :create], defaults: { format: :json } do
+      member do
+        patch :upvote
+        patch :downvote
+      end
+    end
 
     post 'anki/generate', to: 'anki#generate'
     post 'anki/generate_ai', to: 'anki#generate_ai'
