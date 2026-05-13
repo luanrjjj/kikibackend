@@ -66,9 +66,15 @@ class ConcursosController < ApplicationController
   def stats
     has_filters = params[:search].present?
 
-    if !has_filters && (cached_stats = Rails.cache.read("admin/stats/concursos/global"))
-      render json: cached_stats
-      return
+    if !has_filters
+      cached_stats = Rails.cache.read("admin/stats/concursos/global")
+      if cached_stats
+        Rails.logger.info "[Cache] Hit admin/stats/concursos/global"
+        render json: cached_stats
+        return
+      else
+        Rails.logger.info "[Cache] Miss admin/stats/concursos/global"
+      end
     end
 
     @concursos = Concurso.all
@@ -86,10 +92,16 @@ class ConcursosController < ApplicationController
                      .count('concursos.id')
                      .sort.to_h
 
-    render json: {
+    render_data = {
       total_count: total_count,
-      by_year: by_year
+      by_year: by_year,
+      updated_at: Time.current
     }
+
+    # Cache global results if no filters were applied
+    Rails.cache.write("admin/stats/concursos/global", render_data) if !has_filters
+
+    render json: render_data
   end
 
   def all

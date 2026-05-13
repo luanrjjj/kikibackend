@@ -74,9 +74,15 @@ class ProvasController < ApplicationController
   def stats
     has_filters = params[:ano].present? || params[:banca_id].present? || params[:search].present?
 
-    if !has_filters && (cached_stats = Rails.cache.read("admin/stats/provas/global"))
-      render json: cached_stats
-      return
+    if !has_filters
+      cached_stats = Rails.cache.read("admin/stats/provas/global")
+      if cached_stats
+        Rails.logger.info "[Cache] Hit admin/stats/provas/global"
+        render json: cached_stats
+        return
+      else
+        Rails.logger.info "[Cache] Miss admin/stats/provas/global"
+      end
     end
 
     @provas = Prova.all
@@ -88,10 +94,16 @@ class ProvasController < ApplicationController
     total_count = @provas.count
     by_year = @provas.where.not(ano: nil).group(:ano).count.sort.to_h
 
-    render json: {
+    render_data = {
       total_count: total_count,
-      by_year: by_year
+      by_year: by_year,
+      updated_at: Time.current
     }
+
+    # Cache global results if no filters were applied
+    Rails.cache.write("admin/stats/provas/global", render_data) if !has_filters
+
+    render json: render_data
   end
 
   # GET /provas/years

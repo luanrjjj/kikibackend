@@ -80,15 +80,21 @@ class QuestaosController < ApplicationController
 
     by_year = scope.where.not(ano: nil).group(:ano).count.sort.to_h
 
-    render json: {
+    render_data = {
       total_count: stats_data.total || 0,
       with_correct_answer_count: stats_data.with_correct || 0,
       with_disciplina_count: stats_data.with_disciplina || 0,
       with_assunto_count: stats_data.with_assunto || 0,
       with_disciplina_assunto_count: stats_data.with_disciplina_assunto || 0,
       validated_count: stats_data.validated || 0,
-      by_year: by_year
+      by_year: by_year,
+      updated_at: Time.current
     }
+
+    # Cache global results if no filters were applied
+    Rails.cache.write("admin/stats/questaos/global", render_data) if !has_filters
+
+    render json: render_data
   end
 
   def validate
