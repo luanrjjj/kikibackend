@@ -176,7 +176,7 @@ class ResolucoesController < ApplicationController
     questao_id = params[:questao_id]
     return render json: { error: "Questao ID is required" }, status: :bad_request if questao_id.blank?
 
-    query = <<-SQL
+    global_query = <<-SQL
       SELECT 
         count(*) as total_resolucoes,
         sum(case when correta then 1 else 0 end) as total_acertos,
@@ -186,10 +186,27 @@ class ResolucoesController < ApplicationController
       WHERE questao_id = :questao_id
     SQL
 
-    stats = Resolucao.connection.select_all(
-      ActiveRecord::Base.sanitize_sql_array([query, { questao_id: questao_id }])
+    global_stats = Resolucao.connection.select_all(
+      ActiveRecord::Base.sanitize_sql_array([global_query, { questao_id: questao_id }])
     ).first
-    render json: stats
+
+    personal_query = <<-SQL
+      SELECT 
+        count(*) as total_resolucoes,
+        sum(case when correta then 1 else 0 end) as total_acertos,
+        sum(case when not correta then 1 else 0 end) as total_erros
+      FROM resolucaos
+      WHERE questao_id = :questao_id AND user_id = :user_id
+    SQL
+
+    personal_stats = Resolucao.connection.select_all(
+      ActiveRecord::Base.sanitize_sql_array([personal_query, { questao_id: questao_id, user_id: current_user.id }])
+    ).first
+
+    render json: {
+      global: global_stats,
+      personal: personal_stats
+    }
   end
 
   private
