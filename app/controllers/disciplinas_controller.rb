@@ -19,7 +19,10 @@ class DisciplinasController < ApplicationController
   end
 
   def all
-    render json: Disciplina.select(:id, :nome).order(:nome)
+    result = Rails.cache.fetch("disciplinas/all", expires_in: 24.hours) do
+      Disciplina.select(:id, :nome).order(:nome).to_a
+    end
+    render json: result
   end
 
   def filters
@@ -36,6 +39,7 @@ class DisciplinasController < ApplicationController
     @disciplina = Disciplina.new(disciplina_params)
 
     if @disciplina.save
+      Rails.cache.delete("disciplinas/all")
       render json: @disciplina, status: :created, location: @disciplina
     else
       render json: @disciplina.errors, status: :unprocessable_entity
@@ -44,6 +48,7 @@ class DisciplinasController < ApplicationController
 
   def update
     if @disciplina.update(disciplina_params)
+      Rails.cache.delete("disciplinas/all")
       render json: @disciplina
     else
       render json: @disciplina.errors, status: :unprocessable_entity
@@ -52,6 +57,7 @@ class DisciplinasController < ApplicationController
 
   def destroy
     @disciplina.destroy!
+    Rails.cache.delete("disciplinas/all")
   end
 
   private

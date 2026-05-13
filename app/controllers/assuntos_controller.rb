@@ -18,7 +18,10 @@ class AssuntosController < ApplicationController
   end
 
   def all
-    render json: Assunto.select(:id, :nome, :disciplina_id).order(:nome)
+    result = Rails.cache.fetch("assuntos/all", expires_in: 24.hours) do
+      Assunto.select(:id, :nome, :disciplina_id).order(:nome).to_a
+    end
+    render json: result
   end
 
   def filters
@@ -35,6 +38,7 @@ class AssuntosController < ApplicationController
     @assunto = Assunto.new(assunto_params)
 
     if @assunto.save
+      Rails.cache.delete("assuntos/all")
       render json: @assunto, status: :created, location: @assunto
     else
       render json: @assunto.errors, status: :unprocessable_entity
@@ -43,6 +47,7 @@ class AssuntosController < ApplicationController
 
   def update
     if @assunto.update(assunto_params)
+      Rails.cache.delete("assuntos/all")
       render json: @assunto
     else
       render json: @assunto.errors, status: :unprocessable_entity
@@ -51,6 +56,7 @@ class AssuntosController < ApplicationController
 
   def destroy
     @assunto.destroy!
+    Rails.cache.delete("assuntos/all")
   end
 
   private
