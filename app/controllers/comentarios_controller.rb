@@ -6,7 +6,7 @@ class ComentariosController < ApplicationController
   # GET /comentarios?questao_id=1
   def index
     if @questao
-      @comentarios = @questao.comentarios.includes(:user).order(votos_soma: :desc, created_at: :desc)
+      @comentarios = @questao.comentarios.includes(:user).order(created_at: :desc)
       
       # Inclui o voto do usuário atual se estiver logado
       comentarios_json = @comentarios.as_json(include: { user: { only: [:id, :name, :email] } })
