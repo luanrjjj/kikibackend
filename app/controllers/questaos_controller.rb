@@ -46,17 +46,24 @@ class QuestaosController < ApplicationController
 
   # GET /questaos/stats
   def stats
-    has_filters = params[:disciplina_id].present? || params[:assunto_id].present? || params[:prova_id].present?
+    has_filters = params[:disciplina_id].present? || params[:assunto_id].present? || params[:prova_id].present? || params[:search].present?
 
-    if !has_filters && (cached_stats = Rails.cache.read("admin/stats/questaos/global"))
-      render json: cached_stats
-      return
+    if !has_filters
+      cached_stats = Rails.cache.read("admin/stats/questaos/global")
+      if cached_stats
+        Rails.logger.info "[Cache] Hit admin/stats/questaos/global"
+        render json: cached_stats
+        return
+      else
+        Rails.logger.info "[Cache] Miss admin/stats/questaos/global"
+      end
     end
 
     # Fallback to PostgreSQL for filtered stats
     scope = Questao.all
     scope = scope.where(disciplina_id: params[:disciplina_id]) if params[:disciplina_id].present?
     scope = scope.where(assunto_id: params[:assunto_id]) if params[:assunto_id].present?
+    scope = scope.where("enunciado ILIKE ?", "%#{params[:search]}%") if params[:search].present?
     
     if params[:prova_id].present?
       scope = scope.joins(:prova_questaos).where(prova_questaos: { prova_id: params[:prova_id] })
