@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_17_120000) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_18_110000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -121,6 +121,23 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_17_120000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_filtros_on_user_id"
+  end
+
+  create_table "guia_filtros", force: :cascade do |t|
+    t.bigint "guia_id", null: false
+    t.bigint "filtro_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["filtro_id"], name: "index_guia_filtros_on_filtro_id"
+    t.index ["guia_id"], name: "index_guia_filtros_on_guia_id"
+  end
+
+  create_table "guias", force: :cascade do |t|
+    t.bigint "concurso_id", null: false
+    t.string "nome", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["concurso_id"], name: "index_guias_on_concurso_id"
   end
 
   create_table "orgaos", force: :cascade do |t|
@@ -348,6 +365,9 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_17_120000) do
   add_foreign_key "exports", "provas"
   add_foreign_key "exports", "users"
   add_foreign_key "filtros", "users"
+  add_foreign_key "guia_filtros", "filtros"
+  add_foreign_key "guia_filtros", "guias"
+  add_foreign_key "guias", "concursos"
   add_foreign_key "pagamentos", "users"
   add_foreign_key "password_resets", "users"
   add_foreign_key "pasta_cadernos", "users"
