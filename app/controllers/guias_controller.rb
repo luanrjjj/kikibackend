@@ -1,15 +1,54 @@
 class GuiasController < ApplicationController
   before_action :set_guia, only: %i[ show update destroy ]
+  skip_before_action :authenticate_user!, only: [:public_index]
 
-  # GET /guias
+  # GET /guias (Admin/Private list)
   def index
     @guias = Guia.includes(:concurso, :filtros).all
     render json: @guias.as_json(include: { concurso: { only: [:id, :nome] }, filtros: { only: [:id, :nome_do_filtro] } })
   end
 
+  # GET /guias/public_index
+  def public_index
+    page = [params.fetch(:page, 1).to_i, 1].max
+    per_page = [params.fetch(:per_page, 10).to_i, 1].max
+
+    @guias = Guia.all
+
+    if params[:nome].present?
+      @guias = @guias.where("guias.nome ILIKE ?", "%#{params[:nome]}%")
+    end
+
+    if params[:concurso_id].present?
+      @guias = @guias.where(concurso_id: params[:concurso_id])
+    end
+
+    total_count = @guias.count
+    @guias = @guias.includes(:concurso, :filtros)
+                   .order(created_at: :desc)
+                   .offset((page - 1) * per_page)
+                   .limit(per_page)
+
+    render json: {
+      data: @guias.as_json(include: {
+        concurso: { only: [:id, :nome] },
+        filtros: { only: [:id, :nome_do_filtro] }
+      }),
+      meta: {
+        current_page: page,
+        per_page: per_page,
+        total_count: total_count,
+        total_pages: (total_count.to_f / per_page).ceil
+      }
+    }
+  end
+
   # GET /guias/1
   def show
-    render json: @guia.as_json(include: { filtros: { only: [:id, :nome_do_filtro] } })
+    render json: @guia.as_json(include: { 
+      concurso: { only: [:id, :nome] },
+      filtros: { only: [:id, :nome_do_filtro, :filtro] } 
+    })
   end
 
   # POST /guias

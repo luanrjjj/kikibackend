@@ -70,7 +70,9 @@ Rails.application.routes.draw do
     resources :filtros, only: [:index, :create], defaults: { format: :json } do
       get :all, on: :collection
     end
-    resources :guias, defaults: { format: :json }
+    resources :guias, defaults: { format: :json } do
+      get :public_index, on: :collection
+    end
     
     resources :cadernos, defaults: { format: :json } do
       get :questaos, on: :member
