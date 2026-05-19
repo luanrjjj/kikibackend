@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_12_120000) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_17_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -56,7 +56,10 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_12_120000) do
     t.datetime "updated_at", null: false
     t.bigint "pasta_caderno_id", null: false
     t.datetime "prova_criacao_data"
+    t.json "filtros"
+    t.bigint "filtro_id"
     t.index ["concurso_id"], name: "index_cadernos_on_concurso_id"
+    t.index ["filtro_id"], name: "index_cadernos_on_filtro_id"
     t.index ["pasta_caderno_id"], name: "index_cadernos_on_pasta_caderno_id"
     t.index ["prova_id"], name: "index_cadernos_on_prova_id"
     t.index ["user_id", "nome"], name: "index_cadernos_on_user_id_and_nome", unique: true
@@ -109,6 +112,15 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_12_120000) do
     t.index ["concurso_id"], name: "index_exports_on_concurso_id"
     t.index ["prova_id"], name: "index_exports_on_prova_id"
     t.index ["user_id"], name: "index_exports_on_user_id"
+  end
+
+  create_table "filtros", force: :cascade do |t|
+    t.bigint "user_id"
+    t.json "filtro"
+    t.string "nome_do_filtro"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_filtros_on_user_id"
   end
 
   create_table "orgaos", force: :cascade do |t|
@@ -322,6 +334,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_12_120000) do
 
   add_foreign_key "assuntos", "disciplinas"
   add_foreign_key "cadernos", "concursos"
+  add_foreign_key "cadernos", "filtros"
   add_foreign_key "cadernos", "pasta_cadernos"
   add_foreign_key "cadernos", "provas"
   add_foreign_key "cadernos", "users"
@@ -334,6 +347,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_12_120000) do
   add_foreign_key "exports", "concursos"
   add_foreign_key "exports", "provas"
   add_foreign_key "exports", "users"
+  add_foreign_key "filtros", "users"
   add_foreign_key "pagamentos", "users"
   add_foreign_key "password_resets", "users"
   add_foreign_key "pasta_cadernos", "users"

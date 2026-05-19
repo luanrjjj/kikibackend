@@ -67,6 +67,7 @@ Rails.application.routes.draw do
     resources :planos, only: [:index], defaults: { format: :json }
     
     resources :pasta_cadernos, defaults: { format: :json }
+    resources :filtros, only: [:index, :create], defaults: { format: :json }
     
     resources :cadernos, defaults: { format: :json } do
       get :questaos, on: :member

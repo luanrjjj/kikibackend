@@ -93,6 +93,13 @@ class CadernosController < ApplicationController
   end
 
   def caderno_params
-    params.require(:caderno).permit(:nome, :nome_da_pasta, :pasta_caderno_id, :prova_id, :questoes_ids => [])
+    params.require(:caderno).permit(
+      :nome, 
+      :nome_da_pasta, 
+      :pasta_caderno_id, 
+      :prova_id, 
+      :questoes_ids => [],
+      filtros: [:id_da_disciplina, :nome_da_disciplina, { assuntos: [] }, { bancas: [] }, { orgaos: [] }, { ano: [] }]
+    )
   end
 end
