@@ -105,7 +105,17 @@ class ConcursosController < ApplicationController
   end
 
   def all
-    render json: Concurso.select(:id, :nome).order(:nome)
+    @concursos = Concurso.select(:id, :nome).order(:nome)
+    
+    if params[:search].present?
+      @concursos = @concursos.where("nome ILIKE ?", "%#{params[:search]}%")
+    end
+
+    # If search is present, we limit to 50. If not, we return everything (for backward compatibility if needed)
+    # but ideally we should always limit or use pagination for very large sets.
+    @concursos = @concursos.limit(50) if params[:search].present?
+
+    render json: @concursos
   end
 
   def create
