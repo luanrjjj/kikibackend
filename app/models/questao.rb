@@ -9,6 +9,7 @@ class Questao < ApplicationRecord
   belongs_to :concurso, optional: true
   belongs_to :assunto, optional: true
   belongs_to :disciplina, optional: true
+  belongs_to :topico, optional: true
 
   belongs_to :texto, optional: true
 

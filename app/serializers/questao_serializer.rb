@@ -1,7 +1,16 @@
 class QuestaoSerializer
   include FastJsonapi::ObjectSerializer
   set_id { |object| object[:id] }
-  attributes :enunciado, :ano, :discursiva, :alternativas, :correta
+  attributes :enunciado, :ano, :discursiva, :alternativas, :correta, :topico_id
+
+  attribute :topico do |object|
+    if object.topico
+      {
+        id: object.topico.id,
+        nome: object.topico.nome
+      }
+    end
+  end
 
   attribute :id do |object|
     object[:id]

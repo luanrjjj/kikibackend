@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_18_110000) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_20_163619) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -243,6 +243,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_18_110000) do
     t.datetime "validado_admin"
     t.string "disciplina_ref"
     t.string "assunto_ref", default: [], array: true
+    t.bigint "topico_id"
     t.index ["ano"], name: "index_questaos_on_ano"
     t.index ["anulada"], name: "index_questaos_on_anulada"
     t.index ["assunto_id"], name: "index_questaos_on_assunto_id"
@@ -252,6 +253,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_18_110000) do
     t.index ["disciplina_id"], name: "index_questaos_on_disciplina_id"
     t.index ["sistema_ref_id"], name: "index_questaos_on_sistema_ref_id"
     t.index ["texto_id"], name: "index_questaos_on_texto_id"
+    t.index ["topico_id"], name: "index_questaos_on_topico_id"
     t.index ["validado_admin"], name: "index_questaos_on_validado_admin"
   end
 
@@ -382,6 +384,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_18_110000) do
   add_foreign_key "questaos", "concursos"
   add_foreign_key "questaos", "disciplinas"
   add_foreign_key "questaos", "textos"
+  add_foreign_key "questaos", "topicos"
   add_foreign_key "resolucaos", "cadernos"
   add_foreign_key "resolucaos", "questaos"
   add_foreign_key "resolucaos", "users"
