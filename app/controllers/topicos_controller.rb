@@ -4,7 +4,10 @@ class TopicosController < ApplicationController
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
-    @topicos = Topico.offset((page - 1) * per_page).limit(per_page)
+    @topicos = Topico.left_outer_joins(:disciplina, :assunto)
+                     .order('disciplinas.nome ASC, assuntos.nome ASC')
+                     .offset((page - 1) * per_page)
+                     .limit(per_page)
 
     render json: {
       data: @topicos,
@@ -19,7 +22,9 @@ class TopicosController < ApplicationController
 
   def all
     result = Rails.cache.fetch("topicos/all", expires_in: 24.hours) do
-      Topico.select(:id, :nome, :disciplina_id, :assunto_id).order(:nome).to_a
+      Topico.left_outer_joins(:disciplina, :assunto)
+            .select('topicos.*, disciplinas.nome as disciplina_nome, assuntos.nome as assunto_nome')
+            .order('disciplinas.nome ASC, assuntos.nome ASC, topicos.nome ASC').to_a
     end
     render json: result
   end
