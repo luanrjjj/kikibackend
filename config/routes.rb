@@ -29,6 +29,9 @@ Rails.application.routes.draw do
       get :all, on: :collection
       get :filters, on: :collection
     end
+    resources :topicos, defaults: { format: :json } do
+      get :all, on: :collection
+    end
     resources :concursos, defaults: { format: :json } do
       get :all, on: :collection
       get :public_index, on: :collection
