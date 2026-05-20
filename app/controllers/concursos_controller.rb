@@ -170,6 +170,6 @@ class ConcursosController < ApplicationController
     end
 
     def concurso_params
-      params.require(:concurso).permit(:nome, :inscricoes_ate, :edital_nome, :banca_id, :orgao_id, :cargos)
+      params.require(:concurso).permit(:nome, :inscricoes_ate, :edital_nome, :banca_id, :orgao_id, :cargos, :edital_url)
     end
 end

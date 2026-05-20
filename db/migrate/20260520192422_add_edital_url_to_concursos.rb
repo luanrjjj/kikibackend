@@ -1,0 +1,5 @@
+class AddEditalUrlToConcursos < ActiveRecord::Migration[8.0]
+  def change
+    add_column :concursos, :edital_url, :string
+  end
+end
