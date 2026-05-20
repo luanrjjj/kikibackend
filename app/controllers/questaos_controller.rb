@@ -27,7 +27,12 @@ class QuestaosController < ApplicationController
       questaos = questaos.where("enunciado ILIKE ?", "%#{params[:search]}%")
     end
 
-    total_count = questaos.count
+    # Cache the total count based on the query SQL to avoid slow COUNT(*) on large tables
+    cache_key = "admin/questaos/count/#{Digest::SHA256.hexdigest(questaos.to_sql)}"
+    total_count = Rails.cache.fetch(cache_key, expires_in: 1.hour) do
+      questaos.count
+    end
+
     questaos_data = questaos.includes(:disciplina, :assunto, :provas, concurso: [:banca, :orgao])
                             .order(id: :asc)
                             .offset((page - 1) * per_page)
