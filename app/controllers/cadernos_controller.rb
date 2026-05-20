@@ -31,27 +31,10 @@ class CadernosController < ApplicationController
     # Convert IDs to integers and remove nils
     ids = Array(@caderno.questoes_ids).map(&:to_i).compact
     
-    if ids.empty?
-      render json: { data: [] }
-      return
-    end
-
-    # Fetch all questions and index them by ID for O(1) lookup
-    questaos_by_id = Questao.where(id: ids)
-                       .includes(:disciplina, :assunto, :concurso, :texto, :provas, concurso: :orgao, provas: :orgao)
-                       .index_by { |q| q[:id] }
-    
-    # Maintain original order and duplicates if they exist
-    ordered_questaos = ids.map { |id| questaos_by_id[id] }.compact
-
-    # Fetch user resolutions for these questions in this notebook
-    resolucoes = current_user.resolucoes.where(caderno_id: @caderno.id, questao_id: ids).index_by { |r| r[:questao_id] }
-
-    render json: QuestaoSerializer.new(ordered_questaos, { 
-      params: { 
-        resolucoes: resolucoes 
-      } 
-    }).serializable_hash
+    render json: { 
+      ids: ids,
+      total_count: ids.length
+    }
   end
 
   # POST /cadernos

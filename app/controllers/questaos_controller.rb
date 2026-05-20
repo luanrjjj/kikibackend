@@ -107,7 +107,17 @@ class QuestaosController < ApplicationController
 
   # GET /questaos/1
   def show
-    render json: @questao.as_json(include: [:provas, :assunto, :disciplina, :texto])
+    # If caderno_id is present, fetch user resolution for this question in this notebook
+    resolucoes = nil
+    if params[:caderno_id].present?
+      resolucoes = current_user.resolucoes.where(caderno_id: params[:caderno_id], questao_id: @questao.id).index_by { |r| r[:questao_id] }
+    end
+
+    render json: QuestaoSerializer.new(@questao, { 
+      params: { 
+        resolucoes: resolucoes 
+      } 
+    }).serializable_hash
   end
 
   # POST /questaos
