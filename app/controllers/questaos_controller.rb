@@ -74,6 +74,7 @@ class QuestaosController < ApplicationController
       "COUNT(*) FILTER (WHERE correta IS NOT NULL AND correta != '') as with_correct",
       "COUNT(*) FILTER (WHERE disciplina_id IS NOT NULL) as with_disciplina",
       "COUNT(*) FILTER (WHERE assunto_id IS NOT NULL) as with_assunto",
+      "COUNT(*) FILTER (WHERE topico_id IS NOT NULL) as with_topico",
       "COUNT(*) FILTER (WHERE disciplina_id IS NOT NULL AND assunto_id IS NOT NULL) as with_disciplina_assunto",
       "COUNT(*) FILTER (WHERE validado_admin IS NOT NULL) as validated"
     ).take
@@ -85,6 +86,7 @@ class QuestaosController < ApplicationController
       with_correct_answer_count: stats_data.with_correct || 0,
       with_disciplina_count: stats_data.with_disciplina || 0,
       with_assunto_count: stats_data.with_assunto || 0,
+      with_topico_count: stats_data.with_topico || 0,
       with_disciplina_assunto_count: stats_data.with_disciplina_assunto || 0,
       validated_count: stats_data.validated || 0,
       by_year: by_year,
@@ -225,7 +227,7 @@ class QuestaosController < ApplicationController
   def questao_params
     params.require(:questao).permit(
       :texto, :enunciado, :discursiva, :ano, :correta,
-      :concurso_id, :assunto_id, :disciplina_id,
+      :concurso_id, :assunto_id, :disciplina_id, :topico_id,
       :validado_admin, :sistema_ref_id,
       alternativas: [:value, :text]
     )
