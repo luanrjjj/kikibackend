@@ -35,7 +35,7 @@ class ConcursosController < ApplicationController
 
     if params[:ano].present?
       anos = params[:ano].is_a?(Array) ? params[:ano] : [params[:ano]]
-      @concursos = @concursos.joins(:provas).where(provas: { ano: anos }).distinct
+      @concursos = @concursos.where(id: Concurso.joins(:provas).where(provas: { ano: anos }).select(:id))
     end
 
     total_count = @concursos.count
