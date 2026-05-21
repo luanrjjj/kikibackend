@@ -4,8 +4,14 @@ class GuiasController < ApplicationController
 
   # GET /guias (Admin/Private list)
   def index
-    @guias = Guia.includes(:concurso, :filtros).all
-    render json: @guias.as_json(include: { concurso: { only: [:id, :nome] }, filtros: { only: [:id, :nome_do_filtro] } })
+    @guias = Guia.includes(concurso: :orgao).includes(:filtros).all
+    render json: @guias.as_json(include: { 
+      concurso: { 
+        only: [:id, :nome, :inscricoes_ate, :edital_url],
+        include: { orgao: { only: [:id, :nome, :sigla, :logo_url] } }
+      }, 
+      filtros: { only: [:id, :nome_do_filtro] } 
+    })
   end
 
   # GET /guias/public_index
@@ -24,14 +30,17 @@ class GuiasController < ApplicationController
     end
 
     total_count = @guias.count
-    @guias = @guias.includes(:concurso, :filtros)
+    @guias = @guias.includes(concurso: :orgao).includes(:filtros)
                    .order(created_at: :desc)
                    .offset((page - 1) * per_page)
                    .limit(per_page)
 
     render json: {
       data: @guias.as_json(include: {
-        concurso: { only: [:id, :nome] },
+        concurso: { 
+          only: [:id, :nome, :inscricoes_ate, :edital_url],
+          include: { orgao: { only: [:id, :nome, :sigla, :logo_url] } }
+        },
         filtros: { only: [:id, :nome_do_filtro] }
       }),
       meta: {
@@ -46,7 +55,10 @@ class GuiasController < ApplicationController
   # GET /guias/1
   def show
     render json: @guia.as_json(include: { 
-      concurso: { only: [:id, :nome] },
+      concurso: { 
+        only: [:id, :nome, :inscricoes_ate, :edital_url],
+        include: { orgao: { only: [:id, :nome, :sigla, :logo_url] } }
+      },
       filtros: { only: [:id, :nome_do_filtro, :filtro] } 
     })
   end
