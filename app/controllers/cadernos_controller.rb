@@ -82,7 +82,7 @@ class CadernosController < ApplicationController
       :pasta_caderno_id, 
       :prova_id, 
       :questoes_ids => [],
-      filtros: [:id_da_disciplina, :nome_da_disciplina, { assuntos: [] }, { bancas: [] }, { orgaos: [] }, { ano: [] }]
+      filtros: [:id_da_disciplina, :nome_da_disciplina, { assuntos: [] }, { bancas: [] }, { orgaos: [] }, { ano: [] }, { activeFilters: [:id, :label, :type] }]
     )
   end
 end
