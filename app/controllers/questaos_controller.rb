@@ -155,13 +155,13 @@ class QuestaosController < ApplicationController
   # GET /questaos/count
   def count
     @questaos = apply_filters(Questao.all)
-    render json: { count: @questaos.count }
+    render json: { count: @questaos.distinct.count(:id) }
   end
 
   # GET /questaos/ids
   def ids
     @questaos = apply_filters(Questao.all)
-    render json: { ids: @questaos.pluck(:id) }
+    render json: { ids: @questaos.distinct.pluck(:id) }
   end
 
   # GET /questaos/filters_page_questaos
@@ -183,7 +183,7 @@ class QuestaosController < ApplicationController
   end
 
   def apply_filters(scope)
-    questaos = scope.distinct
+    questaos = scope
 
     if params[:bancas].present?
       questaos = questaos.joins(:concurso).where(concursos: { banca_id: params[:bancas] })
