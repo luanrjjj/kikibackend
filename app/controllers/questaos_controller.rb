@@ -183,7 +183,7 @@ class QuestaosController < ApplicationController
   end
 
   def apply_filters(scope)
-    questaos = scope
+    questaos = scope.distinct
 
     if params[:bancas].present?
       questaos = questaos.joins(:concurso).where(concursos: { banca_id: params[:bancas] })
