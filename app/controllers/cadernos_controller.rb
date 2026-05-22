@@ -1,5 +1,5 @@
 class CadernosController < ApplicationController
-  before_action :set_caderno, only: %i[ show questaos destroy ]
+  before_action :set_caderno, only: %i[ show questaos destroy update ]
 
   # GET /cadernos
   def index
