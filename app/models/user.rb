@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :comentarios, dependent: :destroy
   has_many :voto_comentarios, dependent: :destroy
   has_many :filtros, dependent: :destroy
+  has_many :reports, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
 

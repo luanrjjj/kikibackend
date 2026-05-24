@@ -48,6 +48,7 @@ Rails.application.routes.draw do
       member do
         patch :validate
       end
+      resources :reports, only: [:create], defaults: { format: :json }
       get :all, on: :collection
       get :count, on: :collection
       get :ids, on: :collection

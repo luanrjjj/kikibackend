@@ -76,7 +76,7 @@ class ResolucoesController < ApplicationController
   end
 
   def stats
-    days = params[:days].to_i > 0 ? params[:days].to_i : 30
+    start_date, end_date = calculate_date_range
     
     query = <<-SQL
       SELECT 
@@ -87,18 +87,19 @@ class ResolucoesController < ApplicationController
       FROM resolucaos
       WHERE user_id = :user_id 
         AND created_at >= :start_date
+        AND created_at <= :end_date
       GROUP BY date
       ORDER BY date DESC
     SQL
 
     stats = Resolucao.connection.select_all(
-      ActiveRecord::Base.sanitize_sql_array([query, { user_id: current_user.id, start_date: days.days.ago }])
+      ActiveRecord::Base.sanitize_sql_array([query, { user_id: current_user.id, start_date: start_date, end_date: end_date }])
     ).to_a
     render json: stats
   end
 
   def discipline_stats
-    days = params[:days].to_i > 0 ? params[:days].to_i : 30
+    start_date, end_date = calculate_date_range
 
     query = <<-SQL
       SELECT 
@@ -112,18 +113,19 @@ class ResolucoesController < ApplicationController
       JOIN disciplinas d ON q.disciplina_id = d.id
       WHERE r.user_id = :user_id 
         AND r.created_at >= :start_date
+        AND r.created_at <= :end_date
       GROUP BY d.nome, d.id
       ORDER BY total_resolucoes DESC
     SQL
 
     stats = Resolucao.connection.select_all(
-      ActiveRecord::Base.sanitize_sql_array([query, { user_id: current_user.id, start_date: days.days.ago }])
+      ActiveRecord::Base.sanitize_sql_array([query, { user_id: current_user.id, start_date: start_date, end_date: end_date }])
     ).to_a
     render json: stats
   end
 
   def subject_stats
-    days = params[:days].to_i > 0 ? params[:days].to_i : 30
+    start_date, end_date = calculate_date_range
     disciplina_id = params[:disciplina_id]
 
     sql_parts = [
@@ -136,8 +138,9 @@ class ResolucoesController < ApplicationController
       JOIN questaos q ON r.questao_id = q.id
       JOIN assuntos a ON q.assunto_id = a.id
       WHERE r.user_id = :user_id 
-        AND r.created_at >= :start_date",
-      { user_id: current_user.id, start_date: days.days.ago }
+        AND r.created_at >= :start_date
+        AND r.created_at <= :end_date",
+      { user_id: current_user.id, start_date: start_date, end_date: end_date }
     ]
 
     if disciplina_id.present?
@@ -210,6 +213,15 @@ class ResolucoesController < ApplicationController
   end
 
   private
+
+  def calculate_date_range
+    if params[:start_date].present? && params[:end_date].present?
+      [params[:start_date].to_date.beginning_of_day, params[:end_date].to_date.end_of_day]
+    else
+      days = params[:days].to_i > 0 ? params[:days].to_i : 30
+      [days.days.ago.beginning_of_day, Time.current.end_of_day]
+    end
+  end
 
   def resolucao_params
     params.require(:resolucao).permit(:questao_id, :caderno_id, :resposta)

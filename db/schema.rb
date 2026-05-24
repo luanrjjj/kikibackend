@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_20_192422) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_22_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -258,6 +258,18 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_20_192422) do
     t.index ["validado_admin"], name: "index_questaos_on_validado_admin"
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "questao_id", null: false
+    t.string "error_type", null: false
+    t.text "description", null: false
+    t.string "status", default: "pending"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["questao_id"], name: "index_reports_on_questao_id"
+    t.index ["user_id"], name: "index_reports_on_user_id"
+  end
+
   create_table "resolucaos", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "questao_id", null: false
@@ -386,6 +398,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_20_192422) do
   add_foreign_key "questaos", "disciplinas"
   add_foreign_key "questaos", "textos"
   add_foreign_key "questaos", "topicos"
+  add_foreign_key "reports", "questaos"
+  add_foreign_key "reports", "users"
   add_foreign_key "resolucaos", "cadernos"
   add_foreign_key "resolucaos", "questaos"
   add_foreign_key "resolucaos", "users"
