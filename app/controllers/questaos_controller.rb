@@ -206,16 +206,30 @@ class QuestaosController < ApplicationController
       questaos = questaos.where(id: ProvaQuestao.joins(:prova).where(provas: { escolaridade: params[:escolaridade] }).select(:questao_id))
     end
 
-    if params[:disciplinas].present? || params[:assuntos].present?
+    if params[:disciplinas].present? || params[:assuntos].present? || params[:topicos].present?
       sub_scope = Questao.all
-      if params[:disciplinas].present? && params[:assuntos].present?
-        sub_scope = Questao.where(disciplina_id: params[:disciplinas]).or(Questao.where(assunto_id: params[:assuntos]))
-      elsif params[:disciplinas].present?
-        sub_scope = Questao.where(disciplina_id: params[:disciplinas])
-      else
-        sub_scope = Questao.where(assunto_id: params[:assuntos])
+      conditions = []
+      values = {}
+
+      if params[:disciplinas].present?
+        conditions << "disciplina_id IN (:disciplinas)"
+        values[:disciplinas] = params[:disciplinas]
       end
-      questaos = questaos.merge(sub_scope)
+
+      if params[:assuntos].present?
+        conditions << "assunto_id IN (:assuntos)"
+        values[:assuntos] = params[:assuntos]
+      end
+
+      if params[:topicos].present?
+        conditions << "topico_id IN (:topicos)"
+        values[:topicos] = params[:topicos]
+      end
+
+      if conditions.any?
+        sub_scope = Questao.where(conditions.join(" OR "), values)
+        questaos = questaos.merge(sub_scope)
+      end
     end
 
     if params[:remover_anuladas] == 'true'
