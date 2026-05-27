@@ -159,6 +159,7 @@ class ResolucoesController < ApplicationController
     caderno_id = params[:caderno_id]
     return render json: { error: "Caderno ID is required" }, status: :bad_request if caderno_id.blank?
 
+    # Global notebook stats
     query = <<-SQL
       SELECT 
         count(*) as total_resolucoes,
@@ -169,10 +170,69 @@ class ResolucoesController < ApplicationController
         AND caderno_id = :caderno_id
     SQL
 
-    stats = Resolucao.connection.select_all(
+    summary = Resolucao.connection.select_all(
       ActiveRecord::Base.sanitize_sql_array([query, { user_id: current_user.id, caderno_id: caderno_id }])
     ).first
-    render json: stats
+
+    # Stats by Discipline
+    discipline_query = <<-SQL
+      SELECT 
+        d.nome as name,
+        count(r.id) as total,
+        sum(case when r.correta then 1 else 0 end) as acertos
+      FROM resolucaos r
+      JOIN questaos q ON r.questao_id = q.id
+      JOIN disciplinas d ON q.disciplina_id = d.id
+      WHERE r.user_id = :user_id AND r.caderno_id = :caderno_id
+      GROUP BY d.nome
+      ORDER BY total DESC
+    SQL
+    disciplines = Resolucao.connection.select_all(
+      ActiveRecord::Base.sanitize_sql_array([discipline_query, { user_id: current_user.id, caderno_id: caderno_id }])
+    ).to_a
+
+    # Stats by Subject (Assunto)
+    subject_query = <<-SQL
+      SELECT 
+        a.nome as name,
+        count(r.id) as total,
+        sum(case when r.correta then 1 else 0 end) as acertos
+      FROM resolucaos r
+      JOIN questaos q ON r.questao_id = q.id
+      JOIN assuntos a ON q.assunto_id = a.id
+      WHERE r.user_id = :user_id AND r.caderno_id = :caderno_id
+      GROUP BY a.nome
+      ORDER BY total DESC
+      LIMIT 10
+    SQL
+    subjects = Resolucao.connection.select_all(
+      ActiveRecord::Base.sanitize_sql_array([subject_query, { user_id: current_user.id, caderno_id: caderno_id }])
+    ).to_a
+
+    # Stats by Topic (Topico)
+    topic_query = <<-SQL
+      SELECT 
+        t.nome as name,
+        count(r.id) as total,
+        sum(case when r.correta then 1 else 0 end) as acertos
+      FROM resolucaos r
+      JOIN questaos q ON r.questao_id = q.id
+      JOIN topicos t ON q.topico_id = t.id
+      WHERE r.user_id = :user_id AND r.caderno_id = :caderno_id
+      GROUP BY t.nome
+      ORDER BY total DESC
+      LIMIT 10
+    SQL
+    topics = Resolucao.connection.select_all(
+      ActiveRecord::Base.sanitize_sql_array([topic_query, { user_id: current_user.id, caderno_id: caderno_id }])
+    ).to_a
+
+    render json: {
+      summary: summary,
+      disciplines: disciplines,
+      subjects: subjects,
+      topics: topics
+    }
   end
 
   def question_stats
