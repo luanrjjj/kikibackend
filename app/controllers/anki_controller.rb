@@ -175,7 +175,7 @@ class AnkiController < ApplicationController
     alternativa_correta = alternativas.find { |a| a['value'] == correta_value }
     resposta_correta = alternativa_correta ? alternativa_correta['text'] : correta_value
 
-    ai_cards = GeminiService.generate_cards(enunciado, texto_apoio, resposta_correta)
+    ai_cards = AiService.generate_cards(enunciado, texto_apoio, resposta_correta)
 
     if ai_cards.blank?
       render json: { error: 'Falha ao gerar cards com IA' }, status: :service_unavailable
@@ -203,7 +203,7 @@ class AnkiController < ApplicationController
     alternativa_correta = alternativas.find { |a| a['value'] == correta_value }
     resposta_correta = alternativa_correta ? alternativa_correta['text'] : correta_value
 
-    ai_cards = GeminiService.generate_cards(enunciado, texto_apoio, resposta_correta)
+    ai_cards = AiService.generate_cards(enunciado, texto_apoio, resposta_correta)
 
     if ai_cards.blank?
       render json: { error: 'Falha ao gerar cards com IA' }, status: :service_unavailable

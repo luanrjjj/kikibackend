@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_22_100000) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_27_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -93,8 +93,17 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_22_100000) do
     t.datetime "validado_admin"
     t.string "pdf_folder_url"
     t.string "edital_url"
+    t.string "estagio"
     t.index ["banca_id"], name: "index_concursos_on_banca_id"
     t.index ["orgao_id"], name: "index_concursos_on_orgao_id"
+  end
+
+  create_table "config_global_apolo", force: :cascade do |t|
+    t.string "nome_da_variavel", null: false
+    t.string "valor_da_variavel"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nome_da_variavel"], name: "index_config_global_apolo_on_nome_da_variavel", unique: true
   end
 
   create_table "disciplinas", force: :cascade do |t|

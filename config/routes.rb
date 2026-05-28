@@ -120,5 +120,7 @@ Rails.application.routes.draw do
 
     post 'admin/refresh_stats', to: 'admin#refresh_stats'
     get 'admin/user_stats', to: 'admin#user_stats'
+    get 'admin/configs', to: 'admin#get_configs'
+    post 'admin/set_config', to: 'admin#set_config'
   end
 end

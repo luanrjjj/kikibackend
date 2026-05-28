@@ -35,4 +35,20 @@ class AdminController < ApplicationController
       }
     }
   end
+
+  def get_configs
+    configs = {
+      ai_api_name: ConfigGlobalApolo.get('ai_api_name', 'gemini')
+    }
+    render json: configs
+  end
+
+  def set_config
+    if params[:chave].present? && params[:valor].present?
+      ConfigGlobalApolo.set(params[:chave], params[:valor])
+      render json: { message: "Configuração atualizada com sucesso!" }
+    else
+      render json: { error: "Parâmetros chave e valor são obrigatórios" }, status: :bad_request
+    end
+  end
 end
