@@ -12,7 +12,7 @@ class ResolucoesController < ApplicationController
 
     render json: {
       data: resolucoes.as_json(include: {
-        user: { only: [:id, :email, :nome] },
+        user: { only: [:id, :email, :name] },
         questao: { only: [:id, :enunciado] },
         caderno: { only: [:id, :nome] }
       }),

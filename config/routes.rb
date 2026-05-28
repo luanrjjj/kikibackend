@@ -114,8 +114,11 @@ Rails.application.routes.draw do
       post :subscribe, on: :collection
     end
 
+    resources :users, only: [:index, :show, :update], defaults: { format: :json }
+
     get 'up' => 'rails/health#show', as: :rails_health_check
 
     post 'admin/refresh_stats', to: 'admin#refresh_stats'
+    get 'admin/user_stats', to: 'admin#user_stats'
   end
 end
