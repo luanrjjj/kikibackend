@@ -61,6 +61,7 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'seed_migration'
+gem 'aws-sdk-s3'
 
 
 group :development, :test do

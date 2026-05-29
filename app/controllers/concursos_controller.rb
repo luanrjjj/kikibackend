@@ -1,5 +1,5 @@
 class ConcursosController < ApplicationController
-  before_action :set_concurso, only: %i[ show update destroy ]
+  before_action :set_concurso, only: %i[ show update destroy create_s3_folder ]
   skip_before_action :authenticate_user!, only: [:public_index]
 
   def index
@@ -149,6 +149,24 @@ class ConcursosController < ApplicationController
 
   def destroy
     @concurso.destroy!
+  end
+
+  def create_s3_folder
+    if @concurso.pdf_folder_url.present?
+      render json: { error: "Este concurso já possui uma pasta vinculada." }, status: :bad_request
+      return
+    end
+
+    # Create a safe folder name from concurso name
+    folder_name = @concurso.nome.parameterize
+    
+    begin
+      url = SpacesService.create_folder(folder_name)
+      @concurso.update!(pdf_folder_url: url)
+      render json: @concurso.as_json(include: [:banca, :orgao, :provas])
+    rescue StandardError => e
+      render json: { error: "Erro ao criar pasta no Spaces: #{e.message}" }, status: :internal_server_error
+    end
   end
 
   # DELETE /concursos/destroy_by_name?nome=XXX
