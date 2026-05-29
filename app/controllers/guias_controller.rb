@@ -5,13 +5,7 @@ class GuiasController < ApplicationController
   # GET /guias (Admin/Private list)
   def index
     @guias = Guia.includes(concurso: :orgao).includes(:filtros).all
-    render json: @guias.as_json(include: { 
-      concurso: { 
-        only: [:id, :nome, :inscricoes_ate, :edital_url],
-        include: { orgao: { only: [:id, :nome, :sigla, :logo_url] } }
-      }, 
-      filtros: { only: [:id, :nome_do_filtro] } 
-    })
+    render json: @guias.as_json(include_associations)
   end
 
   # GET /guias/public_index
@@ -36,13 +30,7 @@ class GuiasController < ApplicationController
                    .limit(per_page)
 
     render json: {
-      data: @guias.as_json(include: {
-        concurso: { 
-          only: [:id, :nome, :inscricoes_ate, :edital_url],
-          include: { orgao: { only: [:id, :nome, :sigla, :logo_url] } }
-        },
-        filtros: { only: [:id, :nome_do_filtro] }
-      }),
+      data: @guias.as_json(include_associations),
       meta: {
         current_page: page,
         per_page: per_page,
@@ -54,13 +42,7 @@ class GuiasController < ApplicationController
 
   # GET /guias/1
   def show
-    render json: @guia.as_json(include: { 
-      concurso: { 
-        only: [:id, :nome, :inscricoes_ate, :edital_url],
-        include: { orgao: { only: [:id, :nome, :sigla, :logo_url] } }
-      },
-      filtros: { only: [:id, :nome_do_filtro, :filtro] } 
-    })
+    render json: @guia.as_json(include_associations)
   end
 
   # POST /guias
@@ -68,8 +50,8 @@ class GuiasController < ApplicationController
     @guia = Guia.new(guia_params)
 
     if @guia.save
-      update_filtros if params[:filtro_ids].present?
-      render json: @guia, status: :created
+      update_filtros if params.key?(:filtro_ids)
+      render json: @guia.as_json(include_associations), status: :created
     else
       render json: @guia.errors, status: :unprocessable_entity
     end
@@ -78,8 +60,8 @@ class GuiasController < ApplicationController
   # PATCH/PUT /guias/1
   def update
     if @guia.update(guia_params)
-      update_filtros if params[:filtro_ids].present?
-      render json: @guia
+      update_filtros if params.key?(:filtro_ids)
+      render json: @guia.as_json(include_associations)
     else
       render json: @guia.errors, status: :unprocessable_entity
     end
@@ -101,6 +83,19 @@ class GuiasController < ApplicationController
   end
 
   def update_filtros
-    @guia.filtro_ids = params[:filtro_ids]
+    ids = Array(params[:filtro_ids]).map(&:to_i).reject(&:zero?)
+    @guia.filtro_ids = ids
+  end
+
+  def include_associations
+    {
+      include: {
+        concurso: {
+          only: [:id, :nome, :inscricoes_ate, :edital_url],
+          include: { orgao: { only: [:id, :nome, :sigla, :logo_url] } }
+        },
+        filtros: { only: [:id, :nome_do_filtro, :filtro] }
+      }
+    }
   end
 end
