@@ -78,6 +78,7 @@ Rails.application.routes.draw do
     resources :guias, defaults: { format: :json } do
       get :public_index, on: :collection
     end
+    resources :cargo_guias, defaults: { format: :json }
     
     resources :cadernos, defaults: { format: :json } do
       get :questaos, on: :member

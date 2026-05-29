@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_27_120000) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_29_110000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -64,6 +64,14 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_27_120000) do
     t.index ["prova_id"], name: "index_cadernos_on_prova_id"
     t.index ["user_id", "nome"], name: "index_cadernos_on_user_id_and_nome", unique: true
     t.index ["user_id"], name: "index_cadernos_on_user_id"
+  end
+
+  create_table "cargo_guias", force: :cascade do |t|
+    t.string "nome_do_cargo"
+    t.bigint "filtro_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["filtro_id"], name: "index_cargo_guias_on_filtro_id"
   end
 
   create_table "comentarios", force: :cascade do |t|
@@ -138,6 +146,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_27_120000) do
     t.bigint "filtro_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "cargo_guia_id"
+    t.index ["cargo_guia_id"], name: "index_guia_filtros_on_cargo_guia_id"
     t.index ["filtro_id"], name: "index_guia_filtros_on_filtro_id"
     t.index ["guia_id"], name: "index_guia_filtros_on_guia_id"
   end
@@ -379,6 +389,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_27_120000) do
   add_foreign_key "cadernos", "pasta_cadernos"
   add_foreign_key "cadernos", "provas"
   add_foreign_key "cadernos", "users"
+  add_foreign_key "cargo_guias", "filtros"
   add_foreign_key "comentarios", "concursos"
   add_foreign_key "comentarios", "provas"
   add_foreign_key "comentarios", "questaos"
@@ -389,6 +400,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_27_120000) do
   add_foreign_key "exports", "provas"
   add_foreign_key "exports", "users"
   add_foreign_key "filtros", "users"
+  add_foreign_key "guia_filtros", "cargo_guias"
   add_foreign_key "guia_filtros", "filtros"
   add_foreign_key "guia_filtros", "guias"
   add_foreign_key "guias", "concursos"

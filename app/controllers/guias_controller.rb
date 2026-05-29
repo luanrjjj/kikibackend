@@ -94,7 +94,12 @@ class GuiasController < ApplicationController
           only: [:id, :nome, :inscricoes_ate, :edital_url],
           include: { orgao: { only: [:id, :nome, :sigla, :logo_url] } }
         },
-        filtros: { only: [:id, :nome_do_filtro, :filtro] }
+        filtros: { only: [:id, :nome_do_filtro, :filtro] },
+        guia_filtros: {
+          include: {
+            cargo_guia: { only: [:id, :nome_do_cargo] }
+          }
+        }
       }
     }
   end

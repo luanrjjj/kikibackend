@@ -3,4 +3,5 @@ class GuiaFiltro < ApplicationRecord
 
   belongs_to :guia
   belongs_to :filtro
+  belongs_to :cargo_guia, optional: true
 end
