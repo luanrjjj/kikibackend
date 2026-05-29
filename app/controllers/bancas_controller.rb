@@ -6,15 +6,23 @@ class BancasController < ApplicationController
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
-    @bancas = Banca.order(total_concursos: :desc).offset((page - 1) * per_page).limit(per_page)
+    
+    @bancas = Banca.all
+    
+    if params[:search].present?
+      @bancas = @bancas.where("nome ILIKE ? OR sigla ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+    end
+
+    total_count = @bancas.count
+    @bancas = @bancas.order(total_concursos: :desc).offset((page - 1) * per_page).limit(per_page)
 
     render json: {
       data: @bancas,
       meta: {
         current_page: page,
         per_page: per_page,
-        total_count: Banca.count,
-        total_pages: (Banca.count.to_f / per_page).ceil
+        total_count: total_count,
+        total_pages: (total_count.to_f / per_page).ceil
       }
     }
   rescue StandardError => e
