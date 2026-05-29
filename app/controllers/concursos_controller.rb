@@ -14,12 +14,12 @@ class ConcursosController < ApplicationController
 
     total_count = @concursos.count
     @concursos = @concursos.includes(:banca, :orgao)
-                         .order(created_at: :desc)
+                         .order(inscricoes_ate: :desc)
                          .offset((page - 1) * per_page)
                          .limit(per_page)
 
     render json: {
-      data: @concursos.as_json(include: [:banca, :orgao]),
+      data: @concursos.as_json(include: [:banca, :orgao, :provas]),
       meta: {
         current_page: page,
         per_page: per_page,
