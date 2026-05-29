@@ -79,6 +79,7 @@ Rails.application.routes.draw do
       get :public_index, on: :collection
     end
     resources :cargo_guias, defaults: { format: :json }
+    resources :config_global_apolos, defaults: { format: :json }
     
     resources :cadernos, defaults: { format: :json } do
       get :questaos, on: :member
