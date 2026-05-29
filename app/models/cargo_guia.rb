@@ -1,6 +1,10 @@
 class CargoGuia < ApplicationRecord
   self.table_name = "cargo_guias"
 
-  belongs_to :filtro
-  has_many :guia_filtros, dependent: :nullify
+  has_many :guia_filtros, dependent: :destroy
+  has_one :guia, through: :guia_filtros
+
+  def filtros
+    Filtro.where(id: Array(filtro_ids))
+  end
 end

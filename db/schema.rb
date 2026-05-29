@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_29_110000) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_29_140000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -68,10 +68,9 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_29_110000) do
 
   create_table "cargo_guias", force: :cascade do |t|
     t.string "nome_do_cargo"
-    t.bigint "filtro_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["filtro_id"], name: "index_cargo_guias_on_filtro_id"
+    t.jsonb "filtro_ids", default: []
   end
 
   create_table "comentarios", force: :cascade do |t|
@@ -389,7 +388,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_29_110000) do
   add_foreign_key "cadernos", "pasta_cadernos"
   add_foreign_key "cadernos", "provas"
   add_foreign_key "cadernos", "users"
-  add_foreign_key "cargo_guias", "filtros"
   add_foreign_key "comentarios", "concursos"
   add_foreign_key "comentarios", "provas"
   add_foreign_key "comentarios", "questaos"
