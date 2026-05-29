@@ -24,4 +24,22 @@ class SpacesService
       raise e
     end
   end
+
+  def self.upload_file(key, file)
+    bucket = ENV['SPACES_BUCKET_NAME']
+
+    begin
+      client.put_object(
+        bucket: bucket,
+        key: key,
+        body: file.read,
+        acl: 'public-read',
+        content_type: file.content_type
+      )
+      "#{ENV['SPACES_ENDPOINT']}/#{bucket}/#{key}"
+    rescue StandardError => e
+      Rails.logger.error "SpacesService#upload_file Error: #{e.message}"
+      raise e
+    end
+  end
 end

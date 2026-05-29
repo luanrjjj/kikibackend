@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       get :stats, on: :collection
       delete :destroy_by_name, on: :collection
       post :create_s3_folder, on: :member
+      post :upload_edital, on: :member
     end
 
     resources :disciplinas, defaults: { format: :json } do

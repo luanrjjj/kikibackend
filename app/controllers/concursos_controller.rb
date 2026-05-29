@@ -1,5 +1,5 @@
 class ConcursosController < ApplicationController
-  before_action :set_concurso, only: %i[ show update destroy create_s3_folder ]
+  before_action :set_concurso, only: %i[ show update destroy create_s3_folder upload_edital ]
   skip_before_action :authenticate_user!, only: [:public_index]
 
   def index
@@ -166,6 +166,25 @@ class ConcursosController < ApplicationController
       render json: @concurso.as_json(include: [:banca, :orgao, :provas])
     rescue StandardError => e
       render json: { error: "Erro ao criar pasta no Spaces: #{e.message}" }, status: :internal_server_error
+    end
+  end
+
+  def upload_edital
+    if params[:file].blank?
+      render json: { error: "Arquivo não fornecido." }, status: :bad_request
+      return
+    end
+
+    folder_name = @concurso.nome.parameterize
+    file = params[:file]
+    key = "concursos_pdfs/#{folder_name}/edital_#{Time.now.to_i}_#{file.original_filename}"
+
+    begin
+      url = SpacesService.upload_file(key, file)
+      @concurso.update!(edital_url: url)
+      render json: @concurso.as_json(include: [:banca, :orgao, :provas])
+    rescue StandardError => e
+      render json: { error: "Erro ao fazer upload do edital: #{e.message}" }, status: :internal_server_error
     end
   end
 
