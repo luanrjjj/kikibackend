@@ -159,8 +159,14 @@ class ResolucoesController < ApplicationController
     caderno_id = params[:caderno_id]
     return render json: { error: "Caderno ID is required" }, status: :bad_request if caderno_id.blank?
 
+    caderno = Caderno.find_by(id: caderno_id)
+    return render json: { error: "Caderno not found" }, status: :not_found unless caderno
+
+    questao_ids = caderno.questoes_ids || []
+    return render json: { summary: {}, hierarchy: [] } if questao_ids.empty?
+
     # Global notebook stats
-    query = <<-SQL
+    summary_query = <<-SQL
       SELECT 
         count(*) as total_resolucoes,
         sum(case when correta then 1 else 0 end) as total_acertos,
@@ -171,67 +177,125 @@ class ResolucoesController < ApplicationController
     SQL
 
     summary = Resolucao.connection.select_all(
-      ActiveRecord::Base.sanitize_sql_array([query, { user_id: current_user.id, caderno_id: caderno_id }])
+      ActiveRecord::Base.sanitize_sql_array([summary_query, { user_id: current_user.id, caderno_id: caderno_id }])
     ).first
 
-    # Stats by Discipline
-    discipline_query = <<-SQL
+    # Hierarchical stats based on latest resolution for each question
+    hierarchy_query = <<-SQL
+      WITH latest_resolutions AS (
+        SELECT DISTINCT ON (questao_id)
+          id, correta, questao_id
+        FROM resolucaos
+        WHERE user_id = :user_id AND caderno_id = :caderno_id
+        ORDER BY questao_id, created_at DESC
+      )
       SELECT 
-        d.nome as name,
-        count(r.id) as total,
-        sum(case when r.correta then 1 else 0 end) as acertos
-      FROM resolucaos r
-      JOIN questaos q ON r.questao_id = q.id
+        d.id as disciplina_id, d.nome as disciplina_nome,
+        a.id as assunto_id, a.nome as assunto_nome,
+        t.id as topico_id, t.nome as topico_nome,
+        q.id as questao_id,
+        lr.id as resolucao_id,
+        lr.correta as correta
+      FROM questaos q
       JOIN disciplinas d ON q.disciplina_id = d.id
-      WHERE r.user_id = :user_id AND r.caderno_id = :caderno_id
-      GROUP BY d.nome
-      ORDER BY total DESC
+      LEFT JOIN assuntos a ON q.assunto_id = a.id
+      LEFT JOIN topicos t ON q.topico_id = t.id
+      LEFT JOIN latest_resolutions lr ON lr.questao_id = q.id
+      WHERE q.id IN (:questao_ids)
     SQL
-    disciplines = Resolucao.connection.select_all(
-      ActiveRecord::Base.sanitize_sql_array([discipline_query, { user_id: current_user.id, caderno_id: caderno_id }])
+
+    results = Resolucao.connection.select_all(
+      ActiveRecord::Base.sanitize_sql_array([hierarchy_query, { user_id: current_user.id, caderno_id: caderno_id, questao_ids: questao_ids }])
     ).to_a
 
-    # Stats by Subject (Assunto)
-    subject_query = <<-SQL
-      SELECT 
-        a.nome as name,
-        count(r.id) as total,
-        sum(case when r.correta then 1 else 0 end) as acertos
-      FROM resolucaos r
-      JOIN questaos q ON r.questao_id = q.id
-      JOIN assuntos a ON q.assunto_id = a.id
-      WHERE r.user_id = :user_id AND r.caderno_id = :caderno_id
-      GROUP BY a.nome
-      ORDER BY total DESC
-      LIMIT 10
-    SQL
-    subjects = Resolucao.connection.select_all(
-      ActiveRecord::Base.sanitize_sql_array([subject_query, { user_id: current_user.id, caderno_id: caderno_id }])
-    ).to_a
+    # Process results into hierarchy
+    disciplinas_map = {}
+    
+    results.each do |row|
+      d_id = row['disciplina_id']
+      a_id = row['assunto_id']
+      t_id = row['topico_id']
+      q_id = row['questao_id']
+      res_correta = row['correta']
+      has_res = !row['resolucao_id'].nil?
 
-    # Stats by Topic (Topico)
-    topic_query = <<-SQL
-      SELECT 
-        t.nome as name,
-        count(r.id) as total,
-        sum(case when r.correta then 1 else 0 end) as acertos
-      FROM resolucaos r
-      JOIN questaos q ON r.questao_id = q.id
-      JOIN topicos t ON q.topico_id = t.id
-      WHERE r.user_id = :user_id AND r.caderno_id = :caderno_id
-      GROUP BY t.nome
-      ORDER BY total DESC
-      LIMIT 10
-    SQL
-    topics = Resolucao.connection.select_all(
-      ActiveRecord::Base.sanitize_sql_array([topic_query, { user_id: current_user.id, caderno_id: caderno_id }])
-    ).to_a
+      d = disciplinas_map[d_id] ||= { 
+        id: d_id, name: row['disciplina_nome'], 
+        total_questoes_ids: Set.new, 
+        resolvidas_ids: Set.new, 
+        acertos_ids: Set.new,
+        assuntos: {} 
+      }
+      d[:total_questoes_ids] << q_id
+      if has_res
+        d[:resolvidas_ids] << q_id
+        d[:acertos_ids] << q_id if res_correta
+      end
+
+      if a_id
+        a = d[:assuntos][a_id] ||= { 
+          id: a_id, name: row['assunto_nome'], 
+          total_questoes_ids: Set.new, 
+          resolvidas_ids: Set.new, 
+          acertos_ids: Set.new,
+          topicos: {} 
+        }
+        a[:total_questoes_ids] << q_id
+        if has_res
+          a[:resolvidas_ids] << q_id
+          a[:acertos_ids] << q_id if res_correta
+        end
+
+        if t_id
+          t = a[:topicos][t_id] ||= { 
+            id: t_id, name: row['topico_nome'], 
+            total_questoes_ids: Set.new, 
+            resolvidas_ids: Set.new, 
+            acertos_ids: Set.new 
+          }
+          t[:total_questoes_ids] << q_id
+          if has_res
+            t[:resolvidas_ids] << q_id
+            t[:acertos_ids] << q_id if res_correta
+          end
+        end
+      end
+    end
+
+    formatted_hierarchy = disciplinas_map.values.map do |d|
+      {
+        id: d[:id],
+        name: d[:name],
+        total_questoes: d[:total_questoes_ids].size,
+        total_resolvidas: d[:resolvidas_ids].size,
+        acertos: d[:acertos_ids].size,
+        erros: d[:resolvidas_ids].size - d[:acertos_ids].size,
+        assuntos: d[:assuntos].values.map do |a|
+          {
+            id: a[:id],
+            name: a[:name],
+            total_questoes: a[:total_questoes_ids].size,
+            total_resolvidas: a[:resolvidas_ids].size,
+            acertos: a[:acertos_ids].size,
+            erros: a[:resolvidas_ids].size - a[:acertos_ids].size,
+            topicos: a[:topicos].values.map do |t|
+              {
+                id: t[:id],
+                name: t[:name],
+                total_questoes: t[:total_questoes_ids].size,
+                total_resolvidas: t[:resolvidas_ids].size,
+                acertos: t[:acertos_ids].size,
+                erros: t[:resolvidas_ids].size - t[:acertos_ids].size
+              }
+            end.sort_by { |t| t[:name] }
+          }
+        end.sort_by { |a| a[:name] }
+      }
+    end.sort_by { |d| d[:name] }
 
     render json: {
       summary: summary,
-      disciplines: disciplines,
-      subjects: subjects,
-      topics: topics
+      hierarchy: formatted_hierarchy
     }
   end
 
@@ -266,9 +330,15 @@ class ResolucoesController < ApplicationController
       ActiveRecord::Base.sanitize_sql_array([personal_query, { questao_id: questao_id, user_id: current_user.id }])
     ).first
 
+    history = current_user.resolucoes
+                          .where(questao_id: questao_id)
+                          .order(created_at: :desc)
+                          .select(:id, :resposta, :correta, :created_at)
+
     render json: {
       global: global_stats,
-      personal: personal_stats
+      personal: personal_stats,
+      history: history
     }
   end
 
