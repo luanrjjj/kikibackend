@@ -9,6 +9,7 @@ class Caderno < ApplicationRecord
 
   before_validation :set_default_pasta, on: :create
   before_validation :ensure_unique_nome, on: :create
+  before_save :unique_questoes_ids
   before_create :populate_questoes_from_prova
   before_create :create_associated_filtro
 
@@ -17,9 +18,16 @@ class Caderno < ApplicationRecord
 
   private
 
+  def unique_questoes_ids
+    return if questoes_ids.blank?
+    
+    # Ensure all elements are integers and unique
+    self.questoes_ids = Array(questoes_ids).map { |id| id.to_i }.uniq
+  end
+
   def create_associated_filtro
     return if filtros.blank?
-
+    
     # Find the main discipline and subject IDs from the current questions if not explicitly provided
     # The 'filtros' column currently comes from the frontend params.
     # We want to ensure it follows: {nome_da_disciplina, id_da_disciplina, assuntos:[ids]}
@@ -62,7 +70,7 @@ class Caderno < ApplicationRecord
 
   def populate_questoes_from_prova
     if prova_id.present? && questoes_ids.blank?
-      self.questoes_ids = prova.questaos.joins(:prova_questaos).order('prova_questaos.numero_questao ASC').pluck(:id)
+      self.questoes_ids = prova.questaos.joins(:prova_questaos).order('prova_questaos.numero_questao ASC').distinct.pluck(:id)
     end
   end
 end
