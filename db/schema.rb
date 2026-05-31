@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_29_140000) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_31_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -237,6 +237,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_29_140000) do
     t.datetime "validado_admin"
     t.string "edital_url"
     t.string "prova_url"
+    t.string "prova_url_ref"
     t.index ["area_de_atuacao_id"], name: "index_provas_on_area_de_atuacao_id"
     t.index ["area_de_formacao_id"], name: "index_provas_on_area_de_formacao_id"
     t.index ["banca_id"], name: "index_provas_on_banca_id"
