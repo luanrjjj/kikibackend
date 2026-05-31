@@ -92,6 +92,7 @@ Rails.application.routes.draw do
       get :global_stats, on: :collection
       get :discipline_stats, on: :collection
       get :subject_stats, on: :collection
+      get :hierarchical_stats, on: :collection
       get :notebook_stats, on: :collection
       get :question_stats, on: :collection
     end

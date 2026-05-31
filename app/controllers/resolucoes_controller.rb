@@ -155,6 +155,87 @@ class ResolucoesController < ApplicationController
     render json: stats
   end
 
+  def hierarchical_stats
+    start_date, end_date = calculate_date_range
+
+    query = <<-SQL
+      SELECT 
+        d.id as disciplina_id, d.nome as disciplina_nome,
+        a.id as assunto_id, a.nome as assunto_nome,
+        count(r.id) as total_resolucoes,
+        sum(case when r.correta then 1 else 0 end) as total_acertos,
+        sum(case when not r.correta then 1 else 0 end) as total_erros
+      FROM resolucaos r
+      JOIN questaos q ON r.questao_id = q.id
+      JOIN disciplinas d ON q.disciplina_id = d.id
+      LEFT JOIN assuntos a ON q.assunto_id = a.id
+      WHERE r.user_id = :user_id 
+        AND r.created_at >= :start_date
+        AND r.created_at <= :end_date
+      GROUP BY d.id, d.nome, a.id, a.nome
+      ORDER BY d.nome, a.nome
+    SQL
+
+    results = Resolucao.connection.select_all(
+      ActiveRecord::Base.sanitize_sql_array([query, { user_id: current_user.id, start_date: start_date, end_date: end_date }])
+    ).to_a
+
+    # Process results into hierarchy
+    disciplinas_map = {}
+    
+    results.each do |row|
+      d_id = row['disciplina_id']
+      a_id = row['assunto_id']
+
+      d = disciplinas_map[d_id] ||= { 
+        id: d_id, name: row['disciplina_nome'], 
+        total_resolucoes: 0, 
+        acertos: 0, 
+        erros: 0,
+        assuntos: {} 
+      }
+      
+      d[:total_resolucoes] += row['total_resolucoes'].to_i
+      d[:acertos] += row['total_acertos'].to_i
+      d[:erros] += row['total_erros'].to_i
+
+      if a_id
+        a = d[:assuntos][a_id] ||= { 
+          id: a_id, name: row['assunto_nome'], 
+          total_resolucoes: 0, 
+          acertos: 0, 
+          erros: 0,
+          topicos: []
+        }
+        a[:total_resolucoes] += row['total_resolucoes'].to_i
+        a[:acertos] += row['total_acertos'].to_i
+        a[:erros] += row['total_erros'].to_i
+      end
+    end
+
+    formatted_hierarchy = disciplinas_map.values.map do |d|
+      {
+        id: d[:id],
+        name: d[:name],
+        total_resolucoes: d[:total_resolucoes],
+        acertos: d[:acertos],
+        erros: d[:erros],
+        assuntos: d[:assuntos].values.map do |a|
+          {
+            id: a[:id],
+            name: a[:name],
+            total_resolucoes: a[:total_resolucoes],
+            acertos: a[:acertos],
+            erros: a[:erros],
+            topicos: []
+          }
+        end.sort_by { |a| (a[:total_resolucoes] > 0 ? a[:acertos].to_f / a[:total_resolucoes] : 0) }.reverse
+      }
+    end.sort_by { |d| (d[:total_resolucoes] > 0 ? d[:acertos].to_f / d[:total_resolucoes] : 0) }.reverse
+
+    render json: formatted_hierarchy
+  end
+
   def notebook_stats
     caderno_id = params[:caderno_id]
     return render json: { error: "Caderno ID is required" }, status: :bad_request if caderno_id.blank?
