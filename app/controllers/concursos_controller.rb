@@ -49,6 +49,11 @@ class ConcursosController < ApplicationController
       @concursos = @concursos.where(id: Concurso.joins(:provas).where(provas: { ano: anos }).select(:id))
     end
 
+    if params[:esfera].present?
+      esferas = params[:esfera].is_a?(Array) ? params[:esfera] : [params[:esfera]]
+      @concursos = @concursos.joins(:orgao).where(orgaos: { esfera: esferas })
+    end
+
     total_count = @concursos.count
     @concursos = @concursos.includes(:banca, :orgao, :provas)
                          .order(Arel.sql("CASE WHEN inscricoes_ate >= CURRENT_DATE THEN 0 ELSE 1 END, CASE WHEN inscricoes_ate >= CURRENT_DATE THEN inscricoes_ate END ASC, inscricoes_ate DESC NULLS LAST"))
