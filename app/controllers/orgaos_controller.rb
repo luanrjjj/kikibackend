@@ -94,6 +94,6 @@ class OrgaosController < ApplicationController
     end
 
     def orgao_params
-      params.require(:orgao).permit(:nome, :sigla, :sede, :logo_url)
+      params.require(:orgao).permit(:nome, :sigla, :sede, :logo_url, :esfera)
     end
 end
