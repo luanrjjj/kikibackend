@@ -4,6 +4,13 @@ class OrgaosController < ApplicationController
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
+    sort_column = params[:sort_by] || 'nome'
+    sort_direction = params[:direction] || 'asc'
+
+    # Whitelist allowed columns for sorting to prevent SQL injection
+    allowed_columns = ['id', 'nome', 'sigla', 'esfera', 'created_at']
+    sort_column = 'nome' unless allowed_columns.include?(sort_column)
+    sort_direction = 'asc' unless ['asc', 'desc'].include?(sort_direction)
     
     @orgaos = Orgao.all
     if params[:search].present?
@@ -12,7 +19,9 @@ class OrgaosController < ApplicationController
     end
 
     total_count = @orgaos.count
-    @orgaos = @orgaos.offset((page - 1) * per_page).limit(per_page)
+    @orgaos = @orgaos.order("#{sort_column} #{sort_direction}")
+                         .offset((page - 1) * per_page)
+                         .limit(per_page)
 
     render json: {
       data: @orgaos,
