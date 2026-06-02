@@ -155,20 +155,45 @@ class QuestaosController < ApplicationController
   # GET /questaos/count
   def count
     @questaos = apply_filters(Questao.all)
-    render json: { count: @questaos.distinct.count(:id) }
+    
+    # Use the generated SQL as part of the cache key
+    # We use distinct.select(:id) to match the count query's structure
+    sql_key = Digest::SHA256.hexdigest(@questaos.distinct.select(:id).to_sql)
+    cache_key = "questaos/count/#{sql_key}"
+
+    count_val = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
+      @questaos.distinct.count(:id)
+    end
+
+    render json: { count: count_val }
   end
 
   # GET /questaos/ids
   def ids
     @questaos = apply_filters(Questao.all)
-    render json: { ids: @questaos.distinct.pluck(:id) }
+    
+    # Cache IDs as well, as this can be a large result
+    sql_key = Digest::SHA256.hexdigest(@questaos.distinct.select(:id).to_sql)
+    cache_key = "questaos/ids/#{sql_key}"
+
+    ids_val = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
+      @questaos.distinct.pluck(:id)
+    end
+
+    render json: { ids: ids_val }
   end
 
   # GET /questaos/filters_page_questaos
   def filters_questaos
     @questaos = apply_filters(Questao.all)
 
-    total_count = @questaos.count
+    # Also cache total_count here
+    sql_key = Digest::SHA256.hexdigest(@questaos.distinct.select(:id).to_sql)
+    cache_key = "questaos/count/#{sql_key}"
+    total_count = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
+      @questaos.distinct.count(:id)
+    end
+
     page = params[:page]&.to_i || 1
     per_page = params[:per_page]&.to_i || 10
     @questaos = @questaos.offset((page - 1) * per_page).limit(per_page)
@@ -185,12 +210,11 @@ class QuestaosController < ApplicationController
   def apply_filters(scope)
     questaos = scope
 
-    if params[:bancas].present?
-      questaos = questaos.joins(:concurso).where(concursos: { banca_id: params[:bancas] })
-    end
-
-    if params[:orgaos].present?
-      questaos = questaos.joins(:concurso).where(concursos: { orgao_id: params[:orgaos] })
+    # Consolidate joins to concursos
+    if params[:bancas].present? || params[:orgaos].present?
+      questaos = questaos.joins(:concurso)
+      questaos = questaos.where(concursos: { banca_id: params[:bancas] }) if params[:bancas].present?
+      questaos = questaos.where(concursos: { orgao_id: params[:orgaos] }) if params[:orgaos].present?
     end
 
     if params[:ano].present?
@@ -203,11 +227,14 @@ class QuestaosController < ApplicationController
     end
 
     if params[:escolaridade].present?
-      questaos = questaos.where(id: ProvaQuestao.joins(:prova).where(provas: { escolaridade: params[:escolaridade] }).select(:questao_id))
+      # Use EXISTS which is often faster than IN (SELECT ...) in PostgreSQL
+      questaos = questaos.where(
+        "EXISTS (SELECT 1 FROM prova_questaos pq JOIN provas p ON pq.prova_id = p.id WHERE pq.questao_id = questaos.id AND p.escolaridade = ?)",
+        params[:escolaridade]
+      )
     end
 
     if params[:disciplinas].present? || params[:assuntos].present? || params[:topicos].present?
-      sub_scope = Questao.all
       conditions = []
       values = {}
 
@@ -227,8 +254,7 @@ class QuestaosController < ApplicationController
       end
 
       if conditions.any?
-        sub_scope = Questao.where(conditions.join(" OR "), values)
-        questaos = questaos.merge(sub_scope)
+        questaos = questaos.where(conditions.join(" OR "), values)
       end
     end
 
