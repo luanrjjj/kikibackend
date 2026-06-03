@@ -133,13 +133,13 @@ class ResolucoesController < ApplicationController
 
     sql_parts = [
       "SELECT 
-        a.nome as assunto_nome,
+        COALESCE(a.nome, 'Sem Assunto') as assunto_nome,
         count(r.*) as total_resolucoes,
         sum(case when r.correta then 1 else 0 end) as total_acertos,
         sum(case when not r.correta then 1 else 0 end) as total_erros
       FROM resolucaos r
       JOIN questaos q ON r.questao_id = q.id
-      JOIN assuntos a ON q.assunto_id = a.id
+      LEFT JOIN assuntos a ON q.assunto_id = a.id
       WHERE r.user_id = :user_id 
         AND r.created_at >= :start_date
         AND r.created_at <= :end_date",
@@ -151,7 +151,7 @@ class ResolucoesController < ApplicationController
       sql_parts[1][:disciplina_id] = disciplina_id
     end
 
-    sql_parts[0] += " GROUP BY a.nome ORDER BY total_resolucoes DESC"
+    sql_parts[0] += " GROUP BY COALESCE(a.nome, 'Sem Assunto') ORDER BY total_resolucoes DESC"
 
     query = ActiveRecord::Base.sanitize_sql_array(sql_parts)
     stats = Resolucao.connection.select_all(query).to_a
@@ -202,18 +202,19 @@ class ResolucoesController < ApplicationController
       d[:acertos] += row['total_acertos'].to_i
       d[:erros] += row['total_erros'].to_i
 
-      if a_id
-        a = d[:assuntos][a_id] ||= { 
-          id: a_id, name: row['assunto_nome'], 
-          total_resolucoes: 0, 
-          acertos: 0, 
-          erros: 0,
-          topicos: []
-        }
-        a[:total_resolucoes] += row['total_resolucoes'].to_i
-        a[:acertos] += row['total_acertos'].to_i
-        a[:erros] += row['total_erros'].to_i
-      end
+      assunto_id = a_id || "sem-assunto-#{d_id}"
+      assunto_nome = row['assunto_nome'] || "Sem Assunto"
+
+      a = d[:assuntos][assunto_id] ||= { 
+        id: assunto_id, name: assunto_nome, 
+        total_resolucoes: 0, 
+        acertos: 0, 
+        erros: 0,
+        topicos: []
+      }
+      a[:total_resolucoes] += row['total_resolucoes'].to_i
+      a[:acertos] += row['total_acertos'].to_i
+      a[:erros] += row['total_erros'].to_i
     end
 
     formatted_hierarchy = disciplinas_map.values.map do |d|
@@ -316,32 +317,33 @@ class ResolucoesController < ApplicationController
         d[:acertos_ids] << q_id if res_correta
       end
 
-      if a_id
-        a = d[:assuntos][a_id] ||= { 
-          id: a_id, name: row['assunto_nome'], 
+      assunto_id = a_id || "sem-assunto-#{d_id}"
+      assunto_nome = row['assunto_nome'] || "Sem Assunto"
+
+      a = d[:assuntos][assunto_id] ||= { 
+        id: assunto_id, name: assunto_nome, 
+        total_questoes_ids: Set.new, 
+        resolvidas_ids: Set.new, 
+        acertos_ids: Set.new,
+        topicos: {} 
+      }
+      a[:total_questoes_ids] << q_id
+      if has_res
+        a[:resolvidas_ids] << q_id
+        a[:acertos_ids] << q_id if res_correta
+      end
+
+      if t_id
+        t = a[:topicos][t_id] ||= { 
+          id: t_id, name: row['topico_nome'], 
           total_questoes_ids: Set.new, 
           resolvidas_ids: Set.new, 
-          acertos_ids: Set.new,
-          topicos: {} 
+          acertos_ids: Set.new 
         }
-        a[:total_questoes_ids] << q_id
+        t[:total_questoes_ids] << q_id
         if has_res
-          a[:resolvidas_ids] << q_id
-          a[:acertos_ids] << q_id if res_correta
-        end
-
-        if t_id
-          t = a[:topicos][t_id] ||= { 
-            id: t_id, name: row['topico_nome'], 
-            total_questoes_ids: Set.new, 
-            resolvidas_ids: Set.new, 
-            acertos_ids: Set.new 
-          }
-          t[:total_questoes_ids] << q_id
-          if has_res
-            t[:resolvidas_ids] << q_id
-            t[:acertos_ids] << q_id if res_correta
-          end
+          t[:resolvidas_ids] << q_id
+          t[:acertos_ids] << q_id if res_correta
         end
       end
     end
