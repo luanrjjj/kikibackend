@@ -38,9 +38,27 @@ class BancasController < ApplicationController
   end
 
   def filters
+    page = [params.fetch(:page, 1).to_i, 1].max
+    per_page = [params.fetch(:per_page, 100).to_i, 1].max
+
     scope = Banca.order(:nome)
-    scope = scope.where('nome ILIKE ?', "%#{params[:search]}%") if params[:search].present?
-    render json: scope.pluck(:id, :nome).map { |id, nome| { id: id, nome: nome } }
+    scope = scope.where('nome ILIKE ? OR sigla ILIKE ?', "%#{params[:search]}%", "%#{params[:search]}%") if params[:search].present?
+    
+    total_count = scope.count
+    paged_scope = scope.offset((page - 1) * per_page).limit(per_page)
+    
+    results = paged_scope.pluck(:id, :nome, :sigla).map { |id, nome, sigla| { id: id, nome: nome, sigla: sigla } }
+
+    render json: {
+      data: results,
+      meta: {
+        current_page: page,
+        per_page: per_page,
+        total_count: total_count,
+        total_pages: (total_count.to_f / per_page).ceil,
+        next_page: page < (total_count.to_f / per_page).ceil ? page + 1 : nil
+      }
+    }
   rescue StandardError => e
     Rails.logger.error "BancasController#filters Error: #{e.message}"
     render json: { error: "Erro ao filtrar bancas" }, status: :internal_server_error
