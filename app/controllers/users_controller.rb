@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @users = @users.order(created_at: :desc).offset((page - 1) * per_page).limit(per_page)
 
     render json: {
-      users: @users,
+      data: @users,
       meta: {
         current_page: page,
         per_page: per_page,
