@@ -15,5 +15,6 @@ class Concurso < ApplicationRecord
     'encerrado'
   ].freeze
 
+  validates :nome, presence: true, uniqueness: { scope: [:inscricoes_ate, :banca_id, :orgao_id], message: "já existe um concurso com esses mesmos dados" }
   validates :estagio, inclusion: { in: ESTAGIOS }, allow_nil: true
 end
