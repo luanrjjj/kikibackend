@@ -11,8 +11,8 @@ class AdminController < ApplicationController
   def user_stats
     # Users per month (last 12 months) using standard SQL for PostgreSQL/SQLite
     monthly_registrations = User.where('created_at >= ?', 12.months.ago)
-                                .group("DATE_TRUNC('month', created_at)")
-                                .order("DATE_TRUNC('month', created_at)")
+                                .group(Arel.sql("DATE_TRUNC('month', created_at)"))
+                                .order(Arel.sql("DATE_TRUNC('month', created_at)"))
                                 .count
                                 .map do |date, count|
       { month: date.strftime("%b/%y"), count: count }
