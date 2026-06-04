@@ -295,6 +295,7 @@ class ResolucoesController < ApplicationController
 
     # Process results into hierarchy
     disciplinas_map = {}
+    resolvidas_ids = []
     
     results.each do |row|
       d_id = row['disciplina_id']
@@ -303,6 +304,8 @@ class ResolucoesController < ApplicationController
       q_id = row['questao_id']
       res_correta = row['correta']
       has_res = !row['resolucao_id'].nil?
+
+      resolvidas_ids << q_id.to_i if has_res
 
       d = disciplinas_map[d_id] ||= { 
         id: d_id, name: row['disciplina_nome'], 
@@ -364,6 +367,7 @@ class ResolucoesController < ApplicationController
             total_resolvidas: a[:resolvidas_ids].size,
             acertos: a[:acertos_ids].size,
             erros: a[:resolvidas_ids].size - a[:acertos_ids].size,
+            questao_ids: a[:total_questoes_ids].to_a,
             topicos: a[:topicos].values.map do |t|
               {
                 id: t[:id],
@@ -371,7 +375,8 @@ class ResolucoesController < ApplicationController
                 total_questoes: t[:total_questoes_ids].size,
                 total_resolvidas: t[:resolvidas_ids].size,
                 acertos: t[:acertos_ids].size,
-                erros: t[:resolvidas_ids].size - t[:acertos_ids].size
+                erros: t[:resolvidas_ids].size - t[:acertos_ids].size,
+                questao_ids: t[:total_questoes_ids].to_a
               }
             end.sort_by { |t| t[:name] }
           }
@@ -381,7 +386,8 @@ class ResolucoesController < ApplicationController
 
     render json: {
       summary: summary,
-      hierarchy: formatted_hierarchy
+      hierarchy: formatted_hierarchy,
+      resolvidas_ids: resolvidas_ids
     }
   end
 
