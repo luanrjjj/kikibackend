@@ -156,13 +156,12 @@ class QuestaosController < ApplicationController
   def count
     @questaos = apply_filters(Questao.all)
     
-    # Use the generated SQL as part of the cache key
-    # We use distinct.select(:id) to match the count query's structure
-    sql_key = Digest::SHA256.hexdigest(@questaos.distinct.select(:id).to_sql)
-    cache_key = "questaos/count/#{sql_key}"
+    # Optimize: Use a simpler cache key based on params instead of hashing the whole SQL
+    # This is faster and avoids generating the SQL twice
+    cache_key = "questaos/count/v2/#{params.permit!.to_h.sort.to_s.hash}"
 
     count_val = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
-      @questaos.distinct.count(:id)
+      @questaos.count
     end
 
     render json: { count: count_val }
@@ -173,11 +172,10 @@ class QuestaosController < ApplicationController
     @questaos = apply_filters(Questao.all)
     
     # Cache IDs as well, as this can be a large result
-    sql_key = Digest::SHA256.hexdigest(@questaos.distinct.select(:id).to_sql)
-    cache_key = "questaos/ids/#{sql_key}"
+    cache_key = "questaos/ids/v2/#{params.permit!.to_h.sort.to_s.hash}"
 
     ids_val = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
-      @questaos.distinct.pluck(:id)
+      @questaos.pluck(:id)
     end
 
     render json: { ids: ids_val }
@@ -188,10 +186,9 @@ class QuestaosController < ApplicationController
     @questaos = apply_filters(Questao.all)
 
     # Also cache total_count here
-    sql_key = Digest::SHA256.hexdigest(@questaos.distinct.select(:id).to_sql)
-    cache_key = "questaos/count/#{sql_key}"
+    cache_key = "questaos/count/v2/#{params.permit!.to_h.sort.to_s.hash}"
     total_count = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
-      @questaos.distinct.count(:id)
+      @questaos.count
     end
 
     page = params[:page]&.to_i || 1
