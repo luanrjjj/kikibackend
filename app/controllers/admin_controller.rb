@@ -3,7 +3,8 @@ class AdminController < ApplicationController
 
   def refresh_stats
     RefreshAdminStatsJob.perform_async
-    render json: { message: "Job de atualização de estatísticas enfileirado com sucesso!" }, status: :ok
+    RefreshBancaCountsJob.perform_async
+    render json: { message: "Jobs de atualização de estatísticas enfileirados com sucesso!" }, status: :ok
   rescue StandardError => e
     render json: { error: "Erro ao enfileirar job", message: e.message }, status: :internal_server_error
   end

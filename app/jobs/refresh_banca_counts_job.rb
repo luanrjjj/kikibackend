@@ -5,7 +5,10 @@ class RefreshBancaCountsJob
   def perform
     Rails.logger.info "Iniciando atualização de contadores de bancas..."
     
-    # Busca os totais em uma única query otimizada
+    # 1. Reset all counts to 0 first (in case some bancas no longer have questions)
+    Banca.update_all(questaos_count: 0, com_gabarito_count: 0)
+
+    # 2. Busca os totais em uma única query otimizada
     stats = Questao.joins(:concurso)
                    .group('concursos.banca_id')
                    .select('concursos.banca_id, 
@@ -18,6 +21,9 @@ class RefreshBancaCountsJob
         com_gabarito_count: stat.com_gabarito
       )
     end
+
+    # 3. Update cache version to invalidate old results
+    ConfigGlobalApolo.set('bancas_questoes_count_version', Time.current.to_i.to_s)
 
     Rails.logger.info "Atualização de contadores de bancas concluída."
   end

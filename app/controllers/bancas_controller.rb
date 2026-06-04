@@ -68,10 +68,12 @@ class BancasController < ApplicationController
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
     search = params[:search].to_s.strip
+    
+    # Use a version from global config to allow manual/job-based invalidation
+    version = ConfigGlobalApolo.get('bancas_questoes_count_version', 'v2')
+    cache_key = "bancas/questoes_count/#{version}/page_#{page}/per_#{per_page}/search_#{search.parameterize}"
 
-    cache_key = "bancas/questoes_count/v2/page_#{page}/per_#{per_page}/search_#{search.parameterize}"
-
-    result = Rails.cache.fetch(cache_key, expires_in: 1.hour) do
+    result = Rails.cache.fetch(cache_key, expires_in: 24.hours) do
       # Strategy: Use denormalized columns for O(1) performance
       base_query = Banca.all
 
