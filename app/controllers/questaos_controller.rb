@@ -232,27 +232,13 @@ class QuestaosController < ApplicationController
     end
 
     if params[:disciplinas].present? || params[:assuntos].present? || params[:topicos].present?
-      conditions = []
-      values = {}
+      classificacoes_filters = []
+      classificacoes_filters += Array(params[:disciplinas]).map { |id| "d_#{id}" } if params[:disciplinas].present?
+      classificacoes_filters += Array(params[:assuntos]).map { |id| "a_#{id}" } if params[:assuntos].present?
+      classificacoes_filters += Array(params[:topicos]).map { |id| "t_#{id}" } if params[:topicos].present?
 
-      if params[:disciplinas].present?
-        conditions << "disciplina_id IN (:disciplinas)"
-        values[:disciplinas] = params[:disciplinas]
-      end
-
-      if params[:assuntos].present?
-        conditions << "assunto_id IN (:assuntos)"
-        values[:assuntos] = params[:assuntos]
-      end
-
-      if params[:topicos].present?
-        conditions << "topico_id IN (:topicos)"
-        values[:topicos] = params[:topicos]
-      end
-
-      if conditions.any?
-        questaos = questaos.where(conditions.join(" OR "), values)
-      end
+      # Use PostgreSQL array intersection operator (&&) to match ANY of the provided classifications
+      questaos = questaos.where("classificacoes && ARRAY[?]::varchar[]", classificacoes_filters)
     end
 
     if params[:remover_anuladas] == 'true'

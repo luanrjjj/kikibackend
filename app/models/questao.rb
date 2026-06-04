@@ -18,6 +18,8 @@ class Questao < ApplicationRecord
   validates :ano, presence: true
   validates :discursiva, inclusion: { in: [true, false] }
 
+  before_save :set_classificacoes
+
   def disciplina_nome
     disciplina&.nome
   end
@@ -46,5 +48,15 @@ class Questao < ApplicationRecord
       banca_nome: banca_nome,
       orgao_nome: orgao_nome
     })
+  end
+
+  private
+
+  def set_classificacoes
+    self.classificacoes = [
+      ("d_#{disciplina_id}" if disciplina_id.present?),
+      ("a_#{assunto_id}" if assunto_id.present?),
+      ("t_#{topico_id}" if topico_id.present?)
+    ].compact
   end
 end
