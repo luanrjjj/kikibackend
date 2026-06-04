@@ -38,7 +38,18 @@ class FiltrosController < ApplicationController
   def filtro_params
     params.require(:filtro).permit(
       :nome_do_filtro,
-      filtro: [:id_da_disciplina, :nome_da_disciplina, { assuntos: [] }, { bancas: [] }, { orgaos: [] }, { ano: [] }, { activeFilters: [:id, :label, :type] }]
+      filtro: [
+        :id_da_disciplina, 
+        :nome_da_disciplina, 
+        { assuntos: [] }, 
+        { topicos: [] }, 
+        { disciplinas: [] }, 
+        { bancas: [] }, 
+        { orgaos: [] }, 
+        { ano: [] }, 
+        { escolaridades: [] }, 
+        { activeFilters: [:id, :label, :type] }
+      ]
     )
   end
 end

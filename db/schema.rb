@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_06_02_120000) do
+ActiveRecord::Schema[8.0].define(version: 2026_06_04_032228) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -101,6 +101,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_02_120000) do
     t.string "pdf_folder_url"
     t.string "edital_url"
     t.string "estagio"
+    t.index ["banca_id", "orgao_id", "id"], name: "idx_concursos_banca_orgao_id"
     t.index ["banca_id"], name: "index_concursos_on_banca_id"
     t.index ["nome", "inscricoes_ate", "banca_id", "orgao_id"], name: "idx_concursos_uniqueness", unique: true
     t.index ["orgao_id"], name: "index_concursos_on_orgao_id"
@@ -219,6 +220,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_02_120000) do
     t.datetime "updated_at", null: false
     t.index ["prova_id", "questao_id"], name: "index_prova_questaos_on_prova_id_and_questao_id", unique: true
     t.index ["prova_id"], name: "index_prova_questaos_on_prova_id"
+    t.index ["questao_id", "prova_id"], name: "idx_prova_questaos_composite"
     t.index ["questao_id"], name: "index_prova_questaos_on_questao_id"
   end
 
@@ -243,6 +245,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_02_120000) do
     t.index ["area_de_formacao_id"], name: "index_provas_on_area_de_formacao_id"
     t.index ["banca_id"], name: "index_provas_on_banca_id"
     t.index ["concurso_id"], name: "index_provas_on_concurso_id"
+    t.index ["escolaridade", "id"], name: "idx_provas_escolaridade_id"
     t.index ["orgao_id"], name: "index_provas_on_orgao_id"
   end
 
@@ -265,12 +268,16 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_02_120000) do
     t.string "disciplina_ref"
     t.string "assunto_ref", default: [], array: true
     t.bigint "topico_id"
+    t.string "classificacoes", default: [], array: true
     t.index ["ano"], name: "index_questaos_on_ano"
     t.index ["anulada"], name: "index_questaos_on_anulada"
     t.index ["assunto_id"], name: "index_questaos_on_assunto_id"
+    t.index ["classificacoes"], name: "idx_questaos_classificacoes_gin", using: :gin
+    t.index ["concurso_id", "id"], name: "idx_questaos_concurso_id_id"
     t.index ["concurso_id"], name: "index_questaos_on_concurso_id"
     t.index ["correta"], name: "index_questaos_on_correta"
     t.index ["desatualizada"], name: "index_questaos_on_desatualizada"
+    t.index ["disciplina_id", "assunto_id", "topico_id", "ano", "anulada", "desatualizada"], name: "idx_questaos_filters_composite"
     t.index ["disciplina_id"], name: "index_questaos_on_disciplina_id"
     t.index ["sistema_ref_id"], name: "index_questaos_on_sistema_ref_id"
     t.index ["texto_id"], name: "index_questaos_on_texto_id"

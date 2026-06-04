@@ -69,7 +69,7 @@ class QuestaosController < ApplicationController
     scope = scope.where(disciplina_id: params[:disciplina_id]) if params[:disciplina_id].present?
     scope = scope.where(assunto_id: params[:assunto_id]) if params[:assunto_id].present?
     scope = scope.where("enunciado ILIKE ?", "%#{params[:search]}%") if params[:search].present?
-    
+
     if params[:prova_id].present?
       scope = scope.joins(:prova_questaos).where(prova_questaos: { prova_id: params[:prova_id] })
     end
@@ -120,10 +120,10 @@ class QuestaosController < ApplicationController
       resolucoes = current_user.resolucoes.where(caderno_id: params[:caderno_id], questao_id: @questao.id).index_by { |r| r[:questao_id] }
     end
 
-    render json: QuestaoSerializer.new(@questao, { 
-      params: { 
-        resolucoes: resolucoes 
-      } 
+    render json: QuestaoSerializer.new(@questao, {
+      params: {
+        resolucoes: resolucoes
+      }
     }).serializable_hash
   end
 
@@ -155,7 +155,7 @@ class QuestaosController < ApplicationController
   # GET /questaos/count
   def count
     @questaos = apply_filters(Questao.all)
-    
+
     # Optimize: Use a simpler cache key based on params instead of hashing the whole SQL
     # This is faster and avoids generating the SQL twice
     cache_key = "questaos/count/v2/#{params.permit!.to_h.sort.to_s.hash}"
@@ -170,7 +170,7 @@ class QuestaosController < ApplicationController
   # GET /questaos/ids
   def ids
     @questaos = apply_filters(Questao.all)
-    
+
     # Cache IDs as well, as this can be a large result
     cache_key = "questaos/ids/v2/#{params.permit!.to_h.sort.to_s.hash}"
 
@@ -215,7 +215,9 @@ class QuestaosController < ApplicationController
     end
 
     if params[:ano].present?
-      if params[:ano].to_s.include?('-')
+      if params[:ano].is_a?(Array)
+        questaos = questaos.where(ano: params[:ano])
+      elsif params[:ano].to_s.include?('-')
         start_year, end_year = params[:ano].split('-').map(&:to_i)
         questaos = questaos.where(ano: start_year..end_year)
       else
@@ -226,8 +228,8 @@ class QuestaosController < ApplicationController
     if params[:escolaridade].present?
       # Use EXISTS which is often faster than IN (SELECT ...) in PostgreSQL
       questaos = questaos.where(
-        "EXISTS (SELECT 1 FROM prova_questaos pq JOIN provas p ON pq.prova_id = p.id WHERE pq.questao_id = questaos.id AND p.escolaridade = ?)",
-        params[:escolaridade]
+        "EXISTS (SELECT 1 FROM prova_questaos pq JOIN provas p ON pq.prova_id = p.id WHERE pq.questao_id = questaos.id AND p.escolaridade IN (?))",
+        Array(params[:escolaridade])
       )
     end
 
@@ -238,7 +240,8 @@ class QuestaosController < ApplicationController
       classificacoes_filters += Array(params[:topicos]).map { |id| "t_#{id}" } if params[:topicos].present?
 
       # Use PostgreSQL array intersection operator (&&) to match ANY of the provided classifications
-      questaos = questaos.where("classificacoes && ARRAY[?]::varchar[]", classificacoes_filters)
+      # Correct syntax for passing an array to a query in Rails for PG overlap
+      questaos = questaos.where("classificacoes && ?", "{#{classificacoes_filters.join(',')}}")
     end
 
     if params[:remover_anuladas] == 'true'
