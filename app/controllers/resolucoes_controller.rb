@@ -44,14 +44,18 @@ class ResolucoesController < ApplicationController
       ActiveRecord::Base.sanitize_sql_array([query, { start_date: days.days.ago }])
     ).to_a
 
-    summary_data = Resolucao.connection.select_one(
-      "SELECT 
+    summary_query = <<-SQL
+      SELECT 
         count(*) as total,
         sum(case when correta then 1 else 0 end) as acertos,
         sum(case when not correta then 1 else 0 end) as erros,
         count(DISTINCT user_id) as total_usuarios
       FROM resolucaos
-      WHERE created_at >= '#{days.days.ago.to_s(:db)}'"
+      WHERE created_at >= :start_date
+    SQL
+
+    summary_data = Resolucao.connection.select_one(
+      ActiveRecord::Base.sanitize_sql_array([summary_query, { start_date: days.days.ago }])
     ).transform_values(&:to_i)
 
     render json: {

@@ -70,7 +70,9 @@ Rails.application.routes.draw do
 
     resources :area_de_formacao, only: [:index, :show]
     resources :area_de_atuacao, only: [:index, :show]
-    resources :planos, only: [:index], defaults: { format: :json }
+    resources :planos, only: [:index], defaults: { format: :json } do
+      get :all, to: 'planos#index', on: :collection
+    end
     
     resources :pasta_cadernos, defaults: { format: :json }
     resources :reports, only: [:index, :show, :update, :destroy], defaults: { format: :json }
