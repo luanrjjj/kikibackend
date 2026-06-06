@@ -66,6 +66,19 @@ class ResolucoesController < ApplicationController
 
   def create
     @questao = Questao.find_by!(id: params[:resolucao][:questao_id])
+
+    # Limit check for free users
+    unless current_user.subscribed?
+      limit = ConfigGlobalApolo.get('limit_resolutions_free', 10).to_i
+      if current_user.resolucoes.count >= limit
+        render json: { 
+          error: 'limit_reached', 
+          message: 'Você atingiu o limite de questões para o plano gratuito. Assine um plano pago para continuar.' 
+        }, status: :forbidden
+        return
+      end
+    end
+
     is_correct = @questao.correta == params[:resolucao][:resposta]
 
     @resolucao = current_user.resolucoes.new(resolucao_params)
