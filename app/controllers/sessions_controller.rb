@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
 
     query_params = {
       token: session.token,
-      user: user.as_json(except: :password_digest).to_json
+      user: user.as_json(except: :password_digest, methods: :variaveis).to_json
     }
 
     # Define a URL do frontend para redirecionamento
@@ -50,7 +50,7 @@ class SessionsController < ApplicationController
 
       render json: {
         token: session.token,
-        user: user.as_json(except: :password_digest)
+        user: user.as_json(except: :password_digest, methods: :variaveis)
       }
     else
       render json: { error: "Email ou senha inválidos" }, status: :unauthorized
@@ -71,7 +71,7 @@ class SessionsController < ApplicationController
 
       render json: {
         token: session.token,
-        user: user.as_json(except: :password_digest)
+        user: user.as_json(except: :password_digest, methods: :variaveis)
       }, status: :created
     else
       render json: { error: user.errors.full_messages.to_sentence }, status: :unprocessable_entity

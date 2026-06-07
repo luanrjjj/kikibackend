@@ -42,6 +42,18 @@ class User < ApplicationRecord
     subscribed? || monthly_exports_count < 3
   end
 
+  def variaveis
+    vars = Plano.find_by(nome_do_plano: plan)&.variaveis || []
+    vars.each_with_object({}) do |v, hash|
+      if v.include?(':')
+        key, value = v.split(':', 2)
+        hash[key] = value == 'true' ? true : (value == 'false' ? false : value)
+      else
+        hash[v] = true
+      end
+    end
+  end
+
   def self.verify_admin_token(token)
     session = Session.includes(:user).find_by(token: token)
 
