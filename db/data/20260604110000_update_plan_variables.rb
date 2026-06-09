@@ -7,13 +7,15 @@ class UpdatePlanVariables < SeedMigration::Migration
         'create_notebook_free:false'
       ],
       'Basic' => [
-        'create_notebook_basic:true'
+        'create_notebook_basic:true',
+        'show_stats_table_by_assunto_basic:true'
       ],
       'Advanced' => [
         'excel_stats_export_advanced:true',
         'ankis_personalized_advanced:true',
         'ia_concept_question_extraction_advanced:true',
-        'edital_verticalized_advanced:true'
+        'edital_verticalized_advanced:true',
+        'show_stats_table_by_assunto_basic:true'
       ]
     }
 

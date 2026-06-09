@@ -176,6 +176,10 @@ class ResolucoesController < ApplicationController
   end
 
   def hierarchical_stats
+    unless current_user.admin? || current_user.variaveis['show_stats_table_by_assunto_basic']
+      return render json: { error: 'permission_denied', message: 'Assine um plano para visualizar estatísticas detalhadas.' }, status: :forbidden
+    end
+
     start_date, end_date = calculate_date_range
 
     query = <<-SQL
@@ -255,6 +259,14 @@ class ResolucoesController < ApplicationController
     end.sort_by { |d| (d[:total_resolucoes] > 0 ? d[:acertos].to_f / d[:total_resolucoes] : 0) }.reverse
 
     render json: formatted_hierarchy
+  end
+
+  def export_excel_stats
+    unless current_user.admin? || current_user.variaveis['excel_stats_export_advanced']
+      return render json: { error: 'permission_denied', message: 'Assine um plano para exportar estatísticas para Excel.' }, status: :forbidden
+    end
+
+    render json: { status: 'ok', message: 'Permissão concedida para exportação.' }
   end
 
   def notebook_stats

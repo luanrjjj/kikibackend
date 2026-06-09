@@ -70,7 +70,7 @@ Rails.application.routes.draw do
 
     resources :area_de_formacao, only: [:index, :show]
     resources :area_de_atuacao, only: [:index, :show]
-    resources :planos, only: [:index], defaults: { format: :json } do
+    resources :planos, defaults: { format: :json } do
       get :all, to: 'planos#index', on: :collection
     end
     
@@ -95,6 +95,7 @@ Rails.application.routes.draw do
       get :discipline_stats, on: :collection
       get :subject_stats, on: :collection
       get :hierarchical_stats, on: :collection
+      get :export_excel_stats, on: :collection
       get :notebook_stats, on: :collection
       get :question_stats, on: :collection
     end
