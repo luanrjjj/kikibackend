@@ -39,6 +39,10 @@ class CadernosController < ApplicationController
 
   # POST /cadernos
   def create
+    unless current_user.admin? || current_user.variaveis['create_notebook_basic']
+      return render json: { error: 'permission_denied', message: 'Assine um plano para criar seus próprios cadernos personalizados.' }, status: :forbidden
+    end
+
     if caderno_params[:nome_da_pasta].present? && caderno_params[:pasta_caderno_id].blank?
       pasta = current_user.pasta_cadernos.find_or_create_by!(nome: caderno_params[:nome_da_pasta])
       @caderno = current_user.cadernos.new(caderno_params.except(:nome_da_pasta).merge(pasta_caderno_id: pasta.id))

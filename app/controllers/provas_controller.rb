@@ -111,6 +111,33 @@ class ProvasController < ApplicationController
     render json: Prova.where.not(ano: nil).order(ano: :desc).distinct.pluck(:ano)
   end
 
+  def popular
+    limit = params.fetch(:limit, 5).to_i
+    
+    # Get the most popular prova_ids based on Caderno associations
+    popular_counts = Caderno.where.not(prova_id: nil)
+                            .group(:prova_id)
+                            .order('count_all DESC')
+                            .limit(limit)
+                            .count
+
+    popular_prova_ids = popular_counts.keys
+
+    # Fetch the Prova records with their associations
+    @provas = Prova.where(id: popular_prova_ids)
+                   .includes(:orgao, :banca, :concurso)
+
+    # To maintain the order from popular_prova_ids, we map manually
+    ranked_provas = popular_prova_ids.map do |id|
+      prova = @provas.find { |p| p.id == id }
+      next nil unless prova
+      
+      prova.as_json(prova_json_options).merge(acessos: popular_counts[id])
+    end.compact
+
+    render json: ranked_provas
+  end
+
   def questaos
     @questaos = @prova.questaos
                       .joins(:prova_questaos)

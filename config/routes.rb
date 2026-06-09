@@ -61,6 +61,7 @@ Rails.application.routes.draw do
     resources :provas, defaults: { format: :json } do
       get :all, on: :collection
       get :paginated_by_ano, on: :collection
+      get :popular, on: :collection
       get :questaos, on: :member
       get :stats, on: :collection
       get :years, on: :collection

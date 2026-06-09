@@ -55,8 +55,15 @@ class ConcursosController < ApplicationController
     end
 
     total_count = @concursos.count
+
+    order_clause = if params[:sort_by] == 'created_at'
+                     { created_at: params[:direction] || :desc }
+                   else
+                     Arel.sql("CASE WHEN inscricoes_ate >= CURRENT_DATE THEN 0 ELSE 1 END, CASE WHEN inscricoes_ate >= CURRENT_DATE THEN inscricoes_ate END ASC, inscricoes_ate DESC NULLS LAST")
+                   end
+
     @concursos = @concursos.includes(:banca, :orgao, :provas)
-                         .order(Arel.sql("CASE WHEN inscricoes_ate >= CURRENT_DATE THEN 0 ELSE 1 END, CASE WHEN inscricoes_ate >= CURRENT_DATE THEN inscricoes_ate END ASC, inscricoes_ate DESC NULLS LAST"))
+                         .order(order_clause)
                          .offset((page - 1) * per_page)
                          .limit(per_page)
 
