@@ -23,7 +23,15 @@ class CadernosController < ApplicationController
 
   # GET /cadernos/1
   def show
-    render json: @caderno
+    res_counts = @caderno.resolucoes.group(:correta).count
+    total_resolucoes = res_counts.values.sum
+    
+    render json: @caderno.as_json.merge(
+      acertos: res_counts[true] || 0,
+      erros: res_counts[false] || 0,
+      total_questoes: @caderno.questoes_ids&.length || 0,
+      respondidas: total_resolucoes
+    )
   end
 
   # GET /cadernos/1/questaos
@@ -80,24 +88,31 @@ class CadernosController < ApplicationController
   end
 
   def caderno_params
+    filter_structure = [
+      :id_da_disciplina, 
+      :nome_da_disciplina, 
+      :questoes_count,
+      { assuntos: [] }, 
+      { topicos: [] }, 
+      { disciplinas: [] }, 
+      { bancas: [] }, 
+      { orgaos: [] }, 
+      { ano: [] }, 
+      { escolaridades: [] }, 
+      { activeFilters: [:id, :label, :type] }
+    ]
+
     params.require(:caderno).permit(
       :nome, 
       :nome_da_pasta, 
       :pasta_caderno_id, 
       :prova_id, 
+      :filtro_id_2,
+      :filtros_id_3,
       :questoes_ids => [],
-      filtros: [
-        :id_da_disciplina, 
-        :nome_da_disciplina, 
-        { assuntos: [] }, 
-        { topicos: [] }, 
-        { disciplinas: [] }, 
-        { bancas: [] }, 
-        { orgaos: [] }, 
-        { ano: [] }, 
-        { escolaridades: [] }, 
-        { activeFilters: [:id, :label, :type] }
-      ]
+      filtros: filter_structure,
+      filtros_2: filter_structure,
+      filtros_3: filter_structure
     )
   end
 end

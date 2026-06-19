@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_06_04_100000) do
+ActiveRecord::Schema[8.0].define(version: 2026_06_15_014426) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -58,8 +58,14 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_04_100000) do
     t.datetime "prova_criacao_data"
     t.json "filtros"
     t.bigint "filtro_id"
+    t.bigint "filtro_id_2"
+    t.json "filtros_2"
+    t.bigint "filtros_id_3"
+    t.json "filtros_3"
     t.index ["concurso_id"], name: "index_cadernos_on_concurso_id"
     t.index ["filtro_id"], name: "index_cadernos_on_filtro_id"
+    t.index ["filtro_id_2"], name: "index_cadernos_on_filtro_id_2"
+    t.index ["filtros_id_3"], name: "index_cadernos_on_filtros_id_3"
     t.index ["pasta_caderno_id"], name: "index_cadernos_on_pasta_caderno_id"
     t.index ["prova_id"], name: "index_cadernos_on_prova_id"
     t.index ["user_id", "nome"], name: "index_cadernos_on_user_id_and_nome", unique: true
@@ -395,6 +401,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_04_100000) do
   add_foreign_key "assuntos", "disciplinas"
   add_foreign_key "cadernos", "concursos"
   add_foreign_key "cadernos", "filtros"
+  add_foreign_key "cadernos", "filtros", column: "filtro_id_2"
+  add_foreign_key "cadernos", "filtros", column: "filtros_id_3"
   add_foreign_key "cadernos", "pasta_cadernos"
   add_foreign_key "cadernos", "provas"
   add_foreign_key "cadernos", "users"
