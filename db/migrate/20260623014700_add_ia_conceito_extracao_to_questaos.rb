@@ -1,0 +1,5 @@
+class AddIaConceitoExtracaoToQuestaos < ActiveRecord::Migration[8.0]
+  def change
+    add_column :questaos, :ia_conceito_extracao, :json, default: []
+  end
+end
