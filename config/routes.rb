@@ -85,6 +85,7 @@ Rails.application.routes.draw do
     end
     resources :cargo_guias, defaults: { format: :json }
     resources :config_global_apolos, defaults: { format: :json }
+    resources :edital_vert, defaults: { format: :json }
     
     resources :cadernos, defaults: { format: :json } do
       get :questaos, on: :member

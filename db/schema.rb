@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_06_15_014426) do
+ActiveRecord::Schema[8.0].define(version: 2026_06_19_031637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -125,6 +125,18 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_15_014426) do
     t.string "nome", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "edital_vert", force: :cascade do |t|
+    t.bigint "concurso_id"
+    t.string "cargo"
+    t.bigint "prova_id"
+    t.json "texto_json_disciplina"
+    t.text "texto_verticalizado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["concurso_id"], name: "index_edital_vert_on_concurso_id"
+    t.index ["prova_id"], name: "index_edital_vert_on_prova_id"
   end
 
   create_table "exports", force: :cascade do |t|
@@ -412,6 +424,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_15_014426) do
   add_foreign_key "comentarios", "users"
   add_foreign_key "concursos", "bancas"
   add_foreign_key "concursos", "orgaos"
+  add_foreign_key "edital_vert", "concursos"
+  add_foreign_key "edital_vert", "provas"
   add_foreign_key "exports", "concursos"
   add_foreign_key "exports", "provas"
   add_foreign_key "exports", "users"

@@ -83,7 +83,20 @@ class ConcursosController < ApplicationController
   end
 
   def show
-    render json: @concurso
+    response_data = @concurso.as_json(include: {
+      banca: { only: [:id, :nome, :sigla, :logo] },
+      orgao: { except: [:created_at, :updated_at] },
+      provas: { only: [:id, :nome, :ano] },
+      edital_verts: { only: [:id, :cargo, :prova_id, :texto_json_disciplina, :texto_verticalizado] },
+      guias: { only: [:id, :nome] }
+    })
+
+    response_data['similar_concursos'] = @concurso.similar_concursos(5).as_json(include: {
+      banca: { only: [:id, :nome, :sigla, :logo] },
+      orgao: { except: [:created_at, :updated_at] }
+    })
+
+    render json: response_data
   end
 
   def stats
