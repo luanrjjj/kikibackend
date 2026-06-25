@@ -165,21 +165,29 @@ class AnkiController < ApplicationController
       return
     end
 
-    enunciado = question_data['enunciado']
-    texto_apoio = question_data.dig('texto', 'texto')
+    questao = Questao.find_by(id: question_data['id'])
 
-    # Encontrar o texto da alternativa correta
-    # Se a questão não tem 'correta' definida, tenta pegar da resolução do usuário
-    correta_value = question_data['correta'] || question_data.dig('resolucao', 'resposta')
-    alternativas = question_data['alternativas'] || []
-    alternativa_correta = alternativas.find { |a| a['value'] == correta_value }
-    resposta_correta = alternativa_correta ? alternativa_correta['text'] : correta_value
+    if questao && questao.ia_conceito_extracao.present?
+      ai_cards = questao.ia_conceito_extracao
+    else
+      enunciado = question_data['enunciado']
+      texto_apoio = question_data.dig('texto', 'texto')
 
-    ai_cards = AiService.generate_cards(enunciado, texto_apoio, resposta_correta)
+      # Encontrar o texto da alternativa correta
+      # Se a questão não tem 'correta' definida, tenta pegar da resolução do usuário
+      correta_value = question_data['correta'] || question_data.dig('resolucao', 'resposta')
+      alternativas = question_data['alternativas'] || []
+      alternativa_correta = alternativas.find { |a| a['value'] == correta_value }
+      resposta_correta = alternativa_correta ? alternativa_correta['text'] : correta_value
 
-    if ai_cards.blank?
-      render json: { error: 'Falha ao gerar cards com IA' }, status: :service_unavailable
-      return
+      ai_cards = AiService.generate_cards(enunciado, texto_apoio, resposta_correta)
+
+      if ai_cards.blank?
+        render json: { error: 'Falha ao gerar cards com IA' }, status: :service_unavailable
+        return
+      end
+
+      questao.update!(ia_conceito_extracao: ai_cards) if questao
     end
 
     render json: { cards: ai_cards }
