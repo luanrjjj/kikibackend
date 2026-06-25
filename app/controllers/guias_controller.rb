@@ -13,7 +13,7 @@ class GuiasController < ApplicationController
     end
 
     total_count = @guias.count
-    @guias = @guias.includes(concurso: :orgao).includes(:filtros)
+    @guias = @guias.includes(concurso: :orgao).includes(guia_filtros: [:filtro, :filtro_2, :filtro_3])
                    .order(created_at: :desc)
                    .offset((page - 1) * per_page)
                    .limit(per_page)
@@ -45,7 +45,7 @@ class GuiasController < ApplicationController
     end
 
     total_count = @guias.count
-    @guias = @guias.includes(concurso: :orgao).includes(:filtros)
+    @guias = @guias.includes(concurso: :orgao).includes(guia_filtros: [:filtro, :filtro_2, :filtro_3])
                    .order(created_at: :desc)
                    .offset((page - 1) * per_page)
                    .limit(per_page)
@@ -110,6 +110,7 @@ class GuiasController < ApplicationController
 
   def include_associations
     {
+      methods: :filtros,
       include: {
         concurso: {
           only: [:id, :nome, :inscricoes_ate, :edital_url],
@@ -121,7 +122,9 @@ class GuiasController < ApplicationController
               only: [:id, :nome_do_cargo],
               methods: :filtros
             },
-            filtro: { only: [:id, :nome_do_filtro, :filtro] }
+            filtro: { only: [:id, :nome_do_filtro, :filtro] },
+            filtro_2: { only: [:id, :nome_do_filtro, :filtro] },
+            filtro_3: { only: [:id, :nome_do_filtro, :filtro] }
           }
         }
       }

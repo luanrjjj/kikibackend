@@ -70,7 +70,7 @@ class Caderno < ApplicationRecord
 
   def populate_questoes_from_prova
     if prova_id.present? && questoes_ids.blank?
-      self.questoes_ids = prova.questaos.joins(:prova_questaos).order('prova_questaos.numero_questao ASC').distinct.pluck(:id)
+      self.questoes_ids = prova.prova_questaos.order(numero_questao: :asc).pluck(:questao_id).compact
     end
   end
 end
