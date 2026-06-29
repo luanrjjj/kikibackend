@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_06_25_181600) do
+ActiveRecord::Schema[8.0].define(version: 2026_06_25_213814) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -168,6 +168,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_25_181600) do
     t.bigint "cargo_guia_id"
     t.bigint "filtro_id_2"
     t.bigint "filtro_id_3"
+    t.string "nome"
     t.index ["cargo_guia_id"], name: "index_guia_filtros_on_cargo_guia_id"
     t.index ["filtro_id_1"], name: "index_guia_filtros_on_filtro_id_1"
     t.index ["filtro_id_2"], name: "index_guia_filtros_on_filtro_id_2"

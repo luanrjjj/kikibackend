@@ -111,9 +111,12 @@ class CargoGuiasController < ApplicationController
     
     fids = @cargo_guia.filtros_for_guia(guia).pluck(:id)
     if fids.any?
+      filtro1 = Filtro.find_by(id: fids[0])
+      nome_default = filtro1&.nome_do_filtro || "Caderno #{fids[0]}"
       GuiaFiltro.create!(
         guia_id: guia_id,
         cargo_guia_id: @cargo_guia.id,
+        nome: nome_default,
         filtro_id_1: fids[0],
         filtro_id_2: fids[1],
         filtro_id_3: fids[2]

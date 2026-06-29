@@ -84,6 +84,7 @@ Rails.application.routes.draw do
       get :public_index, on: :collection
     end
     resources :cargo_guias, defaults: { format: :json }
+    resources :guia_filtros, defaults: { format: :json }
     resources :config_global_apolos, defaults: { format: :json }
     resources :edital_vert, defaults: { format: :json }
     

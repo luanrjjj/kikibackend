@@ -1,7 +1,7 @@
 class Filtro < ApplicationRecord
   belongs_to :user, optional: true
   has_many :cadernos, dependent: :nullify
-  has_many :guia_filtros, dependent: :destroy
+  has_many :guia_filtros, foreign_key: "filtro_id_1", dependent: :destroy
   has_many :cargo_guias, dependent: :destroy
 
   def guias
