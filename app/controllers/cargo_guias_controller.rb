@@ -104,13 +104,12 @@ class CargoGuiasController < ApplicationController
   end
 
   def sync_guia_links(guia_id)
-    GuiaFiltro.where(guia_id: guia_id, cargo_guia_id: @cargo_guia.id).destroy_all
-    
     guia = Guia.find_by(id: guia_id)
     return unless guia
     
     fids = @cargo_guia.filtros_for_guia(guia).pluck(:id)
     if fids.any?
+      GuiaFiltro.where(guia_id: guia_id, cargo_guia_id: @cargo_guia.id).destroy_all
       filtro1 = Filtro.find_by(id: fids[0])
       nome_default = filtro1&.nome_do_filtro || "Caderno #{fids[0]}"
       GuiaFiltro.create!(
@@ -121,6 +120,14 @@ class CargoGuiasController < ApplicationController
         filtro_id_2: fids[1],
         filtro_id_3: fids[2]
       )
+    else
+      unless GuiaFiltro.exists?(guia_id: guia_id, cargo_guia_id: @cargo_guia.id)
+        GuiaFiltro.create!(
+          guia_id: guia_id,
+          cargo_guia_id: @cargo_guia.id,
+          nome: "Geral"
+        )
+      end
     end
   end
 

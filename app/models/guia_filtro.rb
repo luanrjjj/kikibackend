@@ -9,5 +9,4 @@ class GuiaFiltro < ApplicationRecord
   belongs_to :filtro_3, class_name: "Filtro", foreign_key: "filtro_id_3", optional: true
 
   validates :nome, presence: true
-  validates :filtro_id_1, presence: true
 end
