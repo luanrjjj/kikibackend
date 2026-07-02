@@ -37,6 +37,18 @@ class AdminController < ApplicationController
     }
   end
 
+  def text_stats
+    stats = Texto.joins(:prova)
+                 .group('provas.ano')
+                 .order('provas.ano ASC')
+                 .count
+                 .map do |ano, count|
+      { ano: ano || 'Sem Ano', count: count }
+    end
+
+    render json: stats
+  end
+
   def get_configs
     configs = {
       ai_api_name: ConfigGlobalApolo.get('ai_api_name', 'gemini')

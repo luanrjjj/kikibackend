@@ -1,5 +1,6 @@
 class TextosController < ApplicationController
   before_action :set_texto, only: %i[ show update destroy ]
+  wrap_parameters false
 
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
@@ -70,6 +71,6 @@ class TextosController < ApplicationController
     end
 
     def texto_params
-      params.require(:texto).permit(:texto, :prova_id, :concurso_id, :imagem_texto)
+      params.permit(:texto, :prova_id, :concurso_id, :imagem_texto)
     end
 end
