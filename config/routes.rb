@@ -126,6 +126,9 @@ Rails.application.routes.draw do
     end
 
     resources :users, only: [:index, :show, :update], defaults: { format: :json }
+    resources :textos, defaults: { format: :json } do
+      get :all, on: :collection
+    end
 
     get 'up' => 'rails/health#show', as: :rails_health_check
 
