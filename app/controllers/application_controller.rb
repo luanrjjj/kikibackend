@@ -39,7 +39,7 @@ class ApplicationController < ActionController::API
     token = request.headers['Authorization']&.split(' ')&.last
     if token
       session = Session.find_by(token: token)
-      if session && session.expires_at > Time.now
+      if session && session.expires_at > Time.current
         @current_user = session.user
       else
         render json: { error: 'Invalid or expired token' }, status: :unauthorized
