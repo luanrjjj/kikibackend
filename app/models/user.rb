@@ -54,6 +54,23 @@ class User < ApplicationRecord
     end
   end
 
+  def payment_gateway
+    if stripe_customer_id.present?
+      'Stripe'
+    elsif asaas_customer_id.present?
+      'Asaas'
+    else
+      nil
+    end
+  end
+
+  def to_session_json
+    as_json(
+      except: [:password_digest, :reset_password_token, :reset_password_sent_at, :stripe_customer_id, :asaas_customer_id, :created_at, :updated_at],
+      methods: [:variaveis, :payment_gateway]
+    )
+  end
+
   def self.verify_admin_token(token)
     session = Session.includes(:user).find_by(token: token)
 
