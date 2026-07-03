@@ -14,6 +14,7 @@ class ProvasController < ApplicationController
     @provas = @provas.where("provas.nome ILIKE ?", "%#{params[:search]}%") if params[:search].present?
     @provas = @provas.where(ano: params[:ano]) if params[:ano].present?
     @provas = @provas.where(banca_id: params[:banca_id]) if params[:banca_id].present?
+    @provas = @provas.where(concurso_id: params[:concurso_id]) if params[:concurso_id].present?
 
     total_count = @provas.count
     @provas = @provas.order(ano: :desc, nome: :asc)

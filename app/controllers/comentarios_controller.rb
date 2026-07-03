@@ -9,7 +9,7 @@ class ComentariosController < ApplicationController
       @comentarios = @questao.comentarios.includes(:user).order(created_at: :desc)
       
       # Inclui o voto do usuário atual se estiver logado
-      comentarios_json = @comentarios.as_json(include: { user: { only: [:id, :name, :email] } })
+      comentarios_json = @comentarios.as_json(include: { user: { only: [:id, :name, :email], methods: [:assinatura, :total_resolucoes, :percentual_acerto] } })
       
       if current_user
         votos_do_usuario = VotoComentario.where(user: current_user, comentario_id: @comentarios.pluck(:id))
@@ -33,7 +33,7 @@ class ComentariosController < ApplicationController
       @comentario.user = current_user
 
       if @comentario.save
-        render json: @comentario.as_json(include: { user: { only: [:id, :name, :email] } }), status: :created
+        render json: @comentario.as_json(include: { user: { only: [:id, :name, :email], methods: [:assinatura, :total_resolucoes, :percentual_acerto] } }), status: :created
       else
         render json: @comentario.errors, status: :unprocessable_entity
       end

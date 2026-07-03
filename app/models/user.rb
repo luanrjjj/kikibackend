@@ -34,6 +34,27 @@ class User < ApplicationRecord
     admin? || (subscription_status&.upcase == 'ACTIVE' && current_period_end.present? && current_period_end > Time.current)
   end
 
+  def assinatura
+    if admin?
+      'Administrador'
+    elsif subscribed?
+      plan.present? ? plan.titleize : 'Premium'
+    else
+      'Gratuito'
+    end
+  end
+
+  def total_resolucoes
+    resolucoes.count
+  end
+
+  def percentual_acerto
+    total = resolucoes.count
+    return 0 if total.zero?
+    
+    (resolucoes.where(correta: true).count.to_f / total * 100).round(1)
+  end
+
   def monthly_exports_count
     exports.where(created_at: Time.current.all_month).count
   end
