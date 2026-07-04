@@ -49,6 +49,8 @@ Rails.application.routes.draw do
     resources :questaos, defaults: { format: :json } do
       member do
         patch :validate
+        get :anotacao
+        post :anotacao, to: 'questaos#save_anotacao'
       end
       resources :reports, only: [:create], defaults: { format: :json }
       get :all, on: :collection

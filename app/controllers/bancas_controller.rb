@@ -31,7 +31,7 @@ class BancasController < ApplicationController
   end
 
   def all
-    render json: Banca.select(:id, :nome, :sigla).order(:nome)
+    render json: Banca.select(:id, :nome, :sigla).order_by_priority.order(:nome)
   rescue StandardError => e
     Rails.logger.error "BancasController#all Error: #{e.message}"
     render json: { error: "Erro ao buscar todas as bancas" }, status: :internal_server_error
@@ -41,7 +41,7 @@ class BancasController < ApplicationController
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 100).to_i, 1].max
 
-    scope = Banca.order(:nome)
+    scope = Banca.order_by_priority.order(:nome)
     scope = scope.where('nome ILIKE ? OR sigla ILIKE ?', "%#{params[:search]}%", "%#{params[:search]}%") if params[:search].present?
     
     total_count = scope.count

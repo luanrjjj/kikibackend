@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :resolucoes, class_name: 'Resolucao', dependent: :destroy
   has_many :comentarios, dependent: :destroy
   has_many :voto_comentarios, dependent: :destroy
+  has_many :anotacaos, class_name: 'Anotacao', dependent: :destroy
   has_many :filtros, dependent: :destroy
   has_many :reports, dependent: :destroy
 

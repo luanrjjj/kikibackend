@@ -1,6 +1,7 @@
 class QuestaosController < ApplicationController
   before_action :authenticate_subscription, only: %i[ filters_questaos ]
-  before_action :set_questao, only: %i[ show update destroy validate ]
+  before_action :set_questao, only: %i[ show update destroy validate anotacao save_anotacao ]
+  before_action :authenticate_user!, only: %i[ anotacao save_anotacao ]
   before_action :authenticate_admin!, only: %i[ index stats ]
 
   # GET /questaos
@@ -114,9 +115,8 @@ class QuestaosController < ApplicationController
 
   # GET /questaos/1
   def show
-    # If caderno_id is present, fetch user resolution for this question in this notebook
     resolucoes = nil
-    if params[:caderno_id].present?
+    if params[:caderno_id].present? && current_user
       resolucoes = current_user.resolucoes.where(caderno_id: params[:caderno_id], questao_id: @questao.id).index_by { |r| r[:questao_id] }
     end
 
@@ -125,6 +125,27 @@ class QuestaosController < ApplicationController
         resolucoes: resolucoes
       }
     }).serializable_hash
+  end
+
+  # GET /questaos/1/anotacao
+  def anotacao
+    anotacao = current_user.anotacaos.find_by(questao_id: @questao.id)
+    render json: { texto: anotacao&.texto || "" }
+  end
+
+  # POST /questaos/1/anotacao
+  def save_anotacao
+    anotacao = current_user.anotacaos.find_or_initialize_by(questao_id: @questao.id)
+    anotacao.texto = params[:texto]
+    
+    if anotacao.texto.blank?
+      anotacao.destroy if anotacao.persisted?
+      render json: { texto: "" }
+    elsif anotacao.save
+      render json: { texto: anotacao.texto }
+    else
+      render json: { errors: anotacao.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   # POST /questaos
