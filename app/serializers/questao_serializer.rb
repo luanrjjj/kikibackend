@@ -33,10 +33,11 @@ class QuestaoSerializer
   end
 
   attribute :concurso do |object|
-    if object.concurso
+    concurso = object.concurso || object.provas.first&.concurso
+    if concurso
       {
-        id: object.concurso.id,
-        nome: object.concurso.nome
+        id: concurso.id,
+        nome: concurso.nome
       }
     end
   end
@@ -47,6 +48,7 @@ class QuestaoSerializer
       {
         id: banca.id,
         nome: banca.nome,
+        sigla: banca.sigla,
         logo: banca.logo
       }
     end
@@ -58,6 +60,7 @@ class QuestaoSerializer
       {
         id: orgao.id,
         nome: orgao.nome,
+        sigla: orgao.sigla,
         logo_url: orgao.logo_url
       }
     end
