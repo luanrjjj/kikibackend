@@ -152,12 +152,9 @@ class ProvasController < ApplicationController
   end
 
   def questaos
-    @questaos = @prova.questaos
-                      .joins(:prova_questaos)
-                      .where(prova_questaos: { prova_id: @prova.id })
-                      .order('prova_questaos.numero_questao ASC')
-                      .includes(:assunto, :disciplina, :texto)
-    render json: QuestaoSerializer.new(@questaos).serializable_hash
+    prova_questaos = @prova.prova_questaos.includes(questao: [:assunto, :disciplina, :texto]).order(:numero_questao)
+    questaos = prova_questaos.map(&:questao).compact.uniq { |q| q.id }
+    render json: QuestaoSerializer.new(questaos).serializable_hash
   end
 
   # GET /provas/1
