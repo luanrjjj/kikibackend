@@ -65,7 +65,34 @@ class User < ApplicationRecord
   end
 
   def variaveis
-    vars = Plano.find_by(nome_do_plano: plan)&.variaveis || []
+    if admin?
+      return {
+        'show_stats_table_by_assunto_basic' => true,
+        'excel_stats_export_advanced' => true,
+        'ankis_personalized_advanced' => true,
+        'ia_concept_question_extraction_advanced' => true,
+        'edital_verticalized_advanced' => true,
+        'create_notebook_basic' => true
+      }
+    end
+
+    plano_record = nil
+    if plan.present?
+      plano_record = Plano.where('LOWER(nome_do_plano) = ?', plan.to_s.downcase).first
+    end
+
+    if (plano_record.nil? || plano_record.variaveis.blank?) && (subscribed? || plan.present?)
+      p_name = plan.to_s.downcase
+      if p_name.include?('advanced') || p_name.include?('avança') || p_name.include?('pro') || p_name.include?('annual') || p_name.include?('monthly') || p_name.include?('anual') || p_name.include?('mensal') || subscribed?
+        plano_record = Plano.where('LOWER(nome_do_plano) = ?', 'advanced').first || Plano.where('LOWER(nome_do_plano) = ?', 'pro').first
+      elsif p_name.include?('basic') || p_name.include?('básico')
+        plano_record = Plano.where('LOWER(nome_do_plano) = ?', 'basic').first
+      end
+
+      plano_record ||= Plano.where.not('LOWER(nome_do_plano) = ?', 'free').first || Plano.last
+    end
+
+    vars = plano_record&.variaveis || []
     vars.each_with_object({}) do |v, hash|
       if v.include?(':')
         key, value = v.split(':', 2)
