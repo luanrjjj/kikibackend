@@ -7,9 +7,9 @@ class ProvasController < ApplicationController
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
-    
+
     @provas = Prova.includes(:orgao, :banca, :concurso)
-    
+
     # Apply filters with multi-keyword fuzzy matching across prova, concurso, orgao and banca
     if params[:search].present?
       keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
@@ -47,12 +47,12 @@ class ProvasController < ApplicationController
   def paginated_by_ano
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
-    
+
     @provas = Prova.includes(:orgao, :banca, :concurso)
-    
+
     # Apply filters
     @provas = @provas.where("provas.nome ILIKE ?", "%#{params[:nome]}%") if params[:nome].present?
-    
+
     if params[:concurso_nome].present?
       @provas = @provas.joins(:concurso).where("concursos.nome ILIKE ?", "%#{params[:concurso_nome]}%")
     end
@@ -99,7 +99,7 @@ class ProvasController < ApplicationController
     end
 
     @provas = Prova.all
-    
+
     @provas = @provas.where(ano: params[:ano]) if params[:ano].present?
     @provas = @provas.where(banca_id: params[:banca_id]) if params[:banca_id].present?
     @provas = @provas.where("nome ILIKE ?", "%#{params[:search]}%") if params[:search].present?
@@ -126,7 +126,7 @@ class ProvasController < ApplicationController
 
   def popular
     limit = params.fetch(:limit, 5).to_i
-    
+
     # Get the most popular prova_ids based on Caderno associations
     popular_counts = Caderno.where.not(prova_id: nil)
                             .group(:prova_id)
@@ -144,13 +144,13 @@ class ProvasController < ApplicationController
     ranked_provas = popular_prova_ids.map do |id|
       prova = @provas.find { |p| p.id == id }
       next nil unless prova
-      
+
       prova.as_json(prova_json_options).merge(acessos: popular_counts[id])
     end.compact
 
     render json: ranked_provas
   end
-
+#test
   def questaos
     prova_questaos = @prova.prova_questaos.includes(questao: [:assunto, :disciplina, :texto]).order(:numero_questao)
     questaos = prova_questaos.map(&:questao).compact.uniq { |q| q.id }
