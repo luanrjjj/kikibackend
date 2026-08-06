@@ -10,12 +10,19 @@ class ProvasController < ApplicationController
     
     @provas = Prova.includes(:orgao, :banca, :concurso)
     
-    # Apply filters
+    # Apply filters with multi-keyword fuzzy matching across prova, concurso, orgao and banca
     if params[:search].present?
-      @provas = @provas.left_joins(:orgao).where(
-        "provas.nome ILIKE :q OR orgaos.nome ILIKE :q OR orgaos.sigla ILIKE :q",
-        q: "%#{params[:search]}%"
-      )
+      keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
+      if keywords.any?
+        @provas = @provas.left_joins(:orgao, :banca, :concurso)
+        keywords.each do |kw|
+          term = "%#{kw}%"
+          @provas = @provas.where(
+            "provas.nome ILIKE :term OR concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
+            term: term
+          )
+        end
+      end
     end
     @provas = @provas.where(ano: params[:ano]) if params[:ano].present?
     @provas = @provas.where(banca_id: params[:banca_id]) if params[:banca_id].present?

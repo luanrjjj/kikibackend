@@ -9,7 +9,17 @@ class ConcursosController < ApplicationController
     @concursos = Concurso.all
     
     if params[:search].present?
-      @concursos = @concursos.where("nome ILIKE ?", "%#{params[:search]}%")
+      keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
+      if keywords.any?
+        @concursos = @concursos.left_joins(:orgao, :banca)
+        keywords.each do |kw|
+          term = "%#{kw}%"
+          @concursos = @concursos.where(
+            "concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
+            term: term
+          )
+        end
+      end
     end
 
     total_count = @concursos.count
