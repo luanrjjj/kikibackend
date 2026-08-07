@@ -49,7 +49,9 @@ class QuestaoSerializer
       {
         id: object.texto.id,
         texto: object.texto.texto,
-        imagem_texto: object.texto.imagem_texto
+        imagem_texto: object.texto.imagem_texto,
+        prova_id: object.texto.prova_id,
+        concurso_id: object.texto.concurso_id
       }
     end
   end

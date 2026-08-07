@@ -49,7 +49,7 @@ class TextosController < ApplicationController
     if @texto.save
       render json: @texto, status: :created
     else
-      render json: @texto.errors, status: :unprocessable_entity
+      render json: { message: @texto.errors.full_messages.join(', '), errors: @texto.errors }, status: :unprocessable_entity
     end
   end
 
@@ -57,7 +57,7 @@ class TextosController < ApplicationController
     if @texto.update(texto_params)
       render json: @texto
     else
-      render json: @texto.errors, status: :unprocessable_entity
+      render json: { message: @texto.errors.full_messages.join(', '), errors: @texto.errors }, status: :unprocessable_entity
     end
   end
 

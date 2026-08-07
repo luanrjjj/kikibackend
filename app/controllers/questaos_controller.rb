@@ -282,7 +282,7 @@ class QuestaosController < ApplicationController
 
   def questao_params
     params.require(:questao).permit(
-      :texto, :enunciado, :discursiva, :ano, :correta,
+      :texto_id, :texto, :enunciado, :discursiva, :ano, :correta,
       :concurso_id, :assunto_id, :disciplina_id, :topico_id,
       :validado_admin, :sistema_ref_id,
       alternativas: [:value, :text]
