@@ -17,23 +17,45 @@ class QuestaoSerializer
   end
 
   attribute :comentarios_count do |object|
-    object.comentarios.count
+    if object.respond_to?(:comentarios_count_val)
+      object.comentarios_count_val
+    elsif object.association(:comentarios).loaded?
+      object.comentarios.size
+    else
+      object.comentarios.count
+    end
   end
 
   attribute :assunto do |object|
-    AssuntoSerializer.new(object.assunto).serializable_hash.dig(:data, :attributes) if object.assunto
+    if object.assunto
+      {
+        id: object.assunto.id,
+        nome: object.assunto.nome
+      }
+    end
   end
 
   attribute :disciplina do |object|
-    DisciplinaSerializer.new(object.disciplina).serializable_hash.dig(:data, :attributes) if object.disciplina
+    if object.disciplina
+      {
+        id: object.disciplina.id,
+        nome: object.disciplina.nome
+      }
+    end
   end
 
   attribute :texto do |object|
-    TextoSerializer.new(object.texto).serializable_hash.dig(:data, :attributes) if object.texto
+    if object.texto
+      {
+        id: object.texto.id,
+        texto: object.texto.texto,
+        imagem_texto: object.texto.imagem_texto
+      }
+    end
   end
 
-  attribute :concurso do |object|
-    concurso = object.concurso || object.provas.first&.concurso
+  attribute :concurso do |object, params|
+    concurso = object.concurso || (params && params[:prova]&.concurso) || (object.association(:provas).loaded? ? object.provas.first&.concurso : object.provas.first&.concurso)
     if concurso
       {
         id: concurso.id,
@@ -42,8 +64,8 @@ class QuestaoSerializer
     end
   end
 
-  attribute :banca do |object|
-    banca = object.concurso&.banca || object.provas.first&.banca
+  attribute :banca do |object, params|
+    banca = object.concurso&.banca || (params && params[:prova]&.banca) || (object.association(:provas).loaded? ? object.provas.first&.banca : object.provas.first&.banca)
     if banca
       {
         id: banca.id,
@@ -54,8 +76,8 @@ class QuestaoSerializer
     end
   end
 
-  attribute :orgao do |object|
-    orgao = object.concurso&.orgao || object.provas.first&.orgao
+  attribute :orgao do |object, params|
+    orgao = object.concurso&.orgao || (params && params[:prova]&.orgao) || (object.association(:provas).loaded? ? object.provas.first&.orgao : object.provas.first&.orgao)
     if orgao
       {
         id: orgao.id,
@@ -66,8 +88,8 @@ class QuestaoSerializer
     end
   end
 
-  attribute :prova do |object|
-    prova = object.provas.first
+  attribute :prova do |object, params|
+    prova = (params && params[:prova]) || (object.association(:provas).loaded? ? object.provas.first : object.provas.first)
     if prova
       {
         id: prova.id,
