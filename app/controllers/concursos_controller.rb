@@ -20,6 +20,10 @@ class ConcursosController < ApplicationController
       @concursos = @concursos.where("concursos.estagio ILIKE ?", "%#{params[:estagio]}%")
     end
 
+    if params[:esfera].present?
+      @concursos = @concursos.left_joins(:orgao).where("orgaos.esfera ILIKE ?", "%#{params[:esfera]}%")
+    end
+
     if params[:search].present?
       keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
       if keywords.any?
@@ -131,7 +135,7 @@ class ConcursosController < ApplicationController
   end
 
   def stats
-    has_filters = params[:search].present?
+    has_filters = params[:search].present? || params[:banca_id].present? || params[:orgao_id].present? || params[:esfera].present? || params[:estagio].present?
 
     if !has_filters
       cached_stats = Rails.cache.read("admin/stats/concursos/global")
@@ -146,8 +150,11 @@ class ConcursosController < ApplicationController
 
     @concursos = Concurso.all
 
-    # Filter by name if search present
-    @concursos = @concursos.where("nome ILIKE ?", "%#{params[:search]}%") if params[:search].present?
+    @concursos = @concursos.where(banca_id: params[:banca_id]) if params[:banca_id].present?
+    @concursos = @concursos.where(orgao_id: params[:orgao_id]) if params[:orgao_id].present?
+    @concursos = @concursos.where("concursos.estagio ILIKE ?", "%#{params[:estagio]}%") if params[:estagio].present?
+    @concursos = @concursos.left_joins(:orgao).where("orgaos.esfera ILIKE ?", "%#{params[:esfera]}%") if params[:esfera].present?
+    @concursos = @concursos.where("concursos.nome ILIKE ?", "%#{params[:search]}%") if params[:search].present?
 
     total_count = @concursos.count
 
