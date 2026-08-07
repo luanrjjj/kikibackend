@@ -8,16 +8,37 @@ class ConcursosController < ApplicationController
     
     @concursos = Concurso.all
     
+    if params[:banca_id].present?
+      @concursos = @concursos.where(banca_id: params[:banca_id])
+    end
+
+    if params[:orgao_id].present?
+      @concursos = @concursos.where(orgao_id: params[:orgao_id])
+    end
+
+    if params[:estagio].present?
+      @concursos = @concursos.where("concursos.estagio ILIKE ?", "%#{params[:estagio]}%")
+    end
+
     if params[:search].present?
       keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
       if keywords.any?
         @concursos = @concursos.left_joins(:orgao, :banca)
         keywords.each do |kw|
+          clean_kw = kw.tr('#', '')
           term = "%#{kw}%"
-          @concursos = @concursos.where(
-            "concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
-            term: term
-          )
+          if clean_kw.match?(/\A\d+\z/)
+            @concursos = @concursos.where(
+              "concursos.id = :id_val OR concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
+              id_val: clean_kw.to_i,
+              term: term
+            )
+          else
+            @concursos = @concursos.where(
+              "concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
+              term: term
+            )
+          end
         end
       end
     end

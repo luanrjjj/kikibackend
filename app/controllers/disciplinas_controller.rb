@@ -5,17 +5,47 @@ class DisciplinasController < ApplicationController
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
-    
-    @disciplinas = Disciplina.all
+
+    sort_column = params[:sort_by].presence || 'questoes_count'
+    sort_direction = params[:direction].presence || (params[:sort_by].blank? ? 'desc' : 'asc')
+
+    allowed_columns = {
+      'id' => 'disciplinas.id',
+      'nome' => 'disciplinas.nome',
+      'created_at' => 'disciplinas.created_at',
+      'questoes_count' => 'COUNT(questaos.id)',
+      'questaos_count' => 'COUNT(questaos.id)'
+    }
+
+    order_sql = allowed_columns[sort_column] || 'COUNT(questaos.id)'
+    direction_sql = ['asc', 'desc'].include?(sort_direction.to_s.downcase) ? sort_direction.to_s.downcase : 'desc'
+
+    base_scope = Disciplina.all
     if params[:search].present?
-      @disciplinas = @disciplinas.where("nome ILIKE ?", "%#{params[:search]}%")
+      base_scope = base_scope.where("disciplinas.nome ILIKE ?", "%#{params[:search]}%")
     end
 
-    total_count = @disciplinas.count
-    @disciplinas = @disciplinas.order(:nome).offset((page - 1) * per_page).limit(per_page)
+    total_count = base_scope.count
+
+    @disciplinas = base_scope
+                    .left_joins(:questaos)
+                    .select("disciplinas.*, COUNT(questaos.id) AS meucount")
+                    .group("disciplinas.id")
+                    .order(Arel.sql("#{order_sql} #{direction_sql}, disciplinas.id DESC"))
+                    .offset((page - 1) * per_page)
+                    .limit(per_page)
+
+    data_result = @disciplinas.map do |d|
+      q_count = d.attributes["meucount"].to_i
+      d.as_json.merge(
+        questoes_count: q_count,
+        questaos_count: q_count,
+        total_questoes: q_count
+      )
+    end
 
     render json: {
-      data: @disciplinas,
+      data: data_result,
       meta: {
         current_page: page,
         per_page: per_page,
