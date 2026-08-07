@@ -10,17 +10,25 @@ class ProvasController < ApplicationController
 
     @provas = Prova.includes(:orgao, :banca, :concurso)
 
-    # Apply filters with multi-keyword fuzzy matching across prova, concurso, orgao and banca
+    # Apply filters with multi-keyword fuzzy matching across prova ID, prova name, concurso, orgao and banca
     if params[:search].present?
       keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
       if keywords.any?
         @provas = @provas.left_joins(:orgao, :banca, :concurso)
         keywords.each do |kw|
+          clean_kw = kw.delete('#')
           term = "%#{kw}%"
-          @provas = @provas.where(
-            "provas.nome ILIKE :term OR concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
-            term: term
-          )
+          if clean_kw.match?(/\A\d+\z/)
+            @provas = @provas.where(
+              "provas.id = :id_val OR provas.nome ILIKE :term OR concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
+              term: term, id_val: clean_kw.to_i
+            )
+          else
+            @provas = @provas.where(
+              "provas.nome ILIKE :term OR concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
+              term: term
+            )
+          end
         end
       end
     end
@@ -33,8 +41,17 @@ class ProvasController < ApplicationController
                     .offset((page - 1) * per_page)
                     .limit(per_page)
 
+    prova_ids = @provas.map(&:id)
+    questaos_counts = ProvaQuestao.where(prova_id: prova_ids).group(:prova_id).count
+
+    provas_data = @provas.map do |prova|
+      prova.as_json(prova_json_options).merge(
+        total_questoes: questoes_counts[prova.id] || 0
+      )
+    end
+
     render json: {
-      data: @provas.as_json(prova_json_options),
+      data: provas_data,
       meta: {
         current_page: page,
         per_page: per_page,
