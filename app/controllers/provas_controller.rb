@@ -150,7 +150,7 @@ class ProvasController < ApplicationController
 
     render json: ranked_provas
   end
-  def me_questaos
+  def questaos
     cache_key = "prova/#{@prova.id}/questaos/v4"
 
     json_data = Rails.cache.fetch(cache_key, expires_in: 12.hours) do
