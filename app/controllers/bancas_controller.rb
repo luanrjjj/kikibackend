@@ -172,7 +172,7 @@ class BancasController < ApplicationController
         anos_cobertos: chart_data.map { |d| d[:ano] }
       },
       concursos_por_ano: chart_data,
-      ultimos_concursos: concursos_data
+      ultimos_concursos: concursos_data.first(8)
     }
   rescue StandardError => e
     Rails.logger.error "BancasController#show Error: #{e.message}\n#{e.backtrace.first(10).join("\n")}"
