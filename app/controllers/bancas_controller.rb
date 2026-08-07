@@ -1,7 +1,7 @@
 class BancasController < ApplicationController
   before_action :set_banca, only: %i[ show update destroy ]
-  before_action :authenticate_admin!, only: %i[ all ]
-  # skip_before_action :authenticate_user!, only: [:all]
+  before_action :authenticate_admin!, only: %i[ all create update destroy ]
+  skip_before_action :authenticate_user!, only: %i[ show questoes_count filters ]
 
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
@@ -113,7 +113,70 @@ class BancasController < ApplicationController
     render json: { error: "Erro ao buscar contagem de questões", message: e.message }, status: :internal_server_error
   end
   def show
-    render json: @banca
+    concursos_list = @banca.concursos
+                           .includes(:orgao, :provas)
+                           .order(Arel.sql("COALESCE(concursos.inscricoes_ate, concursos.created_at) DESC"))
+
+    concursos_por_ano = Hash.new(0)
+    concursos_data = concursos_list.map do |c|
+      ano = c.provas.map(&:ano).compact.first ||
+            c.inscricoes_ate&.year ||
+            c.nome[/\b(19\d\d|20\d\d)\b/]&.to_i ||
+            c.created_at&.year
+
+      concursos_por_ano[ano] += 1 if ano
+
+      {
+        id: c.id,
+        nome: c.nome,
+        estagio: c.estagio,
+        inscricoes_ate: c.inscricoes_ate,
+        edital_nome: c.edital_nome,
+        edital_url: c.edital_url,
+        pdf_folder_url: c.pdf_folder_url,
+        ano: ano,
+        orgao: c.orgao ? {
+          id: c.orgao.id,
+          nome: c.orgao.nome,
+          sigla: c.orgao.sigla,
+          esfera: c.orgao.esfera,
+          logo_url: c.orgao.logo_url
+        } : nil,
+        provas: c.provas.map { |p| { id: p.id, nome: p.nome, ano: p.ano } },
+        provas_count: c.provas.size
+      }
+    end
+
+    chart_data = concursos_por_ano.sort_by { |year, _| year }.map do |year, count|
+      { ano: year.to_s, count: count }
+    end
+
+    total_provas = @banca.provas.count
+    total_concursos = concursos_list.size
+
+    render json: {
+      banca: {
+        id: @banca.id,
+        nome: @banca.nome,
+        sigla: @banca.sigla,
+        logo: @banca.logo,
+        total_concursos: @banca.total_concursos || total_concursos,
+        questaos_count: @banca.questaos_count || 0,
+        com_gabarito_count: @banca.com_gabarito_count || 0
+      },
+      stats: {
+        total_concursos: total_concursos,
+        total_provas: total_provas,
+        total_questoes: @banca.questaos_count || 0,
+        com_gabarito: @banca.com_gabarito_count || 0,
+        anos_cobertos: chart_data.map { |d| d[:ano] }
+      },
+      concursos_por_ano: chart_data,
+      ultimos_concursos: concursos_data
+    }
+  rescue StandardError => e
+    Rails.logger.error "BancasController#show Error: #{e.message}\n#{e.backtrace.first(10).join("\n")}"
+    render json: { error: "Erro ao buscar detalhes da banca", message: e.message }, status: :internal_server_error
   end
 
   def create
