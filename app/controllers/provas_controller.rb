@@ -42,7 +42,7 @@ class ProvasController < ApplicationController
                     .limit(per_page)
 
     prova_ids = @provas.map(&:id)
-    questaos_counts = ProvaQuestao.where(prova_id: prova_ids).group(:prova_id).count
+    questoes_counts = ProvaQuestao.where(prova_id: prova_ids).group(:prova_id).count
 
     provas_data = @provas.map do |prova|
       prova.as_json(prova_json_options).merge(
@@ -241,7 +241,7 @@ class ProvasController < ApplicationController
     end
 
     def prova_params
-      params.require(:prova).permit(:nome, :orgao_id, :banca_id, :concurso_id, :ano, :escolaridade, :pdfs_folder_url)
+      params.require(:prova).permit(:nome, :orgao_id, :banca_id, :concurso_id, :ano, :escolaridade, :pdfs_folder_url, :edital_url, :prova_url, :prova_url_ref)
     end
 
     def prova_json_options
