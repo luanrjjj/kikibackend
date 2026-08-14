@@ -106,7 +106,7 @@ class ConcursosController < ApplicationController
       data: @concursos.as_json(include: {
         banca: { only: [:id, :nome, :sigla, :logo] },
         orgao: { except: [:created_at, :updated_at] },
-        provas: { only: [:id, :nome, :ano] }
+        provas: { only: [:id, :nome, :ano, :prova_url, :prova_url_ref, :pdfs_folder_url, :edital_url, :escolaridade] }
       }),
       meta: {
         current_page: page,
@@ -121,7 +121,7 @@ class ConcursosController < ApplicationController
     response_data = @concurso.as_json(include: {
       banca: { only: [:id, :nome, :sigla, :logo] },
       orgao: { except: [:created_at, :updated_at] },
-      provas: { only: [:id, :nome, :ano] },
+      provas: { only: [:id, :nome, :ano, :prova_url, :prova_url_ref, :pdfs_folder_url, :edital_url, :escolaridade] },
       edital_verts: { only: [:id, :cargo, :prova_id, :texto_json_disciplina, :texto_verticalizado] },
       guias: { only: [:id, :nome] }
     })
