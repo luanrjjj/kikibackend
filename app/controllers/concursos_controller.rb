@@ -33,13 +33,13 @@ class ConcursosController < ApplicationController
           term = "%#{kw}%"
           if clean_kw.match?(/\A\d+\z/)
             @concursos = @concursos.where(
-              "concursos.id = :id_val OR concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
+              "concursos.id = :id_val OR concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR orgaos.sede ILIKE :term OR orgaos.esfera ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
               id_val: clean_kw.to_i,
               term: term
             )
           else
             @concursos = @concursos.where(
-              "concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
+              "concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR orgaos.sede ILIKE :term OR orgaos.esfera ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
               term: term
             )
           end
@@ -70,8 +70,28 @@ class ConcursosController < ApplicationController
 
     @concursos = Concurso.all
 
-    if params[:nome].present?
-      @concursos = @concursos.where("concursos.nome ILIKE ?", "%#{params[:nome]}%")
+    search_query = params[:search].presence || params[:nome].presence
+    if search_query.present?
+      keywords = search_query.to_s.strip.split(/\s+/).reject(&:blank?)
+      if keywords.any?
+        @concursos = @concursos.left_joins(:orgao, :banca)
+        keywords.each do |kw|
+          clean_kw = kw.tr('#', '')
+          term = "%#{kw}%"
+          if clean_kw.match?(/\A\d+\z/)
+            @concursos = @concursos.where(
+              "concursos.id = :id_val OR concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR orgaos.sede ILIKE :term OR orgaos.esfera ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
+              id_val: clean_kw.to_i,
+              term: term
+            )
+          else
+            @concursos = @concursos.where(
+              "concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR orgaos.sede ILIKE :term OR orgaos.esfera ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
+              term: term
+            )
+          end
+        end
+      end
     end
 
     if params[:banca_id].present?
@@ -86,7 +106,7 @@ class ConcursosController < ApplicationController
 
     if params[:esfera].present?
       esferas = params[:esfera].is_a?(Array) ? params[:esfera] : [params[:esfera]]
-      @concursos = @concursos.joins(:orgao).where(orgaos: { esfera: esferas })
+      @concursos = @concursos.left_joins(:orgao).where(orgaos: { esfera: esferas })
     end
 
     total_count = @concursos.count
@@ -154,7 +174,29 @@ class ConcursosController < ApplicationController
     @concursos = @concursos.where(orgao_id: params[:orgao_id]) if params[:orgao_id].present?
     @concursos = @concursos.where("concursos.estagio ILIKE ?", "%#{params[:estagio]}%") if params[:estagio].present?
     @concursos = @concursos.left_joins(:orgao).where("orgaos.esfera ILIKE ?", "%#{params[:esfera]}%") if params[:esfera].present?
-    @concursos = @concursos.where("concursos.nome ILIKE ?", "%#{params[:search]}%") if params[:search].present?
+    
+    if params[:search].present?
+      keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
+      if keywords.any?
+        @concursos = @concursos.left_joins(:orgao, :banca)
+        keywords.each do |kw|
+          clean_kw = kw.tr('#', '')
+          term = "%#{kw}%"
+          if clean_kw.match?(/\A\d+\z/)
+            @concursos = @concursos.where(
+              "concursos.id = :id_val OR concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR orgaos.sede ILIKE :term OR orgaos.esfera ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
+              id_val: clean_kw.to_i,
+              term: term
+            )
+          else
+            @concursos = @concursos.where(
+              "concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR orgaos.sede ILIKE :term OR orgaos.esfera ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
+              term: term
+            )
+          end
+        end
+      end
+    end
 
     total_count = @concursos.count
 
@@ -179,10 +221,29 @@ class ConcursosController < ApplicationController
   end
 
   def all
-    @concursos = Concurso.select(:id, :nome).order(:nome)
+    @concursos = Concurso.select("concursos.id, concursos.nome").order(:nome)
     
     if params[:search].present?
-      @concursos = @concursos.where("nome ILIKE ?", "%#{params[:search]}%")
+      keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
+      if keywords.any?
+        @concursos = @concursos.left_joins(:orgao, :banca)
+        keywords.each do |kw|
+          clean_kw = kw.tr('#', '')
+          term = "%#{kw}%"
+          if clean_kw.match?(/\A\d+\z/)
+            @concursos = @concursos.where(
+              "concursos.id = :id_val OR concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR orgaos.sede ILIKE :term OR orgaos.esfera ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
+              id_val: clean_kw.to_i,
+              term: term
+            )
+          else
+            @concursos = @concursos.where(
+              "concursos.nome ILIKE :term OR orgaos.nome ILIKE :term OR orgaos.sigla ILIKE :term OR orgaos.sede ILIKE :term OR orgaos.esfera ILIKE :term OR bancas.nome ILIKE :term OR bancas.sigla ILIKE :term",
+              term: term
+            )
+          end
+        end
+      end
     end
 
     # If search is present, we limit to 50. If not, we return everything (for backward compatibility if needed)
