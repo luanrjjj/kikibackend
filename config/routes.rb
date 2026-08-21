@@ -58,6 +58,7 @@ Rails.application.routes.draw do
       get :ids, on: :collection
       get :filters_page_questaos, on: :collection
       get :stats, on: :collection
+      get :origens_classificacao, on: :collection
     end
 
     resources :provas, defaults: { format: :json } do

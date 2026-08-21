@@ -2,7 +2,7 @@ class QuestaosController < ApplicationController
   before_action :authenticate_subscription, only: %i[ filters_questaos ]
   before_action :set_questao, only: %i[ show update destroy validate anotacao save_anotacao ]
   before_action :authenticate_user!, only: %i[ anotacao save_anotacao ]
-  before_action :authenticate_admin!, only: %i[ index stats ]
+  before_action :authenticate_admin!, only: %i[ index stats origens_classificacao ]
 
   # GET /questaos
   def index
@@ -22,6 +22,11 @@ class QuestaosController < ApplicationController
 
     if params[:assunto_id].present?
       questaos = questaos.where(assunto_id: params[:assunto_id].to_i)
+    end
+
+    if params[:classificacao_origem].present? || params[:classificao_origem].present?
+      val = params[:classificacao_origem].presence || params[:classificao_origem].presence
+      questaos = questaos.where("classificacao_origem ILIKE ?", "%#{val}%")
     end
 
     if params[:search].present?
@@ -72,7 +77,7 @@ class QuestaosController < ApplicationController
 
   # GET /questaos/stats
   def stats
-    has_filters = params[:disciplina_id].present? || params[:assunto_id].present? || params[:prova_id].present? || params[:search].present?
+    has_filters = params[:disciplina_id].present? || params[:assunto_id].present? || params[:prova_id].present? || params[:search].present? || params[:classificacao_origem].present? || params[:classificao_origem].present?
 
     if !has_filters
       cached_stats = Rails.cache.read("admin/stats/questaos/global")
@@ -89,6 +94,11 @@ class QuestaosController < ApplicationController
     scope = Questao.all
     scope = scope.where(disciplina_id: params[:disciplina_id]) if params[:disciplina_id].present?
     scope = scope.where(assunto_id: params[:assunto_id]) if params[:assunto_id].present?
+
+    if params[:classificacao_origem].present? || params[:classificao_origem].present?
+      val = params[:classificacao_origem].presence || params[:classificao_origem].presence
+      scope = scope.where("classificacao_origem ILIKE ?", "%#{val}%")
+    end
 
     if params[:search].present?
       keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
@@ -146,6 +156,19 @@ class QuestaosController < ApplicationController
     Rails.cache.write("admin/stats/questaos/global", render_data) if !has_filters
 
     render json: render_data
+  end
+
+  # GET /questaos/origens_classificacao
+  def origens_classificacao
+    cache_key = "admin/questaos/origens_classificacao"
+    origens = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
+      Questao.where.not(classificacao_origem: [nil, ""])
+             .distinct
+             .order(:classificacao_origem)
+             .pluck(:classificacao_origem)
+    end
+
+    render json: origens
   end
 
   def validate
@@ -316,6 +339,11 @@ class QuestaosController < ApplicationController
       questaos = questaos.where(desatualizada: nil)
     end
 
+    if params[:classificacao_origem].present? || params[:classificao_origem].present?
+      val = params[:classificacao_origem].presence || params[:classificao_origem].presence
+      questaos = questaos.where("classificacao_origem ILIKE ?", "%#{val}%")
+    end
+
     if params[:search].present?
       keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
       if keywords.any?
@@ -347,7 +375,7 @@ class QuestaosController < ApplicationController
     params.require(:questao).permit(
       :texto_id, :texto, :enunciado, :discursiva, :ano, :correta,
       :concurso_id, :assunto_id, :disciplina_id, :topico_id,
-      :validado_admin, :sistema_ref_id,
+      :validado_admin, :sistema_ref_id, :classificacao_origem, :classificao_origem,
       alternativas: [:value, :text]
     )
   end

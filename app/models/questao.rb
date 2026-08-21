@@ -41,13 +41,23 @@ class Questao < ApplicationRecord
     concurso&.orgao&.nome
   end
 
+  def classificao_origem
+    classificacao_origem
+  end
+
+  def classificao_origem=(val)
+    self.classificacao_origem = val
+  end
+
   def as_json(options = {})
     super(options).merge({
       disciplina_nome: disciplina_nome,
       assunto_nome: assunto_nome,
       prova_nome: prova_nome,
       banca_nome: banca_nome,
-      orgao_nome: orgao_nome
+      orgao_nome: orgao_nome,
+      classificacao_origem: classificacao_origem,
+      classificao_origem: classificacao_origem
     })
   end
 
