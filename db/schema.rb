@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_08_08_000214) do
+ActiveRecord::Schema[8.0].define(version: 2026_08_08_001450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -305,7 +305,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_08_08_000214) do
     t.string "classificacoes", default: [], array: true
     t.json "ia_conceito_extracao", default: []
     t.string "status_classificacao"
-    t.string "classificao_origem"
+    t.string "classificacao_origem"
     t.index ["ano"], name: "index_questaos_on_ano"
     t.index ["anulada"], name: "index_questaos_on_anulada"
     t.index ["assunto_id"], name: "index_questaos_on_assunto_id"
