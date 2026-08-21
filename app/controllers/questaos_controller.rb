@@ -25,7 +25,27 @@ class QuestaosController < ApplicationController
     end
 
     if params[:search].present?
-      questaos = questaos.where("enunciado ILIKE ?", "%#{params[:search]}%")
+      keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
+      if keywords.any?
+        keywords.each do |kw|
+          clean_kw = kw.tr('#', '')
+          term = "%#{kw}%"
+          if clean_kw.match?(/\A\d+\z/)
+            questaos = questaos.where(
+              "questaos.id = ? OR questaos.enunciado ILIKE ? OR questaos.sistema_ref_id ILIKE ?",
+              clean_kw.to_i,
+              term,
+              term
+            )
+          else
+            questaos = questaos.where(
+              "questaos.enunciado ILIKE ? OR questaos.sistema_ref_id ILIKE ?",
+              term,
+              term
+            )
+          end
+        end
+      end
     end
 
     # Cache the total count based on the query SQL to avoid slow COUNT(*) on large tables
@@ -69,7 +89,30 @@ class QuestaosController < ApplicationController
     scope = Questao.all
     scope = scope.where(disciplina_id: params[:disciplina_id]) if params[:disciplina_id].present?
     scope = scope.where(assunto_id: params[:assunto_id]) if params[:assunto_id].present?
-    scope = scope.where("enunciado ILIKE ?", "%#{params[:search]}%") if params[:search].present?
+
+    if params[:search].present?
+      keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
+      if keywords.any?
+        keywords.each do |kw|
+          clean_kw = kw.tr('#', '')
+          term = "%#{kw}%"
+          if clean_kw.match?(/\A\d+\z/)
+            scope = scope.where(
+              "questaos.id = ? OR questaos.enunciado ILIKE ? OR questaos.sistema_ref_id ILIKE ?",
+              clean_kw.to_i,
+              term,
+              term
+            )
+          else
+            scope = scope.where(
+              "questaos.enunciado ILIKE ? OR questaos.sistema_ref_id ILIKE ?",
+              term,
+              term
+            )
+          end
+        end
+      end
+    end
 
     if params[:prova_id].present?
       scope = scope.joins(:prova_questaos).where(prova_questaos: { prova_id: params[:prova_id] })
@@ -274,7 +317,27 @@ class QuestaosController < ApplicationController
     end
 
     if params[:search].present?
-      questaos = questaos.where('enunciado ILIKE ?', "%#{params[:search]}%")
+      keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
+      if keywords.any?
+        keywords.each do |kw|
+          clean_kw = kw.tr('#', '')
+          term = "%#{kw}%"
+          if clean_kw.match?(/\A\d+\z/)
+            questaos = questaos.where(
+              "questaos.id = ? OR questaos.enunciado ILIKE ? OR questaos.sistema_ref_id ILIKE ?",
+              clean_kw.to_i,
+              term,
+              term
+            )
+          else
+            questaos = questaos.where(
+              "questaos.enunciado ILIKE ? OR questaos.sistema_ref_id ILIKE ?",
+              term,
+              term
+            )
+          end
+        end
+      end
     end
 
     questaos
