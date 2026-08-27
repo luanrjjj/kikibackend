@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     resources :orgaos, defaults: { format: :json } do
       get :all, on: :collection
       get :filters, on: :collection
+      post :upload_logo, on: :member
+      post :upload_logo, on: :collection
     end
     resources :bancas, defaults: { format: :json } do
       get :all, on: :collection

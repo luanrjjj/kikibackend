@@ -1,5 +1,5 @@
 class OrgaosController < ApplicationController
-  before_action :set_orgao, only: %i[ show update destroy ]
+  before_action :set_orgao, only: %i[ show update destroy upload_logo ], if: -> { params[:id].present? }
 
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
@@ -86,6 +86,28 @@ class OrgaosController < ApplicationController
 
   def destroy
     @orgao.destroy!
+  end
+
+  def upload_logo
+    file = params[:logo] || params[:file]
+    if file.blank?
+      render json: { error: "Nenhum arquivo enviado." }, status: :bad_request
+      return
+    end
+
+    ext = File.extname(file.original_filename).downcase
+    ext = '.png' if ext.blank?
+    sanitized_nome = @orgao ? @orgao.nome.to_s.parameterize : "orgao_#{Time.current.to_i}"
+    key = "orgaos_logos/#{sanitized_nome}_#{SecureRandom.hex(4)}#{ext}"
+
+    begin
+      url = SpacesService.upload_file(key, file)
+      @orgao.update!(logo_url: url) if @orgao
+      render json: { logo_url: url, orgao: @orgao }
+    rescue StandardError => e
+      Rails.logger.error "OrgaosController#upload_logo Error: #{e.message}"
+      render json: { error: "Erro ao fazer upload da logo: #{e.message}" }, status: :internal_server_error
+    end
   end
 
   private
