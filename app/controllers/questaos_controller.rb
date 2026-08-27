@@ -49,7 +49,7 @@ class QuestaosController < ApplicationController
       questaos.count
     end
 
-    questaos_data = questaos.includes(:disciplina, :assunto, :provas, concurso: [:banca, :orgao])
+    questaos_data = questaos.includes(:disciplina, :assunto, :provas, :texto, concurso: [:banca, :orgao])
                             .order("questaos.id ASC")
                             .offset((page - 1) * per_page)
                             .limit(per_page)
@@ -208,7 +208,23 @@ class QuestaosController < ApplicationController
 
   # POST /questaos
   def create
-    @questao = Questao.new(questao_params)
+    attrs = questao_params.to_h
+    texto_content = attrs.delete('texto')
+
+    if attrs['texto_id'].present?
+      attrs['texto_id'] = attrs['texto_id'].to_i
+    elsif texto_content.present?
+      p_id = attrs['prova_id']
+      c_id = attrs['concurso_id']
+      new_texto = Texto.create(
+        texto: texto_content,
+        prova_id: p_id,
+        concurso_id: c_id
+      )
+      attrs['texto_id'] = new_texto.id if new_texto.persisted?
+    end
+
+    @questao = Questao.new(attrs)
 
     if @questao.save
       render json: @questao, status: :created, location: @questao
@@ -219,7 +235,29 @@ class QuestaosController < ApplicationController
 
   # PATCH/PUT /questaos/1
   def update
-    if @questao.update(questao_params)
+    attrs = questao_params.to_h
+    texto_content = attrs.delete('texto')
+
+    if attrs['texto_id'].present?
+      attrs['texto_id'] = attrs['texto_id'].to_i
+    elsif texto_content.present?
+      if @questao.texto.present?
+        @questao.texto.update(texto: texto_content)
+      else
+        p_id = attrs['prova_id'] || @questao.prova_questaos.first&.prova_id
+        c_id = attrs['concurso_id'] || @questao.concurso_id
+        new_texto = Texto.create(
+          texto: texto_content,
+          prova_id: p_id,
+          concurso_id: c_id
+        )
+        attrs['texto_id'] = new_texto.id if new_texto.persisted?
+      end
+    elsif attrs.key?('texto_id') && attrs['texto_id'].blank?
+      attrs['texto_id'] = nil
+    end
+
+    if @questao.update(attrs)
       render json: @questao
     else
       render json: @questao.errors, status: :unprocessable_entity

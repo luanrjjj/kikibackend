@@ -56,6 +56,9 @@ class Questao < ApplicationRecord
       prova_nome: prova_nome,
       banca_nome: banca_nome,
       orgao_nome: orgao_nome,
+      texto_id: texto_id,
+      texto: texto&.texto,
+      texto_imagem: texto&.imagem_texto,
       classificacao_origem: classificacao_origem,
       classificao_origem: classificacao_origem
     })
