@@ -1,3 +1,5 @@
+require 'digest'
+
 class QuestaosController < ApplicationController
   before_action :authenticate_subscription, only: %i[ filters_questaos ]
   before_action :set_questao, only: %i[ show update destroy validate anotacao save_anotacao ]
@@ -11,6 +13,11 @@ class QuestaosController < ApplicationController
 
     # Fetch from PostgreSQL
     questaos = Questao.all
+
+    if params[:questao_id].present? || (params[:id].present? && params[:id].to_s.match?(/\A\d+\z/))
+      q_id = (params[:questao_id] || params[:id]).to_i
+      questaos = questaos.where("questaos.id = ?", q_id)
+    end
 
     if params[:disciplina_id].present?
       questaos = questaos.where(disciplina_id: params[:disciplina_id].to_i)
@@ -26,32 +33,15 @@ class QuestaosController < ApplicationController
 
     if params[:classificacao_origem].present? || params[:classificao_origem].present?
       val = params[:classificacao_origem].presence || params[:classificao_origem].presence
-      questaos = questaos.where("classificacao_origem ILIKE ?", "%#{val}%")
+      origem_col = if Questao.column_names.include?('classificacao_origem')
+                     'questaos.classificacao_origem'
+                   elsif Questao.column_names.include?('classificao_origem')
+                     'questaos.classificao_origem'
+                   end
+      questaos = questaos.where("#{origem_col} ILIKE ?", "%#{val}%") if origem_col
     end
 
-    if params[:search].present?
-      keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
-      if keywords.any?
-        keywords.each do |kw|
-          clean_kw = kw.tr('#', '')
-          term = "%#{kw}%"
-          if clean_kw.match?(/\A\d+\z/)
-            questaos = questaos.where(
-              "questaos.id = ? OR questaos.enunciado ILIKE ? OR questaos.sistema_ref_id ILIKE ?",
-              clean_kw.to_i,
-              term,
-              term
-            )
-          else
-            questaos = questaos.where(
-              "questaos.enunciado ILIKE ? OR questaos.sistema_ref_id ILIKE ?",
-              term,
-              term
-            )
-          end
-        end
-      end
-    end
+    questaos = apply_search_filter(questaos, params[:search])
 
     # Cache the total count based on the query SQL to avoid slow COUNT(*) on large tables
     cache_key = "admin/questaos/count/#{Digest::SHA256.hexdigest(questaos.to_sql)}"
@@ -60,7 +50,7 @@ class QuestaosController < ApplicationController
     end
 
     questaos_data = questaos.includes(:disciplina, :assunto, :provas, concurso: [:banca, :orgao])
-                            .order(id: :asc)
+                            .order("questaos.id ASC")
                             .offset((page - 1) * per_page)
                             .limit(per_page)
 
@@ -77,7 +67,7 @@ class QuestaosController < ApplicationController
 
   # GET /questaos/stats
   def stats
-    has_filters = params[:disciplina_id].present? || params[:assunto_id].present? || params[:prova_id].present? || params[:search].present? || params[:classificacao_origem].present? || params[:classificao_origem].present?
+    has_filters = params[:disciplina_id].present? || params[:assunto_id].present? || params[:prova_id].present? || params[:search].present? || params[:classificacao_origem].present? || params[:classificao_origem].present? || params[:questao_id].present?
 
     if !has_filters
       cached_stats = Rails.cache.read("admin/stats/questaos/global")
@@ -92,41 +82,30 @@ class QuestaosController < ApplicationController
 
     # Fallback to PostgreSQL for filtered stats
     scope = Questao.all
+
+    if params[:questao_id].present? || (params[:id].present? && params[:id].to_s.match?(/\A\d+\z/))
+      q_id = (params[:questao_id] || params[:id]).to_i
+      scope = scope.where("questaos.id = ?", q_id)
+    end
+
     scope = scope.where(disciplina_id: params[:disciplina_id]) if params[:disciplina_id].present?
     scope = scope.where(assunto_id: params[:assunto_id]) if params[:assunto_id].present?
 
     if params[:classificacao_origem].present? || params[:classificao_origem].present?
       val = params[:classificacao_origem].presence || params[:classificao_origem].presence
-      scope = scope.where("classificacao_origem ILIKE ?", "%#{val}%")
-    end
-
-    if params[:search].present?
-      keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
-      if keywords.any?
-        keywords.each do |kw|
-          clean_kw = kw.tr('#', '')
-          term = "%#{kw}%"
-          if clean_kw.match?(/\A\d+\z/)
-            scope = scope.where(
-              "questaos.id = ? OR questaos.enunciado ILIKE ? OR questaos.sistema_ref_id ILIKE ?",
-              clean_kw.to_i,
-              term,
-              term
-            )
-          else
-            scope = scope.where(
-              "questaos.enunciado ILIKE ? OR questaos.sistema_ref_id ILIKE ?",
-              term,
-              term
-            )
-          end
-        end
-      end
+      origem_col = if Questao.column_names.include?('classificacao_origem')
+                     'questaos.classificacao_origem'
+                   elsif Questao.column_names.include?('classificao_origem')
+                     'questaos.classificao_origem'
+                   end
+      scope = scope.where("#{origem_col} ILIKE ?", "%#{val}%") if origem_col
     end
 
     if params[:prova_id].present?
       scope = scope.joins(:prova_questaos).where(prova_questaos: { prova_id: params[:prova_id] })
     end
+
+    scope = apply_search_filter(scope, params[:search])
 
     stats_data = scope.select(
       "COUNT(*) as total",
@@ -162,13 +141,26 @@ class QuestaosController < ApplicationController
   def origens_classificacao
     cache_key = "admin/questaos/origens_classificacao"
     origens = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
-      Questao.where.not(classificacao_origem: [nil, ""])
-             .distinct
-             .order(:classificacao_origem)
-             .pluck(:classificacao_origem)
+      col = if Questao.column_names.include?('classificacao_origem')
+              :classificacao_origem
+            elsif Questao.column_names.include?('classificao_origem')
+              :classificao_origem
+            end
+
+      if col
+        Questao.where.not(col => [nil, ""])
+               .distinct
+               .order(col)
+               .pluck(col)
+      else
+        []
+      end
     end
 
-    render json: origens
+    render json: origens || []
+  rescue => e
+    Rails.logger.error "[QuestaosController#origens_classificacao] Error: #{e.message}"
+    render json: []
   end
 
   def validate
@@ -341,34 +333,64 @@ class QuestaosController < ApplicationController
 
     if params[:classificacao_origem].present? || params[:classificao_origem].present?
       val = params[:classificacao_origem].presence || params[:classificao_origem].presence
-      questaos = questaos.where("classificacao_origem ILIKE ?", "%#{val}%")
+      origem_col = if Questao.column_names.include?('classificacao_origem')
+                     'questaos.classificacao_origem'
+                   elsif Questao.column_names.include?('classificao_origem')
+                     'questaos.classificao_origem'
+                   end
+      questaos = questaos.where("#{origem_col} ILIKE ?", "%#{val}%") if origem_col
     end
 
-    if params[:search].present?
-      keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
-      if keywords.any?
-        keywords.each do |kw|
-          clean_kw = kw.tr('#', '')
-          term = "%#{kw}%"
-          if clean_kw.match?(/\A\d+\z/)
-            questaos = questaos.where(
-              "questaos.id = ? OR questaos.enunciado ILIKE ? OR questaos.sistema_ref_id ILIKE ?",
-              clean_kw.to_i,
-              term,
-              term
-            )
-          else
-            questaos = questaos.where(
-              "questaos.enunciado ILIKE ? OR questaos.sistema_ref_id ILIKE ?",
-              term,
-              term
-            )
-          end
-        end
+    if params[:questao_id].present? || (params[:id].present? && params[:id].to_s.match?(/\A\d+\z/))
+      q_id = (params[:questao_id] || params[:id]).to_i
+      questaos = questaos.where("questaos.id = ?", q_id)
+    end
+
+    questaos = apply_search_filter(questaos, params[:search])
+
+    questaos
+  end
+
+  def apply_search_filter(scope, search_param)
+    return scope if search_param.blank?
+
+    search_str = search_param.to_s.strip
+    return scope if search_str.blank?
+
+    # 1. Direct ID search: "12345", "#12345", "id:12345", "ID: 12345"
+    if search_str =~ /\A(?:id:\s*|#)?(\d+)\z/i
+      target_id = $1.to_i
+      return scope.where("questaos.id = ? OR questaos.sistema_ref_id = ?", target_id, search_str)
+    end
+
+    # 2. Direct Ref ID search: "Q12345", "ref: Q12345"
+    if search_str =~ /\A(?:ref:\s*|#)?([A-Z]\d+)\z/i
+      target_ref = $1
+      return scope.where("questaos.sistema_ref_id = ?", target_ref)
+    end
+
+    # 3. Multi-word search
+    keywords = search_str.split(/\s+/).reject(&:blank?)
+    keywords.each do |kw|
+      clean_kw = kw.tr('#', '')
+      if clean_kw.match?(/\A\d+\z/)
+        # Numeric word: search indexed id or sistema_ref_id directly
+        scope = scope.where("questaos.id = ? OR questaos.sistema_ref_id = ?", clean_kw.to_i, kw)
+      elsif clean_kw.match?(/\A[A-Z]\d+\z/i)
+        # Ref word (e.g. Q12345): search indexed sistema_ref_id
+        scope = scope.where("questaos.sistema_ref_id = ?", clean_kw)
+      else
+        # Text word: search enunciado or sistema_ref_id
+        term = "%#{kw}%"
+        scope = scope.where(
+          "questaos.enunciado ILIKE ? OR questaos.sistema_ref_id ILIKE ?",
+          term,
+          term
+        )
       end
     end
 
-    questaos
+    scope
   end
 
   def questao_params
