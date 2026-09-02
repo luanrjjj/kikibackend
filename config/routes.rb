@@ -26,6 +26,8 @@ Rails.application.routes.draw do
       get :all, on: :collection
       get :filters, on: :collection
       get :questoes_count, on: :collection
+      post :upload_logo, on: :member
+      post :upload_logo, on: :collection
     end
     resources :assuntos, defaults: { format: :json } do
       get :all, on: :collection

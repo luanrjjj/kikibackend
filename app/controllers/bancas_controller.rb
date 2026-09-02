@@ -1,6 +1,6 @@
 class BancasController < ApplicationController
-  before_action :set_banca, only: %i[ show update destroy ]
-  before_action :authenticate_admin!, only: %i[ all create update destroy ]
+  before_action :set_banca, only: %i[ show update destroy upload_logo ]
+  before_action :authenticate_admin!, only: %i[ all create update destroy upload_logo ]
   skip_before_action :authenticate_user!, only: %i[ show questoes_count filters ]
 
   def index
@@ -14,10 +14,16 @@ class BancasController < ApplicationController
     end
 
     total_count = @bancas.count
-    @bancas = @bancas.order(total_concursos: :desc).offset((page - 1) * per_page).limit(per_page)
+    @bancas = @bancas.select(
+      "bancas.*",
+      "(SELECT COUNT(*) FROM concursos WHERE concursos.banca_id = bancas.id) AS concursos_count",
+      "(SELECT COUNT(*) FROM provas WHERE provas.banca_id = bancas.id) AS provas_count"
+    ).order(Arel.sql("COALESCE(bancas.total_concursos, 0) DESC, bancas.id ASC"))
+     .offset((page - 1) * per_page)
+     .limit(per_page)
 
     render json: {
-      data: @bancas,
+      data: @bancas.as_json(methods: [:concursos_count, :provas_count]),
       meta: {
         current_page: page,
         per_page: per_page,
@@ -201,9 +207,31 @@ class BancasController < ApplicationController
     @banca.destroy!
   end
 
+  def upload_logo
+    file = params[:logo] || params[:file]
+    if file.blank?
+      render json: { error: "Nenhum arquivo enviado." }, status: :bad_request
+      return
+    end
+
+    ext = File.extname(file.original_filename).downcase
+    ext = '.png' if ext.blank?
+    sanitized_nome = @banca ? (@banca.sigla.presence || @banca.nome).to_s.parameterize : "banca_#{Time.current.to_i}"
+    key = "bancas_logos/#{sanitized_nome}_#{SecureRandom.hex(4)}#{ext}"
+
+    begin
+      url = SpacesService.upload_file(key, file)
+      @banca.update!(logo: url) if @banca
+      render json: { logo: url, banca: @banca }
+    rescue StandardError => e
+      Rails.logger.error "BancasController#upload_logo Error: #{e.message}"
+      render json: { error: "Erro ao fazer upload da logo: #{e.message}" }, status: :internal_server_error
+    end
+  end
+
   private
     def set_banca
-      @banca = Banca.find(params[:id])
+      @banca = Banca.find(params[:id]) if params[:id].present?
     end
 
     def banca_params
