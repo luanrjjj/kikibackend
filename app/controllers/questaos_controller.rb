@@ -229,7 +229,7 @@ class QuestaosController < ApplicationController
     if @questao.save
       render json: @questao, status: :created, location: @questao
     else
-      render json: @questao.errors, status: :unprocessable_entity
+      render_validation_errors(@questao, "Erro ao criar questão")
     end
   end
 
@@ -260,7 +260,7 @@ class QuestaosController < ApplicationController
     if @questao.update(attrs)
       render json: @questao
     else
-      render json: @questao.errors, status: :unprocessable_entity
+      render_validation_errors(@questao, "Erro ao atualizar questão")
     end
   end
 

@@ -259,7 +259,7 @@ class ConcursosController < ApplicationController
     if @concurso.save
       render json: @concurso, status: :created, location: @concurso
     else
-      render json: @concurso.errors, status: :unprocessable_entity
+      render_validation_errors(@concurso, "Erro ao criar concurso")
     end
   end
 
@@ -267,7 +267,7 @@ class ConcursosController < ApplicationController
     if @concurso.update(concurso_params)
       render json: @concurso
     else
-      render json: @concurso.errors, status: :unprocessable_entity
+      render_validation_errors(@concurso, "Erro ao atualizar concurso")
     end
   end
 

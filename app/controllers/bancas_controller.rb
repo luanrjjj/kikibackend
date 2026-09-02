@@ -185,7 +185,7 @@ class BancasController < ApplicationController
     if @banca.save
       render json: @banca, status: :created, location: @banca
     else
-      render json: @banca.errors, status: :unprocessable_entity
+      render_validation_errors(@banca, "Erro ao criar banca")
     end
   end
 
@@ -193,7 +193,7 @@ class BancasController < ApplicationController
     if @banca.update(banca_params)
       render json: @banca
     else
-      render json: @banca.errors, status: :unprocessable_entity
+      render_validation_errors(@banca, "Erro ao atualizar banca")
     end
   end
 

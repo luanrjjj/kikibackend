@@ -72,7 +72,7 @@ class OrgaosController < ApplicationController
     if @orgao.save
       render json: @orgao, status: :created, location: @orgao
     else
-      render json: @orgao.errors, status: :unprocessable_entity
+      render_validation_errors(@orgao, "Erro ao criar órgão")
     end
   end
 
@@ -80,7 +80,7 @@ class OrgaosController < ApplicationController
     if @orgao.update(orgao_params)
       render json: @orgao
     else
-      render json: @orgao.errors, status: :unprocessable_entity
+      render_validation_errors(@orgao, "Erro ao atualizar órgão")
     end
   end
 
