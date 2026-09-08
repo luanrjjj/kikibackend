@@ -336,12 +336,220 @@ class ConcursosController < ApplicationController
     }, status: :ok
   end
 
+  # POST /concursos/parse_json
+  def parse_json
+    raw_payload = params[:json_data].presence || params[:concurso_json].presence || request.request_parameters
+
+    parsed = if raw_payload.is_a?(String)
+      begin
+        JSON.parse(raw_payload)
+      rescue JSON::ParserError => e
+        render json: { error: "JSON inválido: #{e.message}" }, status: :unprocessable_entity
+        return
+      end
+    elsif raw_payload.respond_to?(:to_unsafe_h)
+      raw_payload.to_unsafe_h
+    elsif raw_payload.is_a?(Hash)
+      raw_payload
+    else
+      render json: { error: "Formato de dados não reconhecido" }, status: :unprocessable_entity
+      return
+    end
+
+    if parsed.key?("json_data") && (parsed["json_data"].is_a?(Hash) || parsed["json_data"].is_a?(String))
+      inner = parsed["json_data"]
+      parsed = inner.is_a?(String) ? (JSON.parse(inner) rescue parsed) : inner
+    end
+
+    nome = parsed["concurso_nome"].presence || parsed["nome"].presence || ""
+    edital_nome = parsed["edital_nome"].presence || ""
+    edital_url = parsed["edital_url"].presence || ""
+
+    prazos = parsed["prazos"] || {}
+    inscricoes_ate = prazos["inscricoes_ate"].presence || parsed["inscricoes_ate"].presence || ""
+    raw_estagio = prazos["estagio"].presence || parsed["estagio"].presence || ""
+    estagio = normalize_estagio(raw_estagio)
+
+    create_missing = [true, "true", 1, "1"].include?(params[:create_missing])
+
+    db_orgao_id = parsed.dig("banco_dados", "orgao_id") || parsed["orgao_id"]
+    orgao_data = parsed["orgao"]
+    matched_orgao = find_orgao(orgao_data, db_orgao_id)
+
+    if matched_orgao.nil? && create_missing && orgao_data.is_a?(Hash) && orgao_data["nome"].present?
+      matched_orgao = Orgao.create(
+        nome: orgao_data["nome"],
+        sigla: orgao_data["sigla"],
+        esfera: orgao_data["esfera"],
+        sede: [orgao_data["municipio"], orgao_data["uf"]].compact.reject(&:blank?).join("/")
+      )
+    end
+
+    db_banca_id = parsed.dig("banco_dados", "banca_id") || parsed["banca_id"]
+    banca_data = parsed["banca"]
+    matched_banca = find_banca(banca_data, db_banca_id)
+
+    if matched_banca.nil? && create_missing && banca_data.is_a?(Hash) && banca_data["nome"].present?
+      matched_banca = Banca.create(
+        nome: banca_data["nome"],
+        sigla: banca_data["sigla"].presence || banca_data["nome"].slice(0, 10)
+      )
+    end
+
+    cargos = parsed["cargos"] || []
+
+    render json: {
+      success: true,
+      data: {
+        nome: nome,
+        edital_nome: edital_nome,
+        edital_url: edital_url,
+        inscricoes_ate: inscricoes_ate,
+        estagio: estagio,
+        orgao_id: matched_orgao&.id,
+        banca_id: matched_banca&.id,
+        cargos: cargos,
+        matched_orgao: matched_orgao ? { id: matched_orgao.id, nome: matched_orgao.nome, sigla: matched_orgao.sigla, esfera: matched_orgao.esfera } : nil,
+        matched_banca: matched_banca ? { id: matched_banca.id, nome: matched_banca.nome, sigla: matched_banca.sigla } : nil,
+        unmatched_orgao: matched_orgao ? nil : orgao_data,
+        unmatched_banca: matched_banca ? nil : banca_data
+      }
+    }
+  rescue StandardError => e
+    Rails.logger.error "ConcursosController#parse_json Error: #{e.message}\n#{e.backtrace.first(10).join("\n")}"
+    render json: { error: "Erro ao processar JSON do concurso: #{e.message}" }, status: :unprocessable_entity
+  end
+
   private
     def set_concurso
       @concurso = Concurso.find(params[:id])
     end
 
     def concurso_params
-      params.require(:concurso).permit(:nome, :inscricoes_ate, :edital_nome, :banca_id, :orgao_id, :cargos, :edital_url, :estagio)
+      concurso_p = params[:concurso].presence || params
+      permitted = concurso_p.permit(:nome, :inscricoes_ate, :edital_nome, :banca_id, :orgao_id, :edital_url, :estagio)
+      if concurso_p.key?(:cargos)
+        raw_cargos = concurso_p[:cargos]
+        permitted[:cargos] = if raw_cargos.is_a?(String)
+          begin
+            JSON.parse(raw_cargos)
+          rescue JSON::ParserError
+            raw_cargos
+          end
+        elsif raw_cargos.respond_to?(:to_unsafe_h)
+          raw_cargos.to_unsafe_h
+        elsif raw_cargos.is_a?(Array)
+          raw_cargos.map { |item| item.respond_to?(:to_unsafe_h) ? item.to_unsafe_h : item }
+        else
+          raw_cargos
+        end
+      end
+      permitted
+    end
+
+    def find_orgao(orgao_data, db_id = nil)
+      if db_id.present?
+        found = Orgao.find_by(id: db_id)
+        return found if found
+      end
+      return nil unless orgao_data.is_a?(Hash)
+
+      sigla = orgao_data["sigla"].to_s.strip
+      nome = orgao_data["nome"].to_s.strip
+      norm_sigla = sigla.gsub(/[-_\s.]/, "").upcase
+
+      if sigla.present?
+        found = Orgao.where("UPPER(sigla) = ?", sigla.upcase).first
+        return found if found
+      end
+
+      if norm_sigla.present?
+        found = Orgao.where("REGEXP_REPLACE(UPPER(sigla), '[-_\\s.]', '', 'g') = ?", norm_sigla).first
+        return found if found
+      end
+
+      if nome.present?
+        found = Orgao.where("LOWER(TRIM(nome)) = ?", nome.downcase).first
+        return found if found
+      end
+
+      if sigla.present?
+        found = Orgao.where("sigla ILIKE ?", "%#{sigla}%").first
+        return found if found
+      end
+
+      if nome.present?
+        found = Orgao.where("nome ILIKE ?", "%#{nome}%").first
+        return found if found
+      end
+
+      nil
+    end
+
+    def find_banca(banca_data, db_id = nil)
+      if db_id.present?
+        found = Banca.find_by(id: db_id)
+        return found if found
+      end
+      return nil unless banca_data.is_a?(Hash)
+
+      sigla = banca_data["sigla"].to_s.strip
+      nome = banca_data["nome"].to_s.strip
+      norm_sigla = sigla.gsub(/[-_\s.]/, "").upcase
+
+      if sigla.present?
+        found = Banca.where("UPPER(sigla) = ?", sigla.upcase).first
+        return found if found
+      end
+
+      if norm_sigla.present?
+        found = Banca.where("REGEXP_REPLACE(UPPER(sigla), '[-_\\s.]', '', 'g') = ?", norm_sigla).first
+        return found if found
+      end
+
+      if nome.present?
+        found = Banca.where("LOWER(TRIM(nome)) = ?", nome.downcase).first
+        return found if found
+      end
+
+      if sigla.present?
+        found = Banca.where("sigla ILIKE ?", "%#{sigla}%").first
+        return found if found
+      end
+
+      if nome.present?
+        found = Banca.where("nome ILIKE ?", "%#{nome}%").first
+        return found if found
+      end
+
+      nil
+    end
+
+    def normalize_estagio(raw)
+      val = raw.to_s.strip.downcase
+      case val
+      when 'aberto'
+        'aberto'
+      when 'inscrições abertas', 'inscricoes abertas'
+        'inscrições abertas'
+      when 'inscrições encerradas', 'inscricoes encerradas'
+        'inscrições encerradas'
+      when 'encerrado'
+        'encerrado'
+      when 'previsto'
+        'previsto'
+      when 'autorizado'
+        'autorizado'
+      when 'comissão formada', 'comissao formada'
+        'comissão formada'
+      when 'banca definida'
+        'banca definida'
+      when 'edital publicado'
+        'edital publicado'
+      when 'em andamento'
+        'em andamento'
+      else
+        val.presence || 'aberto'
+      end
     end
 end

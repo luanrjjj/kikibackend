@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       get :all, on: :collection
       get :public_index, on: :collection
       get :stats, on: :collection
+      post :parse_json, on: :collection
       delete :destroy_by_name, on: :collection
       post :create_s3_folder, on: :member
       post :upload_edital, on: :member

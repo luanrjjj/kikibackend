@@ -11,9 +11,13 @@ class Concurso < ApplicationRecord
   ESTAGIOS = [
     'previsto',
     'autorizado',
+    'comissão formada',
+    'banca definida',
+    'edital publicado',
     'aberto',
     'inscrições abertas',
     'inscrições encerradas',
+    'em andamento',
     'encerrado'
   ].freeze
 
