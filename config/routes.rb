@@ -110,6 +110,7 @@ Rails.application.routes.draw do
       get :export_excel_stats, on: :collection
       get :notebook_stats, on: :collection
       get :question_stats, on: :collection
+      post :gerar_caderno_stats, on: :collection
     end
 
     resources :comentarios, only: [:index, :create], defaults: { format: :json } do

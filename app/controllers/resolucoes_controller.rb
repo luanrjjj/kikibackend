@@ -186,6 +186,7 @@ class ResolucoesController < ApplicationController
       SELECT 
         d.id as disciplina_id, d.nome as disciplina_nome,
         a.id as assunto_id, a.nome as assunto_nome,
+        t.id as topico_id, t.nome as topico_nome,
         count(r.id) as total_resolucoes,
         sum(case when r.correta then 1 else 0 end) as total_acertos,
         sum(case when not r.correta then 1 else 0 end) as total_erros
@@ -193,11 +194,12 @@ class ResolucoesController < ApplicationController
       JOIN questaos q ON r.questao_id = q.id
       JOIN disciplinas d ON q.disciplina_id = d.id
       LEFT JOIN assuntos a ON q.assunto_id = a.id
+      LEFT JOIN topicos t ON q.topico_id = t.id
       WHERE r.user_id = :user_id 
         AND r.created_at >= :start_date
         AND r.created_at <= :end_date
-      GROUP BY d.id, d.nome, a.id, a.nome
-      ORDER BY d.nome, a.nome
+      GROUP BY d.id, d.nome, a.id, a.nome, t.id, t.nome
+      ORDER BY d.nome, a.nome, t.nome
     SQL
 
     results = Resolucao.connection.select_all(
@@ -210,6 +212,7 @@ class ResolucoesController < ApplicationController
     results.each do |row|
       d_id = row['disciplina_id']
       a_id = row['assunto_id']
+      t_id = row['topico_id']
 
       d = disciplinas_map[d_id] ||= { 
         id: d_id, name: row['disciplina_nome'], 
@@ -231,11 +234,24 @@ class ResolucoesController < ApplicationController
         total_resolucoes: 0, 
         acertos: 0, 
         erros: 0,
-        topicos: []
+        topicos: {}
       }
       a[:total_resolucoes] += row['total_resolucoes'].to_i
       a[:acertos] += row['total_acertos'].to_i
       a[:erros] += row['total_erros'].to_i
+
+      if t_id.present?
+        t = a[:topicos][t_id] ||= {
+          id: t_id,
+          name: row['topico_nome'] || "Tópico ##{t_id}",
+          total_resolucoes: 0,
+          acertos: 0,
+          erros: 0
+        }
+        t[:total_resolucoes] += row['total_resolucoes'].to_i
+        t[:acertos] += row['total_acertos'].to_i
+        t[:erros] += row['total_erros'].to_i
+      end
     end
 
     formatted_hierarchy = disciplinas_map.values.map do |d|
@@ -252,13 +268,101 @@ class ResolucoesController < ApplicationController
             total_resolucoes: a[:total_resolucoes],
             acertos: a[:acertos],
             erros: a[:erros],
-            topicos: []
+            topicos: a[:topicos].values.sort_by { |t| (t[:total_resolucoes] > 0 ? t[:acertos].to_f / t[:total_resolucoes] : 0) }.reverse
           }
         end.sort_by { |a| (a[:total_resolucoes] > 0 ? a[:acertos].to_f / a[:total_resolucoes] : 0) }.reverse
       }
     end.sort_by { |d| (d[:total_resolucoes] > 0 ? d[:acertos].to_f / d[:total_resolucoes] : 0) }.reverse
 
     render json: formatted_hierarchy
+  end
+
+  def gerar_caderno_stats
+    unless current_user.admin? || current_user.variaveis['create_notebook_basic']
+      return render json: { error: 'permission_denied', message: 'Assine um plano para criar seus próprios cadernos personalizados.' }, status: :forbidden
+    end
+
+    disciplina_ids = Array(params[:disciplina_ids]).map(&:to_i).reject(&:zero?)
+    assunto_ids = Array(params[:assunto_ids]).map(&:to_s).reject(&:blank?)
+    topico_ids = Array(params[:topico_ids]).map(&:to_i).reject(&:zero?)
+    only_errors = ActiveModel::Type::Boolean.new.cast(params[:only_errors])
+
+    clean_assunto_ids = assunto_ids.reject { |id| id.start_with?('sem-assunto-') }.map(&:to_i).reject(&:zero?)
+
+    if disciplina_ids.empty? && clean_assunto_ids.empty? && topico_ids.empty?
+      return render json: { error: 'invalid_params', message: 'Selecione ao menos um tópico ou matéria.' }, status: :unprocessable_entity
+    end
+
+    questaos = Questao.all
+
+    classificacoes_filters = []
+    classificacoes_filters += disciplina_ids.map { |id| "d_#{id}" } if disciplina_ids.present?
+    classificacoes_filters += clean_assunto_ids.map { |id| "a_#{id}" } if clean_assunto_ids.present?
+    classificacoes_filters += topico_ids.map { |id| "t_#{id}" } if topico_ids.present?
+
+    or_clauses = []
+    or_clauses << "classificacoes && ?" if classificacoes_filters.present?
+    or_clauses << "questaos.disciplina_id IN (?)" if disciplina_ids.present?
+    or_clauses << "questaos.assunto_id IN (?)" if clean_assunto_ids.present?
+    or_clauses << "questaos.topico_id IN (?)" if topico_ids.present?
+
+    clause_args = []
+    clause_args << "{#{classificacoes_filters.join(',')}}" if classificacoes_filters.present?
+    clause_args << disciplina_ids if disciplina_ids.present?
+    clause_args << clean_assunto_ids if clean_assunto_ids.present?
+    clause_args << topico_ids if topico_ids.present?
+
+    questaos = questaos.where(or_clauses.join(' OR '), *clause_args) if or_clauses.present?
+
+    if only_errors
+      questaos = questaos.joins(:resolucoes)
+                         .where(resolucaos: { user_id: current_user.id, correta: false })
+      if params[:start_date].present? || params[:days].present?
+        start_date, end_date = calculate_date_range
+        questaos = questaos.where(resolucaos: { created_at: start_date..end_date })
+      end
+    end
+
+    ids = questaos.distinct.pluck(:id)
+
+    if ids.empty?
+      msg = only_errors ? 'Nenhuma questão errada encontrada para os tópicos selecionados.' : 'Nenhuma questão encontrada para os tópicos selecionados.'
+      return render json: { error: 'no_questions', message: msg }, status: :unprocessable_entity
+    end
+
+    # Limite máximo de 10.000 questões por caderno
+    ids = ids.first(10000)
+
+    # Pasta "Estatística"
+    pasta = current_user.pasta_cadernos.where('LOWER(nome) = ?', 'estatística').first ||
+            current_user.pasta_cadernos.create!(nome: 'Estatística')
+
+    tipo_label = only_errors ? 'Erros' : 'Revisão'
+    timestamp = Time.current.strftime('%d/%m/%Y %H:%M')
+    default_nome = params[:caderno_nome].presence || "Estatísticas - #{tipo_label} (#{timestamp})"
+
+    caderno = current_user.cadernos.create!(
+      nome: default_nome,
+      pasta_caderno_id: pasta.id,
+      questoes_ids: ids,
+      filtros: {
+        origem: 'estatisticas',
+        only_errors: only_errors,
+        disciplina_ids: disciplina_ids,
+        assunto_ids: clean_assunto_ids,
+        topico_ids: topico_ids,
+        questoes_count: ids.length
+      }
+    )
+
+    render json: {
+      id: caderno.id,
+      nome: caderno.nome,
+      pasta_id: pasta.id,
+      pasta_nome: pasta.nome,
+      questoes_count: ids.length,
+      message: "Caderno criado com sucesso com #{ids.length} questões na pasta #{pasta.nome}!"
+    }, status: :created
   end
 
   def export_excel_stats
