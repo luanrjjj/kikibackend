@@ -34,7 +34,7 @@ class GuiasController < ApplicationController
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 10).to_i, 1].max
 
-    @guias = Guia.all
+    @guias = Guia.joins(:concurso).where(concursos: { is_blocked: false })
 
     if params[:nome].present?
       @guias = @guias.where("guias.nome ILIKE ?", "%#{params[:nome]}%")

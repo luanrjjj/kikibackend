@@ -98,6 +98,12 @@ class ApplicationController < ActionController::API
     params.to_s
   end
 
+  def admin_user?
+    return true if current_user&.admin?
+    token = request.headers['Authorization']&.split(' ')&.last
+    User.verify_admin_token(token) == :authorized
+  end
+
   def authenticate_admin!
     token = request.headers['Authorization']&.split(' ')&.last
     verification = User.verify_admin_token(token)

@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       delete :destroy_by_name, on: :collection
       post :create_s3_folder, on: :member
       post :upload_edital, on: :member
+      patch :toggle_blocked, on: :member
     end
 
     resources :disciplinas, defaults: { format: :json } do

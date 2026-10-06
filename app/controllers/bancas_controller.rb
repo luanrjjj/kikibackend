@@ -16,7 +16,7 @@ class BancasController < ApplicationController
     total_count = @bancas.count
     @bancas = @bancas.select(
       "bancas.*",
-      "(SELECT COUNT(*) FROM concursos WHERE concursos.banca_id = bancas.id) AS concursos_count",
+      "(SELECT COUNT(*) FROM concursos WHERE concursos.banca_id = bancas.id AND concursos.is_blocked = false) AS concursos_count",
       "(SELECT COUNT(*) FROM provas WHERE provas.banca_id = bancas.id) AS provas_count"
     ).order(Arel.sql("COALESCE(bancas.total_concursos, 0) DESC, bancas.id ASC"))
      .offset((page - 1) * per_page)
@@ -120,6 +120,7 @@ class BancasController < ApplicationController
   end
   def show
     concursos_list = @banca.concursos
+                           .where(is_blocked: false)
                            .includes(:orgao, :provas)
                            .order(Arel.sql("COALESCE(concursos.inscricoes_ate, concursos.created_at) DESC"))
 

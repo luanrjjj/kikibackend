@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_08_08_001450) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_06_015326) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -117,8 +117,10 @@ ActiveRecord::Schema[8.0].define(version: 2026_08_08_001450) do
     t.string "pdf_folder_url"
     t.string "edital_url"
     t.string "estagio"
+    t.boolean "is_blocked", default: false, null: false
     t.index ["banca_id", "orgao_id", "id"], name: "idx_concursos_banca_orgao_id"
     t.index ["banca_id"], name: "index_concursos_on_banca_id"
+    t.index ["is_blocked"], name: "index_concursos_on_is_blocked"
     t.index ["nome", "inscricoes_ate", "banca_id", "orgao_id"], name: "idx_concursos_uniqueness", unique: true
     t.index ["orgao_id"], name: "index_concursos_on_orgao_id"
   end

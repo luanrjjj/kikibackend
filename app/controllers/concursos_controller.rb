@@ -1,12 +1,18 @@
 class ConcursosController < ApplicationController
-  before_action :set_concurso, only: %i[ show update destroy create_s3_folder upload_edital ]
-  skip_before_action :authenticate_user!, only: [:public_index]
+  before_action :set_concurso, only: %i[ show update destroy create_s3_folder upload_edital toggle_blocked ]
+  before_action :authenticate_admin!, only: %i[ create update destroy create_s3_folder upload_edital destroy_by_name parse_json toggle_blocked ]
+  skip_before_action :authenticate_user!, only: [:public_index, :show]
 
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
     
     @concursos = Concurso.all
+
+    if params[:is_blocked].present?
+      blocked_val = ActiveModel::Type::Boolean.new.cast(params[:is_blocked])
+      @concursos = @concursos.where(is_blocked: blocked_val)
+    end
     
     if params[:banca_id].present?
       @concursos = @concursos.where(banca_id: params[:banca_id])
@@ -68,7 +74,7 @@ class ConcursosController < ApplicationController
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 10).to_i, 1].max
 
-    @concursos = Concurso.all
+    @concursos = Concurso.unblocked
 
     search_query = params[:search].presence || params[:nome].presence
     if search_query.present?
@@ -138,6 +144,11 @@ class ConcursosController < ApplicationController
   end
 
   def show
+    if @concurso.is_blocked? && !admin_user?
+      render json: { error: "Concurso não encontrado" }, status: :not_found
+      return
+    end
+
     response_data = @concurso.as_json(include: {
       banca: { only: [:id, :nome, :sigla, :logo] },
       orgao: { except: [:created_at, :updated_at] },
@@ -221,7 +232,10 @@ class ConcursosController < ApplicationController
   end
 
   def all
-    @concursos = Concurso.select("concursos.id, concursos.nome").order(:nome)
+    @concursos = Concurso.select("concursos.id, concursos.nome, concursos.is_blocked").order(:nome)
+    unless params[:include_blocked].to_s == 'true' || admin_user?
+      @concursos = @concursos.unblocked
+    end
     
     if params[:search].present?
       keywords = params[:search].to_s.strip.split(/\s+/).reject(&:blank?)
@@ -273,6 +287,11 @@ class ConcursosController < ApplicationController
 
   def destroy
     @concurso.destroy!
+  end
+
+  def toggle_blocked
+    @concurso.update!(is_blocked: !@concurso.is_blocked)
+    render json: @concurso
   end
 
   def create_s3_folder
@@ -427,7 +446,7 @@ class ConcursosController < ApplicationController
 
     def concurso_params
       concurso_p = params[:concurso].presence || params
-      permitted = concurso_p.permit(:nome, :inscricoes_ate, :edital_nome, :banca_id, :orgao_id, :edital_url, :estagio)
+      permitted = concurso_p.permit(:nome, :inscricoes_ate, :edital_nome, :banca_id, :orgao_id, :edital_url, :estagio, :is_blocked)
       if concurso_p.key?(:cargos)
         raw_cargos = concurso_p[:cargos]
         permitted[:cargos] = if raw_cargos.is_a?(String)

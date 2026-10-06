@@ -24,10 +24,14 @@ class Concurso < ApplicationRecord
   validates :nome, presence: true, uniqueness: { scope: [:inscricoes_ate, :banca_id, :orgao_id], message: "já existe um concurso com esses mesmos dados" }
   validates :estagio, inclusion: { in: ESTAGIOS }, allow_nil: true
 
+  scope :unblocked, -> { where(is_blocked: false) }
+  scope :blocked, -> { where(is_blocked: true) }
+
   def similar_concursos(limit = 5)
     return Concurso.none unless orgao
 
-    Concurso.joins(:orgao)
+    Concurso.unblocked
+            .joins(:orgao)
             .where.not(id: id)
             .order(
               Arel.sql(

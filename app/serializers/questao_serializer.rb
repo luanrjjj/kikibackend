@@ -58,7 +58,7 @@ class QuestaoSerializer
 
   attribute :concurso do |object, params|
     concurso = object.concurso || (params && params[:prova]&.concurso) || (object.association(:provas).loaded? ? object.provas.first&.concurso : object.provas.first&.concurso)
-    if concurso
+    if concurso && !concurso.is_blocked
       {
         id: concurso.id,
         nome: concurso.nome

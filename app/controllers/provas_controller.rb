@@ -71,7 +71,7 @@ class ProvasController < ApplicationController
     @provas = @provas.where("provas.nome ILIKE ?", "%#{params[:nome]}%") if params[:nome].present?
 
     if params[:concurso_nome].present?
-      @provas = @provas.joins(:concurso).where("concursos.nome ILIKE ?", "%#{params[:concurso_nome]}%")
+      @provas = @provas.joins(:concurso).where("concursos.nome ILIKE ? AND concursos.is_blocked = false", "%#{params[:concurso_nome]}%")
     end
 
     @provas = @provas.where(ano: params[:ano]) if params[:ano].present?
@@ -84,8 +84,14 @@ class ProvasController < ApplicationController
                     .offset((page - 1) * per_page)
                     .limit(per_page)
 
+    provas_data = @provas.map do |prova|
+      p_json = prova.as_json(prova_json_options)
+      p_json['concurso'] = nil if prova.concurso&.is_blocked? && !admin_user?
+      p_json
+    end
+
     render json: {
-      data: @provas.as_json(prova_json_options),
+      data: provas_data,
       meta: {
         current_page: page,
         per_page: per_page,
@@ -202,7 +208,10 @@ class ProvasController < ApplicationController
       hash[disciplina][:assuntos] << { nome: assunto, total: count }
     end
 
-    render json: @prova.as_json(prova_json_options).merge(
+    prova_data = @prova.as_json(prova_json_options)
+    prova_data['concurso'] = nil if @prova.concurso&.is_blocked? && !admin_user?
+
+    render json: prova_data.merge(
       questaos_summary: {
         total: @prova.questaos.count,
         disciplinas: summary.map { |name, data| { nome: name, **data } }
