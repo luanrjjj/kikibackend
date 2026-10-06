@@ -290,8 +290,21 @@ class ConcursosController < ApplicationController
   end
 
   def toggle_blocked
-    @concurso.update!(is_blocked: !@concurso.is_blocked)
-    render json: @concurso
+    Concurso.reset_column_information unless Concurso.column_names.include?('is_blocked')
+
+    result = Concurso.connection.select_one(
+      ActiveRecord::Base.sanitize_sql_array([
+        "UPDATE concursos SET is_blocked = NOT COALESCE(is_blocked, false), updated_at = NOW() WHERE id = ? RETURNING *",
+        @concurso.id
+      ])
+    )
+
+    if result
+      @concurso.reload
+      render json: @concurso
+    else
+      render json: { error: "Erro ao atualizar concurso" }, status: :unprocessable_entity
+    end
   end
 
   def create_s3_folder
@@ -441,6 +454,7 @@ class ConcursosController < ApplicationController
 
   private
     def set_concurso
+      Concurso.reset_column_information unless Concurso.column_names.include?('is_blocked')
       @concurso = Concurso.find(params[:id])
     end
 
