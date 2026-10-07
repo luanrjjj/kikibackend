@@ -15,8 +15,18 @@ class Caderno < ApplicationRecord
 
   validates :nome, presence: true, uniqueness: { scope: :user_id }
   validates :pasta_caderno_id, presence: true
+  validate :validate_max_questoes
 
   private
+
+  def validate_max_questoes
+    return if questoes_ids.blank?
+    max_limit = user&.variaveis&.dig('max_caderno_questoes').to_i
+    max_limit = 10_000 if max_limit <= 0
+    if Array(questoes_ids).map(&:to_i).uniq.length > max_limit
+      errors.add(:questoes_ids, "Excedeu a quantidade máxima de #{max_limit}")
+    end
+  end
 
   def unique_questoes_ids
     return if questoes_ids.blank?

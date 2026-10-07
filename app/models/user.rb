@@ -65,6 +65,9 @@ class User < ApplicationRecord
   end
 
   def variaveis
+    global_max = ConfigGlobalApolo.find_by(nome_da_variavel: 'max_caderno_questoes')&.valor_da_variavel
+    default_max = (global_max.present? && global_max.to_i > 0) ? global_max.to_i : 10_000
+
     if admin?
       return {
         'show_stats_table_by_assunto_basic' => true,
@@ -72,7 +75,8 @@ class User < ApplicationRecord
         'ankis_personalized_advanced' => true,
         'ia_concept_question_extraction_advanced' => true,
         'edital_verticalized_advanced' => true,
-        'create_notebook_basic' => true
+        'create_notebook_basic' => true,
+        'max_caderno_questoes' => default_max
       }
     end
 
@@ -93,7 +97,7 @@ class User < ApplicationRecord
     end
 
     vars = plano_record&.variaveis || []
-    vars.each_with_object({}) do |v, hash|
+    res_vars = vars.each_with_object({}) do |v, hash|
       if v.include?(':')
         key, value = v.split(':', 2)
         hash[key] = value == 'true' ? true : (value == 'false' ? false : value)
@@ -101,6 +105,9 @@ class User < ApplicationRecord
         hash[v] = true
       end
     end
+
+    res_vars['max_caderno_questoes'] = res_vars['max_caderno_questoes'].present? ? res_vars['max_caderno_questoes'].to_i : default_max
+    res_vars
   end
 
   def payment_gateway

@@ -51,6 +51,26 @@ class CadernosController < ApplicationController
       return render json: { error: 'permission_denied', message: 'Assine um plano para criar seus próprios cadernos personalizados.' }, status: :forbidden
     end
 
+    max_limit = current_user.variaveis['max_caderno_questoes'].to_i
+    max_limit = 10_000 if max_limit <= 0
+
+    questoes_count = if caderno_params[:questoes_ids].present?
+                       Array(caderno_params[:questoes_ids]).map(&:to_i).uniq.length
+                     elsif caderno_params[:prova_id].present?
+                       Prova.find_by(id: caderno_params[:prova_id])&.prova_questaos&.count || 0
+                     else
+                       0
+                     end
+
+    if questoes_count > max_limit
+      return render json: {
+        error: 'max_caderno_questoes_exceeded',
+        message: "Excedeu a quantidade máxima de #{max_limit} questões permitidas por caderno.",
+        max_caderno_questoes: max_limit,
+        questoes_count: questoes_count
+      }, status: :unprocessable_entity
+    end
+
     if caderno_params[:nome_da_pasta].present? && caderno_params[:pasta_caderno_id].blank?
       pasta = current_user.pasta_cadernos.find_or_create_by!(nome: caderno_params[:nome_da_pasta])
       @caderno = current_user.cadernos.new(caderno_params.except(:nome_da_pasta).merge(pasta_caderno_id: pasta.id))
@@ -72,6 +92,21 @@ class CadernosController < ApplicationController
 
   # PATCH/PUT /cadernos/1
   def update
+    if caderno_params[:questoes_ids].present?
+      max_limit = current_user.variaveis['max_caderno_questoes'].to_i
+      max_limit = 10_000 if max_limit <= 0
+      questoes_count = Array(caderno_params[:questoes_ids]).map(&:to_i).uniq.length
+
+      if questoes_count > max_limit
+        return render json: {
+          error: 'max_caderno_questoes_exceeded',
+          message: "Excedeu a quantidade máxima de #{max_limit} questões permitidas por caderno.",
+          max_caderno_questoes: max_limit,
+          questoes_count: questoes_count
+        }, status: :unprocessable_entity
+      end
+    end
+
     if @caderno.update(caderno_params)
       render json: @caderno
     else

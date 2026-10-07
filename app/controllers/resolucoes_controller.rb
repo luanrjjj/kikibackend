@@ -330,8 +330,17 @@ class ResolucoesController < ApplicationController
       return render json: { error: 'no_questions', message: msg }, status: :unprocessable_entity
     end
 
-    # Limite máximo de 10.000 questões por caderno
-    ids = ids.first(10000)
+    max_limit = current_user.variaveis['max_caderno_questoes'].to_i
+    max_limit = 10_000 if max_limit <= 0
+
+    if ids.length > max_limit
+      return render json: {
+        error: 'max_caderno_questoes_exceeded',
+        message: "Excedeu a quantidade máxima de #{max_limit} questões permitidas por caderno.",
+        max_caderno_questoes: max_limit,
+        questoes_count: ids.length
+      }, status: :unprocessable_entity
+    end
 
     # Pasta "Estatística"
     pasta = current_user.pasta_cadernos.where('LOWER(nome) = ?', 'estatística').first ||
