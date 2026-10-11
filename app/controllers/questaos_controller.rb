@@ -322,52 +322,8 @@ class QuestaosController < ApplicationController
   end
 
   def apply_filters(scope)
-    questaos = scope
-
-    # Consolidate joins to concursos
-    if params[:bancas].present? || params[:orgaos].present?
-      questaos = questaos.joins(:concurso)
-      questaos = questaos.where(concursos: { banca_id: params[:bancas] }) if params[:bancas].present?
-      questaos = questaos.where(concursos: { orgao_id: params[:orgaos] }) if params[:orgaos].present?
-    end
-
-    if params[:ano].present?
-      if params[:ano].is_a?(Array)
-        questaos = questaos.where(ano: params[:ano])
-      elsif params[:ano].to_s.include?('-')
-        start_year, end_year = params[:ano].split('-').map(&:to_i)
-        questaos = questaos.where(ano: start_year..end_year)
-      else
-        questaos = questaos.where(ano: params[:ano])
-      end
-    end
-
-    if params[:escolaridade].present?
-      # Use EXISTS which is often faster than IN (SELECT ...) in PostgreSQL
-      questaos = questaos.where(
-        "EXISTS (SELECT 1 FROM prova_questaos pq JOIN provas p ON pq.prova_id = p.id WHERE pq.questao_id = questaos.id AND p.escolaridade IN (?))",
-        Array(params[:escolaridade])
-      )
-    end
-
-    if params[:disciplinas].present? || params[:assuntos].present? || params[:topicos].present?
-      classificacoes_filters = []
-      classificacoes_filters += Array(params[:disciplinas]).map { |id| "d_#{id}" } if params[:disciplinas].present?
-      classificacoes_filters += Array(params[:assuntos]).map { |id| "a_#{id}" } if params[:assuntos].present?
-      classificacoes_filters += Array(params[:topicos]).map { |id| "t_#{id}" } if params[:topicos].present?
-
-      # Use PostgreSQL array intersection operator (&&) to match ANY of the provided classifications
-      # Correct syntax for passing an array to a query in Rails for PG overlap
-      questaos = questaos.where("classificacoes && ?", "{#{classificacoes_filters.join(',')}}")
-    end
-
-    if params[:remover_anuladas] == 'true'
-      questaos = questaos.where(anulada: nil)
-    end
-
-    if params[:remover_desatualizadas] == 'true'
-      questaos = questaos.where(desatualizada: nil)
-    end
+    filter_params = params.to_unsafe_h.slice(*QuestaoFilterService::FILTER_KEYS, 'remover_anuladas', 'remover_desatualizadas')
+    questaos = QuestaoFilterService.apply(scope, filter_params)
 
     if params[:classificacao_origem].present? || params[:classificao_origem].present?
       val = params[:classificacao_origem].presence || params[:classificao_origem].presence
