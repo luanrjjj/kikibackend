@@ -99,6 +99,8 @@ Rails.application.routes.draw do
     
     resources :cadernos, defaults: { format: :json } do
       get :questaos, on: :member
+      post :verificar_atualizacoes, on: :member
+      post :atualizar_resolucoes, on: :member
     end
 
     resources :resolucoes, only: [:index, :create], defaults: { format: :json } do
