@@ -41,6 +41,10 @@ class QuestaosController < ApplicationController
       questaos = questaos.where("#{origem_col} ILIKE ?", "%#{val}%") if origem_col
     end
 
+    if ActiveModel::Type::Boolean.new.cast(params[:com_text_to_verify])
+      questaos = questaos.where.not(text_to_verify: nil)
+    end
+
     questaos = apply_search_filter(questaos, params[:search])
 
     # Cache the total count based on the query SQL to avoid slow COUNT(*) on large tables
@@ -49,7 +53,7 @@ class QuestaosController < ApplicationController
       questaos.count
     end
 
-    questaos_data = questaos.includes(:disciplina, :assunto, :provas, :texto, concurso: [:banca, :orgao])
+    questaos_data = questaos.includes(:disciplina, :assunto, :provas, :texto, :texto_para_verificar, concurso: [:banca, :orgao])
                             .order("questaos.id ASC")
                             .offset((page - 1) * per_page)
                             .limit(per_page)

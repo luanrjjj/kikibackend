@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_11_000000) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_11_190000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -311,6 +311,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_11_000000) do
     t.json "ia_conceito_extracao", default: []
     t.string "status_classificacao"
     t.string "classificacao_origem"
+    t.bigint "text_to_verify"
     t.index ["ano"], name: "index_questaos_on_ano"
     t.index ["anulada"], name: "index_questaos_on_anulada"
     t.index ["assunto_id"], name: "index_questaos_on_assunto_id"
@@ -322,6 +323,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_11_000000) do
     t.index ["disciplina_id", "assunto_id", "topico_id", "ano", "anulada", "desatualizada"], name: "idx_questaos_filters_composite"
     t.index ["disciplina_id"], name: "index_questaos_on_disciplina_id"
     t.index ["sistema_ref_id"], name: "index_questaos_on_sistema_ref_id"
+    t.index ["text_to_verify"], name: "index_questaos_on_text_to_verify"
     t.index ["texto_id"], name: "index_questaos_on_texto_id"
     t.index ["topico_id"], name: "index_questaos_on_topico_id"
     t.index ["validado_admin"], name: "index_questaos_on_validado_admin"
