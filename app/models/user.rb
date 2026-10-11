@@ -46,14 +46,14 @@ class User < ApplicationRecord
   end
 
   def total_resolucoes
-    resolucoes.count
+    resolucoes.originais.count
   end
 
   def percentual_acerto
-    total = resolucoes.count
+    total = resolucoes.originais.count
     return 0 if total.zero?
     
-    (resolucoes.where(correta: true).count.to_f / total * 100).round(1)
+    (resolucoes.originais.where(correta: true).count.to_f / total * 100).round(1)
   end
 
   def monthly_exports_count

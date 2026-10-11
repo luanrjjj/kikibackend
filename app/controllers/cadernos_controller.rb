@@ -1,5 +1,5 @@
 class CadernosController < ApplicationController
-  before_action :set_caderno, only: %i[ show questaos destroy update ]
+  before_action :set_caderno, only: %i[ show questaos destroy update verificar_atualizacoes atualizar_resolucoes ]
 
   # GET /cadernos
   def index
@@ -43,6 +43,28 @@ class CadernosController < ApplicationController
       ids: ids,
       total_count: ids.length
     }
+  end
+
+  # POST /cadernos/1/verificar_atualizacoes
+  # Looks for questions that match the notebook's filters (or prova) but aren't
+  # in it yet, appends them and returns a summary plus the last update date.
+  def verificar_atualizacoes
+    max_limit = current_user.variaveis['max_caderno_questoes'].to_i
+    max_limit = 10_000 if max_limit <= 0
+
+    resultado = @caderno.verificar_atualizacoes!(max_limit: max_limit)
+    render json: resultado
+  rescue ActiveRecord::RecordInvalid => e
+    render json: { error: 'update_failed', message: e.record.errors.full_messages.to_sentence }, status: :unprocessable_entity
+  end
+
+  # POST /cadernos/1/atualizar_resolucoes
+  # Traz para o caderno a resolução mais recente do usuário de cada questão,
+  # quando ela foi feita fora do caderno.
+  def atualizar_resolucoes
+    render json: @caderno.atualizar_resolucoes!(current_user)
+  rescue ActiveRecord::RecordInvalid => e
+    render json: { error: 'update_failed', message: e.record.errors.full_messages.to_sentence }, status: :unprocessable_entity
   end
 
   # POST /cadernos
@@ -127,6 +149,8 @@ class CadernosController < ApplicationController
       :id_da_disciplina, 
       :nome_da_disciplina, 
       :questoes_count,
+      :remover_anuladas,
+      :remover_desatualizadas,
       { assuntos: [] }, 
       { topicos: [] }, 
       { disciplinas: [] }, 

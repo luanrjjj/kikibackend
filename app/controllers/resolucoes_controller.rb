@@ -36,6 +36,7 @@ class ResolucoesController < ApplicationController
         sum(case when not correta then 1 else 0 end) as total_erros
       FROM resolucaos
       WHERE created_at >= :start_date
+        AND importada_de_id IS NULL
       GROUP BY date
       ORDER BY date DESC
     SQL
@@ -52,6 +53,7 @@ class ResolucoesController < ApplicationController
         count(DISTINCT user_id) as total_usuarios
       FROM resolucaos
       WHERE created_at >= :start_date
+        AND importada_de_id IS NULL
     SQL
 
     summary_data = Resolucao.connection.select_one(
@@ -70,7 +72,7 @@ class ResolucoesController < ApplicationController
     # Limit check for free users
     unless current_user.subscribed?
       limit = ConfigGlobalApolo.get('limit_resolutions_free', 10).to_i
-      if current_user.resolucoes.count >= limit
+      if current_user.resolucoes.originais.count >= limit
         render json: { 
           error: 'limit_reached', 
           message: 'Você atingiu o limite de questões para o plano gratuito. Assine um plano pago para continuar.' 
@@ -106,6 +108,7 @@ class ResolucoesController < ApplicationController
         sum(case when not correta then 1 else 0 end) as total_erros
       FROM resolucaos
       WHERE user_id = :user_id 
+        AND importada_de_id IS NULL
         AND created_at >= :start_date
         AND created_at <= :end_date
       GROUP BY date
@@ -132,6 +135,7 @@ class ResolucoesController < ApplicationController
       JOIN questaos q ON r.questao_id = q.id
       JOIN disciplinas d ON q.disciplina_id = d.id
       WHERE r.user_id = :user_id 
+        AND r.importada_de_id IS NULL
         AND r.created_at >= :start_date
         AND r.created_at <= :end_date
       GROUP BY d.nome, d.id
@@ -158,6 +162,7 @@ class ResolucoesController < ApplicationController
       JOIN questaos q ON r.questao_id = q.id
       LEFT JOIN assuntos a ON q.assunto_id = a.id
       WHERE r.user_id = :user_id 
+        AND r.importada_de_id IS NULL
         AND r.created_at >= :start_date
         AND r.created_at <= :end_date",
       { user_id: current_user.id, start_date: start_date, end_date: end_date }
@@ -196,6 +201,7 @@ class ResolucoesController < ApplicationController
       LEFT JOIN assuntos a ON q.assunto_id = a.id
       LEFT JOIN topicos t ON q.topico_id = t.id
       WHERE r.user_id = :user_id 
+        AND r.importada_de_id IS NULL
         AND r.created_at >= :start_date
         AND r.created_at <= :end_date
       GROUP BY d.id, d.nome, a.id, a.nome, t.id, t.nome
@@ -545,6 +551,7 @@ class ResolucoesController < ApplicationController
         count(DISTINCT user_id) as total_users
       FROM resolucaos
       WHERE questao_id = :questao_id
+        AND importada_de_id IS NULL
     SQL
 
     global_stats = Resolucao.connection.select_all(
@@ -558,6 +565,7 @@ class ResolucoesController < ApplicationController
         sum(case when not correta then 1 else 0 end) as total_erros
       FROM resolucaos
       WHERE questao_id = :questao_id AND user_id = :user_id
+        AND importada_de_id IS NULL
     SQL
 
     personal_stats = Resolucao.connection.select_all(
@@ -565,6 +573,7 @@ class ResolucoesController < ApplicationController
     ).first
 
     history = current_user.resolucoes
+                          .originais
                           .where(questao_id: questao_id)
                           .order(created_at: :desc)
                           .select(:id, :resposta, :correta, :created_at)
