@@ -17,7 +17,7 @@ class BancasController < ApplicationController
     @bancas = @bancas.select(
       "bancas.*",
       "(SELECT COUNT(*) FROM concursos WHERE concursos.banca_id = bancas.id AND concursos.is_blocked = false) AS concursos_count",
-      "(SELECT COUNT(*) FROM provas WHERE provas.banca_id = bancas.id) AS provas_count"
+      "(SELECT COUNT(*) FROM provas WHERE provas.banca_id = bancas.id AND provas.is_blocked = false) AS provas_count"
     ).order(Arel.sql("COALESCE(bancas.total_concursos, 0) DESC, bancas.id ASC"))
      .offset((page - 1) * per_page)
      .limit(per_page)
@@ -126,7 +126,8 @@ class BancasController < ApplicationController
 
     concursos_por_ano = Hash.new(0)
     concursos_data = concursos_list.map do |c|
-      ano = c.provas.map(&:ano).compact.first ||
+      provas_visiveis = c.provas.reject(&:is_blocked)
+      ano = provas_visiveis.map(&:ano).compact.first ||
             c.inscricoes_ate&.year ||
             c.nome[/\b(19\d\d|20\d\d)\b/]&.to_i ||
             c.created_at&.year
@@ -149,8 +150,8 @@ class BancasController < ApplicationController
           esfera: c.orgao.esfera,
           logo_url: c.orgao.logo_url
         } : nil,
-        provas: c.provas.map { |p| { id: p.id, nome: p.nome, ano: p.ano } },
-        provas_count: c.provas.size
+        provas: provas_visiveis.map { |p| { id: p.id, nome: p.nome, ano: p.ano } },
+        provas_count: provas_visiveis.size
       }
     end
 
@@ -158,7 +159,7 @@ class BancasController < ApplicationController
       { ano: year.to_s, count: count }
     end
 
-    total_provas = @banca.provas.count
+    total_provas = @banca.provas.unblocked.count
     total_concursos = concursos_list.size
 
     render json: {

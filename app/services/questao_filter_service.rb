@@ -38,7 +38,7 @@ class QuestaoFilterService
     if f[:escolaridade].present?
       # EXISTS is usually faster than IN (SELECT ...) in PostgreSQL
       questaos = questaos.where(
-        "EXISTS (SELECT 1 FROM prova_questaos pq JOIN provas p ON pq.prova_id = p.id WHERE pq.questao_id = questaos.id AND p.escolaridade IN (?))",
+        "EXISTS (SELECT 1 FROM prova_questaos pq JOIN provas p ON pq.prova_id = p.id WHERE pq.questao_id = questaos.id AND p.is_blocked = false AND p.escolaridade IN (?))",
         Array(f[:escolaridade])
       )
     end

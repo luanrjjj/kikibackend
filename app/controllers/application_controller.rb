@@ -98,6 +98,36 @@ class ApplicationController < ActionController::API
     params.to_s
   end
 
+  # Remove provas bloqueadas (e itens ligados a elas) de um JSON já montado,
+  # para quem não é admin. Percorre hashes/arrays e filtra as chaves
+  # "provas" (por id) e "edital_verts" (por prova_id).
+  def remover_provas_bloqueadas(data)
+    return data if admin_user?
+
+    blocked = Prova.blocked_ids
+    return data if blocked.empty?
+
+    filtrar = lambda do |node|
+      case node
+      when Array
+        node.each { |item| filtrar.call(item) }
+      when Hash
+        node.each do |key, value|
+          case key.to_s
+          when 'provas'
+            node[key] = value.reject { |p| p.is_a?(Hash) && blocked.include?((p['id'] || p[:id]).to_i) } if value.is_a?(Array)
+          when 'edital_verts'
+            node[key] = value.reject { |e| e.is_a?(Hash) && blocked.include?((e['prova_id'] || e[:prova_id]).to_i) } if value.is_a?(Array)
+          end
+          filtrar.call(node[key]) if node[key].is_a?(Array) || node[key].is_a?(Hash)
+        end
+      end
+    end
+
+    filtrar.call(data)
+    data
+  end
+
   def admin_user?
     return true if current_user&.admin?
     token = request.headers['Authorization']&.split(' ')&.last
