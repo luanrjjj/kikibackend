@@ -4,7 +4,7 @@ class QuestaosController < ApplicationController
   before_action :authenticate_subscription, only: %i[ filters_questaos ]
   before_action :set_questao, only: %i[ show update destroy validate anotacao save_anotacao ]
   before_action :authenticate_user!, only: %i[ anotacao save_anotacao ]
-  before_action :authenticate_admin!, only: %i[ index stats origens_classificacao ]
+  before_action :authenticate_admin!, only: %i[ index stats origens_classificacao validate ]
 
   # GET /questaos
   def index
@@ -167,8 +167,15 @@ class QuestaosController < ApplicationController
     render json: []
   end
 
+  # PATCH /questaos/:id/validate
+  # Marca a questão como validada pelo admin. Se ela tiver um texto p/ verificar
+  # (text_to_verify), esse texto passa a ser o texto da questão (texto_id).
+  # O text_to_verify é mantido para histórico.
   def validate
-    if @questao.update(validado_admin: Time.current)
+    attrs = { validado_admin: Time.current }
+    attrs[:texto_id] = @questao.text_to_verify if @questao.text_to_verify.present?
+
+    if @questao.update(attrs)
       render json: @questao
     else
       render json: @questao.errors, status: :unprocessable_entity
