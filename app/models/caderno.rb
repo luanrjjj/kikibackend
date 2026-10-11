@@ -44,7 +44,7 @@ class Caderno < ApplicationRecord
       candidatos.concat(ids)
     end
 
-    if prova_id.present? && prova
+    if prova_id.present? && prova && !prova.is_blocked?
       ids = prova.prova_questaos.order(numero_questao: :asc).pluck(:questao_id).compact
       grupos << { grupo: 'prova', total: ids.size, novas: ids.count { |id| !atuais_set.include?(id) } }
       candidatos.concat(ids)

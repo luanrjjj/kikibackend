@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_11_190000) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_11_210000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -280,11 +280,13 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_11_190000) do
     t.string "edital_url"
     t.string "prova_url"
     t.string "prova_url_ref"
+    t.boolean "is_blocked", default: false, null: false
     t.index ["area_de_atuacao_id"], name: "index_provas_on_area_de_atuacao_id"
     t.index ["area_de_formacao_id"], name: "index_provas_on_area_de_formacao_id"
     t.index ["banca_id"], name: "index_provas_on_banca_id"
     t.index ["concurso_id"], name: "index_provas_on_concurso_id"
     t.index ["escolaridade", "id"], name: "idx_provas_escolaridade_id"
+    t.index ["is_blocked"], name: "index_provas_on_is_blocked"
     t.index ["orgao_id"], name: "index_provas_on_orgao_id"
   end
 
