@@ -1,7 +1,8 @@
 class ProvasController < ApplicationController
   before_action :authenticate_subscription, only: %i[ questaos ]
-  before_action :set_prova, only: %i[ show update destroy questaos ]
-  before_action :authenticate_admin!, only: %i[ index all stats years ]
+  before_action :set_prova, only: %i[ show update destroy questaos toggle_blocked ]
+  before_action :authenticate_admin!, only: %i[ index all stats years create update destroy toggle_blocked ]
+  before_action :ocultar_prova_bloqueada, only: %i[ show questaos ]
 
   # GET /provas
   def index
@@ -35,6 +36,9 @@ class ProvasController < ApplicationController
     @provas = @provas.where(ano: params[:ano]) if params[:ano].present?
     @provas = @provas.where(banca_id: params[:banca_id]) if params[:banca_id].present?
     @provas = @provas.where(concurso_id: params[:concurso_id]) if params[:concurso_id].present?
+    if params[:is_blocked].present?
+      @provas = @provas.where(is_blocked: ActiveModel::Type::Boolean.new.cast(params[:is_blocked]))
+    end
 
     total_count = @provas.count
     @provas = @provas.order(ano: :desc, nome: :asc)
@@ -66,6 +70,7 @@ class ProvasController < ApplicationController
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
 
     @provas = Prova.includes(:orgao, :banca, :concurso)
+    @provas = @provas.unblocked unless admin_user?
 
     # Apply filters
     @provas = @provas.where("provas.nome ILIKE ?", "%#{params[:nome]}%") if params[:nome].present?
@@ -151,7 +156,8 @@ class ProvasController < ApplicationController
     limit = params.fetch(:limit, 5).to_i
 
     # Get the most popular prova_ids based on Caderno associations
-    popular_counts = Caderno.where.not(prova_id: nil)
+    popular_counts = Caderno.joins(:prova)
+                            .where(provas: { is_blocked: false })
                             .group(:prova_id)
                             .order('count_all DESC')
                             .limit(limit)
@@ -160,7 +166,7 @@ class ProvasController < ApplicationController
     popular_prova_ids = popular_counts.keys
 
     # Fetch the Prova records with their associations
-    @provas = Prova.where(id: popular_prova_ids)
+    @provas = Prova.unblocked.where(id: popular_prova_ids)
                    .includes(:orgao, :banca, :concurso)
 
     # To maintain the order from popular_prova_ids, we map manually
@@ -244,13 +250,27 @@ class ProvasController < ApplicationController
     @prova.destroy!
   end
 
+  # PATCH /provas/1/toggle_blocked
+  def toggle_blocked
+    @prova.update!(is_blocked: !@prova.is_blocked)
+    Rails.cache.delete("prova/#{@prova.id}/questaos/v4")
+    render json: @prova.as_json(prova_json_options)
+  end
+
   private
     def set_prova
       @prova = Prova.find(params[:id])
     end
 
+    # Prova bloqueada responde como inexistente para quem não é admin.
+    def ocultar_prova_bloqueada
+      return unless @prova.is_blocked? && !admin_user?
+
+      render json: { error: "Prova não encontrada" }, status: :not_found
+    end
+
     def prova_params
-      params.require(:prova).permit(:nome, :orgao_id, :banca_id, :concurso_id, :ano, :escolaridade, :pdfs_folder_url, :edital_url, :prova_url, :prova_url_ref)
+      params.require(:prova).permit(:nome, :orgao_id, :banca_id, :concurso_id, :ano, :escolaridade, :pdfs_folder_url, :edital_url, :prova_url, :prova_url_ref, :is_blocked)
     end
 
     def prova_json_options

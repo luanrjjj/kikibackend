@@ -11,6 +11,14 @@ class Prova < ApplicationRecord
 
   validates :nome, presence: true
 
+  # Prova bloqueada pelo admin: não aparece em nenhuma parte pública do sistema.
+  scope :unblocked, -> { where(is_blocked: false) }
+  scope :blocked, -> { where(is_blocked: true) }
+
+  def self.blocked_ids
+    blocked.pluck(:id).to_set
+  end
+
   # enum escolaridade: {
   #   "Ensino Fundamental": 0,
   #   "Ensino Médio": 1,

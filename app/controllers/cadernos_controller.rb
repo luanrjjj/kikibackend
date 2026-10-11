@@ -73,6 +73,10 @@ class CadernosController < ApplicationController
       return render json: { error: 'permission_denied', message: 'Assine um plano para criar seus próprios cadernos personalizados.' }, status: :forbidden
     end
 
+    if caderno_params[:prova_id].present? && !admin_user? && Prova.blocked.exists?(id: caderno_params[:prova_id])
+      return render json: { error: 'Prova não encontrada' }, status: :not_found
+    end
+
     max_limit = current_user.variaveis['max_caderno_questoes'].to_i
     max_limit = 10_000 if max_limit <= 0
 

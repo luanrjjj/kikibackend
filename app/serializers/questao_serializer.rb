@@ -92,7 +92,7 @@ class QuestaoSerializer
 
   attribute :prova do |object, params|
     prova = (params && params[:prova]) || (object.association(:provas).loaded? ? object.provas.first : object.provas.first)
-    if prova
+    if prova && !prova.is_blocked
       {
         id: prova.id,
         nome: prova.nome

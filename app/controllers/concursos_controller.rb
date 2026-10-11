@@ -60,7 +60,7 @@ class ConcursosController < ApplicationController
                          .limit(per_page)
 
     render json: {
-      data: @concursos.as_json(include: [:banca, :orgao, :provas]),
+      data: remover_provas_bloqueadas(@concursos.as_json(include: [:banca, :orgao, :provas])),
       meta: {
         current_page: page,
         per_page: per_page,
@@ -107,7 +107,7 @@ class ConcursosController < ApplicationController
 
     if params[:ano].present?
       anos = params[:ano].is_a?(Array) ? params[:ano] : [params[:ano]]
-      @concursos = @concursos.where(id: Concurso.joins(:provas).where(provas: { ano: anos }).select(:id))
+      @concursos = @concursos.where(id: Concurso.joins(:provas).where(provas: { ano: anos, is_blocked: false }).select(:id))
     end
 
     if params[:esfera].present?
@@ -129,11 +129,11 @@ class ConcursosController < ApplicationController
                          .limit(per_page)
 
     render json: {
-      data: @concursos.as_json(include: {
+      data: remover_provas_bloqueadas(@concursos.as_json(include: {
         banca: { only: [:id, :nome, :sigla, :logo] },
         orgao: { except: [:created_at, :updated_at] },
         provas: { only: [:id, :nome, :ano, :prova_url, :prova_url_ref, :pdfs_folder_url, :edital_url, :escolaridade] }
-      }),
+      })),
       meta: {
         current_page: page,
         per_page: per_page,
@@ -162,7 +162,7 @@ class ConcursosController < ApplicationController
       orgao: { except: [:created_at, :updated_at] }
     })
 
-    render json: response_data
+    render json: remover_provas_bloqueadas(response_data)
   end
 
   def stats

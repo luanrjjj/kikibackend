@@ -72,6 +72,7 @@ Rails.application.routes.draw do
       get :paginated_by_ano, on: :collection
       get :popular, on: :collection
       get :questaos, on: :member
+      patch :toggle_blocked, on: :member
       get :stats, on: :collection
       get :years, on: :collection
     end
