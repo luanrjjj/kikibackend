@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_10_230000) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_11_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -74,6 +74,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_10_230000) do
     t.json "filtros_3"
     t.datetime "questoes_atualizadas_em"
     t.datetime "questoes_verificadas_em"
+    t.datetime "resolucoes_atualizadas_em"
     t.index ["concurso_id"], name: "index_cadernos_on_concurso_id"
     t.index ["filtro_id"], name: "index_cadernos_on_filtro_id"
     t.index ["filtro_id_2"], name: "index_cadernos_on_filtro_id_2"
@@ -346,6 +347,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_10_230000) do
     t.boolean "correta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "importada_de_id"
     t.index ["caderno_id"], name: "index_resolucaos_on_caderno_id"
     t.index ["questao_id"], name: "index_resolucaos_on_questao_id"
     t.index ["user_id"], name: "index_resolucaos_on_user_id"

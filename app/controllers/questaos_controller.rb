@@ -175,7 +175,7 @@ class QuestaosController < ApplicationController
   def show
     resolucoes = nil
     if params[:caderno_id].present? && current_user
-      resolucoes = current_user.resolucoes.where(caderno_id: params[:caderno_id], questao_id: @questao.id).index_by { |r| r[:questao_id] }
+      resolucoes = current_user.resolucoes.where(caderno_id: params[:caderno_id], questao_id: @questao.id).order(:created_at).index_by { |r| r[:questao_id] }
     end
 
     render json: QuestaoSerializer.new(@questao, {

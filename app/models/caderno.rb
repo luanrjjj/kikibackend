@@ -77,7 +77,82 @@ class Caderno < ApplicationRecord
     }
   end
 
+  RESOLUCOES_BATCH_SIZE = 1000
+
+  # "Atualizar resoluções": para cada questão do caderno, pega a resolução mais
+  # recente do usuário feita em outro lugar (outro caderno, filtros, prova...) e
+  # a traz para este caderno, quando ela for mais nova que a última resolução
+  # do caderno para aquela questão.
+  #
+  # A cópia guarda importada_de_id (a resolução original) e o created_at
+  # original, então:
+  #   - rodar de novo não duplica nada (a cópia já é a mais recente do caderno);
+  #   - as estatísticas globais do usuário ignoram as cópias (Resolucao.originais).
+  #
+  # @param user [User] dono das resoluções (o dono do caderno)
+  # @return [Hash] resumo para a resposta da API
+  def atualizar_resolucoes!(user)
+    ids = Array(questoes_ids).map(&:to_i).reject(&:zero?).uniq
+    importadas = 0
+    ja_atualizadas = 0
+    com_resolucao = 0
+    agora = Time.current
+
+    transaction do
+      ids.each_slice(RESOLUCOES_BATCH_SIZE) do |lote|
+        globais = ultimas_resolucoes(user.resolucoes.originais.where(questao_id: lote))
+        next if globais.empty?
+
+        do_caderno = ultimas_resolucoes(user.resolucoes.where(caderno_id: id, questao_id: lote))
+        com_resolucao += globais.size
+
+        novas = globais.values.filter_map do |origem|
+          atual = do_caderno[origem.questao_id]
+          if origem.caderno_id == id || (atual && atual.created_at >= origem.created_at)
+            ja_atualizadas += 1
+            next
+          end
+
+          {
+            user_id: user.id,
+            questao_id: origem.questao_id,
+            caderno_id: id,
+            resposta: origem.resposta,
+            correta: origem.correta,
+            importada_de_id: origem.id,
+            created_at: origem.created_at,
+            updated_at: agora
+          }
+        end
+
+        next if novas.empty?
+
+        Resolucao.insert_all!(novas, returning: false)
+        importadas += novas.size
+      end
+
+      update!(resolucoes_atualizadas_em: agora)
+    end
+
+    {
+      importadas: importadas,
+      ja_atualizadas: ja_atualizadas,
+      sem_resolucao: ids.size - com_resolucao,
+      total_questoes: ids.size,
+      resolucoes_atualizadas_em: resolucoes_atualizadas_em
+    }
+  end
+
   private
+
+  # Latest resolution per question in the given relation, as {questao_id => Resolucao}.
+  def ultimas_resolucoes(relation)
+    relation
+      .select('DISTINCT ON (resolucaos.questao_id) resolucaos.*')
+      .reorder(Arel.sql('resolucaos.questao_id, resolucaos.created_at DESC, resolucaos.id DESC'))
+      .to_a
+      .index_by(&:questao_id)
+  end
 
   # Maps a stored filter group to QuestaoFilterService keys.
   # Older notebooks don't store the anuladas/desatualizadas toggles; the filter
