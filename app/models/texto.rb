@@ -2,6 +2,7 @@ class Texto < ApplicationRecord
   belongs_to :prova, optional: true
   belongs_to :concurso, optional: true
   has_many :questaos
+  has_many :questaos_para_verificar, class_name: 'Questao', foreign_key: :text_to_verify, dependent: :nullify
 
   validates :texto, presence: true
   validates :prova_id, presence: true

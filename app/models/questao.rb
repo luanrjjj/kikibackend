@@ -14,6 +14,8 @@ class Questao < ApplicationRecord
   belongs_to :topico, optional: true
 
   belongs_to :texto, optional: true
+  # Texto candidato a ser verificado pelo admin (ver migração AddTextToVerifyToQuestaos)
+  belongs_to :texto_para_verificar, class_name: 'Texto', foreign_key: :text_to_verify, optional: true
 
   validates :enunciado, presence: true
   validates :ano, presence: true
@@ -59,6 +61,8 @@ class Questao < ApplicationRecord
       texto_id: texto_id,
       texto: texto&.texto,
       texto_imagem: texto&.imagem_texto,
+      text_to_verify: text_to_verify,
+      text_to_verify_texto: texto_para_verificar&.texto,
       classificacao_origem: classificacao_origem,
       classificao_origem: classificacao_origem
     })
