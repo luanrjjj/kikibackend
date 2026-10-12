@@ -61,6 +61,9 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'seed_migration'
+
+# Servidor MCP (Model Context Protocol) em /api/mcp
+gem "mcp", "~> 1.7"
 gem 'aws-sdk-s3'
 
 
