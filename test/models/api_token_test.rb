@@ -36,12 +36,21 @@ class ApiTokenTest < ActiveSupport::TestCase
     assert_nil ApiToken.autenticar(nil)
   end
 
-  test "limita a quantidade de tokens ativos" do
-    ApiToken::MAX_ATIVOS_POR_USUARIO.times { |i| ApiToken.gerar!(user: @user, nome: "t#{i}") }
+  test "gerar um token novo revoga o anterior" do
+    antigo = ApiToken.gerar!(user: @user, nome: "antigo")
+    novo = ApiToken.gerar!(user: @user, nome: "novo")
 
-    assert_raises(ActiveRecord::RecordInvalid) { ApiToken.gerar!(user: @user, nome: "um a mais") }
+    assert_equal [novo.id], @user.api_tokens.ativos.pluck(:id)
+    assert antigo.reload.revogado?
+    assert_nil ApiToken.autenticar(antigo.token)
+    assert_equal novo.id, ApiToken.autenticar(novo.token).id
+  end
 
-    @user.api_tokens.first.revogar!
-    assert ApiToken.gerar!(user: @user, nome: "depois de revogar")
+  test "o banco não aceita dois tokens ativos" do
+    ApiToken.gerar!(user: @user, nome: "ativo")
+    segundo = ApiToken.new(user: @user, nome: "x", token_digest: ApiToken.digest("apl_x"), token_prefixo: "apl_x")
+
+    assert_not segundo.valid?
+    assert_raises(ActiveRecord::RecordNotUnique) { segundo.save!(validate: false) }
   end
 end

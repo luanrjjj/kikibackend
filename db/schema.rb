@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_12_020000) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_12_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -36,6 +36,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_12_020000) do
     t.index ["token_digest"], name: "index_api_tokens_on_token_digest", unique: true
     t.index ["user_id", "revogado_em"], name: "index_api_tokens_on_user_id_and_revogado_em"
     t.index ["user_id"], name: "index_api_tokens_on_user_id"
+    t.index ["user_id"], name: "index_api_tokens_on_user_id_ativo", unique: true, where: "(revogado_em IS NULL)"
   end
 
   create_table "area_de_atuacaos", force: :cascade do |t|

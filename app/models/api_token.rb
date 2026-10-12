@@ -4,9 +4,11 @@
 #
 # O token só é mostrado na criação. No banco fica apenas o SHA-256 dele,
 # então um vazamento do banco não expõe tokens utilizáveis.
+#
+# Cada usuário tem no máximo um token ativo: gerar um novo revoga o anterior.
+# O índice único parcial index_api_tokens_on_user_id_ativo garante isso no banco.
 class ApiToken < ApplicationRecord
   PREFIXO = 'apl_'.freeze
-  MAX_ATIVOS_POR_USUARIO = 10
   # Evita um UPDATE por requisição: last_used_at só é gravado se a última
   # marcação tiver mais que isso.
   INTERVALO_REGISTRO_USO = 5.minutes
@@ -15,22 +17,31 @@ class ApiToken < ApplicationRecord
 
   validates :nome, presence: true, length: { maximum: 80 }
   validates :token_digest, presence: true, uniqueness: true
-  validate :limite_de_tokens_ativos, on: :create
+  validate :um_token_ativo_por_usuario, on: :create
 
   scope :ativos, -> { where(revogado_em: nil) }
 
   # Token em texto puro. Só existe na instância devolvida por .gerar!.
   attr_reader :token
 
-  # Cria um token novo para o usuário e devolve o registro com #token preenchido.
+  # Cria um token novo para o usuário, revogando o que estiver ativo, e devolve
+  # o registro com #token preenchido.
   def self.gerar!(user:, nome:)
     token = "#{PREFIXO}#{SecureRandom.urlsafe_base64(32)}"
-    registro = create!(
-      user: user,
-      nome: nome.to_s.strip,
-      token_digest: digest(token),
-      token_prefixo: token[0, PREFIXO.length + 6]
-    )
+
+    registro = transaction do
+      # Trava o usuário para duas criações simultâneas não deixarem dois ativos.
+      user.lock!
+      user.api_tokens.ativos.update_all(revogado_em: Time.current, updated_at: Time.current)
+
+      create!(
+        user: user,
+        nome: nome.to_s.strip,
+        token_digest: digest(token),
+        token_prefixo: token[0, PREFIXO.length + 6]
+      )
+    end
+
     registro.instance_variable_set(:@token, token)
     registro
   end
@@ -79,11 +90,11 @@ class ApiToken < ApplicationRecord
 
   private
 
-  def limite_de_tokens_ativos
-    return unless user
+  def um_token_ativo_por_usuario
+    return unless user && revogado_em.nil?
 
-    if user.api_tokens.ativos.count >= MAX_ATIVOS_POR_USUARIO
-      errors.add(:base, "Você pode ter no máximo #{MAX_ATIVOS_POR_USUARIO} tokens ativos. Revogue um para criar outro.")
+    if user.api_tokens.ativos.where.not(id: id).exists?
+      errors.add(:base, 'Você já tem um token ativo. Gere um novo para substituí-lo.')
     end
   end
 end

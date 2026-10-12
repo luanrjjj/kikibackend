@@ -12,7 +12,8 @@ O usuário gera o token em **Configurações > Acesso por IA**. O token começa 
 
 - Tabela `api_tokens`: guarda só o SHA-256 do token, o nome, os primeiros
   caracteres (`token_prefixo`), `last_used_at` e `revogado_em`.
-- Máximo de 10 tokens ativos por usuário.
+- Um token ativo por usuário: gerar outro revoga o anterior na hora. O
+  índice único parcial `index_api_tokens_on_user_id_ativo` garante isso no banco.
 - O token pessoal só funciona em `/api/mcp` e `/api/anki/questoes`. O resto da
   API continua aceitando apenas a sessão do site, então um token colado num
   cliente de IA não apaga cadernos, não mexe em pagamentos e não cria outros
@@ -24,8 +25,8 @@ Rotas (sessão do site):
 
 | Método | Rota | O que faz |
 |---|---|---|
-| GET | `/api/api_tokens` | Lista os tokens ativos |
-| POST | `/api/api_tokens` `{ api_token: { nome } }` | Cria e devolve `token` uma vez |
+| GET | `/api/api_tokens` | Lista o token ativo (0 ou 1) |
+| POST | `/api/api_tokens` `{ api_token: { nome } }` | Cria, revoga o anterior e devolve `token` uma vez |
 | DELETE | `/api/api_tokens/:id` | Revoga |
 
 ## Servidor MCP

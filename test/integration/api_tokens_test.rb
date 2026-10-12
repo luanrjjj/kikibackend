@@ -21,7 +21,12 @@ class ApiTokensTest < ActionDispatch::IntegrationTest
     assert_equal [criado["id"]], JSON.parse(response.body).map { |t| t["id"] }
     assert_nil JSON.parse(response.body).first["token"]
 
-    delete "/api/api_tokens/#{criado["id"]}", headers: headers
+    post "/api/api_tokens", params: { api_token: { nome: "Cursor" } }, headers: headers
+    substituto = JSON.parse(response.body)
+    get "/api/api_tokens", headers: headers
+    assert_equal [substituto["id"]], JSON.parse(response.body).map { |t| t["id"] }
+
+    delete "/api/api_tokens/#{substituto["id"]}", headers: headers
     assert_response :no_content
     get "/api/api_tokens", headers: headers
     assert_empty JSON.parse(response.body)
