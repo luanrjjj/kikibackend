@@ -42,35 +42,30 @@ class UserTest < ActiveSupport::TestCase
     assert_not user.subscribed?
   end
 
-  test "can_export? returns true for free users with less than 3 exports this month" do
-    user = User.create!(email: "test_export@example.com", password: "password")
-    user.exports.create!(questoes_count: 10, created_at: Time.current)
-    user.exports.create!(questoes_count: 5, created_at: Time.current)
-    
-    assert_not user.subscribed?
-    assert_equal 2, user.monthly_exports_count
+  test "can_export? permite 1 exportação por semana no plano gratuito" do
+    user = User.create!(email: "test_export_#{SecureRandom.hex(4)}@example.com", password: "password")
+    assert_equal :free, user.plano_nivel
+    assert_equal 1, user.limite_exportacoes_semana
     assert user.can_export?
+
+    user.exports.create!(questoes_count: 10, created_at: Time.current)
+    assert_not user.reload.can_export?
+
+    user.exports.update_all(created_at: 8.days.ago)
+    assert user.reload.can_export?
   end
 
-  test "can_export? returns false for free users with 3 or more exports this month" do
-    user = User.create!(email: "limit@example.com", password: "password")
-    3.times { user.exports.create!(questoes_count: 5, created_at: Time.current) }
-    
-    assert_not user.subscribed?
-    assert_equal 3, user.monthly_exports_count
-    assert_not user.can_export?
-  end
-
-  test "can_export? returns true for subscribed users even with many exports" do
+  test "can_export? é ilimitado para assinantes" do
     user = User.create!(
-      email: "sub@example.com", 
+      email: "sub_#{SecureRandom.hex(4)}@example.com",
       password: "password",
+      plan: "BASIC",
       subscription_status: "ACTIVE",
       current_period_end: 1.month.from_now
     )
     5.times { user.exports.create!(questoes_count: 5, created_at: Time.current) }
-    
-    assert user.subscribed?
+
+    assert_nil user.limite_exportacoes_semana
     assert user.can_export?
   end
 end

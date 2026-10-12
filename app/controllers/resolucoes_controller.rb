@@ -33,16 +33,14 @@ class ResolucoesController < ApplicationController
   def create
     @questao = Questao.find_by!(id: params[:resolucao][:questao_id])
 
-    # Limit check for free users
-    unless current_user.subscribed?
-      limit = ConfigGlobalApolo.get('limit_resolutions_free', 10).to_i
-      if current_user.resolucoes.originais.count >= limit
-        render json: { 
-          error: 'limit_reached', 
-          message: 'Você atingiu o limite de questões para o plano gratuito. Assine um plano pago para continuar.' 
-        }, status: :forbidden
-        return
-      end
+    # Limite de resoluções do plano (limit_resolutions_free; sem a variável, ilimitado)
+    limite = current_user.limite_resolucoes
+    if limite && current_user.resolucoes.originais.count >= limite
+      return render_upgrade_required(
+        'limit_resolutions_free',
+        message: "Você resolveu as #{limite} questões do plano gratuito. Assine para continuar resolvendo sem limite.",
+        limite: limite
+      )
     end
 
     is_correct = @questao.correta == params[:resolucao][:resposta]
@@ -77,18 +75,14 @@ class ResolucoesController < ApplicationController
   end
 
   def hierarchical_stats
-    unless current_user.admin? || current_user.variaveis['show_stats_table_by_assunto_basic']
-      return render json: { error: 'permission_denied', message: 'Assine um plano para visualizar estatísticas detalhadas.' }, status: :forbidden
-    end
+    return render_upgrade_required('show_stats_table_by_assunto_basic') unless current_user.pode?('show_stats_table_by_assunto_basic')
 
     start_date, end_date = calculate_date_range
     render json: estatisticas.hierarquia(start_date, end_date)
   end
 
   def gerar_caderno_stats
-    unless current_user.admin? || current_user.variaveis['create_notebook_basic']
-      return render json: { error: 'permission_denied', message: 'Assine um plano para criar seus próprios cadernos personalizados.' }, status: :forbidden
-    end
+    return render_upgrade_required('create_notebook_basic') unless current_user.pode?('create_notebook_basic')
 
     disciplina_ids = Array(params[:disciplina_ids]).map(&:to_i).reject(&:zero?)
     assunto_ids = Array(params[:assunto_ids]).map(&:to_s).reject(&:blank?)
@@ -160,9 +154,7 @@ class ResolucoesController < ApplicationController
   end
 
   def export_excel_stats
-    unless current_user.admin? || current_user.variaveis['excel_stats_export_advanced']
-      return render json: { error: 'permission_denied', message: 'Assine um plano para exportar estatísticas para Excel.' }, status: :forbidden
-    end
+    return render_upgrade_required('excel_stats_export_advanced') unless current_user.pode?('excel_stats_export_advanced')
 
     render json: { status: 'ok', message: 'Permissão concedida para exportação.' }
   end

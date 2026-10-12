@@ -141,6 +141,7 @@ Rails.application.routes.draw do
     get '/auth/:provider/callback', to: 'sessions#create'
     get '/auth/failure', to: 'sessions#failure'
     post '/auth/login', to: 'sessions#authenticate'
+    get '/auth/me', to: 'sessions#me'
     post '/auth/register', to: 'sessions#register'
     post '/auth/forgot_password', to: 'sessions#forgot_password'
     post '/auth/reset_password', to: 'sessions#reset_password'

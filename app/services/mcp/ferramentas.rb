@@ -172,7 +172,7 @@ module Mcp
     end
 
     def desempenho_por_assunto(args)
-      unless @user.admin? || @user.variaveis['show_stats_table_by_assunto_basic']
+      unless @user.pode?('show_stats_table_by_assunto_basic')
         raise ErroDeFerramenta, 'O plano do usuário não inclui estatísticas por assunto e tópico. Use pontos_fracos ou estatisticas_gerais, ou assine um plano no Apolo.'
       end
 

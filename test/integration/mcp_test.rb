@@ -39,12 +39,21 @@ class McpTest < ActionDispatch::IntegrationTest
     assert_match "Bearer", response.headers["WWW-Authenticate"]
   end
 
+  test "plano Básico não tem mcp_access" do
+    basico = User.create!(email: "basic_#{SecureRandom.hex(4)}@example.com", password: "password",
+                          plan: "BASIC", subscription_status: "ACTIVE", current_period_end: 1.month.from_now)
+    rpc("ping", token: ApiToken.gerar!(user: basico, nome: "b").token)
+    assert_response :forbidden
+  end
+
   test "exige plano pago" do
     gratuito = User.create!(email: "free_#{SecureRandom.hex(4)}@example.com", password: "password")
     token = ApiToken.gerar!(user: gratuito, nome: "free").token
     rpc("ping", token: token)
     assert_response :forbidden
-    assert_equal "subscription_required", JSON.parse(response.body)["error"]
+    corpo = JSON.parse(response.body)
+    assert_equal "upgrade_required", corpo["error"]
+    assert_equal "mcp_access", corpo["recurso"]
 
     @user.update!(subscription_status: "CANCELED")
     rpc("ping")

@@ -4,7 +4,10 @@ require 'genanki/model'
 require 'genanki/note'
 
 class AnkiController < ApplicationController
-  before_action :verify_export_limit
+  # Exportar um .apkg conta no limite semanal do plano (anki_export_by_week_free).
+  before_action :verify_export_limit, only: %i[ generate generate_ai ]
+  # Flashcards de conceitos gerados por IA são do plano Pro.
+  before_action -> { exigir_recurso!('ia_concept_question_extraction_advanced') }, only: %i[ generate_ai ai_generate_json ]
   def generate
     questoes = params[:questoes]
     title = params[:title] || "Anki Deck #{Time.now.strftime('%Y-%m-%d')}"

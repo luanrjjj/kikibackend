@@ -1,9 +1,10 @@
 # Acesso por IA: tokens pessoais, servidor MCP e questões para Anki
 
-Tudo aqui é **exclusivo para assinantes** (`User#subscribed?`; admin conta
-como assinante). Quem não assina recebe 403 `subscription_required` no MCP, na
-rota de questões e ao tentar criar token. Listar e revogar tokens continua
-liberado, para quem cancelou conseguir apagar os antigos.
+Tudo aqui exige a variável `mcp_access` no plano (hoje só o Pro; admin sempre
+pode, ver `docs/PLANOS.md`). Sem ela, o MCP, a rota de questões e a criação de
+token respondem 403 com `error: "upgrade_required"` e `recurso: "mcp_access"`.
+Listar e revogar tokens continua liberado, para quem perdeu o acesso conseguir
+apagar os antigos.
 
 ## Token pessoal
 
@@ -80,7 +81,7 @@ npx @modelcontextprotocol/inspector
 
 ## Questões para Anki
 
-Aceita token pessoal ou sessão do site, só para assinantes. Até 100 ids por requisição.
+Aceita token pessoal ou sessão do site, com `mcp_access` no plano. Até 100 ids por requisição.
 
 ```
 GET  /api/anki/questoes/123
