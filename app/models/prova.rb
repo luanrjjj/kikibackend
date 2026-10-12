@@ -15,6 +15,15 @@ class Prova < ApplicationRecord
   scope :unblocked, -> { where(is_blocked: false) }
   scope :blocked, -> { where(is_blocked: true) }
 
+  # Cache do JSON de GET /provas/:id/questaos
+  def self.questaos_cache_key(prova_id)
+    "prova/#{prova_id}/questaos/v5"
+  end
+
+  def self.expirar_cache_questaos(prova_ids)
+    Array(prova_ids).compact.uniq.each { |id| Rails.cache.delete(questaos_cache_key(id)) }
+  end
+
   def self.blocked_ids
     blocked.pluck(:id).to_set
   end

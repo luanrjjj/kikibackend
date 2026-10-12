@@ -9,8 +9,14 @@ class Texto < ApplicationRecord
   validates :concurso_id, presence: true
 
   before_validation :set_concurso_from_prova
+  after_commit :expirar_cache_das_provas, on: %i[update destroy]
 
   private
+
+  def expirar_cache_das_provas
+    prova_ids = ProvaQuestao.where(questao_id: Questao.where(texto_id: id).select(:id)).distinct.pluck(:prova_id)
+    Prova.expirar_cache_questaos(prova_ids)
+  end
 
   def set_concurso_from_prova
     if prova_id.present? && concurso_id.blank?
