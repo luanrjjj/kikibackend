@@ -41,7 +41,7 @@ class ProvasController < ApplicationController
     end
 
     total_count = @provas.count
-    @provas = @provas.order(ano: :desc, nome: :asc)
+    @provas = @provas.order(ano: :desc, nome: :asc, id: :asc)
                     .offset((page - 1) * per_page)
                     .limit(per_page)
 
@@ -85,7 +85,7 @@ class ProvasController < ApplicationController
     @provas = @provas.where(area_de_formacao_id: params[:area_de_formacao_id]) if params[:area_de_formacao_id].present?
 
     total_count = @provas.count
-    @provas = @provas.order(ano: :desc)
+    @provas = @provas.order(ano: :desc, id: :desc)
                     .offset((page - 1) * per_page)
                     .limit(per_page)
 
