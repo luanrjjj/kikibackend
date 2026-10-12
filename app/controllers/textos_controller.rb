@@ -20,7 +20,8 @@ class TextosController < ApplicationController
     # COUNT(*) em textos é caro; guarda por alguns minutos por consulta
     count_key = "admin/textos/count/#{Digest::SHA256.hexdigest(@textos.to_sql)}"
     total_count = Rails.cache.fetch(count_key, expires_in: 10.minutes) { @textos.count }
-    @textos = @textos.order("#{sort_column} #{sort_direction}")
+    @textos = @textos.order("textos.#{sort_column} #{sort_direction}")
+    @textos = @textos.order(id: :desc) unless sort_column == 'id' # desempate estável para a paginação
                      .offset((page - 1) * per_page)
                      .limit(per_page)
 
