@@ -169,9 +169,12 @@ class AnkiController < ApplicationController
     end
 
     questao = Questao.find_by(id: question_data['id'])
+    # O cache pode ter sido salvo em outro formato (ex.: { "flashcards": [...] }
+    # do DeepSeek); normaliza e, se não sobrar nenhum card, gera de novo.
+    ai_cards = questao ? AiService.normalizar_cards(questao.ia_conceito_extracao) : []
 
-    if questao && questao.ia_conceito_extracao.present?
-      ai_cards = questao.ia_conceito_extracao
+    if ai_cards.present?
+      questao.update_column(:ia_conceito_extracao, ai_cards) if questao.ia_conceito_extracao != ai_cards
     else
       enunciado = question_data['enunciado']
       texto_apoio = question_data.dig('texto', 'texto')
