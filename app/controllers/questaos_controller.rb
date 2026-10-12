@@ -251,6 +251,9 @@ class QuestaosController < ApplicationController
 
     if attrs['texto_id'].present?
       attrs['texto_id'] = attrs['texto_id'].to_i
+      unless Texto.exists?(id: attrs['texto_id'])
+        return render json: { error: "Texto não encontrado", message: "Texto ##{attrs['texto_id']} não existe." }, status: :unprocessable_entity
+      end
     elsif texto_content.present?
       if @questao.texto.present?
         @questao.texto.update(texto: texto_content)
