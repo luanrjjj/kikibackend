@@ -108,7 +108,7 @@ class AnkiQuestoesService
         letra: gabarito,
         texto: self.class.html_para_texto(alternativa_correta && texto_alternativa(alternativa_correta))
       },
-      cards_ia_existentes: questao.ia_conceito_extracao.presence,
+      cards_ia_existentes: AiService.normalizar_cards(questao.ia_conceito_extracao).presence,
       minha_resolucao: resumo_resolucoes(resolucoes)
     }
 

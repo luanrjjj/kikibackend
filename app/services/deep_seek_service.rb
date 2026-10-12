@@ -23,7 +23,7 @@ class DeepSeekService
       3. Use o formato de Pergunta e Resposta (Frente e Verso).
       4. As perguntas devem ser curtas e diretas.
       5. As respostas devem ser concisas.
-      Retorne APENAS um JSON puro no formato: [{ "front": "...", "back": "..." }]
+      Retorne APENAS um objeto JSON no formato: { "cards": [{ "front": "...", "back": "..." }] }
     PROMPT
 
     payload = {
