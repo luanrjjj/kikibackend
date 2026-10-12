@@ -1,6 +1,6 @@
 # Endpoint MCP do Apolo: /api/mcp
 #
-# Só para assinantes. O usuário conecta a própria IA com o token pessoal
+# Exige mcp_access no plano (Pro). O usuário conecta a própria IA com o token pessoal
 # gerado em Configurações > Acesso por IA. Exemplo no Claude Code:
 #
 #   claude mcp add --transport http apolo https://SEU_DOMINIO/api/mcp \
@@ -14,7 +14,7 @@ class McpController < ApplicationController
 
   skip_before_action :authenticate_user!
   before_action :authenticate_api_token!
-  before_action :exigir_plano_pago!
+  before_action :exigir_acesso_mcp!
 
   # POST/GET/DELETE /api/mcp
   def handle

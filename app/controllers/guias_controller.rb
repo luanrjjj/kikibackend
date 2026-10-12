@@ -1,6 +1,10 @@
 class GuiasController < ApplicationController
-  before_action :set_guia, only: %i[ show update destroy ]
   skip_before_action :authenticate_user!, only: [:public_index]
+  # A lista pública continua aberta; abrir um guia exige guide_access.
+  before_action -> { exigir_recurso!('guide_access') }, only: :show
+  # Lista completa e edição são do painel admin.
+  before_action :authenticate_admin!, only: %i[ index create update destroy ]
+  before_action :set_guia, only: %i[ show update destroy ]
 
   # GET /guias (Admin/Private list)
   def index

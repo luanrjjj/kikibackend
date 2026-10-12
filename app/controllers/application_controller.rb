@@ -154,12 +154,32 @@ class ApplicationController < ActionController::API
   end
 
   def verify_export_limit
-    unless current_user&.can_export?
-      render json: {
-        error: 'Limite de exportação atingido',
-        message: 'Usuários do plano gratuito podem exportar até 3 provas por mês. Assine para exportações ilimitadas.'
-      }, status: :forbidden
-    end
+    return if current_user&.can_export?
+
+    limite = current_user&.limite_exportacoes_semana
+    render_upgrade_required(
+      'anki_export_by_week_free',
+      message: "Seu plano permite #{limite} #{limite == 1 ? 'exportação' : 'exportações'} para o Anki por semana. Assine para exportar sem limite.",
+      limite: limite
+    )
+  end
+
+  # before_action para recursos do plano (ver Plano):
+  #   before_action -> { exigir_recurso!('guide_access') }, only: :show
+  def exigir_recurso!(recurso)
+    render_upgrade_required(recurso) unless current_user&.pode?(recurso)
+  end
+
+  # Resposta padrão quando o plano não libera um recurso ou um limite foi
+  # atingido. O frontend abre o modal de assinatura ao receber error
+  # "upgrade_required"; `recurso` diz qual recurso e `plano_minimo` qual plano o libera.
+  def render_upgrade_required(recurso, message: nil, **extra)
+    render json: {
+      error: 'upgrade_required',
+      recurso: recurso,
+      plano_minimo: Plano::NIVEL_MINIMO.fetch(recurso, :basic),
+      message: message || Plano::MENSAGENS.fetch(recurso, 'Este recurso não está disponível no seu plano.')
+    }.merge(extra), status: :forbidden
   end
 
   def authenticate_user!

@@ -1,4 +1,14 @@
 class SessionsController < ApplicationController
+  # O ApplicationController libera o SessionsController inteiro; /auth/me precisa de sessão.
+  before_action :authenticate_user!, only: :me
+
+  # GET /api/auth/me
+  # Dados atuais do usuário logado (plano, variáveis). O frontend chama ao abrir
+  # o app para não depender do que ficou salvo no login.
+  def me
+    render json: current_user.to_session_json
+  end
+
   def create
     Rails.logger.debug("FRONT_URL: #{ENV['SESSION_URL']}")
     puts "SESSION_URL: #{ENV['SESSION_URL']}"

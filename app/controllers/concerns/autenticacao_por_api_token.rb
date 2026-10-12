@@ -69,15 +69,11 @@ module AutenticacaoPorApiToken
     Rails.logger.warn("[API TOKEN] Falha ao aplicar limite de requisições: #{e.class}: #{e.message}")
   end
 
-  # MCP, questões para Anki e tokens pessoais são só para assinantes
-  # (admin conta como assinante, como em User#subscribed?).
-  def exigir_plano_pago!
-    return if performed? || current_user&.subscribed?
+  # MCP, questões para Anki e criação de tokens exigem mcp_access no plano.
+  def exigir_acesso_mcp!
+    return if performed?
 
-    render json: {
-      error: 'subscription_required',
-      message: 'O acesso por IA (MCP e questões para Anki) é exclusivo para assinantes. Assine um plano no Apolo para usar.'
-    }, status: :forbidden
+    exigir_recurso!('mcp_access')
   end
 
   def negar_acesso_por_token(erro, mensagem)

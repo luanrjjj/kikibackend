@@ -69,9 +69,7 @@ class CadernosController < ApplicationController
 
   # POST /cadernos
   def create
-    unless current_user.admin? || current_user.variaveis['create_notebook_basic']
-      return render json: { error: 'permission_denied', message: 'Assine um plano para criar seus próprios cadernos personalizados.' }, status: :forbidden
-    end
+    return render_upgrade_required('create_notebook_basic') unless current_user.pode?('create_notebook_basic')
 
     if caderno_params[:prova_id].present? && !admin_user? && Prova.blocked.exists?(id: caderno_params[:prova_id])
       return render json: { error: 'Prova não encontrada' }, status: :not_found
