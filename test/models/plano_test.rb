@@ -67,4 +67,13 @@ class PlanoTest < ActiveSupport::TestCase
     assert_nil admin.limite_resolucoes
     assert_nil admin.limite_exportacoes_semana
   end
+
+  test "limite salvo só com o nome usa o padrão do nível" do
+    Plano.delete_all
+    Plano.create!(nome_do_plano: "Free", variaveis: ["limit_resolutions_free", "anki_export_by_week_free"])
+    free = User.create!(email: "f_#{SecureRandom.hex(4)}@example.com", password: "password")
+
+    assert_equal 100, free.limite_resolucoes
+    assert_equal 1, free.limite_exportacoes_semana
+  end
 end

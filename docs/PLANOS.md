@@ -19,6 +19,10 @@ caixa; números viram inteiros; `chave` sozinha vale `true`. A lógica está em
 | `mcp_access` | Gerar token e usar MCP / questões para Anki | não | não | sim |
 
 - Recurso sem a variável conta como `false`; limite sem a variável é ilimitado.
+  Limite salvo só com o nome (`limit_resolutions_free`, sem `:100`) usa o número
+  padrão do nível.
+- Planos com nomes repetidos ("Basic" e "Básico", "Advanced" e "Avançado")
+  são o mesmo nível; a migração atualiza todos.
 - Quem não tem assinatura ativa (inclusive expirada) usa o plano Free. Assinante
   com `plan` contendo "basic" usa o Básico; os demais usam o Pro (`Advanced`,
   `Pro` e `Avançado` são o mesmo nível). Admin pode tudo, sem limites.

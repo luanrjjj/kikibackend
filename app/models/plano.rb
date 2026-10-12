@@ -110,9 +110,20 @@ class Plano < ApplicationRecord
   end
 
   # Variáveis efetivas de um nível: as do banco, ou PADROES se o plano não existir.
+  # Um limite salvo só com o nome (ex.: "limit_resolutions_free", sem ":100")
+  # usa o número padrão do nível, em vez de virar ilimitado.
   def self.variaveis_do_nivel(nivel)
     registro = do_nivel(nivel)
-    registro ? registro.variaveis_hash : PADROES.fetch(nivel).dup
+    return PADROES.fetch(nivel).dup unless registro
+
+    vars = registro.variaveis_hash
+    RECURSOS_COM_LIMITE.each do |chave|
+      next unless vars[chave] == true
+
+      padrao = PADROES.fetch(nivel)[chave]
+      padrao.is_a?(Integer) ? vars[chave] = padrao : vars.delete(chave)
+    end
+    vars
   end
 
   # Converte a lista de strings em hash: "true"/"false" (qualquer caixa) viram
