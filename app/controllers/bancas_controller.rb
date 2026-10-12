@@ -1,7 +1,9 @@
 class BancasController < ApplicationController
   before_action :set_banca, only: %i[ show update destroy upload_logo ]
-  before_action :authenticate_admin!, only: %i[ all create update destroy upload_logo ]
-  skip_before_action :authenticate_user!, only: %i[ show questoes_count filters ]
+  before_action :authenticate_admin!, only: %i[ create update destroy upload_logo ]
+  # all/filters só devolvem id, nome e sigla e alimentam os filtros públicos de
+  # Concursos e Provas, por isso não exigem login nem admin.
+  skip_before_action :authenticate_user!, only: %i[ show all questoes_count filters ]
 
   def index
     page = [params.fetch(:page, 1).to_i, 1].max
