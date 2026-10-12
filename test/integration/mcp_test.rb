@@ -4,7 +4,10 @@ class McpTest < ActionDispatch::IntegrationTest
   self.fixture_table_names = []
 
   setup do
-    @user = User.create!(email: "mcp_#{SecureRandom.hex(4)}@example.com", password: "password")
+    @user = User.create!(
+      email: "mcp_#{SecureRandom.hex(4)}@example.com", password: "password",
+      subscription_status: "ACTIVE", current_period_end: 1.month.from_now
+    )
     @token = ApiToken.gerar!(user: @user, nome: "teste").token
 
     disciplina = Disciplina.create!(nome: "Português")
@@ -34,6 +37,18 @@ class McpTest < ActionDispatch::IntegrationTest
     post "/api/mcp", params: { jsonrpc: "2.0", id: 1, method: "ping" }.to_json, headers: { "Content-Type" => "application/json" }
     assert_response :unauthorized
     assert_match "Bearer", response.headers["WWW-Authenticate"]
+  end
+
+  test "exige plano pago" do
+    gratuito = User.create!(email: "free_#{SecureRandom.hex(4)}@example.com", password: "password")
+    token = ApiToken.gerar!(user: gratuito, nome: "free").token
+    rpc("ping", token: token)
+    assert_response :forbidden
+    assert_equal "subscription_required", JSON.parse(response.body)["error"]
+
+    @user.update!(subscription_status: "CANCELED")
+    rpc("ping")
+    assert_response :forbidden
   end
 
   test "recusa token de sessão do site" do
@@ -77,8 +92,8 @@ class McpTest < ActionDispatch::IntegrationTest
     assert resultado["isError"]
   end
 
-  test "GET não é permitido" do
-    get "/api/mcp"
+  test "GET não é permitido no modo sem estado" do
+    get "/api/mcp", headers: { "Authorization" => "Bearer #{@token}", "Accept" => "text/event-stream" }
     assert_response :method_not_allowed
   end
 end

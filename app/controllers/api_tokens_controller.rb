@@ -1,8 +1,13 @@
 # Tokens pessoais do usuário logado (tela Configurações > Acesso por IA).
 #
 # Usa a autenticação normal por sessão: um token pessoal não consegue listar,
-# criar nem revogar tokens.
+# criar nem revogar tokens. Criar exige plano pago; listar e revogar não, para
+# quem cancelou a assinatura ainda conseguir apagar tokens antigos.
 class ApiTokensController < ApplicationController
+  include AutenticacaoPorApiToken
+
+  before_action :exigir_plano_pago!, only: :create
+
   # GET /api/api_tokens
   def index
     tokens = current_user.api_tokens.ativos.order(created_at: :desc)

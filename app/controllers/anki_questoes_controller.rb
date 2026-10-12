@@ -1,4 +1,5 @@
 # Dados de questões para o usuário criar flashcards (Anki) com a própria IA.
+# Só para assinantes.
 #
 # Autenticação: token pessoal (apl_...) gerado em Configurações > Acesso por IA,
 # ou o token de sessão do site.
@@ -17,6 +18,7 @@ class AnkiQuestoesController < ApplicationController
 
   skip_before_action :authenticate_user!
   before_action :authenticate_api_token_ou_sessao!
+  before_action :exigir_plano_pago!
 
   # GET /api/anki/questoes/:id
   def show

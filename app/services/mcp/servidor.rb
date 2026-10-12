@@ -1,22 +1,13 @@
 module Mcp
-  # Servidor MCP (Model Context Protocol) do Apolo, transporte "Streamable HTTP"
-  # sem estado: cada POST /api/mcp traz uma mensagem JSON-RPC 2.0 e recebe a
-  # resposta em JSON na mesma requisição.
+  # Servidor MCP do Apolo, montado com a gem oficial `mcp`
+  # (https://github.com/modelcontextprotocol/ruby-sdk).
   #
-  # Implementado à mão, sem a gem `mcp`, para não mexer no Gemfile.lock. O
-  # protocolo usado aqui é pequeno: initialize, ping, tools/list e tools/call.
-  #
-  # Especificação: https://modelcontextprotocol.io/specification/2025-06-18
-  class Servidor
-    VERSOES_SUPORTADAS = %w[2025-06-18 2025-03-26 2024-11-05].freeze
+  # As ferramentas são criadas uma vez, a partir de Mcp::Ferramentas::DEFINICOES.
+  # O servidor é criado por requisição, com o usuário dono do token no
+  # server_context, como no padrão "Rails (controller)" da documentação da gem.
+  module Servidor
     NOME = 'apolo'.freeze
     VERSAO = '1.0.0'.freeze
-
-    PARSE_ERROR = -32_700
-    INVALID_REQUEST = -32_600
-    METHOD_NOT_FOUND = -32_601
-    INVALID_PARAMS = -32_602
-    INTERNAL_ERROR = -32_603
 
     INSTRUCOES = <<~TXT.freeze
       Servidor do Apolo, plataforma de questões de concurso. Todas as ferramentas
@@ -31,109 +22,48 @@ module Mcp
       Taxas de acerto estão em porcentagem (0 a 100). Datas no formato AAAA-MM-DD.
     TXT
 
-    def initialize(user:)
-      @user = user
-      @ferramentas = Ferramentas.new(user)
-    end
+    # Uma classe MCP::Tool por ferramenta. O bloco recebe os argumentos com
+    # chaves em símbolo (a gem já validou contra o inputSchema) e repassa para
+    # Mcp::Ferramentas.
+    FERRAMENTAS = Ferramentas::DEFINICOES.map do |definicao|
+      nome = definicao[:name]
 
-    # @param mensagem [Hash, Array] JSON-RPC já decodificado
-    # @return [Hash, Array, nil] resposta; nil quando só havia notificações
-    def processar(mensagem)
-      if mensagem.is_a?(Array)
-        return erro(nil, INVALID_REQUEST, 'Lote vazio.') if mensagem.empty?
-
-        respostas = mensagem.map { |m| processar_uma(m) }.compact
-        respostas.empty? ? nil : respostas
-      else
-        processar_uma(mensagem)
+      MCP::Tool.define(
+        name: nome,
+        title: definicao[:title],
+        description: definicao[:description],
+        input_schema: definicao[:inputSchema],
+        annotations: { title: definicao[:title], read_only_hint: true, destructive_hint: false, idempotent_hint: true, open_world_hint: false }
+      ) do |server_context:, **argumentos|
+        Servidor.executar(nome, server_context[:user], argumentos)
       end
+    end.freeze
+
+    module_function
+
+    # @param user [User] dono do token
+    # @return [MCP::Server]
+    def construir(user)
+      MCP::Server.new(
+        name: NOME,
+        title: 'Apolo Concursos',
+        version: VERSAO,
+        instructions: INSTRUCOES,
+        tools: FERRAMENTAS,
+        server_context: { user: user }
+      )
     end
 
-    def self.erro_de_parse
-      { jsonrpc: '2.0', id: nil, error: { code: PARSE_ERROR, message: 'JSON inválido.' } }
-    end
+    # Executa a ferramenta e converte o resultado em MCP::Tool::Response.
+    # Erros de uso (caderno de outro usuário, data inválida, plano sem
+    # permissão) voltam com isError para o modelo ler a mensagem e corrigir.
+    def executar(nome, user, argumentos)
+      dados = Ferramentas.new(user).chamar(nome, argumentos.transform_keys(&:to_s))
+      dados = JSON.parse(JSON.generate(dados))
 
-    private
-
-    def processar_uma(mensagem)
-      unless mensagem.is_a?(Hash) && mensagem['jsonrpc'] == '2.0' && mensagem['method'].is_a?(String)
-        # Resposta de um cliente para um pedido nosso: não fazemos pedidos, ignora.
-        return nil if mensagem.is_a?(Hash) && (mensagem.key?('result') || mensagem.key?('error'))
-
-        return erro(mensagem.is_a?(Hash) ? mensagem['id'] : nil, INVALID_REQUEST, 'Requisição JSON-RPC inválida.')
-      end
-
-      id = mensagem['id']
-      notificacao = !mensagem.key?('id')
-      params = mensagem['params'] || {}
-
-      resultado = despachar(mensagem['method'], params)
-      return nil if notificacao
-
-      { jsonrpc: '2.0', id: id, result: resultado }
-    rescue ErroJsonRpc => e
-      notificacao ? nil : erro(id, e.codigo, e.message)
-    rescue StandardError => e
-      Rails.logger.error("[MCP] #{e.class}: #{e.message}\n#{e.backtrace&.first(10)&.join("\n")}")
-      notificacao ? nil : erro(id, INTERNAL_ERROR, 'Erro interno do servidor.')
-    end
-
-    def despachar(metodo, params)
-      case metodo
-      when 'initialize' then inicializar(params)
-      when 'ping' then {}
-      when 'tools/list' then { tools: @ferramentas.definicoes }
-      when 'tools/call' then chamar_ferramenta(params)
-      when %r{\Anotifications/} then nil
-      else
-        raise ErroJsonRpc.new(METHOD_NOT_FOUND, "Método não suportado: #{metodo}")
-      end
-    end
-
-    def inicializar(params)
-      pedida = params.is_a?(Hash) ? params['protocolVersion'] : nil
-      versao = VERSOES_SUPORTADAS.include?(pedida) ? pedida : VERSOES_SUPORTADAS.first
-
-      {
-        protocolVersion: versao,
-        capabilities: { tools: { listChanged: false } },
-        serverInfo: { name: NOME, title: 'Apolo Concursos', version: VERSAO },
-        instructions: INSTRUCOES
-      }
-    end
-
-    def chamar_ferramenta(params)
-      raise ErroJsonRpc.new(INVALID_PARAMS, 'params deve ser um objeto.') unless params.is_a?(Hash)
-
-      nome = params['name']
-      raise ErroJsonRpc.new(INVALID_PARAMS, "Ferramenta desconhecida: #{nome.inspect}") unless @ferramentas.existe?(nome)
-
-      argumentos = params['arguments'] || {}
-      raise ErroJsonRpc.new(INVALID_PARAMS, 'arguments deve ser um objeto.') unless argumentos.is_a?(Hash)
-
-      dados = @ferramentas.chamar(nome, argumentos)
-      {
-        content: [{ type: 'text', text: JSON.generate(dados) }],
-        structuredContent: dados,
-        isError: false
-      }
+      MCP::Tool::Response.new([{ type: 'text', text: JSON.generate(dados) }], structured_content: dados)
     rescue Ferramentas::ErroDeFerramenta => e
-      # Erro de uso (argumento inválido, plano sem permissão etc.): volta como
-      # resultado com isError, para o modelo ler a mensagem e corrigir.
-      { content: [{ type: 'text', text: e.message }], isError: true }
-    end
-
-    def erro(id, codigo, mensagem)
-      { jsonrpc: '2.0', id: id, error: { code: codigo, message: mensagem } }
-    end
-
-    class ErroJsonRpc < StandardError
-      attr_reader :codigo
-
-      def initialize(codigo, mensagem)
-        @codigo = codigo
-        super(mensagem)
-      end
+      MCP::Tool::Response.new([{ type: 'text', text: e.message }], error: true)
     end
   end
 end

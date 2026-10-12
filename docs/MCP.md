@@ -1,5 +1,10 @@
 # Acesso por IA: tokens pessoais, servidor MCP e questões para Anki
 
+Tudo aqui é **exclusivo para assinantes** (`User#subscribed?`; admin conta
+como assinante). Quem não assina recebe 403 `subscription_required` no MCP, na
+rota de questões e ao tentar criar token. Listar e revogar tokens continua
+liberado, para quem cancelou conseguir apagar os antigos.
+
 ## Token pessoal
 
 O usuário gera o token em **Configurações > Acesso por IA**. O token começa com
@@ -25,9 +30,23 @@ Rotas (sessão do site):
 
 ## Servidor MCP
 
-`POST /api/mcp`, transporte Streamable HTTP sem estado, resposta em JSON.
-Implementado à mão em `app/services/mcp/` (sem a gem `mcp`), com
-`initialize`, `ping`, `tools/list` e `tools/call`. GET e DELETE devolvem 405.
+`/api/mcp`, montado com a gem oficial [`mcp`](https://github.com/modelcontextprotocol/ruby-sdk)
+(~> 1.7) no padrão "Rails (controller)": um `MCP::Server` por requisição, com
+o usuário no `server_context`, e o `StreamableHTTPTransport` em modo sem
+estado (`stateless: true`) com resposta JSON. Funciona com vários processos
+Puma e não guarda sessão em memória.
+
+- `app/services/mcp/ferramentas.rb`: schemas e lógica de cada ferramenta.
+- `app/services/mcp/servidor.rb`: transforma as definições em `MCP::Tool` e monta o servidor.
+- `config/initializers/mcp.rb`: erros das ferramentas vão para o log.
+- A proteção contra DNS rebinding da gem está desligada: ela só libera
+  localhost e serve para servidores locais sem autenticação. Aqui toda
+  requisição já passou pelo token antes de chegar ao transporte.
+
+Depois de adicionar a gem, rode `bundle install` para atualizar o
+`Gemfile.lock` (entram `mcp`, `json_schemer`, `hana`, `regexp_parser` e
+`simpleidn`). O Dockerfile usa `BUNDLE_DEPLOYMENT=1`, então o build falha se o
+lock não tiver a gem.
 
 Conectar no Claude Code:
 
@@ -60,7 +79,7 @@ npx @modelcontextprotocol/inspector
 
 ## Questões para Anki
 
-Aceita token pessoal ou sessão do site. Até 100 ids por requisição.
+Aceita token pessoal ou sessão do site, só para assinantes. Até 100 ids por requisição.
 
 ```
 GET  /api/anki/questoes/123

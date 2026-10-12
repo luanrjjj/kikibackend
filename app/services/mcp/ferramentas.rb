@@ -3,8 +3,9 @@ module Mcp
   # dados do usuário dono do token.
   #
   # Cada ferramenta tem uma definição (nome, descrição, JSON Schema dos
-  # argumentos) e um método com o mesmo nome. Os números vêm do
-  # EstatisticasService, o mesmo usado pela página de estatísticas do site.
+  # argumentos), que Mcp::Servidor transforma em MCP::Tool, e um método com o
+  # mesmo nome. Os números vêm do EstatisticasService, o mesmo usado pela
+  # página de estatísticas do site.
   class Ferramentas
     class ErroDeFerramenta < StandardError; end
 
@@ -19,8 +20,6 @@ module Mcp
       data_inicio: { type: 'string', format: 'date', description: 'Início do período, AAAA-MM-DD.' },
       data_fim: { type: 'string', format: 'date', description: 'Fim do período, AAAA-MM-DD.' }
     }.freeze
-
-    SOMENTE_LEITURA = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false }.freeze
 
     DEFINICOES = [
       {
@@ -101,16 +100,12 @@ module Mcp
           additionalProperties: false
         }
       }
-    ].map { |d| d.merge(annotations: SOMENTE_LEITURA.merge(title: d[:title])) }.freeze
+    ].freeze
 
     NOMES = DEFINICOES.map { |d| d[:name] }.freeze
 
     def initialize(user)
       @user = user
-    end
-
-    def definicoes
-      DEFINICOES
     end
 
     def existe?(nome)

@@ -131,8 +131,8 @@ Rails.application.routes.draw do
 
     # Tokens pessoais (Configurações > Acesso por IA) e servidor MCP
     resources :api_tokens, only: [:index, :create, :destroy], defaults: { format: :json }
-    post 'mcp', to: 'mcp#handle'
-    match 'mcp', to: 'mcp#metodo_nao_permitido', via: [:get, :delete]
+    # POST traz as mensagens; GET e DELETE o transporte da gem responde (405 no modo sem estado)
+    match 'mcp', to: 'mcp#handle', via: [:get, :post, :delete]
 
     post 'anki/generate', to: 'anki#generate'
     post 'anki/generate_ai', to: 'anki#generate_ai'
