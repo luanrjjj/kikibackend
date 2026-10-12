@@ -22,6 +22,7 @@ class Questao < ApplicationRecord
   validates :discursiva, inclusion: { in: [true, false] }
 
   before_save :set_classificacoes
+  after_commit :expirar_cache_das_provas, on: %i[update destroy]
 
   def disciplina_nome
     disciplina&.nome
@@ -69,6 +70,12 @@ class Questao < ApplicationRecord
   end
 
   private
+
+  # GET /provas/:id/questaos fica em cache; sem isso a edição (ex.: vincular
+  # texto) só aparecia na tela da prova depois que o cache expirasse.
+  def expirar_cache_das_provas
+    Prova.expirar_cache_questaos(ProvaQuestao.where(questao_id: self[:id]).pluck(:prova_id))
+  end
 
   def set_classificacoes
     self.classificacoes = [

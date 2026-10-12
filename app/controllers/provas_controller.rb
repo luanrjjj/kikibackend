@@ -180,7 +180,7 @@ class ProvasController < ApplicationController
     render json: ranked_provas
   end
   def questaos
-    cache_key = "prova/#{@prova.id}/questaos/v4"
+    cache_key = Prova.questaos_cache_key(@prova.id)
 
     json_data = Rails.cache.fetch(cache_key, expires_in: 12.hours) do
       prova_questaos = @prova.prova_questaos
@@ -188,10 +188,12 @@ class ProvasController < ApplicationController
                              .order(:numero_questao)
 
       questaos = prova_questaos.map(&:questao).compact.uniq { |q| q.id }
+      numeros = prova_questaos.each_with_object({}) { |pq, h| h[pq.questao_id] ||= pq.numero_questao }
 
       QuestaoSerializer.new(questaos, {
         params: {
-          prova: @prova
+          prova: @prova,
+          numeros: numeros
         }
       }).serializable_hash
     end
@@ -253,7 +255,7 @@ class ProvasController < ApplicationController
   # PATCH /provas/1/toggle_blocked
   def toggle_blocked
     @prova.update!(is_blocked: !@prova.is_blocked)
-    Rails.cache.delete("prova/#{@prova.id}/questaos/v4")
+    Prova.expirar_cache_questaos(@prova.id)
     render json: @prova.as_json(prova_json_options)
   end
 

@@ -100,6 +100,11 @@ class QuestaoSerializer
     end
   end
 
+  # Número da questão na prova (só no contexto de GET /provas/:id/questaos)
+  attribute :numero_questao do |object, params|
+    params && params[:numeros] ? params[:numeros][object[:id]] : nil
+  end
+
   attribute :resolucao do |object, params|
     if params && params[:resolucoes]
       res = params[:resolucoes][object[:id]]
