@@ -133,7 +133,7 @@ class ConcursosController < ApplicationController
         banca: { only: [:id, :nome, :sigla, :logo] },
         orgao: { except: [:created_at, :updated_at] },
         provas: { only: [:id, :nome, :ano, :prova_url, :prova_url_ref, :pdfs_folder_url, :edital_url, :escolaridade] }
-      })),
+      }), mesmo_para_admin: true),
       meta: {
         current_page: page,
         per_page: per_page,
@@ -162,7 +162,7 @@ class ConcursosController < ApplicationController
       orgao: { except: [:created_at, :updated_at] }
     })
 
-    render json: remover_provas_bloqueadas(response_data)
+    render json: remover_provas_bloqueadas(response_data, mesmo_para_admin: true)
   end
 
   def stats
