@@ -98,11 +98,13 @@ class ApplicationController < ActionController::API
     params.to_s
   end
 
-  # Remove provas bloqueadas (e itens ligados a elas) de um JSON já montado,
-  # para quem não é admin. Percorre hashes/arrays e filtra as chaves
-  # "provas" (por id) e "edital_verts" (por prova_id).
-  def remover_provas_bloqueadas(data)
-    return data if admin_user?
+  # Remove provas bloqueadas (e itens ligados a elas) de um JSON já montado.
+  # Percorre hashes/arrays e filtra as chaves "provas" (por id) e
+  # "edital_verts" (por prova_id).
+  # Nas páginas públicas use mesmo_para_admin: true: o admin navegando no site
+  # também não deve ver a prova bloqueada (ele a vê só no painel admin).
+  def remover_provas_bloqueadas(data, mesmo_para_admin: false)
+    return data if !mesmo_para_admin && admin_user?
 
     blocked = Prova.blocked_ids
     return data if blocked.empty?

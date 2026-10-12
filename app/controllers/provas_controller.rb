@@ -69,8 +69,8 @@ class ProvasController < ApplicationController
     page = [params.fetch(:page, 1).to_i, 1].max
     per_page = [params.fetch(:per_page, 20).to_i, 1].max
 
-    @provas = Prova.includes(:orgao, :banca, :concurso)
-    @provas = @provas.unblocked unless admin_user?
+    # Página pública de Provas: bloqueada some para todos, inclusive admin
+    @provas = Prova.includes(:orgao, :banca, :concurso).unblocked
 
     # Apply filters
     @provas = @provas.where("provas.nome ILIKE ?", "%#{params[:nome]}%") if params[:nome].present?
