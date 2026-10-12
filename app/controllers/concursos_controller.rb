@@ -55,7 +55,7 @@ class ConcursosController < ApplicationController
 
     total_count = @concursos.count
     @concursos = @concursos.includes(:banca, :orgao)
-                         .order(inscricoes_ate: :desc)
+                         .order(inscricoes_ate: :desc, id: :desc)
                          .offset((page - 1) * per_page)
                          .limit(per_page)
 
@@ -117,10 +117,15 @@ class ConcursosController < ApplicationController
 
     total_count = @concursos.count
 
+    # A ordenação precisa terminar numa coluna única (id). Sem isso, concursos
+    # empatados (mesma inscricoes_ate, ou inscricoes_ate nula) não têm ordem
+    # garantida no Postgres e o OFFSET/LIMIT pode repetir um concurso em duas
+    # páginas e pular outros.
     order_clause = if params[:sort_by] == 'created_at'
-                     { created_at: params[:direction] || :desc }
+                     direction = params[:direction].to_s.downcase == 'asc' ? 'ASC' : 'DESC'
+                     Arel.sql("concursos.created_at #{direction}, concursos.id #{direction}")
                    else
-                     Arel.sql("CASE WHEN inscricoes_ate >= CURRENT_DATE THEN 0 ELSE 1 END, CASE WHEN inscricoes_ate >= CURRENT_DATE THEN inscricoes_ate END ASC, inscricoes_ate DESC NULLS LAST")
+                     Arel.sql("CASE WHEN concursos.inscricoes_ate >= CURRENT_DATE THEN 0 ELSE 1 END, CASE WHEN concursos.inscricoes_ate >= CURRENT_DATE THEN concursos.inscricoes_ate END ASC, concursos.inscricoes_ate DESC NULLS LAST, concursos.id DESC")
                    end
 
     @concursos = @concursos.includes(:banca, :orgao, :provas)
