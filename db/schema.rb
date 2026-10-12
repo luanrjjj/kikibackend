@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_11_210000) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_12_020000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -22,6 +22,20 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_11_210000) do
     t.datetime "updated_at", null: false
     t.index ["questao_id"], name: "index_anotacaos_on_questao_id"
     t.index ["user_id"], name: "index_anotacaos_on_user_id"
+  end
+
+  create_table "api_tokens", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "nome", null: false
+    t.string "token_digest", null: false
+    t.string "token_prefixo", null: false
+    t.datetime "last_used_at"
+    t.datetime "revogado_em"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token_digest"], name: "index_api_tokens_on_token_digest", unique: true
+    t.index ["user_id", "revogado_em"], name: "index_api_tokens_on_user_id_and_revogado_em"
+    t.index ["user_id"], name: "index_api_tokens_on_user_id"
   end
 
   create_table "area_de_atuacaos", force: :cascade do |t|
@@ -440,6 +454,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_11_210000) do
 
   add_foreign_key "anotacaos", "questaos"
   add_foreign_key "anotacaos", "users"
+  add_foreign_key "api_tokens", "users"
   add_foreign_key "assuntos", "disciplinas"
   add_foreign_key "cadernos", "concursos"
   add_foreign_key "cadernos", "filtros"

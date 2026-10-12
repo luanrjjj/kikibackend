@@ -123,6 +123,17 @@ Rails.application.routes.draw do
       end
     end
 
+    # Dados de questões para o usuário gerar flashcards com a própria IA.
+    # Aceita token pessoal (apl_...) ou sessão.
+    get 'anki/questoes', to: 'anki_questoes#index'
+    post 'anki/questoes', to: 'anki_questoes#index'
+    get 'anki/questoes/:id', to: 'anki_questoes#show'
+
+    # Tokens pessoais (Configurações > Acesso por IA) e servidor MCP
+    resources :api_tokens, only: [:index, :create, :destroy], defaults: { format: :json }
+    post 'mcp', to: 'mcp#handle'
+    match 'mcp', to: 'mcp#metodo_nao_permitido', via: [:get, :delete]
+
     post 'anki/generate', to: 'anki#generate'
     post 'anki/generate_ai', to: 'anki#generate_ai'
     post 'anki/ai_generate_json', to: 'anki#ai_generate_json'

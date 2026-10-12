@@ -3,18 +3,18 @@ class CadernosController < ApplicationController
 
   # GET /cadernos
   def index
-    @cadernos = current_user.cadernos.order(created_at: :desc)
-    
-    # Enrich each caderno with stats
+    @cadernos = current_user.cadernos.order(created_at: :desc).to_a
+
+    # Acertos/erros de todos os cadernos numa consulta só
+    contagens = EstatisticasService.new(current_user).contagens_por_caderno(@cadernos.map(&:id))
+
     cadernos_with_stats = @cadernos.map do |caderno|
-      res_counts = caderno.resolucoes.group(:correta).count
-      total_resolucoes = res_counts.values.sum
-      
+      c = contagens[caderno.id]
       caderno.as_json.merge(
-        acertos: res_counts[true] || 0,
-        erros: res_counts[false] || 0,
+        acertos: c[:acertos],
+        erros: c[:erros],
         total_questoes: caderno.questoes_ids&.length || 0,
-        respondidas: total_resolucoes
+        respondidas: c[:respondidas]
       )
     end
 
