@@ -48,4 +48,28 @@ class SpacesService
       raise e
     end
   end
+
+  def self.bucket_name
+    ENV['SPACES_BUCKET_NAME'] || ENV['SPACES_BUCKET'] || 'kikiproject'
+  end
+
+  # Lista os objetos sob o prefixo (recursivo, todas as subpastas), já paginado.
+  # Retorna [{ key: "concursos_pdfs/.../prova.pdf", size: 12345 }, ...]
+  # sem os "marcadores de pasta" (chaves terminadas em "/").
+  def self.list_objects(prefix)
+    objetos = []
+    client.list_objects_v2(bucket: bucket_name, prefix: prefix).each do |page|
+      page.contents.each do |obj|
+        next if obj.key.end_with?('/')
+
+        objetos << { key: obj.key, size: obj.size.to_i }
+      end
+    end
+    objetos
+  end
+
+  # Conteúdo (binário) de um objeto.
+  def self.read_object(key)
+    client.get_object(bucket: bucket_name, key: key).body.read
+  end
 end

@@ -1,8 +1,8 @@
 class ProvasController < ApplicationController
   before_action :authenticate_subscription, only: %i[ questaos ]
-  before_action :set_prova, only: %i[ show update destroy questaos toggle_blocked ]
+  before_action :set_prova, only: %i[ show update destroy questaos toggle_blocked download ]
   before_action :authenticate_admin!, only: %i[ index all stats years create update destroy toggle_blocked ]
-  before_action :ocultar_prova_bloqueada, only: %i[ show questaos ]
+  before_action :ocultar_prova_bloqueada, only: %i[ show questaos download ]
 
   # GET /provas
   def index
@@ -199,6 +199,18 @@ class ProvasController < ApplicationController
     end
 
     render json: json_data
+  end
+
+  # GET /provas/1/download
+  # Baixa, num único .zip, todos os arquivos da pasta da prova no Spaces
+  # (prova, gabarito, edital...). Exige usuário logado (before_action global).
+  # Para restringir por plano: before_action -> { exigir_recurso!('...') }, only: :download
+  def download
+    zip = ProvaZipService.new(@prova).call
+    Rails.logger.info "[Download] prova=#{@prova.id} user=#{current_user&.id} arquivos=#{zip.file_count} bytes=#{zip.data.bytesize}"
+    send_data zip.data, filename: zip.filename, type: 'application/zip', disposition: 'attachment'
+  rescue ProvaZipService::Error => e
+    render json: { error: e.message }, status: e.status
   end
 
   # GET /provas/1
