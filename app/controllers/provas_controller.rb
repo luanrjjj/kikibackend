@@ -1,8 +1,10 @@
 class ProvasController < ApplicationController
   before_action :authenticate_subscription, only: %i[ questaos ]
-  before_action :set_prova, only: %i[ show update destroy questaos toggle_blocked ]
+  # Baixar prova é um link comum (<a href>), sem o header de autenticação
+  skip_before_action :authenticate_user!, only: %i[ download_zip ]
+  before_action :set_prova, only: %i[ show update destroy questaos toggle_blocked download_zip ]
   before_action :authenticate_admin!, only: %i[ index all stats years create update destroy toggle_blocked ]
-  before_action :ocultar_prova_bloqueada, only: %i[ show questaos ]
+  before_action :ocultar_prova_bloqueada, only: %i[ show questaos download_zip ]
 
   # GET /provas
   def index
@@ -250,6 +252,29 @@ class ProvasController < ApplicationController
   # DELETE /provas/1
   def destroy
     @prova.destroy!
+  end
+
+  # GET /provas/1/download_zip
+  # Redireciona para o .zip com todos os arquivos da pasta pdfs_folder_url
+  # (gerado e guardado no Spaces na primeira vez; ver ProvaZipService).
+  # Sem pasta, cai para o PDF avulso (prova_url / prova_url_ref).
+  def download_zip
+    if @prova.pdfs_folder_url.blank?
+      fallback = @prova.prova_url.presence || @prova.prova_url_ref.presence
+      return redirect_to(fallback, allow_other_host: true) if fallback
+
+      return render json: { error: 'sem_arquivo', message: 'Esta prova não tem arquivos para baixar.' }, status: :not_found
+    end
+
+    url = ProvaZipService.url_do_zip(@prova)
+    return render json: { url: url } if params[:formato] == 'json'
+
+    redirect_to url, allow_other_host: true
+  rescue ProvaZipService::PastaVazia, ProvaZipService::PastaInvalida => e
+    fallback = @prova.prova_url.presence || @prova.prova_url_ref.presence
+    return redirect_to(fallback, allow_other_host: true) if fallback && params[:formato] != 'json'
+
+    render json: { error: 'zip_indisponivel', message: e.message }, status: :not_found
   end
 
   # PATCH /provas/1/toggle_blocked

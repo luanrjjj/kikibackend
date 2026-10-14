@@ -73,6 +73,7 @@ Rails.application.routes.draw do
       get :popular, on: :collection
       get :questaos, on: :member
       patch :toggle_blocked, on: :member
+      get :download_zip, on: :member
       get :stats, on: :collection
       get :years, on: :collection
     end
