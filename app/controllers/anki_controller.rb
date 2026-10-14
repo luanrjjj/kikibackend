@@ -5,7 +5,7 @@ require 'genanki/note'
 
 class AnkiController < ApplicationController
   # Exportar um .apkg conta no limite semanal do plano (anki_export_by_week_free).
-  before_action :verify_export_limit, only: %i[ generate generate_ai ]
+  before_action :verify_export_limit, only: %i[ generate generate_ai create_export ]
   # Flashcards de conceitos gerados por IA são do plano Pro.
   before_action -> { exigir_recurso!('ia_concept_question_extraction_advanced') }, only: %i[ generate_ai ai_generate_json ]
   def generate
@@ -21,133 +21,9 @@ class AnkiController < ApplicationController
     prova_id = params[:prova_id] || first_q['prova_id']
     concurso_id = params[:concurso_id] || first_q['concurso_id']
 
-    # Map to hold decks by name (to support sub-decks by subject)
-    decks = {}
-    
-    # Base deck for everything else
-    base_deck_id = Time.now.to_i
-    
-    models = {}
-    media_files = []
-
-    questoes.each_with_index do |q, idx|
-      # Determine deck name hierarchy: "Title::Disciplina::Subject"
-      disciplina = q['disciplina']
-      subject = q['assunto']
-      
-      hierarchy = [title]
-      hierarchy << disciplina if disciplina.present?
-      hierarchy << subject if subject.present?
-      
-      deck_name = hierarchy.join("::")
-      
-      unless decks.key?(deck_name)
-        decks[deck_name] = Genanki::Deck.new(
-          deck_id: base_deck_id + idx, # Ensure unique IDs
-          name: deck_name
-        )
-      end
-      
-      current_deck = decks[deck_name]
-
-      card_type = q['type'] || 'basic'
-      model = models[card_type]
-
-      if model.nil?
-        if card_type == 'basic'
-          model = Genanki::Model.new(
-            model_id: 1699392319,
-            name: 'QuestaoModel',
-            fields: [
-              { 'name' => 'Enunciado' },
-              { 'name' => 'Resposta' }
-            ],
-            templates: [
-              {
-                'name' => 'Card 1',
-                'qfmt' => "<div class=\"container\">\n  <div style=\"display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;\">\n    <div class=\"badge\">Pergunta</div>\n    <span style=\"color: #5522fa; font-weight: 600; font-size: 14px;\">APOLO</span>\n  </div>\n  <div class=\"question\">{{Enunciado}}</div>\n</div>",
-                'afmt' => "<div class=\"container\">\n  <div style=\"display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;\">\n    <div class=\"badge\">Pergunta</div>\n    <span style=\"color: #5522fa; font-weight: 600; font-size: 14px;\">APOLO</span>\n  </div>\n  <div class=\"question\">{{Enunciado}}</div>\n  <hr id=\"answer\" class=\"divider\">\n  <div class=\"badge\" style=\"background-color: #5522fa; color: white;\">Resposta</div>\n  <div class=\"answer\">{{Resposta}}</div>\n</div>"
-              }
-            ],
-            css: ".card {\n  font-family: 'Moniker', system-ui, -apple-system, sans-serif;\n  font-size: 18px;\n  text-align: left;\n  color: #3f3f46;\n  background-color: #f8fafc;\n  padding: 20px;\n}\n\n.container {\n  background-color: white;\n  border-radius: 12px;\n  border: 1px solid #e4e4e7;\n  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);\n  padding: 24px;\n  max-width: 600px;\n  margin: 0 auto;\n}\n\n.badge {\n  display: inline-flex;\n  padding: 4px 12px;\n  border-radius: 9999px;\n  background-color: rgba(85, 34, 250, 0.1);\n  color: #5522fa;\n  font-size: 10px;\n  font-weight: bold;\n  text-transform: uppercase;\n  letter-spacing: 0.05em;\n  margin-bottom: 12px;\n}\n\n.question {\n  font-weight: 800;\n  font-size: 1.25em;\n  line-height: 1.4;\n  color: #18181b;\n  letter-spacing: -0.025em;\n}\n\n.divider {\n  border: none;\n  border-top: 1px solid #e4e4e7;\n  margin: 20px 0;\n}\n\n.answer {\n  color: #3f3f46;\n  line-height: 1.6;\n  font-weight: 500;\n}\n"
-          )
-        elsif card_type == 'basic_and_reversed'
-          model = Genanki::Model.new(
-            model_id: 1699392321,
-            name: 'QuestaoModelReversed',
-            fields: [
-              { 'name' => 'Enunciado' },
-              { 'name' => 'Resposta' }
-            ],
-            templates: [
-              {
-                'name' => 'Card 1',
-                'qfmt' => '{{Enunciado}}',
-                'afmt' => '{{FrontSide}}<hr id="answer">{{Resposta}}'
-              },
-              {
-                'name' => 'Card 2',
-                'qfmt' => '{{Resposta}}',
-                'afmt' => '{{FrontSide}}<hr id="answer">{{Enunciado}}'
-              }
-            ],
-            css: ".card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\ndetails {\n margin-top: 10px;\n}\nsummary {\n cursor: pointer;\n user-select: none;\n}\n"
-          )
-        elsif card_type == 'cloze'
-          model = Genanki::Model.new(
-            model_id: 1699392320, # different model_id
-            name: 'ClozeModel',
-            model_type: Genanki::Model::CLOZE,
-            fields: [
-              { 'name' => 'Texto' },
-              { 'name' => 'Extra' }
-            ],
-            templates: [
-              {
-                'name' => 'Cloze',
-                'qfmt' => '{{cloze:Texto}}',
-                'afmt' => '{{cloze:Texto}}<br>{{Extra}}'
-              }
-            ]
-          )
-        end
-        models[card_type] = model
-      end
-
-      # Prepare tags (no spaces allowed)
-      tags = []
-      tags << q['disciplina'].gsub(/\s+/, '_') if q['disciplina'].present?
-      tags << q['assunto'].gsub(/\s+/, '_') if q['assunto'].present?
-
-      note = nil
-      if card_type == 'basic'
-        note = Genanki::Note.new(
-          model: model,
-          fields: [q['enunciado'], q['correta']],
-          tags: tags
-        )
-      elsif card_type == 'basic_and_reversed'
-        note = Genanki::Note.new(
-          model: model,
-          fields: [q['enunciado'], q['resposta']],
-          tags: tags
-        )
-      elsif card_type == 'cloze'
-        note = Genanki::Note.new(
-          model: model,
-          fields: [q['enunciado'], q['extra']],
-          tags: tags
-        )
-      end
-
-      current_deck.add_note(note) if note
-    end
-
-    pkg = Genanki::Package.new(decks.values, media_files: media_files)
     file_name = "anki_deck_#{Time.now.to_i}.apkg"
     file_path = Rails.root.join('tmp', file_name)
-
-    pkg.write_to_file(file_path)
+    AnkiDeckBuilder.write(questoes, title, file_path)
 
     # Registrar a exportação no banco de dados
     Export.create!(
@@ -158,6 +34,49 @@ class AnkiController < ApplicationController
     )
 
     send_file file_path, type: 'application/apkg', disposition: 'attachment', filename: file_name
+  end
+
+  # POST /anki/exports — exportação em fila (AnkiExportJob).
+  # Mesmo corpo de /anki/generate; responde 202 com o id para acompanhar.
+  def create_export
+    questoes = params.to_unsafe_h['questoes']
+    if questoes.blank? || !questoes.is_a?(Array)
+      return render json: { error: 'Nenhuma questão fornecida' }, status: :bad_request
+    end
+
+    first_q = questoes.first || {}
+    titulo = params[:title].presence || "Anki Deck #{Time.now.strftime('%Y-%m-%d')}"
+
+    export = Export.create!(
+      user: current_user,
+      prova_id: params[:prova_id].presence || first_q['prova_id'],
+      concurso_id: params[:concurso_id].presence || first_q['concurso_id'],
+      questoes_count: questoes.length,
+      status: 'pendente',
+      titulo: titulo,
+      payload: { 'title' => titulo, 'questoes' => questoes }
+    )
+
+    AnkiExportJob.perform_later(export.id)
+    render json: export.as_status_json, status: :accepted
+  end
+
+  # GET /anki/exports/:id
+  def show_export
+    export = current_user.exports.find(params[:id])
+    render json: export.as_status_json
+  end
+
+  # GET /anki/exports/:id/download
+  def download_export
+    export = current_user.exports.find(params[:id])
+    unless export.concluido? && export.arquivo_key.present?
+      return render json: { error: 'export_not_ready', status: export.status }, status: :conflict
+    end
+
+    data = SpacesService.read_file(export.arquivo_key)
+    nome = "#{export.titulo.to_s.parameterize.presence || 'anki_deck'}.apkg"
+    send_data data, type: 'application/apkg', disposition: 'attachment', filename: nome
   end
 
   def ai_generate_json

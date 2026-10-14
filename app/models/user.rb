@@ -59,7 +59,7 @@ class User < ApplicationRecord
 
   # Exportações para o Anki feitas nesta semana (segunda a domingo).
   def exportacoes_da_semana
-    exports.where(created_at: Time.current.all_week).count
+    exports.validas.where(created_at: Time.current.all_week).count
   end
 
   # Limite semanal de exportações do plano; nil quando ilimitado.

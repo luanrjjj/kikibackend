@@ -135,6 +135,9 @@ Rails.application.routes.draw do
     match 'mcp', to: 'mcp#handle', via: [:get, :post, :delete]
 
     post 'anki/generate', to: 'anki#generate'
+    post 'anki/exports', to: 'anki#create_export'
+    get 'anki/exports/:id', to: 'anki#show_export'
+    get 'anki/exports/:id/download', to: 'anki#download_export'
     post 'anki/generate_ai', to: 'anki#generate_ai'
     post 'anki/ai_generate_json', to: 'anki#ai_generate_json'
 

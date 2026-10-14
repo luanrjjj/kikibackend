@@ -31,21 +31,29 @@ class SpacesService
     end
   end
 
-  def self.upload_file(key, file)
-    bucket = ENV['SPACES_BUCKET_NAME'] || ENV['SPACES_BUCKET'] || 'kikiproject'
+  def self.bucket
+    ENV['SPACES_BUCKET_NAME'] || ENV['SPACES_BUCKET'] || 'kikiproject'
+  end
 
+  # acl: 'public-read' (padrão, servido pela CDN) ou 'private' (baixado pelo backend)
+  def self.upload_file(key, file, acl: 'public-read', content_type: nil)
     begin
       client.put_object(
         bucket: bucket,
         key: key,
         body: file.respond_to?(:read) ? file.read : file,
-        acl: 'public-read',
-        content_type: file.respond_to?(:content_type) ? file.content_type : 'application/octet-stream'
+        acl: acl,
+        content_type: content_type || (file.respond_to?(:content_type) ? file.content_type : 'application/octet-stream')
       )
       cdn_url(key)
     rescue StandardError => e
       Rails.logger.error "SpacesService#upload_file Error: #{e.message}"
       raise e
     end
+  end
+
+  # Conteúdo de um objeto (para arquivos privados, como as exportações do Anki)
+  def self.read_file(key)
+    client.get_object(bucket: bucket, key: key).body.read
   end
 end

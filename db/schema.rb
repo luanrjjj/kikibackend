@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_12_120000) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_14_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -176,8 +176,15 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_12_120000) do
     t.integer "questoes_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "concluido", null: false
+    t.string "titulo"
+    t.string "arquivo_key"
+    t.text "erro"
+    t.jsonb "payload"
+    t.datetime "concluido_em"
     t.index ["concurso_id"], name: "index_exports_on_concurso_id"
     t.index ["prova_id"], name: "index_exports_on_prova_id"
+    t.index ["status"], name: "index_exports_on_status"
     t.index ["user_id"], name: "index_exports_on_user_id"
   end
 
