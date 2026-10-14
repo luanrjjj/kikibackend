@@ -15,6 +15,23 @@ class User < ApplicationRecord
   has_many :reports, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
+  validates :fake_id, uniqueness: true, format: { with: /\A\d{7}\z/ }, allow_nil: true
+
+  # Todo usuário novo ganha um fake_id (id público de 7 dígitos, usado na URL
+  # do perfil estatístico público: /perfil/<fake_id>).
+  before_validation :gerar_fake_id, on: :create
+
+  def self.gerar_fake_id_unico
+    loop do
+      candidato = SecureRandom.random_number(1_000_000..9_999_999).to_s
+      return candidato unless exists?(fake_id: candidato)
+    end
+  end
+
+  # Primeiro nome, para exibir no perfil público sem expor o nome completo.
+  def nome_publico
+    name.to_s.strip.split(/\s+/).first.presence || 'Estudante'
+  end
 
   def generate_password_reset_token!
     self.reset_password_token = SecureRandom.urlsafe_base64
@@ -130,6 +147,10 @@ class User < ApplicationRecord
   end
 
   private
+
+  def gerar_fake_id
+    self.fake_id ||= self.class.gerar_fake_id_unico
+  end
 
   def calcular_variaveis
     vars =
