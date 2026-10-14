@@ -66,6 +66,35 @@ class TextosController < ApplicationController
     @texto.destroy!
   end
 
+  IMAGEM_TIPOS = %w[image/png image/jpeg image/gif image/webp image/svg+xml].freeze
+  IMAGEM_MAX_BYTES = 10.megabytes
+
+  # POST /textos/upload_imagem (multipart: file, texto_id opcional)
+  # Envia a imagem para o Spaces em question_images/ e devolve a URL pública.
+  # Não grava no texto: o modal coloca a URL em imagem_texto e salva junto
+  # com o restante do formulário.
+  def upload_imagem
+    file = params[:file] || params[:imagem]
+    return render json: { error: "Nenhum arquivo enviado." }, status: :bad_request if file.blank?
+
+    unless IMAGEM_TIPOS.include?(file.content_type)
+      return render json: { error: "Formato não suportado. Envie PNG, JPG, GIF, WEBP ou SVG." }, status: :unprocessable_entity
+    end
+    if file.size > IMAGEM_MAX_BYTES
+      return render json: { error: "Imagem maior que 10 MB." }, status: :unprocessable_entity
+    end
+
+    ext = File.extname(file.original_filename.to_s).downcase.presence || ".#{file.content_type.split('/').last.sub('svg+xml', 'svg')}"
+    prefixo = params[:texto_id].present? ? "texto_#{params[:texto_id].to_i}" : "texto"
+    key = "question_images/#{prefixo}_#{Time.current.strftime('%Y%m%d%H%M%S')}_#{SecureRandom.hex(4)}#{ext}"
+
+    url = SpacesService.upload_file(key, file)
+    render json: { url: url, key: key }
+  rescue StandardError => e
+    Rails.logger.error "TextosController#upload_imagem Error: #{e.message}"
+    render json: { error: "Erro ao enviar a imagem: #{e.message}" }, status: :internal_server_error
+  end
+
   private
     # Busca SÓ por id do texto e por concurso (id ou nome). Nunca pelo conteúdo
     # do texto: ILIKE em textos.texto faz full scan na tabela e derruba o banco.
