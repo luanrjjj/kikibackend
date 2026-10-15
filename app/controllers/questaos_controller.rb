@@ -31,6 +31,10 @@ class QuestaosController < ApplicationController
       questaos = questaos.where(assunto_id: params[:assunto_id].to_i)
     end
 
+    if params[:topico_id].present?
+      questaos = questaos.where(topico_id: params[:topico_id].to_i)
+    end
+
     if params[:classificacao_origem].present? || params[:classificao_origem].present?
       val = params[:classificacao_origem].presence || params[:classificao_origem].presence
       origem_col = if Questao.column_names.include?('classificacao_origem')
@@ -71,7 +75,7 @@ class QuestaosController < ApplicationController
 
   # GET /questaos/stats
   def stats
-    has_filters = params[:disciplina_id].present? || params[:assunto_id].present? || params[:prova_id].present? || params[:search].present? || params[:classificacao_origem].present? || params[:classificao_origem].present? || params[:questao_id].present?
+    has_filters = params[:disciplina_id].present? || params[:assunto_id].present? || params[:topico_id].present? || params[:prova_id].present? || params[:search].present? || params[:classificacao_origem].present? || params[:classificao_origem].present? || params[:questao_id].present?
 
     if !has_filters
       cached_stats = Rails.cache.read("admin/stats/questaos/global")
@@ -94,6 +98,7 @@ class QuestaosController < ApplicationController
 
     scope = scope.where(disciplina_id: params[:disciplina_id]) if params[:disciplina_id].present?
     scope = scope.where(assunto_id: params[:assunto_id]) if params[:assunto_id].present?
+    scope = scope.where(topico_id: params[:topico_id]) if params[:topico_id].present?
 
     if params[:classificacao_origem].present? || params[:classificao_origem].present?
       val = params[:classificacao_origem].presence || params[:classificao_origem].presence
