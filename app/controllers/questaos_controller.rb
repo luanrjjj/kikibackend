@@ -57,7 +57,7 @@ class QuestaosController < ApplicationController
       questaos.count
     end
 
-    questaos_data = questaos.includes(:disciplina, :assunto, :provas, :texto, :texto_para_verificar, concurso: [:banca, :orgao])
+    questaos_data = questaos.includes(:disciplina, :assunto, :topico, :provas, :texto, :texto_para_verificar, concurso: [:banca, :orgao])
                             .order("questaos.id ASC")
                             .offset((page - 1) * per_page)
                             .limit(per_page)
