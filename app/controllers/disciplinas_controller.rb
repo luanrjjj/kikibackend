@@ -22,7 +22,13 @@ class DisciplinasController < ApplicationController
 
     base_scope = Disciplina.all
     if params[:search].present?
-      base_scope = base_scope.where("disciplinas.nome ILIKE ?", "%#{params[:search]}%")
+      termo = params[:search].to_s.strip
+      id_busca = termo.delete('#')
+      base_scope = if id_busca.match?(/\A\d+\z/)
+                     base_scope.where("disciplinas.id = :id OR disciplinas.nome ILIKE :term", id: id_busca.to_i, term: "%#{termo}%")
+                   else
+                     base_scope.where("disciplinas.nome ILIKE ?", "%#{termo}%")
+                   end
     end
 
     total_count = base_scope.count

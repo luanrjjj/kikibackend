@@ -83,6 +83,13 @@ class GuiaFiltrosController < ApplicationController
   end
 
   def guia_filtro_params
-    params.require(:guia_filtro).permit(:guia_id, :cargo_guia_id, :nome, :filtro_id_1, :filtro_id_2, :filtro_id_3)
+    permitted = params.require(:guia_filtro).permit(:guia_id, :cargo_guia_id, :nome, :filtro_id_1, :filtro_id_2, :filtro_id_3)
+    # Filtro vazio pode chegar como "", "0" ou 0 (o formulário convertia null
+    # em 0); grava como NULL para não violar a FK com filtros.
+    %w[filtro_id_1 filtro_id_2 filtro_id_3].each do |key|
+      next unless permitted.key?(key)
+      permitted[key] = nil if permitted[key].blank? || permitted[key].to_i <= 0
+    end
+    permitted
   end
 end

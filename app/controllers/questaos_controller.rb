@@ -31,6 +31,10 @@ class QuestaosController < ApplicationController
       questaos = questaos.where(assunto_id: params[:assunto_id].to_i)
     end
 
+    if params[:topico_id].present?
+      questaos = questaos.where(topico_id: params[:topico_id].to_i)
+    end
+
     if params[:classificacao_origem].present? || params[:classificao_origem].present?
       val = params[:classificacao_origem].presence || params[:classificao_origem].presence
       origem_col = if Questao.column_names.include?('classificacao_origem')
@@ -53,7 +57,7 @@ class QuestaosController < ApplicationController
       questaos.count
     end
 
-    questaos_data = questaos.includes(:disciplina, :assunto, :provas, :texto, :texto_para_verificar, concurso: [:banca, :orgao])
+    questaos_data = questaos.includes(:disciplina, :assunto, :topico, :provas, :texto, :texto_para_verificar, concurso: [:banca, :orgao])
                             .order("questaos.id ASC")
                             .offset((page - 1) * per_page)
                             .limit(per_page)
@@ -71,7 +75,7 @@ class QuestaosController < ApplicationController
 
   # GET /questaos/stats
   def stats
-    has_filters = params[:disciplina_id].present? || params[:assunto_id].present? || params[:prova_id].present? || params[:search].present? || params[:classificacao_origem].present? || params[:classificao_origem].present? || params[:questao_id].present?
+    has_filters = params[:disciplina_id].present? || params[:assunto_id].present? || params[:topico_id].present? || params[:prova_id].present? || params[:search].present? || params[:classificacao_origem].present? || params[:classificao_origem].present? || params[:questao_id].present?
 
     if !has_filters
       cached_stats = Rails.cache.read("admin/stats/questaos/global")
@@ -94,6 +98,7 @@ class QuestaosController < ApplicationController
 
     scope = scope.where(disciplina_id: params[:disciplina_id]) if params[:disciplina_id].present?
     scope = scope.where(assunto_id: params[:assunto_id]) if params[:assunto_id].present?
+    scope = scope.where(topico_id: params[:topico_id]) if params[:topico_id].present?
 
     if params[:classificacao_origem].present? || params[:classificao_origem].present?
       val = params[:classificacao_origem].presence || params[:classificao_origem].presence
@@ -287,39 +292,56 @@ class QuestaosController < ApplicationController
   def count
     @questaos = apply_filters(Questao.all)
 
-    # Optimize: Use a simpler cache key based on params instead of hashing the whole SQL
-    # This is faster and avoids generating the SQL twice
-    cache_key = "questaos/count/v2/#{params.permit!.to_h.sort.to_s.hash}"
+    cache_key = filtros_cache_key('count')
 
     count_val = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
-      @questaos.count
+      com_timeout { @questaos.count }
     end
 
     render json: { count: count_val }
+  rescue ActiveRecord::QueryCanceled
+    render_filtro_muito_amplo
   end
 
   # GET /questaos/ids
+  # Devolve no máximo o limite de questões por caderno do usuário. Antes, um
+  # filtro amplo (ex.: só a banca Cespe/Cebraspe, ~300 mil questões) fazia
+  # pluck de tudo, cacheava e mandava megabytes de IDs para o navegador, que
+  # ainda os reenviava ao criar o caderno — só para serem recusados pelo limite.
   def ids
     @questaos = apply_filters(Questao.all)
 
-    # Cache IDs as well, as this can be a large result
-    cache_key = "questaos/ids/v2/#{params.permit!.to_h.sort.to_s.hash}"
+    max_limit = current_user&.variaveis.to_h['max_caderno_questoes'].to_i
+    max_limit = 10_000 if max_limit <= 0
 
+    cache_key = filtros_cache_key("ids/max#{max_limit}")
     ids_val = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
-      @questaos.pluck(:id)
+      # Busca um a mais para saber se passou do limite sem contar a tabela toda
+      com_timeout { @questaos.limit(max_limit + 1).pluck(:id) }
+    end
+
+    if ids_val.size > max_limit
+      total = Rails.cache.fetch(filtros_cache_key('count'), expires_in: 30.minutes) { com_timeout { @questaos.count } }
+      return render json: {
+        error: 'max_caderno_questoes_exceeded',
+        message: "Os filtros retornam #{total} questões; o máximo por caderno é #{max_limit}.",
+        max_caderno_questoes: max_limit,
+        questoes_count: total
+      }, status: :unprocessable_entity
     end
 
     render json: { ids: ids_val }
+  rescue ActiveRecord::QueryCanceled
+    render_filtro_muito_amplo
   end
 
   # GET /questaos/filters_page_questaos
   def filters_questaos
     @questaos = apply_filters(Questao.all)
 
-    # Also cache total_count here
-    cache_key = "questaos/count/v2/#{params.permit!.to_h.sort.to_s.hash}"
+    cache_key = filtros_cache_key('count')
     total_count = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
-      @questaos.count
+      com_timeout { @questaos.count }
     end
 
     page = params[:page]&.to_i || 1
@@ -330,6 +352,33 @@ class QuestaosController < ApplicationController
   end
 
   private
+
+  FILTRO_STATEMENT_TIMEOUT = ENV.fetch('FILTRO_STATEMENT_TIMEOUT', '20s')
+
+  # Limita o tempo das consultas de filtro no Postgres: uma consulta muito
+  # ampla não pode segurar uma thread do Puma e o banco indefinidamente.
+  def com_timeout
+    Questao.transaction do
+      Questao.connection.execute("SET LOCAL statement_timeout = #{Questao.connection.quote(FILTRO_STATEMENT_TIMEOUT)}")
+      yield
+    end
+  end
+
+  def render_filtro_muito_amplo
+    render json: {
+      error: 'filtro_muito_amplo',
+      message: 'Esse filtro retorna questões demais para calcular agora. Adicione mais um filtro (ex.: disciplina ou ano) e tente de novo.'
+    }, status: :service_unavailable
+  end
+
+  # Chave de cache estável entre processos para os endpoints de filtro.
+  # String#hash do Ruby é aleatório por processo, então a chave antiga quase
+  # nunca reaproveitava o cache entre workers/restarts.
+  def filtros_cache_key(prefixo)
+    relevantes = params.to_unsafe_h.except('controller', 'action', 'format', 'page', 'per_page')
+    normalizados = relevantes.sort.map { |k, v| [k, v.is_a?(Array) ? v.map(&:to_s).sort : v.to_s] }
+    "questaos/#{prefixo}/v3/#{Digest::SHA256.hexdigest(normalizados.to_json)}"
+  end
 
   def set_questao
     @questao = Questao.find_by!(id: params[:id])

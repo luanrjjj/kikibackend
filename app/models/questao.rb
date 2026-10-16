@@ -32,6 +32,10 @@ class Questao < ApplicationRecord
     assunto&.nome
   end
 
+  def topico_nome
+    topico&.nome
+  end
+
   def prova_nome
     provas.first&.nome
   end
@@ -56,6 +60,7 @@ class Questao < ApplicationRecord
     super(options).merge({
       disciplina_nome: disciplina_nome,
       assunto_nome: assunto_nome,
+      topico_nome: topico_nome,
       prova_nome: prova_nome,
       banca_nome: banca_nome,
       orgao_nome: orgao_nome,

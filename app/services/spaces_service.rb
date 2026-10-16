@@ -52,8 +52,32 @@ class SpacesService
     end
   end
 
-  # Conteúdo de um objeto (para arquivos privados, como as exportações do Anki)
-  def self.read_file(key)
+  # Nome antigo de `bucket`, usado pelo ProvaZipService
+  def self.bucket_name
+    bucket
+  end
+
+  # Lista os objetos sob o prefixo (recursivo, todas as subpastas), já paginado.
+  # Retorna [{ key: "concursos_pdfs/.../prova.pdf", size: 12345 }, ...]
+  # sem os "marcadores de pasta" (chaves terminadas em "/").
+  def self.list_objects(prefix)
+    objetos = []
+    client.list_objects_v2(bucket: bucket, prefix: prefix).each do |page|
+      page.contents.each do |obj|
+        next if obj.key.end_with?('/')
+
+        objetos << { key: obj.key, size: obj.size.to_i }
+      end
+    end
+    objetos
+  end
+
+  # Conteúdo (binário) de um objeto, inclusive privados (ex.: exportações do Anki).
+  def self.read_object(key)
     client.get_object(bucket: bucket, key: key).body.read
+  end
+
+  def self.read_file(key)
+    read_object(key)
   end
 end
