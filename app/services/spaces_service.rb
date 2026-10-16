@@ -31,16 +31,19 @@ class SpacesService
     end
   end
 
-  def self.upload_file(key, file)
-    bucket = ENV['SPACES_BUCKET_NAME'] || ENV['SPACES_BUCKET'] || 'kikiproject'
+  def self.bucket
+    ENV['SPACES_BUCKET_NAME'] || ENV['SPACES_BUCKET'] || 'kikiproject'
+  end
 
+  # acl: 'public-read' (padrão, servido pela CDN) ou 'private' (baixado pelo backend)
+  def self.upload_file(key, file, acl: 'public-read', content_type: nil)
     begin
       client.put_object(
         bucket: bucket,
         key: key,
         body: file.respond_to?(:read) ? file.read : file,
-        acl: 'public-read',
-        content_type: file.respond_to?(:content_type) ? file.content_type : 'application/octet-stream'
+        acl: acl,
+        content_type: content_type || (file.respond_to?(:content_type) ? file.content_type : 'application/octet-stream')
       )
       cdn_url(key)
     rescue StandardError => e
@@ -49,8 +52,9 @@ class SpacesService
     end
   end
 
+  # Nome antigo de `bucket`, usado pelo ProvaZipService
   def self.bucket_name
-    ENV['SPACES_BUCKET_NAME'] || ENV['SPACES_BUCKET'] || 'kikiproject'
+    bucket
   end
 
   # Lista os objetos sob o prefixo (recursivo, todas as subpastas), já paginado.
@@ -58,7 +62,7 @@ class SpacesService
   # sem os "marcadores de pasta" (chaves terminadas em "/").
   def self.list_objects(prefix)
     objetos = []
-    client.list_objects_v2(bucket: bucket_name, prefix: prefix).each do |page|
+    client.list_objects_v2(bucket: bucket, prefix: prefix).each do |page|
       page.contents.each do |obj|
         next if obj.key.end_with?('/')
 
@@ -68,8 +72,12 @@ class SpacesService
     objetos
   end
 
-  # Conteúdo (binário) de um objeto.
+  # Conteúdo (binário) de um objeto, inclusive privados (ex.: exportações do Anki).
   def self.read_object(key)
-    client.get_object(bucket: bucket_name, key: key).body.read
+    client.get_object(bucket: bucket, key: key).body.read
+  end
+
+  def self.read_file(key)
+    read_object(key)
   end
 end
