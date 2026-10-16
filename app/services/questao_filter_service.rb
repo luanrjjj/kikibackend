@@ -18,9 +18,13 @@ class QuestaoFilterService
     bancas = f[:bancas]
     orgaos = f[:orgaos]
     if bancas.present? || orgaos.present?
-      questaos = questaos.joins(:concurso)
-      questaos = questaos.where(concursos: { banca_id: bancas }) if bancas.present?
-      questaos = questaos.where(concursos: { orgao_id: orgaos }) if orgaos.present?
+      # Subconsulta em concursos (tabela pequena) em vez de JOIN: o Postgres
+      # resolve os concursos da banca/órgão primeiro e usa o índice de
+      # questaos.concurso_id. Mesma semântica do JOIN anterior.
+      concursos = Concurso.all
+      concursos = concursos.where(banca_id: bancas) if bancas.present?
+      concursos = concursos.where(orgao_id: orgaos) if orgaos.present?
+      questaos = questaos.where(concurso_id: concursos.select(:id))
     end
 
     ano = f[:ano]
