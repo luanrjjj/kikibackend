@@ -19,6 +19,7 @@ class Export < ApplicationRecord
     {
       id: id,
       status: status,
+      progresso: progresso.to_i,
       titulo: titulo,
       questoes_count: questoes_count,
       erro: erro,

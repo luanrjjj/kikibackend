@@ -10,18 +10,21 @@ require 'genanki/note'
 # questoes: array de hashes com chaves string: enunciado, correta, resposta,
 # extra, type (basic | basic_and_reversed | cloze), disciplina, assunto.
 class AnkiDeckBuilder
-  def self.build(questoes, title)
-    new(questoes, title).build
+  # on_progress: chamado com (feitas, total) a cada card montado; usado pelo
+  # AnkiExportJob para alimentar a barra de progresso do frontend.
+  def self.build(questoes, title, on_progress: nil)
+    new(questoes, title, on_progress: on_progress).build
   end
 
-  def self.write(questoes, title, path)
-    build(questoes, title).write_to_file(path)
+  def self.write(questoes, title, path, on_progress: nil)
+    build(questoes, title, on_progress: on_progress).write_to_file(path)
     path
   end
 
-  def initialize(questoes, title)
+  def initialize(questoes, title, on_progress: nil)
     @questoes = Array(questoes).map { |q| q.respond_to?(:to_unsafe_h) ? q.to_unsafe_h : q.to_h }.map(&:stringify_keys)
     @title = title.presence || "Anki Deck #{Time.now.strftime('%Y-%m-%d')}"
+    @on_progress = on_progress
   end
 
   # @return [Genanki::Package]
@@ -149,6 +152,7 @@ class AnkiDeckBuilder
       end
 
       current_deck.add_note(note) if note
+      @on_progress&.call(idx + 1, questoes.size)
     end
 
     Genanki::Package.new(decks.values, media_files: media_files)
