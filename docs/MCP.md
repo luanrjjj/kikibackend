@@ -67,7 +67,43 @@ Ferramentas (todas só de leitura):
 | `desempenho_por_assunto(..., disciplina_id?)` | `#hierarquia`; exige `show_stats_table_by_assunto_basic` |
 | `pontos_fracos(..., limite, minimo_resolucoes)` | `#pontos_fracos` |
 | `questoes_erradas(caderno_id?, dias?, apenas_pendentes?)` | `#questoes_erradas` |
-| `questoes_para_anki(ids, incluir_comentarios?)` | `AnkiQuestoesService` (até 50 ids) |
+| `questoes_do_caderno(caderno_id, quantidade?, pagina? \| inicio?, situacao?, incluir_comentarios?)` | `AnkiQuestoesService` (até 100 por chamada, paginado; só cadernos do usuário) |
+| `questoes_para_anki(ids, incluir_comentarios?)` | `AnkiQuestoesService` (até 100 ids) |
+
+### `questoes_do_caderno`
+
+Devolve as questões de um caderno no mesmo formato de `questoes_para_anki`, na
+ordem do caderno.
+
+- `quantidade`: 1 a 100 (padrão 20).
+- `pagina` (1, 2, 3...) ou `inicio` (posição a partir de 0; tem prioridade).
+- `situacao`: `todas` (padrão), `nao_respondidas`, `erradas` ou `acertadas`,
+  pela resolução mais recente do usuário **neste caderno**.
+- A resposta traz `paginacao` (`total`, `quantidade`, `inicio`, `entregues`,
+  `pagina`, `total_paginas`, `tem_mais`, `proximo_inicio`, `proxima_pagina`) e
+  `cota`.
+
+## Cota diária (`McpCotaDiaria`)
+
+Cada questão entregue com dados completos conta 1: `questoes_do_caderno`,
+`questoes_para_anki` e `/api/anki/questoes` **quando chamada com token
+pessoal**. Limite de **1000 questões por usuário por dia** (horário de
+Brasília) e **100 por chamada**. Listar cadernos, estatísticas e
+`questoes_erradas` (só ids e classificação) não contam.
+
+- Tabela `mcp_usos_diarios` (`user_id`, `dia`, `questoes`), uma linha por
+  usuário e dia. A reserva trava a linha (`SELECT ... FOR UPDATE`), então
+  chamadas simultâneas não passam do limite. Ids inexistentes são devolvidos à
+  cota.
+- Se a chamada pede mais do que resta, entrega só o que cabe: no MCP vem
+  `mensagem` e, em `questoes_do_caderno`, `paginacao.proximo_inicio` para
+  continuar no dia seguinte; em `questoes_para_anki` e na rota REST, os ids
+  que ficaram de fora vêm em `nao_entregues_pela_cota`.
+- Com a cota zerada: o MCP responde erro de ferramenta (`isError`) com a hora
+  da renovação; a rota REST responde 429 com `Retry-After`.
+- `cota` em `listar_cadernos` e nas respostas de questões: `limite_diario`,
+  `usadas_hoje`, `restantes_hoje`, `max_por_chamada`, `renova_em`.
+- Com a sessão do site, `/api/anki/questoes` não tem cota.
 
 `criar_caderno_de_erros` ficou para uma fase seguinte.
 
@@ -82,6 +118,7 @@ npx @modelcontextprotocol/inspector
 ## Questões para Anki
 
 Aceita token pessoal ou sessão do site, com `mcp_access` no plano. Até 100 ids por requisição.
+Com token pessoal, conta na cota diária (ver acima).
 
 ```
 GET  /api/anki/questoes/123

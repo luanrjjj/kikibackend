@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_15_220000) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_16_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -220,6 +220,15 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_15_220000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["concurso_id"], name: "index_guias_on_concurso_id"
+  end
+
+  create_table "mcp_usos_diarios", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "dia", null: false
+    t.integer "questoes", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "dia"], name: "index_mcp_usos_diarios_on_user_id_and_dia", unique: true
   end
 
   create_table "orgaos", force: :cascade do |t|
@@ -490,6 +499,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_15_220000) do
   add_foreign_key "guia_filtros", "filtros", column: "filtro_id_3"
   add_foreign_key "guia_filtros", "guias"
   add_foreign_key "guias", "concursos"
+  add_foreign_key "mcp_usos_diarios", "users"
   add_foreign_key "pagamentos", "users"
   add_foreign_key "password_resets", "users"
   add_foreign_key "pasta_cadernos", "users"

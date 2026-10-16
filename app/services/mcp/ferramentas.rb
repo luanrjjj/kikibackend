@@ -9,8 +9,10 @@ module Mcp
   class Ferramentas
     class ErroDeFerramenta < StandardError; end
 
-    MAX_IDS_ANKI = 50
+    MAX_IDS_ANKI = McpCotaDiaria::MAX_POR_CHAMADA
     MAX_DIAS = 3650
+    QUANTIDADE_PADRAO = 20
+    SITUACOES = %w[todas nao_respondidas erradas acertadas].freeze
 
     PERIODO = {
       dias: {
@@ -37,6 +39,35 @@ module Mcp
           properties: {
             caderno_id: { type: 'integer', description: 'Id do caderno.' },
             incluir_ids_questoes: { type: 'boolean', description: 'Inclui os ids das questões de cada assunto e tópico (padrão false).' }
+          },
+          required: ['caderno_id'],
+          additionalProperties: false
+        }
+      },
+      {
+        name: 'questoes_do_caderno',
+        title: 'Questões de um caderno',
+        description: "Dados completos das questões de um caderno do usuário, na ordem do caderno, para revisar ou criar flashcards: " \
+                     'enunciado, texto de apoio, alternativas, gabarito, classificação, banca, ano e histórico do usuário. ' \
+                     "Paginado: até #{McpCotaDiaria::MAX_POR_CHAMADA} questões por chamada (quantidade) e pagina (1, 2, 3...) ou inicio (posição, a partir de 0). " \
+                     'A resposta traz paginacao.proxima_pagina e paginacao.proximo_inicio enquanto houver mais. ' \
+                     "Cada questão entregue conta na cota de #{McpCotaDiaria::LIMITE_DIARIO} questões por dia (ver cota na resposta). " \
+                     'Use listar_cadernos para obter o caderno_id.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            caderno_id: { type: 'integer', description: 'Id do caderno.' },
+            quantidade: {
+              type: 'integer', minimum: 1, maximum: McpCotaDiaria::MAX_POR_CHAMADA,
+              description: "Quantas questões devolver nesta chamada (padrão #{QUANTIDADE_PADRAO}, máximo #{McpCotaDiaria::MAX_POR_CHAMADA})."
+            },
+            pagina: { type: 'integer', minimum: 1, description: 'Página, começando em 1, com o tamanho de quantidade (padrão 1).' },
+            inicio: { type: 'integer', minimum: 0, description: 'Posição da primeira questão, a partir de 0. Se enviado, tem prioridade sobre pagina.' },
+            situacao: {
+              type: 'string', enum: SITUACOES,
+              description: 'Filtra pela resolução mais recente do usuário neste caderno: todas (padrão), nao_respondidas, erradas ou acertadas.'
+            },
+            incluir_comentarios: { type: 'boolean', description: 'Inclui até 3 comentários mais votados de cada questão (padrão false).' }
           },
           required: ['caderno_id'],
           additionalProperties: false
@@ -89,7 +120,8 @@ module Mcp
       {
         name: 'questoes_para_anki',
         title: 'Questões para flashcards',
-        description: "Dados completos de até #{MAX_IDS_ANKI} questões para criar flashcards: enunciado, texto de apoio, alternativas, gabarito, disciplina, assunto, tópico, banca, ano, histórico do usuário e, opcionalmente, os comentários mais votados.",
+        description: "Dados completos de até #{MAX_IDS_ANKI} questões para criar flashcards: enunciado, texto de apoio, alternativas, gabarito, disciplina, assunto, tópico, banca, ano, histórico do usuário e, opcionalmente, os comentários mais votados. " \
+                     "Cada questão entregue conta na cota de #{McpCotaDiaria::LIMITE_DIARIO} questões por dia. Para as questões de um caderno, prefira questoes_do_caderno.",
         inputSchema: {
           type: 'object',
           properties: {
@@ -140,7 +172,7 @@ module Mcp
         }
       end
 
-      { total: lista.length, cadernos: lista }
+      { total: lista.length, cadernos: lista, cota: cota.resumo }
     end
 
     def estatisticas_caderno(args)
@@ -262,20 +294,127 @@ module Mcp
     def questoes_para_anki(args)
       ids = AnkiQuestoesService.normalizar_ids(args['ids'])
       raise ErroDeFerramenta, 'Informe ao menos um id em ids.' if ids.empty?
+      if ids.length > MAX_IDS_ANKI
+        raise ErroDeFerramenta, "Envie no máximo #{MAX_IDS_ANKI} ids por chamada (recebidos: #{ids.length})."
+      end
 
-      AnkiQuestoesService.new(
-        @user,
-        incluir_comentarios: verdadeiro?(args['incluir_comentarios']),
-        max_ids: MAX_IDS_ANKI
-      ).buscar(ids)
-    rescue AnkiQuestoesService::LimiteExcedido => e
-      raise ErroDeFerramenta, e.message
+      entregar_com_cota(ids, incluir_comentarios: verdadeiro?(args['incluir_comentarios'])) do |resultado, nao_entregues|
+        dados = resultado.merge(nao_entregues_pela_cota: nao_entregues)
+        if nao_entregues.any?
+          dados[:mensagem] = "Cota diária atingida: #{nao_entregues.length} questões ficaram para amanhã (ver nao_entregues_pela_cota)."
+        end
+        dados
+      end
+    end
+
+    def questoes_do_caderno(args)
+      caderno_id = inteiro(args['caderno_id'], 'caderno_id', obrigatorio: true)
+      caderno = @user.cadernos.find_by(id: caderno_id)
+      raise ErroDeFerramenta, "Caderno #{caderno_id} não encontrado entre os cadernos do usuário. Use listar_cadernos." unless caderno
+
+      quantidade = (inteiro(args['quantidade'], 'quantidade') || QUANTIDADE_PADRAO).clamp(1, McpCotaDiaria::MAX_POR_CHAMADA)
+      pagina = [inteiro(args['pagina'], 'pagina') || 1, 1].max
+      inicio = inteiro(args['inicio'], 'inicio')
+      inicio = inicio.nil? ? (pagina - 1) * quantidade : [inicio, 0].max
+
+      situacao = (args['situacao'].presence || 'todas').to_s
+      unless SITUACOES.include?(situacao)
+        raise ErroDeFerramenta, "situacao deve ser uma de: #{SITUACOES.join(', ')} (recebido: #{situacao.inspect})."
+      end
+
+      todos_ids = filtrar_por_situacao(caderno, AnkiQuestoesService.normalizar_ids(Array(caderno.questoes_ids)), situacao)
+      ids_da_pagina = todos_ids[inicio, quantidade] || []
+
+      base = {
+        caderno: { id: caderno.id, nome: caderno.nome, total_questoes: Array(caderno.questoes_ids).length },
+        situacao: situacao
+      }
+
+      if ids_da_pagina.empty?
+        return base.merge(
+          total: 0, questoes: [], nao_encontradas: [],
+          paginacao: self.class.paginacao(total: todos_ids.length, inicio: inicio, quantidade: quantidade, entregues: 0),
+          cota: cota.resumo,
+          mensagem: todos_ids.empty? ? 'Nenhuma questão do caderno nesta situação.' : 'Não há mais questões a partir desta posição.'
+        )
+      end
+
+      entregar_com_cota(ids_da_pagina, incluir_comentarios: verdadeiro?(args['incluir_comentarios'])) do |resultado, nao_entregues|
+        entregues = ids_da_pagina.length - nao_entregues.length
+        dados = base.merge(resultado).merge(
+          paginacao: self.class.paginacao(total: todos_ids.length, inicio: inicio, quantidade: quantidade, entregues: entregues)
+        )
+        if nao_entregues.any?
+          dados[:mensagem] = "Cota diária atingida: foram entregues #{entregues} de #{ids_da_pagina.length} questões. " \
+                             "Continue amanhã com inicio=#{inicio + entregues}."
+        end
+        dados
+      end
+    end
+
+    # Metadados de paginação. proxima_pagina só aparece quando a próxima posição
+    # cai no começo de uma página do mesmo tamanho; proximo_inicio sempre vale.
+    def self.paginacao(total:, inicio:, quantidade:, entregues:)
+      proximo = inicio + entregues
+      tem_mais = entregues.positive? && proximo < total
+      {
+        total: total,
+        quantidade: quantidade,
+        inicio: inicio,
+        entregues: entregues,
+        pagina: (inicio / quantidade) + 1,
+        total_paginas: (total.to_f / quantidade).ceil,
+        tem_mais: tem_mais,
+        proximo_inicio: tem_mais ? proximo : nil,
+        proxima_pagina: tem_mais && (proximo % quantidade).zero? ? (proximo / quantidade) + 1 : nil
+      }
     end
 
     private
 
     def estatisticas
       @estatisticas ||= EstatisticasService.new(@user)
+    end
+
+    def cota
+      @cota ||= McpCotaDiaria.new(@user)
+    end
+
+    # Reserva a cota, busca as questões e devolve à cota as que não existem.
+    # Entrega só as que couberem na cota de hoje; as demais vão para o bloco
+    # como nao_entregues.
+    def entregar_com_cota(ids, incluir_comentarios:)
+      concedidas = cota.reservar!(ids.length)
+      entregar = ids.first(concedidas)
+
+      resultado = AnkiQuestoesService.new(@user, incluir_comentarios: incluir_comentarios, max_ids: MAX_IDS_ANKI).buscar(entregar)
+      cota.devolver!(resultado[:nao_encontradas].length)
+
+      dados = yield(resultado, ids.drop(concedidas))
+      dados.merge(cota: cota.resumo)
+    rescue McpCotaDiaria::Esgotada => e
+      raise ErroDeFerramenta, e.message
+    rescue AnkiQuestoesService::LimiteExcedido => e
+      raise ErroDeFerramenta, e.message
+    end
+
+    # Mantém a ordem do caderno. A situação considera a resolução mais recente
+    # do usuário em cada questão, dentro deste caderno (como estatisticas_caderno).
+    def filtrar_por_situacao(caderno, ids, situacao)
+      return ids if situacao == 'todas' || ids.empty?
+
+      ultimas = Resolucao.where(user_id: @user.id, caderno_id: caderno.id, questao_id: ids)
+                         .select('DISTINCT ON (questao_id) questao_id, correta')
+                         .order(Arel.sql('questao_id, created_at DESC'))
+                         .to_a
+                         .to_h { |r| [r.questao_id, r.correta] }
+
+      case situacao
+      when 'nao_respondidas' then ids.reject { |id| ultimas.key?(id) }
+      when 'erradas' then ids.select { |id| ultimas.key?(id) && ultimas[id] == false }
+      when 'acertadas' then ids.select { |id| ultimas[id] == true }
+      else ids
+      end
     end
 
     def periodo(args)

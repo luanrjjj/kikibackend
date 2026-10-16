@@ -7,7 +7,7 @@ module Mcp
   # server_context, como no padrão "Rails (controller)" da documentação da gem.
   module Servidor
     NOME = 'apolo'.freeze
-    VERSAO = '1.0.0'.freeze
+    VERSAO = '1.1.0'.freeze
 
     INSTRUCOES = <<~TXT.freeze
       Servidor do Apolo, plataforma de questões de concurso. Todas as ferramentas
@@ -15,9 +15,18 @@ module Mcp
 
       Para entender o desempenho: comece por estatisticas_gerais e pontos_fracos.
       Para um caderno específico: listar_cadernos e depois estatisticas_caderno.
-      Para revisar erros ou montar flashcards: questoes_erradas devolve os ids e
-      questoes_para_anki devolve enunciado, alternativas, gabarito e classificação
-      de até 50 questões por chamada.
+      Para trazer as questões de um caderno (revisão ou flashcards):
+      questoes_do_caderno, paginado, com até 100 questões por chamada; siga
+      paginacao.proxima_pagina (ou proximo_inicio) enquanto tem_mais for true e
+      o usuário quiser mais. O filtro situacao traz só as erradas, acertadas ou
+      não respondidas do caderno.
+      Para questões avulsas: questoes_erradas devolve os ids e questoes_para_anki
+      devolve enunciado, alternativas, gabarito e classificação de até 100
+      questões por chamada.
+
+      Cota: cada questão entregue por questoes_do_caderno ou questoes_para_anki
+      conta no limite de 1000 questões por dia (horário de Brasília). O campo
+      cota da resposta mostra quantas restam; peça só o que o usuário pediu.
 
       Taxas de acerto estão em porcentagem (0 a 100). Datas no formato AAAA-MM-DD.
     TXT

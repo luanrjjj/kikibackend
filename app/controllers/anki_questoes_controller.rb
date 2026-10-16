@@ -12,7 +12,9 @@
 #   incluir_comentarios=true   traz os comentários mais votados
 #   limite_comentarios=3       quantos comentários por questão (1 a 5)
 #
-# Máximo de 100 ids por requisição.
+# Máximo de 100 ids por requisição. Com token pessoal, cada questão entregue
+# conta na cota diária do acesso por IA (McpCotaDiaria, 1000 por dia), a mesma
+# do MCP. Com a sessão do site não há cota.
 class AnkiQuestoesController < ApplicationController
   include AutenticacaoPorApiToken
 
@@ -22,7 +24,9 @@ class AnkiQuestoesController < ApplicationController
 
   # GET /api/anki/questoes/:id
   def show
-    resultado = servico.buscar([params[:id]])
+    resultado = buscar_com_cota(AnkiQuestoesService.normalizar_ids(params[:id]))
+    return if performed?
+
     questao = resultado[:questoes].first
 
     if questao
@@ -44,12 +48,36 @@ class AnkiQuestoesController < ApplicationController
       }, status: :bad_request
     end
 
-    render json: servico.buscar(ids)
+    if ids.length > AnkiQuestoesService::MAX_IDS
+      return render json: {
+        error: 'Muitos ids',
+        message: "Envie no máximo #{AnkiQuestoesService::MAX_IDS} ids por requisição (recebidos: #{ids.length})."
+      }, status: :unprocessable_entity
+    end
+
+    resultado = buscar_com_cota(ids)
+    render json: resultado unless performed?
   rescue AnkiQuestoesService::LimiteExcedido => e
     render json: { error: 'Muitos ids', message: e.message }, status: :unprocessable_entity
   end
 
   private
+
+  # Sem token pessoal (sessão do site), não aplica a cota.
+  def buscar_com_cota(ids)
+    return servico.buscar(ids) unless current_api_token
+
+    cota = McpCotaDiaria.new(current_user)
+    concedidas = cota.reservar!(ids.length)
+    resultado = servico.buscar(ids.first(concedidas))
+    cota.devolver!(resultado[:nao_encontradas].length)
+    response.set_header('X-Cota-Restante', cota.restantes.to_s)
+    resultado.merge(nao_entregues_pela_cota: ids.drop(concedidas), cota: cota.resumo)
+  rescue McpCotaDiaria::Esgotada => e
+    response.set_header('Retry-After', [(cota.renova_em - Time.current).ceil, 1].max.to_s)
+    render json: { error: 'Cota diária atingida', message: e.message, cota: cota.resumo }, status: :too_many_requests
+    nil
+  end
 
   def servico
     AnkiQuestoesService.new(
