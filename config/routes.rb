@@ -143,6 +143,8 @@ Rails.application.routes.draw do
     get '/auth/failure', to: 'sessions#failure'
     post '/auth/login', to: 'sessions#authenticate'
     get '/auth/me', to: 'sessions#me'
+    get '/perfil_publico/:fake_id', to: 'perfil_publico#show', constraints: { fake_id: /\d{7}/ }
+    patch '/perfil_publico/configuracao', to: 'perfil_publico#update'
     post '/auth/register', to: 'sessions#register'
     post '/auth/forgot_password', to: 'sessions#forgot_password'
     post '/auth/reset_password', to: 'sessions#reset_password'
