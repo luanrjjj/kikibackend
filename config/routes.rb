@@ -57,6 +57,8 @@ Rails.application.routes.draw do
         patch :validate
         get :anotacao
         post :anotacao, to: 'questaos#save_anotacao'
+        post :explicacao_ia
+        post 'explicacao_ia/avaliacao', to: 'questaos#avaliar_explicacao_ia', as: :avaliar_explicacao_ia
       end
       resources :reports, only: [:create], defaults: { format: :json }
       get :all, on: :collection

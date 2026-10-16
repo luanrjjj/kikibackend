@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_16_120000) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_16_150000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -167,6 +167,17 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_16_120000) do
     t.datetime "updated_at", null: false
     t.index ["concurso_id"], name: "index_edital_vert_on_concurso_id"
     t.index ["prova_id"], name: "index_edital_vert_on_prova_id"
+  end
+
+  create_table "explicacao_ia_avaliacoes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "questao_id", null: false
+    t.string "provedor", default: "deepseek", null: false
+    t.boolean "util", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["questao_id"], name: "index_explicacao_ia_avaliacoes_on_questao_id"
+    t.index ["user_id", "questao_id", "provedor"], name: "index_explicacao_ia_avaliacoes_unica", unique: true
   end
 
   create_table "exports", force: :cascade do |t|
@@ -346,6 +357,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_16_120000) do
     t.string "status_classificacao"
     t.string "classificacao_origem"
     t.bigint "text_to_verify"
+    t.jsonb "deepseek_explicacao"
     t.index ["ano"], name: "index_questaos_on_ano"
     t.index ["anulada"], name: "index_questaos_on_anulada"
     t.index ["assunto_id"], name: "index_questaos_on_assunto_id"
@@ -489,6 +501,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_16_120000) do
   add_foreign_key "concursos", "orgaos"
   add_foreign_key "edital_vert", "concursos"
   add_foreign_key "edital_vert", "provas"
+  add_foreign_key "explicacao_ia_avaliacoes", "questaos"
+  add_foreign_key "explicacao_ia_avaliacoes", "users"
   add_foreign_key "exports", "concursos"
   add_foreign_key "exports", "provas"
   add_foreign_key "exports", "users"

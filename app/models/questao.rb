@@ -7,6 +7,7 @@ class Questao < ApplicationRecord
   has_many :resolucoes, class_name: 'Resolucao', dependent: :destroy
   has_many :reports, dependent: :destroy
   has_many :anotacaos, class_name: 'Anotacao', dependent: :destroy
+  has_many :explicacao_ia_avaliacoes, class_name: 'ExplicacaoIaAvaliacao', dependent: :delete_all
 
   belongs_to :concurso, optional: true
   belongs_to :assunto, optional: true
