@@ -1,5 +1,49 @@
 class DeepSeekService
   BASE_URL = "https://api.deepseek.com"
+  MODELO = "deepseek-chat"
+
+  # Envia um prompt e devolve o JSON da resposta já convertido em Hash
+  # (ou nil se a chave estiver ausente, a API falhar ou o JSON vier inválido).
+  def self.chat_json(prompt, system: "You are a helpful assistant that outputs only JSON.", timeout: 60)
+    api_key = ENV['DEEPSEEK_API_KEY']
+    if api_key.blank?
+      Rails.logger.error "DeepSeek API Key is missing!"
+      return nil
+    end
+
+    conn = Faraday.new(url: BASE_URL, request: { timeout: timeout, open_timeout: 10 }) do |f|
+      f.request :json
+      f.response :json
+      f.adapter Faraday.default_adapter
+    end
+
+    response = conn.post("/v1/chat/completions") do |req|
+      req.headers['Authorization'] = "Bearer #{api_key}"
+      req.body = {
+        model: MODELO,
+        messages: [
+          { role: "system", content: system },
+          { role: "user", content: prompt }
+        ],
+        response_format: { type: "json_object" }
+      }
+    end
+
+    unless response.success?
+      Rails.logger.error "DeepSeek API Error Status: #{response.status}"
+      Rails.logger.error "DeepSeek API Error Body: #{response.body.inspect.truncate(1000)}"
+      return nil
+    end
+
+    content = response.body.dig('choices', 0, 'message', 'content')
+    content.present? ? JSON.parse(content) : nil
+  rescue JSON::ParserError => e
+    Rails.logger.error "DeepSeek: resposta não é JSON válido: #{e.message}"
+    nil
+  rescue => e
+    Rails.logger.error "DeepSeek Service Exception: #{e.class}: #{e.message}"
+    nil
+  end
 
   def self.generate_cards(question_text, context_text, correct_answer)
     api_key = ENV['DEEPSEEK_API_KEY']

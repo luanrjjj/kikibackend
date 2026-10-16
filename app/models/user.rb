@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :comentarios, dependent: :destroy
   has_many :voto_comentarios, dependent: :destroy
   has_many :anotacaos, class_name: 'Anotacao', dependent: :destroy
+  has_many :explicacao_ia_avaliacoes, class_name: 'ExplicacaoIaAvaliacao', dependent: :delete_all
   has_many :filtros, dependent: :destroy
   has_many :reports, dependent: :destroy
 

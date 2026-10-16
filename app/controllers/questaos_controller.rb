@@ -2,8 +2,8 @@ require 'digest'
 
 class QuestaosController < ApplicationController
   before_action :authenticate_subscription, only: %i[ filters_questaos ]
-  before_action :set_questao, only: %i[ show update destroy validate anotacao save_anotacao ]
-  before_action :authenticate_user!, only: %i[ anotacao save_anotacao ]
+  before_action :set_questao, only: %i[ show update destroy validate anotacao save_anotacao explicacao_ia avaliar_explicacao_ia ]
+  before_action :authenticate_user!, only: %i[ anotacao save_anotacao explicacao_ia avaliar_explicacao_ia ]
   before_action :authenticate_admin!, only: %i[ index stats origens_classificacao validate ]
 
   # GET /questaos
@@ -199,6 +199,25 @@ class QuestaosController < ApplicationController
         resolucoes: resolucoes
       }
     }).serializable_hash
+  end
+
+  # POST /questaos/1/explicacao_ia   { provedor: "deepseek", regenerar: false }
+  # Explicação da questão por IA (kikiapps#22). Se já existe uma salva em
+  # questaos.deepseek_explicacao, devolve ela sem chamar a IA.
+  # regenerar=true só vale para admin.
+  def explicacao_ia
+    servico = ExplicacaoIaService.new(@questao, user: current_user, provedor: params[:provedor])
+    render json: servico.call(regenerar: ActiveModel::Type::Boolean.new.cast(params[:regenerar]) == true)
+  rescue ExplicacaoIaService::Erro => e
+    render json: { error: e.message }, status: e.status
+  end
+
+  # POST /questaos/1/explicacao_ia/avaliacao   { provedor: "deepseek", util: true }
+  def avaliar_explicacao_ia
+    servico = ExplicacaoIaService.new(@questao, user: current_user, provedor: params[:provedor])
+    render json: servico.avaliar!(params[:util])
+  rescue ExplicacaoIaService::Erro => e
+    render json: { error: e.message }, status: e.status
   end
 
   # GET /questaos/1/anotacao
