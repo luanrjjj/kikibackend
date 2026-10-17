@@ -9,6 +9,19 @@ class AdminController < ApplicationController
     render json: { error: "Erro ao enfileirar job", message: e.message }, status: :internal_server_error
   end
 
+  # POST /admin/limpar_cache_taxonomia
+  # Apaga o cache das listas de disciplinas, assuntos e tópicos usadas nos
+  # filtros de /criar_caderno. A próxima requisição monta a lista de novo.
+  CHAVES_CACHE_TAXONOMIA = %w[disciplinas/all assuntos/all topicos/all].freeze
+
+  def limpar_cache_taxonomia
+    CHAVES_CACHE_TAXONOMIA.each { |chave| Rails.cache.delete(chave) }
+    Rails.logger.info "[Cache] Admin #{current_user&.id} limpou: #{CHAVES_CACHE_TAXONOMIA.join(', ')}"
+    render json: { message: 'Cache de disciplinas, assuntos e tópicos renovado.', chaves: CHAVES_CACHE_TAXONOMIA }
+  rescue StandardError => e
+    render json: { error: 'Erro ao limpar o cache', message: e.message }, status: :internal_server_error
+  end
+
   def user_stats
     # Users per month (last 12 months) using standard SQL for PostgreSQL/SQLite
     monthly_registrations = User.where('created_at >= ?', 12.months.ago)
