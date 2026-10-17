@@ -163,6 +163,7 @@ Rails.application.routes.draw do
     get 'up' => 'rails/health#show', as: :rails_health_check
 
     post 'admin/refresh_stats', to: 'admin#refresh_stats'
+    post 'admin/limpar_cache_taxonomia', to: 'admin#limpar_cache_taxonomia'
     get 'admin/user_stats', to: 'admin#user_stats'
     get 'admin/text_stats', to: 'admin#text_stats'
     get 'admin/configs', to: 'admin#get_configs'
